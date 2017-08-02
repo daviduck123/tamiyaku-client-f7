@@ -20,6 +20,22 @@ function cUndo() {
             }
         }else{
             cClear();
+            var canvas = $('#myCanvas') ;
+            ctx = canvas.get(0).getContext('2d') ;
+            ctx.strokeStyle="silver";
+            var w = 300;
+            var h = 300;
+            var width = $('.draggableItem').width();
+            for (x=0;x<=w;x+=width) {
+                for (y=0;y<=h;y+=width) {
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, h);
+                    ctx.stroke();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(w, y);
+                    ctx.stroke();
+                }
+            }
         }
         
     }
@@ -53,6 +69,23 @@ function bindDraggableTrack(){
     cStep = 0;
     ctx;
     $('.draggableItem').draggable({ helper: "clone" });
+
+    var canvas = $('#myCanvas') ;
+    ctx = canvas.get(0).getContext('2d') ;
+    ctx.strokeStyle="silver";
+    var w = 300;
+    var h = 300;
+    var width = $('.draggableItem').width();
+    for (x=0;x<=w;x+=width) {
+        for (y=0;y<=h;y+=width) {
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, h);
+            ctx.stroke();
+            ctx.moveTo(0, y);
+            ctx.lineTo(w, y);
+            ctx.stroke();
+        }
+    }
 
     $('#myCanvas').droppable({
         drop: function( event, ui ) {

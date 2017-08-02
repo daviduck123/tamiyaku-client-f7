@@ -5,16 +5,13 @@ var currentLng = 0;
 function getNearbyGrup(){
 	$(document).ready(function(){
 		myApp.showPreloader('Mengambil data...');
-		myApp.closeModal();
 		
 		if ( navigator.geolocation )
 		{
-			alert("ga masuk sINI");
 			navigator.geolocation.getCurrentPosition(showPosition, onError, {timeout: 10000, enableHighAccuracy: true});
 		}
 		else
 		{
-			alert("masuk sINI");
 			//tidak bisa ambil lat lng
 			myApp.alert('Posisi anda tidak dapat diakses', 'Perhatian!');
 		}
@@ -29,9 +26,7 @@ function getNearbyGrup(){
 			var latKuSekarang = position.coords.latitude;
 			var lngKuSekarang = position.coords.longitude;
 			var kelas_dipilih = $('#kelas_dipilih').find(":selected").val();
-			
-			alert("Masuk ?" + latKuSekarang+" -- "+lngKuSekarang+" -- "+kelas_dipilih);
-			
+		
 			var link=urlnya+'/api/grup/getGrupNearBy?id_user='+id_user+'&lat='+latKuSekarang+'&lng='+lngKuSekarang+'&id_kelas='+kelas_dipilih;
 			$.ajax({ dataType: "jsonp",
 			    url: link,
@@ -39,7 +34,6 @@ function getNearbyGrup(){
 			    contentType: false,
 			    processData: false
 			}).done(function(z){
-				alert("Masuk2 ?");
 				var dataLength=0;
 				for (var ii = 0 ; ii < z.length ; ii++) {
 					dataLength++;
@@ -67,9 +61,7 @@ function getNearbyGrup(){
 						$("#isi_list_grup_disekitar").append(html);
 				}
 				myApp.closeModal();
-				
 			}).fail(function(x){
-				alert("Masuk3 ?");
 				myApp.alert("Pengambilan data grup disekitar gagal", 'Perhatian!');
 				myApp.closeModal();
 			});

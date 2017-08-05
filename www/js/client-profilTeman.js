@@ -100,7 +100,7 @@ function getAllTemanPost(clickedId) {
 					var html=	"<div id='posting_teman_"+z[i]['id']+"' style='margin-bottom:50px;'>";
 					html += 		"<table id='table_teman_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 					html += 			"<tr>";
-					html += 				"<td rowspan='2'>";
+					html += 				"<td rowspan='2' width='10%'>";
 					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 					html += 				"</td>";
 					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
@@ -114,10 +114,10 @@ function getAllTemanPost(clickedId) {
 					html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
 					html += 			"</tr>";
 					html += 			"<tr>";
-					html += 				"<td colspan='2'>"+z[i]['deskripsi']+"</td>";
+					html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
 					html += 			"</tr>";
 					html += 			"<tr>";
-					html += 				"<td colspan='2' >";
+					html += 				"<td colspan='4' >";
 					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%; height:100%;'>";
 					html += 				"</td>";
 					html += 			"</tr>";
@@ -136,7 +136,7 @@ function getAllTemanPost(clickedId) {
 					var html=	"<div id='posting_teman_"+z[i]['id']+"' style='margin-bottom:50px;'>";
 					html += 		"<table id='table_teman_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 					html += 			"<tr>";
-					html += 				"<td rowspan='2'>";
+					html += 				"<td rowspan='2' width='10%'>";
 					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 					html += 				"</td>";
 					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
@@ -150,7 +150,7 @@ function getAllTemanPost(clickedId) {
 					html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
 					html += 			"</tr>";
 					html += 			"<tr>";
-					html += 				"<td colspan='2'>"+z[i]['deskripsi']+"</td>";
+					html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
 					html += 			"</tr>";
 					html += 		"</table>";
 					html += 		"<div id='kolom_komentar_teman_"+z[i]['id']+"'>";
@@ -217,7 +217,7 @@ function getAllTemanPost(clickedId, id_post) {
 					var html=	"<div id='posting_teman_"+z[i]['id']+"' style='margin-bottom:50px;'>";
 					html += 		"<table id='table_teman_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 					html += 			"<tr>";
-					html += 				"<td rowspan='2'>";
+					html += 				"<td rowspan='2' width='10%'>";
 					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 					html += 				"</td>";
 					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
@@ -231,10 +231,10 @@ function getAllTemanPost(clickedId, id_post) {
 					html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
 					html += 			"</tr>";
 					html += 			"<tr>";
-					html += 				"<td colspan='2'>"+z[i]['deskripsi']+"</td>";
+					html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
 					html += 			"</tr>";
 					html += 			"<tr>";
-					html += 				"<td colspan='2' >";
+					html += 				"<td colspan='4' >";
 					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%; height:100%;'>";
 					html += 				"</td>";
 					html += 			"</tr>";
@@ -253,7 +253,7 @@ function getAllTemanPost(clickedId, id_post) {
 					var html=	"<div id='posting_teman_"+z[i]['id']+"' style='margin-bottom:50px;'>";
 					html += 		"<table id='table_teman_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 					html += 			"<tr>";
-					html += 				"<td rowspan='2'>";
+					html += 				"<td rowspan='2' width='10%'>";
 					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 					html += 				"</td>";
 					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
@@ -267,7 +267,7 @@ function getAllTemanPost(clickedId, id_post) {
 					html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
 					html += 			"</tr>";
 					html += 			"<tr>";
-					html += 				"<td colspan='2'>"+z[i]['deskripsi']+"</td>";
+					html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
 					html += 			"</tr>";
 					html += 		"</table>";
 					html += 		"<div id='kolom_komentar_teman_"+z[i]['id']+"'>";
@@ -472,7 +472,6 @@ function bacaTemanKomentar(clicked_id) {
 							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 							html += 				"</td>";
 							html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
-							html += 				"<td style='font-size:10px;'>"+z[i]['deskripsi']+"</td>";
 							if(z[i]['nama']==getData("active_user_nama"))
 							{
 								html += 				"<td style='font-weight:bold;'><i onclick='editKomentarKuProfile("+clicked_id+",this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
@@ -481,6 +480,9 @@ function bacaTemanKomentar(clicked_id) {
 							html += 			"</tr>";
 							html += 			"<tr>";
 							html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
+							html += 			"</tr>";
+							html += 			"<tr>";
+							html += 				"<td colspan='5'>"+z[i]['deskripsi']+"</td>";
 							html += 			"</tr>";
 							html += 		"</table>";
 							
@@ -524,7 +526,10 @@ function komentariTemanPost(clicked_id) {
 		
 		
 		if($("#" + vardeksripsi).length == 0) {
-				$("#"+vartable).find('tbody').append(" <tr> <td colspan='5'><textarea id='"+vardeksripsi+"' style='resize:none; margin-top:10px; margin-left:10px; width:90%; height:60px;' placeholder='Tulis Komentar Anda..'></textarea> </td></tr>.");
+				$("textarea[id^=deskripsi_teman_]").each(function(e){
+					$(this).remove();
+				});
+				$("#kolom_komentar_teman_"+id_post).after(" <tr> <td colspan='5'><textarea id='"+vardeksripsi+"' style='resize:none; margin-top:10px; margin-left:10px; width:90%; height:60px;' placeholder='Tulis Komentar Anda..'></textarea> </td></tr>.");
 				
 				$("#btn_komentari_teman_"+id_post).html("");
 				

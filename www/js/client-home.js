@@ -10,7 +10,6 @@ function komentariPost(clicked_id) {
 	var id_user = getData("active_user_id");
 	var id_post = "";
 	$(document).ready(function(){
-		
 		id_post=clicked_id;
 		var vardeksripsi="deskripsi_"+id_post;
 		var vartable="table_"+id_post;
@@ -92,7 +91,6 @@ function bacaKomentar(clicked_id) {
 							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 							html += 				"</td>";
 							html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
-							html += 				"<td style='font-size:10px;'>"+z[i]['deskripsi']+"</td>";
 							if(z[i]['nama']==getData("active_user_nama"))
 							{
 								html += 				"<td style='font-weight:bold;'><i onclick='editKomentarKu("+clicked_id+",this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
@@ -101,6 +99,9 @@ function bacaKomentar(clicked_id) {
 							html += 			"</tr>";
 							html += 			"<tr>";
 							html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
+							html += 			"</tr>";
+							html += 			"<tr>";
+							html += 				"<td colspan='5'>"+z[i]['deskripsi']+"</td>";
 							html += 			"</tr>";
 							html += 		"</table>";
 							
@@ -164,7 +165,7 @@ function getAllPost() {
 				var html=	"<div id='posting_"+z[i]['id']+"' style='margin-bottom:50px;'>";
 				html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 				html += 			"<tr>";
-				html += 				"<td rowspan='2'>";
+				html += 				"<td rowspan='2' width='10%'>";
 				if(z[i]['nama']==getData("active_user_nama"))
 				{
 					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
@@ -177,18 +178,18 @@ function getAllPost() {
 				html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
 				if(z[i]['nama']==getData("active_user_nama"))
 				{
-					html += 				"<td style='font-weight:bold;'><i onclick='editPost(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-					html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+					html += 				"<td style='font-weight:bold;'><i onclick='gotoUpdateEvent(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
+					html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusEventData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 				}
 				html += 			"</tr>";
 				html += 			"<tr>";
 				html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
 				html += 			"</tr>";
 				html += 			"<tr>";
-				html += 				"<td colspan='2'>"+z[i]['deskripsi']+"</td>";
+				html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
 				html += 			"</tr>";
 				html += 			"<tr>";
-				html += 				"<td colspan='2' >";
+				html += 				"<td colspan='4' >";
 				html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%; height:100%;'>";
 				html += 				"</td>";
 				html += 			"</tr>";
@@ -207,7 +208,7 @@ function getAllPost() {
 				var html=	"<div id='posting_"+z[i]['id']+"' style='margin-bottom:50px;'>";
 				html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 				html += 			"<tr>";
-				html += 				"<td rowspan='2'>";
+				html += 				"<td rowspan='2' width='10%'>";
 				if(z[i]['nama']==getData("active_user_nama"))
 				{
 					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
@@ -220,15 +221,15 @@ function getAllPost() {
 				html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
 				if(z[i]['nama']==getData("active_user_nama"))
 				{
-					html += 				"<td style='font-weight:bold;'><i onclick='editPost(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-					html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+					html += 				"<td style='font-weight:bold;'><i onclick='gotoUpdateEvent(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
+					html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusEventData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 				}
 				html += 			"</tr>";
 				html += 			"<tr>";
 				html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
 				html += 			"</tr>";
 				html += 			"<tr>";
-				html += 				"<td colspan='2'>"+z[i]['deskripsi']+"</td>";
+				html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
 				html += 			"</tr>";
 				html += 		"</table>";
 				html += 		"<div id='kolom_komentar_"+z[i]['id']+"'>";
@@ -274,7 +275,7 @@ function getAllPost(id_post) {
 				var html=	"<div id='posting_"+z[i]['id']+"' style='margin-bottom:50px;'>";
 				html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 				html += 			"<tr>";
-				html += 				"<td rowspan='2'>";
+				html += 				"<td rowspan='2' width='10%'>";
 				if(z[i]['nama']==getData("active_user_nama"))
 				{
 					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
@@ -295,10 +296,10 @@ function getAllPost(id_post) {
 				html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
 				html += 			"</tr>";
 				html += 			"<tr>";
-				html += 				"<td colspan='2'>"+z[i]['deskripsi']+"</td>";
+				html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
 				html += 			"</tr>";
 				html += 			"<tr>";
-				html += 				"<td colspan='2' >";
+				html += 				"<td colspan='4' >";
 				html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%; height:100%;'>";
 				html += 				"</td>";
 				html += 			"</tr>";
@@ -317,7 +318,7 @@ function getAllPost(id_post) {
 				var html=	"<div id='posting_"+z[i]['id']+"' style='margin-bottom:50px;'>";
 				html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 				html += 			"<tr>";
-				html += 				"<td rowspan='2'>";
+				html += 				"<td rowspan='2' width='10%'>";
 				if(z[i]['nama']==getData("active_user_nama"))
 				{
 					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
@@ -338,7 +339,7 @@ function getAllPost(id_post) {
 				html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
 				html += 			"</tr>";
 				html += 			"<tr>";
-				html += 				"<td colspan='2'>"+z[i]['deskripsi']+"</td>";
+				html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
 				html += 			"</tr>";
 				html += 		"</table>";
 				html += 		"<div id='kolom_komentar_"+z[i]['id']+"'>";

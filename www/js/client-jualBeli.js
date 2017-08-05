@@ -99,6 +99,7 @@ function buatJualBarangPost() {
 								processData: false
 							}).done(function(z){
 								myApp.alert('Jual Barang berhasil dibuat', 'Berhasil!');
+								myApp.closeModal();
 								viewRouterBack();
 								getAllJualBeliPost();
 							}).fail(function(x){

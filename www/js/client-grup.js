@@ -54,7 +54,7 @@ function getNearbyGrup(){
 						html += 						'<div class="item-media"><img class="lazy" src="data:image/jpeg;base64,'+z[i]['foto']+'" style="width:35px; height:35px;"></div>';
 						html += 						'<div class="item-inner">';
 						html += 							'<div class="item-title">'+z[i]['nama']+'</div>';
-						html += 							'<div class="item-after">'+z[i]['lokasi']+' <span class="badge">'+jarak+'km</span></div>';
+						html += 							'<div class="item-after"><span class="badge">'+jarak+'km</span></div>';
 						html += 						'</div>';
 						html += 					'</div>';
 						html += 				'</a>';

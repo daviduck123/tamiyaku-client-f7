@@ -50,8 +50,15 @@ function loginPost() {
 								var d = new Date();
 								//exdays var lama harinya
 								var exdays=1;
-								d.setTime(d.getTime() + (exdays*24*60*60*1000));
-								var expires = d.toGMTString();
+								if(document.getElementById('remember').checked)
+								{
+									var expires = "true";
+								}
+								else
+								{
+									d.setTime(d.getTime() + (exdays*24*60*60*1000));
+									var expires = d.toGMTString();
+								}
 									
 								mainView.router.loadPage('home.html');
 								saveData( "active_user_id",z.user.id);
@@ -244,50 +251,165 @@ function cekLoginAktif() {
 	var expires="";
 	active_user_id=getData("active_user_id");
 	expires=getData("expires");
-	
+	console.log(expires);
 	if(active_user_id!="" && active_user_id!=null)
 	{
-		var d = new Date();
-		var dexpires = new Date(expires);
-		if(d.getTime()<dexpires.getTime())
+		if(expires=="true")
 		{
 			globalListKelas = [];
-			$.ajax({ dataType: "jsonp",
-				url: urlnya+'/api/kelas/getAllByUserId?id_user='+active_user_id,
-				type: 'GET',
-				contentType: false,
-				processData: false
-			}).done(function(data){
-				if(data.length > 0){
-					for(var zzz = 0 ; zzz < data.length ; zzz++){
-						if(data[zzz]['id_kelas'] === "1"){
-							globalListKelas.push({"1":"STB"});
-						}else if(data[zzz]['id_kelas'] === "2"){
-							globalListKelas.push({"2":"STO"});
-						}else if(data[zzz]['id_kelas'] === "3"){
-							globalListKelas.push({"3":"Speed"});
+				$.ajax({ dataType: "jsonp",
+					url: urlnya+'/api/kelas/getAllByUserId?id_user='+active_user_id,
+					type: 'GET',
+					contentType: false,
+					processData: false
+				}).done(function(data){
+					if(data.length > 0){
+						for(var zzz = 0 ; zzz < data.length ; zzz++){
+							if(data[zzz]['id_kelas'] === "1"){
+								globalListKelas.push({"1":"STB"});
+							}else if(data[zzz]['id_kelas'] === "2"){
+								globalListKelas.push({"2":"STO"});
+							}else if(data[zzz]['id_kelas'] === "3"){
+								globalListKelas.push({"3":"Speed"});
+							}
 						}
+					}else{
+						globalListKelas = [];
 					}
-				}else{
-					globalListKelas = [];
-				}
-				mainView.router.loadPage('home.html');
-				$(".profilePicture").attr('src','data:image/jpeg;base64,'+getImage('profilePic'));
-				myApp.closeModal();
-			});
+					mainView.router.loadPage('home.html');
+					$(".profilePicture").attr('src','data:image/jpeg;base64,'+getImage('profilePic'));
+					myApp.closeModal();
+				});
 		}
 		else
-		{	
-			myApp.alert('Sesi waktu anda habis, silahkan lakukan login kembali!');
-			mainView.router.loadPage('login.html');
-			eraseData("active_user_id");
-			eraseData("expires");
+		{
+			var d = new Date();
+			var dexpires = new Date(expires);
+			if(d.getTime()<dexpires.getTime())
+			{
+				globalListKelas = [];
+				$.ajax({ dataType: "jsonp",
+					url: urlnya+'/api/kelas/getAllByUserId?id_user='+active_user_id,
+					type: 'GET',
+					contentType: false,
+					processData: false
+				}).done(function(data){
+					if(data.length > 0){
+						for(var zzz = 0 ; zzz < data.length ; zzz++){
+							if(data[zzz]['id_kelas'] === "1"){
+								globalListKelas.push({"1":"STB"});
+							}else if(data[zzz]['id_kelas'] === "2"){
+								globalListKelas.push({"2":"STO"});
+							}else if(data[zzz]['id_kelas'] === "3"){
+								globalListKelas.push({"3":"Speed"});
+							}
+						}
+					}else{
+						globalListKelas = [];
+					}
+					mainView.router.loadPage('home.html');
+					$(".profilePicture").attr('src','data:image/jpeg;base64,'+getImage('profilePic'));
+					myApp.closeModal();
+				});
+			}
+			else
+			{	
+				myApp.alert('Sesi waktu anda habis, silahkan lakukan login kembali!');
+				mainView.router.loadPage('login.html');
+				eraseData("active_user_id");
+				eraseData("expires");
+			}
 		}
 	}
 	else
 	{
 		myApp.closeModal();
 		mainView.router.loadPage('login.html');
+		eraseData("active_user_id");
+		eraseData("expires");
+	}
+}
+
+function cekLoginAktifAwal() {
+	myApp.showPreloader('Mengambil data...');
+	var active_user_id="";
+	var expires="";
+	active_user_id=getData("active_user_id");
+	expires=getData("expires");
+	console.log(expires);
+	if(active_user_id!="" && active_user_id!=null)
+	{
+		if(expires=="true")
+		{
+			globalListKelas = [];
+				$.ajax({ dataType: "jsonp",
+					url: urlnya+'/api/kelas/getAllByUserId?id_user='+active_user_id,
+					type: 'GET',
+					contentType: false,
+					processData: false
+				}).done(function(data){
+					if(data.length > 0){
+						for(var zzz = 0 ; zzz < data.length ; zzz++){
+							if(data[zzz]['id_kelas'] === "1"){
+								globalListKelas.push({"1":"STB"});
+							}else if(data[zzz]['id_kelas'] === "2"){
+								globalListKelas.push({"2":"STO"});
+							}else if(data[zzz]['id_kelas'] === "3"){
+								globalListKelas.push({"3":"Speed"});
+							}
+						}
+					}else{
+						globalListKelas = [];
+					}
+					mainView.router.loadPage('home.html');
+					$(".profilePicture").attr('src','data:image/jpeg;base64,'+getImage('profilePic'));
+					myApp.closeModal();
+				});
+		}
+		else
+		{
+			var d = new Date();
+			var dexpires = new Date(expires);
+			if(d.getTime()<dexpires.getTime())
+			{
+				globalListKelas = [];
+				$.ajax({ dataType: "jsonp",
+					url: urlnya+'/api/kelas/getAllByUserId?id_user='+active_user_id,
+					type: 'GET',
+					contentType: false,
+					processData: false
+				}).done(function(data){
+					if(data.length > 0){
+						for(var zzz = 0 ; zzz < data.length ; zzz++){
+							if(data[zzz]['id_kelas'] === "1"){
+								globalListKelas.push({"1":"STB"});
+							}else if(data[zzz]['id_kelas'] === "2"){
+								globalListKelas.push({"2":"STO"});
+							}else if(data[zzz]['id_kelas'] === "3"){
+								globalListKelas.push({"3":"Speed"});
+							}
+						}
+					}else{
+						globalListKelas = [];
+					}
+					mainView.router.loadPage('home.html');
+					$(".profilePicture").attr('src','data:image/jpeg;base64,'+getImage('profilePic'));
+					myApp.closeModal();
+				});
+			}
+			else
+			{	
+				myApp.alert('Sesi waktu anda habis, silahkan lakukan login kembali!');
+				//mainView.router.loadPage('login.html');
+				eraseData("active_user_id");
+				eraseData("expires");
+			}
+		}
+	}
+	else
+	{
+		myApp.closeModal();
+		//mainView.router.loadPage('login.html');
 		eraseData("active_user_id");
 		eraseData("expires");
 	}

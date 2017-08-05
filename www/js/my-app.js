@@ -12,7 +12,6 @@ var mainView = myApp.addView('.view-main', {
 
 
 myApp.onPageInit('index', function (page) {
-   
 });
 
 myApp.onPageInit('grup', function (page) {

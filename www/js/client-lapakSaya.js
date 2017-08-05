@@ -10,24 +10,34 @@ function gotoLapakSaya(){
 }
 
 function getKotaEditLapakSaya() {
-	myApp.showPreloader('Mengambil data...');
-	var link=urlnya+'/api/kota/';
+	if(globalKota.length == 0){
+		myApp.showPreloader('Mengambil data...');
+		var link=urlnya+'/api/kota/';
 		$.ajax({ dataType: "jsonp",
 		    url: link,
 		    type: 'GET',
 		    contentType: false,
 		    processData: false
-		}).done(function(z){
-			var myOptions = z;
-
-			$.each(myOptions, function(i, el) 
-			{ 
-			   $('#kota_editLapakSaya').append( new Option(el.nama,el.id) );
-			});
+		}).done(function(dataKota){
+			globalKota = dataKota;
 			myApp.closeModal();
+			$.each(dataKota, function(i, el) 
+			{ 
+			   $('#kota_editLapakSaya').append(new Option(el.nama,el.id) );
+			});
+			var id_kota = getData("active_user_kota");
+			$("#kota_editLapakSaya").val(id_kota);
 		}).fail(function(x){
-			myApp.alert("Pengambilan data kota gagal (line 28)", 'Perhatian!');
-		}); 
+			myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
+		}); 	
+	}else{
+		$.each(globalKota, function(i, el) 
+		{ 
+		   $('#kota_editLapakSaya').append(new Option(el.nama,el.id) );
+		});
+		var id_kota = getData("active_user_kota");
+		$("#kota_editLapakSaya").val(id_kota);
+	}
 }
 
 function buatLapakSayaPost() {
@@ -114,99 +124,102 @@ function getAllLapakSayaPost() {
 	var id_user=getData("active_user_id");
 	
 	var arrKota=[];
-	var link=urlnya+'/api/kota/';
-	$.ajax({ dataType: "jsonp",
-		url: link,
-		type: 'GET',
-		contentType: false,
-		processData: false
-	}).done(function(zz){
-		arrKota=zz;
-			
-		link=urlnya+'/api/jualBeli/getUserLapak?id_user='+id_user;		
-		
+	if(globalKota.length == 0){
+		var link=urlnya+'/api/kota/';
 		$.ajax({ dataType: "jsonp",
 		    url: link,
 		    type: 'GET',
+		    async: false,
 		    contentType: false,
 		    processData: false
-		}).done(function(z){
-			var coba="";
-			var dataLength=0;
-			for (var ii = 0 ; ii < z.length; ii++) {
-				coba+=z['id']+"|"; 
-				dataLength++;
-			}
-			$("#isi_container_lapakSaya").html("");
-			//munculkan semua post
-			for(var i=0;i<dataLength;i++)
-			{
-				storeImage(z[i]['foto'], "editFotoLapakSaya_"+z[i]['id']);
-				var tempIdKota=z[i]['id_kota'];
-				tempIdKota-=1;
-				globalLapak.push({id:z[i]['id'], nama:z[i]['nama'], harga:z[i]['harga'], id_kategori:z[i]['id_kategori'], id_kelas:z[i]['id_kelas'], id_kota:z[i]['id_kota'], deskripsi:z[i]['deskripsi']});
-				saveData("globalLapakFoto_"+i,z[i]['foto']);
-				
-					var html=	"<div id='posting_lapakSaya_"+z[i]['id']+"' style='margin-bottom:50px;'>";
-					html += 		"<table id='table_lapakSaya_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
-					html += 			"<tr>";
-					html += 				"<td rowspan='2' width='10%'>";
-					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
-					html += 				"</td>";
-					html += 				"<td style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
-					html += 			"</tr>";
-					html += 			"<tr>";
-					html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
-					html += 			"</tr>";
-					html += 			"<tr>";
-					html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">'+z[i]['nama']+'</div></td>';
-					html += 			"</tr>";
-					html += 			"<tr>";
-					html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">Rp.'+z[i]['harga']+',-</div></td>';
-					html += 			"<tr>";
-					html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Kategori</div></td>';
-					html +=					'<td>: </td>';
-					html +=					'<td colspan="2">'+z[i]['kategori_name']+'</td>';
-					html += 			"</tr>";
-					html += 			"</tr>";
-					html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Kelas</div></td>';
-					html +=					'<td>: </td>';
-					if(z[i]['id_kelas']==1)
-						html +=					'<td colspan="2" value="1">STB</td>';
-					else if(z[i]['id_kelas']==2)
-						html +=					'<td colspan="2" value="2">STO</td>';
-					else if(z[i]['id_kelas']==3)
-						html +=					'<td colspan="2" value="3">SPEED</td>';
-					html += 			"</tr>";
-					html += 			"<tr>";
-					html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Kota</div></td>';
-					html +=					'<td>: </td>';
-					html +=					'<td colspan="2">'+arrKota[tempIdKota]['nama']+'</td>';
-					html += 			"</tr>";
-					html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Deskripsi</div></td>';
-					html +=					'<td>: </td>';
-					html +=					'<td colspan="2">'+z[i]['deskripsi']+'</td>';
-					html += 			"</tr>";
-					html += 			"<tr>";
-					html += 				'<td colspan="5" class="q" >';
-					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%;'>";
-					html += 				"</td>";
-					html += 			"</tr>";
-					html += 		"</table>";
-					html += 			"<p><a href='#' class='button' onclick='editLapakSaya(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Edit</a></p>";
-					html += 			"<p><a href='#' class='konfirmasiHapusJualan' onclick='hapusLapakSaya(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Hapus</a></p>";
-					html += 	"</div>";
-					
-					$("#isi_container_lapakSaya").append(html);
-			}
-			//console.log(globalLapak);
-			myApp.closeModal();
+		}).done(function(dataKota){
+			globalKota = dataKota;
 		}).fail(function(x){
-			myApp.alert("Pengambilan postingan Jual Beli barang gagal", 'Perhatian!');
-		}); 
-		
+			myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
+		}); 	
+	}
+	arrKota=globalKota;
+			
+	link=urlnya+'/api/jualBeli/getUserLapak?id_user='+id_user;		
+	
+	$.ajax({ dataType: "jsonp",
+	    url: link,
+	    type: 'GET',
+	    contentType: false,
+	    processData: false
+	}).done(function(z){
+		var coba="";
+		var dataLength=0;
+		for (var ii = 0 ; ii < z.length; ii++) {
+			coba+=z['id']+"|"; 
+			dataLength++;
+		}
+		$("#isi_container_lapakSaya").html("");
+		//munculkan semua post
+		for(var i=0;i<dataLength;i++)
+		{
+			storeImage(z[i]['foto'], "editFotoLapakSaya_"+z[i]['id']);
+			var tempIdKota=z[i]['id_kota'];
+			tempIdKota-=1;
+			globalLapak.push({id:z[i]['id'], nama:z[i]['nama'], harga:z[i]['harga'], id_kategori:z[i]['id_kategori'], id_kelas:z[i]['id_kelas'], id_kota:z[i]['id_kota'], deskripsi:z[i]['deskripsi']});
+			saveData("globalLapakFoto_"+i,z[i]['foto']);
+			
+				var html=	"<div id='posting_lapakSaya_"+z[i]['id']+"' style='margin-bottom:50px;'>";
+				html += 		"<table id='table_lapakSaya_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
+				html += 			"<tr>";
+				html += 				"<td rowspan='2' width='10%'>";
+				html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+				html += 				"</td>";
+				html += 				"<td style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
+				html += 			"</tr>";
+				html += 			"<tr>";
+				html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
+				html += 			"</tr>";
+				html += 			"<tr>";
+				html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">'+z[i]['nama']+'</div></td>';
+				html += 			"</tr>";
+				html += 			"<tr>";
+				html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">Rp.'+z[i]['harga']+',-</div></td>';
+				html += 			"<tr>";
+				html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Kategori</div></td>';
+				html +=					'<td>: </td>';
+				html +=					'<td colspan="2">'+z[i]['kategori_name']+'</td>';
+				html += 			"</tr>";
+				html += 			"</tr>";
+				html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Kelas</div></td>';
+				html +=					'<td>: </td>';
+				if(z[i]['id_kelas']==1)
+					html +=					'<td colspan="2" value="1">STB</td>';
+				else if(z[i]['id_kelas']==2)
+					html +=					'<td colspan="2" value="2">STO</td>';
+				else if(z[i]['id_kelas']==3)
+					html +=					'<td colspan="2" value="3">SPEED</td>';
+				html += 			"</tr>";
+				html += 			"<tr>";
+				html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Kota</div></td>';
+				html +=					'<td>: </td>';
+				html +=					'<td colspan="2">'+arrKota[tempIdKota]['nama']+'</td>';
+				html += 			"</tr>";
+				html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Deskripsi</div></td>';
+				html +=					'<td>: </td>';
+				html +=					'<td colspan="2">'+z[i]['deskripsi']+'</td>';
+				html += 			"</tr>";
+				html += 			"<tr>";
+				html += 				'<td colspan="5" class="q" >';
+				html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%;'>";
+				html += 				"</td>";
+				html += 			"</tr>";
+				html += 		"</table>";
+				html += 			"<p><a href='#' class='button' onclick='editLapakSaya(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Edit</a></p>";
+				html += 			"<p><a href='#' class='konfirmasiHapusJualan' onclick='hapusLapakSaya(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Hapus</a></p>";
+				html += 	"</div>";
+				
+				$("#isi_container_lapakSaya").append(html);
+		}
+		//console.log(globalLapak);
+		myApp.closeModal();
 	}).fail(function(x){
-		myApp.alert("Pengambilan data kota gagal", 'Perhatian!(line 1)');
+		myApp.alert("Pengambilan postingan Jual Beli barang gagal", 'Perhatian!');
 	}); 
 }
 
@@ -237,136 +250,140 @@ function editLapakSaya(clickedID){
 		}
 	}
 	var arrKota=[];
-	var link=urlnya+'/api/kota/';
+	if(globalKota.length == 0){
+		var link=urlnya+'/api/kota/';
+		$.ajax({ dataType: "jsonp",
+		    url: link,
+		    type: 'GET',
+		    async: false,
+		    contentType: false,
+		    processData: false
+		}).done(function(dataKota){
+			globalKota = dataKota;
+		}).fail(function(x){
+			myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
+		}); 	
+	}
+	arrKota=globalKota;
+	var link=urlnya+'/api/kategori/';
 	$.ajax({ dataType: "jsonp",
 		url: link,
 		type: 'GET',
 		contentType: false,
 		processData: false
-	}).done(function(zz){
+	}).done(function(dataKategori){
+		var dataLengthKategori=0;
+		for (var aaa = 0 ; aaa < dataKategori.length ; aaa++) {
+				dataLengthKategori++;
+		}
 		
-		var link=urlnya+'/api/kategori/';
-		$.ajax({ dataType: "jsonp",
-			url: link,
-			type: 'GET',
-			contentType: false,
-			processData: false
-		}).done(function(dataKategori){
-			var dataLengthKategori=0;
-			for (var aaa = 0 ; aaa < dataKategori.length ; aaa++) {
-					dataLengthKategori++;
-			}
-			
-			myApp.closeModal();
-			arrKota=zz;
-			
-			myApp.popup('.popup-edit');
-			var popupHTML = '<div class="popup">'+
-							'<div class="content-block">'+
-							  '<center>'+
-								'<table style="margin-top:-0px;">'+
-								'<input type="hidden" id="update_id_editLapakSaya_'+id_lapak+'" value='+id_lapak+'>'+
-								'	<tr>'+
-								'		<td><p>Nama</p></td>'+
-								'		<td><input id="nama_editLapakSaya_'+id_lapak+'" type="text" value="'+nama+'" required></td>'+
-								'	</tr>'+
-								'<tr>'+
-								'<td><p>Kategori</p></td>'+
-									'<td>'+
-									'<select name="kategori_editLapakSaya_'+id_lapak+'" id="kategori_editLapakSaya_'+id_lapak+'">'+
-										'<option value="0">Pilih Kota</option>';
-										for(var indeksKategori=0;indeksKategori<dataLengthKategori;indeksKategori++)
+		myApp.closeModal();
+		
+		
+		myApp.popup('.popup-edit');
+		var popupHTML = '<div class="popup">'+
+						'<div class="content-block">'+
+						  '<center>'+
+							'<table style="margin-top:-0px;">'+
+							'<input type="hidden" id="update_id_editLapakSaya_'+id_lapak+'" value='+id_lapak+'>'+
+							'	<tr>'+
+							'		<td><p>Nama</p></td>'+
+							'		<td><input id="nama_editLapakSaya_'+id_lapak+'" type="text" value="'+nama+'" required></td>'+
+							'	</tr>'+
+							'<tr>'+
+							'<td><p>Kategori</p></td>'+
+								'<td>'+
+								'<select name="kategori_editLapakSaya_'+id_lapak+'" id="kategori_editLapakSaya_'+id_lapak+'">'+
+									'<option value="0">Pilih Kota</option>';
+									for(var indeksKategori=0;indeksKategori<dataLengthKategori;indeksKategori++)
+									{
+										var tempIdKategori=dataKategori[indeksKategori]['id'];
+										if(tempIdKategori==kategori)
 										{
-											var tempIdKategori=dataKategori[indeksKategori]['id'];
-											if(tempIdKategori==kategori)
-											{
-												popupHTML+=	'<option value="'+dataKategori[indeksKategori]['id']+'" selected>'+dataKategori[indeksKategori]['nama']+'</option>';
-											}
-											else
-											{
-												popupHTML+=	'<option value="'+dataKategori[indeksKategori]['id']+'">'+dataKategori[indeksKategori]['nama']+'</option>';
-											}
+											popupHTML+=	'<option value="'+dataKategori[indeksKategori]['id']+'" selected>'+dataKategori[indeksKategori]['nama']+'</option>';
 										}
-					popupHTML+=		'</select>'+
-									'</td>'+
-								'</tr>'+
-								'	<tr>'+
-								'		<td><p>Kelas</p></td>'+
-								'		<td>'+
-								'		<select class="select-list-kelas" id="kelas_editLapakSaya_'+id_lapak+'">'+
-								'		  <option value="0">Pilih Kelas</option>';
-			popupHTML+=			'		</select>'+
-								'		</td>'+
-								'	</tr>'+
-								'	<tr>'+
-								'		<td><p>Harga</p></td>'+
-								'		<td>Rp.<input id="harga_editLapakSaya_'+id_lapak+'" type="number" value='+harga+' required></td>'+
-								'	</tr>'+
-								'	<tr>'+
-								'		<td><p>Kota</p></td>'+
-								'		<td>'+
-								'		<select id="kota_editLapakSaya_'+id_lapak+'">'+
-								'		  <option value="0">Pilih Kota</option>';
-								
-								for(var i=0;i<arrKota.length;i++)
+										else
+										{
+											popupHTML+=	'<option value="'+dataKategori[indeksKategori]['id']+'">'+dataKategori[indeksKategori]['nama']+'</option>';
+										}
+									}
+				popupHTML+=		'</select>'+
+								'</td>'+
+							'</tr>'+
+							'	<tr>'+
+							'		<td><p>Kelas</p></td>'+
+							'		<td>'+
+							'		<select class="select-list-kelas" id="kelas_editLapakSaya_'+id_lapak+'">'+
+							'		  <option value="0">Pilih Kelas</option>';
+		popupHTML+=			'		</select>'+
+							'		</td>'+
+							'	</tr>'+
+							'	<tr>'+
+							'		<td><p>Harga</p></td>'+
+							'		<td>Rp.<input id="harga_editLapakSaya_'+id_lapak+'" type="number" value='+harga+' required></td>'+
+							'	</tr>'+
+							'	<tr>'+
+							'		<td><p>Kota</p></td>'+
+							'		<td>'+
+							'		<select id="kota_editLapakSaya_'+id_lapak+'">'+
+							'		  <option value="0">Pilih Kota</option>';
+							
+							for(var i=0;i<arrKota.length;i++)
+							{
+								if(arrKota[i]['id']==id_kota)
 								{
-									if(arrKota[i]['id']==id_kota)
-									{
-										popupHTML+=	'<option value="'+arrKota[i]['id']+'" selected>'+arrKota[i]['nama']+'</option>';
-									}
-									else
-									{
-										popupHTML+=	'<option value="'+arrKota[i]['id']+'">'+arrKota[i]['nama']+'</option>';
-									}
+									popupHTML+=	'<option value="'+arrKota[i]['id']+'" selected>'+arrKota[i]['nama']+'</option>';
 								}
-								
-			popupHTML+=			'		</select>'+
-								'		</td>'+
-								'	</tr>'+
-								'	<tr>'+
-								'		<td><p>Foto</p></td>'+
-								'		<div style="height:0px;overflow:hidden">'+
-								'			<input type="file" id="file_editLapakSaya" accept="image/*"/>'+
-								'			</div>'+
-								'		<td><p><a href="#" class="button" onclick="chooseFile_editLapakSaya();" style="width:150px;">Pilih Gambar..</a></p></td>'+
-								'	</tr>'+
-								'	<tr>'+
-								'		<td colspan="5" id="container_foto_editLapakSaya">'+
-								'			<img id="foto_editLapakSaya" class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:100%;">'+
-								'		</td>'+
-								'</tr>'+
-								'	<tr>'+
-								'		<td><p>Deskripsi</p></td>'+
-								'		<td><textarea id="deskripsi_editLapakSaya_'+id_lapak+'" style="resize:none; margin-top:10px; height:60px;">'+deskripsi+'</textarea></td>'+
-								'	</tr>'+
-								'</table><td><p><a href="#" class="button"  onclick="editLapakSayaPost('+id_lapak+');" style="width:250px;">Simpan perubahan</a></p></td>'+
-							'</center>'+
-							  '<p><a href="#" class="close-popup">Kembali</a></p>'+
-							'</div>'+
-						  '</div>';
-			myApp.popup(popupHTML);
-			
-			$(".select-list-kelas").empty();
-				$.each(globalListKelas, function (id, text) {
-					var key = Object.keys(text);
-					var value = Object.values(text);
-				if(key[0]==id_kelas)
-				{
-					$(".select-list-kelas").append($('<option>', { 
-						value: key[0],
-						text : value[0]
-					})).attr('selected', true);
-				}
-				else
-				{
-					$(".select-list-kelas").append($('<option>', { 
-						value: key[0],
-						text : value[0]
-					}));
-				}
-				});
-		}).fail(function(x){
-			myApp.alert("Pengambilan data kota gagal", 'Perhatian!(line 1)');
+								else
+								{
+									popupHTML+=	'<option value="'+arrKota[i]['id']+'">'+arrKota[i]['nama']+'</option>';
+								}
+							}
+							
+		popupHTML+=			'		</select>'+
+							'		</td>'+
+							'	</tr>'+
+							'	<tr>'+
+							'		<td><p>Foto</p></td>'+
+							'		<div style="height:0px;overflow:hidden">'+
+							'			<input type="file" id="file_editLapakSaya" accept="image/*"/>'+
+							'			</div>'+
+							'		<td><p><a href="#" class="button" onclick="chooseFile_editLapakSaya();" style="width:150px;">Pilih Gambar..</a></p></td>'+
+							'	</tr>'+
+							'	<tr>'+
+							'		<td colspan="5" id="container_foto_editLapakSaya">'+
+							'			<img id="foto_editLapakSaya" class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:100%;">'+
+							'		</td>'+
+							'</tr>'+
+							'	<tr>'+
+							'		<td><p>Deskripsi</p></td>'+
+							'		<td><textarea id="deskripsi_editLapakSaya_'+id_lapak+'" style="resize:none; margin-top:10px; height:60px;">'+deskripsi+'</textarea></td>'+
+							'	</tr>'+
+							'</table><td><p><a href="#" class="button"  onclick="editLapakSayaPost('+id_lapak+');" style="width:250px;">Simpan perubahan</a></p></td>'+
+						'</center>'+
+						  '<p><a href="#" class="close-popup">Kembali</a></p>'+
+						'</div>'+
+					  '</div>';
+		myApp.popup(popupHTML);
+		
+		$(".select-list-kelas").empty();
+			$.each(globalListKelas, function (id, text) {
+				var key = Object.keys(text);
+				var value = Object.values(text);
+			if(key[0]==id_kelas)
+			{
+				$(".select-list-kelas").append($('<option>', { 
+					value: key[0],
+					text : value[0]
+				})).attr('selected', true);
+			}
+			else
+			{
+				$(".select-list-kelas").append($('<option>', { 
+					value: key[0],
+					text : value[0]
+				}));
+			}
 		});
 	}).fail(function(x){
 		myApp.alert("Pengambilan data kota gagal", 'Perhatian!(line 1)');

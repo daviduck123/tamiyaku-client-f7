@@ -4,6 +4,7 @@ var urlnya="http://localhost/tamiyaku-server";
 var globalListKelas = [];
 var globalCookie = [];
 var globalLapak = [];
+var globalKota = [];
 
 function logout() {
 	myApp.closePanel();

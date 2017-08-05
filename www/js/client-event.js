@@ -12,27 +12,34 @@ function gotoLomba(){
 }
 
 function getKotaBuatEvent() {
-	myApp.showPreloader('Mengambil data...');
-	var link=urlnya+'/api/kota/';
+	if(globalKota.length == 0){
+		myApp.showPreloader('Mengambil data...');
+		var link=urlnya+'/api/kota/';
 		$.ajax({ dataType: "jsonp",
-			dataType: 'jsonp',
 		    url: link,
 		    type: 'GET',
 		    contentType: false,
 		    processData: false
 		}).done(function(z){
+			globalKota = z;
 			var myOptions = z;
-
 			$.each(myOptions, function(i, el) 
 			{ 
 			   $('#kota_buatEvent').append( new Option(el.nama,el.id) );
 			});
-			var id_kota = getData("active_user_kota");
-			$("#kota_buatEvent").val(id_kota);
 			myApp.closeModal();
 		}).fail(function(x){
-			myApp.alert("Pengambilan data kota gagal (line 1626)", 'Perhatian!');
-		}); 
+			myApp.closeModal();
+			myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
+		}); 	
+	}else{
+		$.each(globalKota, function(i, el) 
+		{ 
+		   $('#kota_buatEvent').append( new Option(el.nama,el.id) );
+		});
+		var id_kota = getData("active_user_kota");
+		$("#kota_buatEvent").val(id_kota);
+	}
 }
 
 function buatEventPost() {
@@ -74,76 +81,76 @@ function buatEventPost() {
 				}
 				else
 				{
-							if(ticket=="" || ticket==0 || ticket=="0")
+					if(ticket=="" || ticket==0 || ticket=="0")
+					{
+						myApp.alert('Silahkan isi biaya ticket masuk', 'Perhatian!');
+					}
+					else
+					{
+						if(kota=="" || kota==0 || kota=="0")
+						{
+							myApp.alert('Silahkan pilih kota Event', 'Perhatian!');
+						}
+						else
+						{
+							if(lokasi=="")
 							{
-								myApp.alert('Silahkan isi biaya ticket masuk', 'Perhatian!');
+								myApp.alert('Silahkan pilih lokasi Event', 'Perhatian!');
 							}
 							else
 							{
-								if(kota=="" || kota==0 || kota=="0")
+								if(deskripsi=="")
 								{
-									myApp.alert('Silahkan pilih kota Event', 'Perhatian!');
+									myApp.alert('Silahkan isi deskripsi event lomba', 'Perhatian!');
 								}
 								else
 								{
-									if(lokasi=="")
+									if(ctx === null && fileinput === "")
 									{
-										myApp.alert('Silahkan pilih lokasi Event', 'Perhatian!');
+										myApp.alert('Silahkan pilih foto track event lomba', 'Perhatian!');
 									}
 									else
 									{
-										if(deskripsi=="")
-										{
-											myApp.alert('Silahkan isi deskripsi event lomba', 'Perhatian!');
+										var blob=$("#file_buatEvent")[0].files[0];
+										var formData = new FormData();
+										formData.append("nama", namaEvent);
+										formData.append("tanggal", tanggal);
+										formData.append("tempat", lokasi);
+										formData.append("hadiah1", juara1);
+										formData.append("hadiah2", juara2);
+										formData.append("hadiah3", juara3);
+										formData.append("harga_tiket", ticket);
+										formData.append("deskripsi", deskripsi);
+										formData.append("id_user", id_user);
+										formData.append("id_kota", kota);
+										formData.append("id_kelas", kelas);
+										formData.append('file',blob);
+										if(ctx !== null){
+											formData.append("canvas",ctx.canvas.toDataURL());
 										}
-										else
-										{
-											if(ctx === null && fileinput === "")
-											{
-												myApp.alert('Silahkan pilih foto track event lomba', 'Perhatian!');
-											}
-											else
-											{
-												var blob=$("#file_buatEvent")[0].files[0];
-												var formData = new FormData();
-												formData.append("nama", namaEvent);
-												formData.append("tanggal", tanggal);
-												formData.append("tempat", lokasi);
-												formData.append("hadiah1", juara1);
-												formData.append("hadiah2", juara2);
-												formData.append("hadiah3", juara3);
-												formData.append("harga_tiket", ticket);
-												formData.append("deskripsi", deskripsi);
-												formData.append("id_user", id_user);
-												formData.append("id_kota", kota);
-												formData.append("id_kelas", kelas);
-												formData.append('file',blob);
-												if(ctx !== null){
-													formData.append("canvas",ctx.canvas.toDataURL());
-												}
-												
-												var link=urlnya+'/api/event/createEvent';
-												
-												$.ajax({
-													url: link,
-													data: formData,
-													type: 'POST',
-													contentType: false,
-													processData: false
-												}).done(function(z){
-													myApp.alert('Event berhasil dibuat', 'Berhasil!');
-													ctx = null;
-													viewRouterBack();
-													getAllEventPost();
-													myApp.closeModal();
-												}).fail(function(x){
-													myApp.alert(x.message+" "+x.error, 'Perhatian!');
-												});
-											}
-										}
+										
+										var link=urlnya+'/api/event/createEvent';
+										
+										$.ajax({
+											url: link,
+											data: formData,
+											type: 'POST',
+											contentType: false,
+											processData: false
+										}).done(function(z){
+											myApp.alert('Event berhasil dibuat', 'Berhasil!');
+											ctx = null;
+											viewRouterBack();
+											getAllEventPost();
+											myApp.closeModal();
+										}).fail(function(x){
+											myApp.alert(x.message+" "+x.error, 'Perhatian!');
+										});
 									}
 								}
 							}
+						}
+					}
 				}		
 			}
 		}
@@ -154,301 +161,302 @@ function getAllEventPost() {
 	myApp.showPreloader('Mengambil data...');
 	var id_user=getData("active_user_id");
 	var kelas_dipilih = $('#kelas_dipilih').find(":selected").val();
-	
-	var link=urlnya+'/api/kota/';
-		$.ajax({ dataType: "jsonp",
-			dataType: 'jsonp',
-		    url: link,
-		    type: 'GET',
-		    contentType: false,
-		    processData: false
-		}).done(function(dataKota){
-			var link=urlnya+'/api/event/getAllEvent?id_user='+id_user;
+	var link=urlnya+'/api/event/getAllEvent?id_user='+id_user;
 
-			$.ajax({ dataType: "jsonp",
-				url: link,
-				type: 'GET',
-				contentType: false,
-				processData: false
-			}).done(function(z){
-				myApp.closeModal();
-				var coba="";
-				var dataLength=0;
-				for (var ii = 0 ; ii < z.length ; ii++) {
-					coba+=z[ii]['id']+"|"; 
-					dataLength++;
-				}
-				$("#isi_container_event").html("");
-				
-				//munculkan semua post
-				for(var i=0;i<dataLength;i++)
+	$.ajax({ dataType: "jsonp",
+		url: link,
+		type: 'GET',
+		contentType: false,
+		processData: false
+	}).done(function(z){
+		myApp.closeModal();
+		var coba="";
+		var dataLength=0;
+		for (var ii = 0 ; ii < z.length ; ii++) {
+			coba+=z[ii]['id']+"|"; 
+			dataLength++;
+		}
+		$("#isi_container_event").html("");
+		
+		//munculkan semua post
+		for(var i=0;i<dataLength;i++)
+		{
+			if(kelas_dipilih==z[i]["id_kelas"])
+			{
+				var html=	"<div id='posting_event_"+z[i]['id']+"' style='margin-bottom:50px;'>";
+				html += 		"<table id='table_event_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
+				html += 			"<tr>";
+				html += 				"<td rowspan='2' width='10%'>";
+				if(z[i]['user_nama']==getData("active_user_nama"))
 				{
-					if(kelas_dipilih==z[i]["id_kelas"])
-					{
-						var html=	"<div id='posting_event_"+z[i]['id']+"' style='margin-bottom:50px;'>";
-						html += 		"<table id='table_event_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
-						html += 			"<tr>";
-						html += 				"<td rowspan='2' width='10%'>";
-						if(z[i]['user_nama']==getData("active_user_nama"))
-						{
-							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
-						}
-						else
-						{
-							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
-						}
-						html += 				"</td>";
-						html += 				"<td style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
-						if(z[i]['user_nama']==getData("active_user_nama"))
-						{
-							html += 				"<td style='font-weight:bold;'><i onclick='gotoUpdateEvent(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-							html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusEventData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
-						}
-						html += 			"</tr>";
-						html += 			"<tr>";
-						html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
-						html += 			"</tr>";
-						html += 			"<tr>";
-						html +=					'<td colspan="2" height="30px;" style="font-weight:bold;"><div style="width:100px;">Judul Lomba</div></td>';
-						html +=					'<td>: </td>';
-						html +=					'<td colspan="2" style="font-weight:bold;">'+z[i]['nama']+'</td>';
-						html += 			"</tr>";
-						html += 			"<tr>";
-						html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Tanggal</div></td>';
-						html +=					'<td>: </td>';
-						html +=					'<td colspan="2">'+z[i]['tanggal']+'</td>';
-						html += 			"</tr>";
-						html += 			"<tr>";
-						html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Kota</div></td>';
-						html +=					'<td>: </td>';
-						tempIndeks=z[i]['id_kota']-1;
+					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+				}
+				else
+				{
+					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+				}
+				html += 				"</td>";
+				html += 				"<td style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
+				if(z[i]['user_nama']==getData("active_user_nama"))
+				{
+					html += 				"<td style='font-weight:bold;'><i onclick='gotoUpdateEvent(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
+					html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusEventData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+				}
+				html += 			"</tr>";
+				html += 			"<tr>";
+				html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
+				html += 			"</tr>";
+				html += 			"<tr>";
+				html +=					'<td colspan="2" height="30px;" style="font-weight:bold;"><div style="width:100px;">Judul Lomba</div></td>';
+				html +=					'<td>: </td>';
+				html +=					'<td colspan="2" style="font-weight:bold;">'+z[i]['nama']+'</td>';
+				html += 			"</tr>";
+				html += 			"<tr>";
+				html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Tanggal</div></td>';
+				html +=					'<td>: </td>';
+				html +=					'<td colspan="2">'+z[i]['tanggal']+'</td>';
+				html += 			"</tr>";
+				html += 			"<tr>";
+				html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Kota</div></td>';
+				html +=					'<td>: </td>';
+				tempIndeks=z[i]['id_kota']-1;
+
+				if(globalKota.length == 0){
+					var link=urlnya+'/api/kota/';
+					$.ajax({ dataType: "jsonp",
+					    url: link,
+					    type: 'GET',
+					    contentType: false,
+					    processData: false
+					}).done(function(dataKota){
+						globalKota = dataKota;
 						html +=					'<td colspan="2">'+dataKota[tempIndeks]['nama']+'</td>';
-						html += 			"</tr>";
-						var tempIndeks=0;
-						for (var indeks=0;indeks<3;indeks++)
-						{
-							if(indeks==0)
-							{
-								tempIndeks=tempIndeks+1;
-								html += 			"<tr>";
-								html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Hadiah</div> </td>';
-								html +=					'<td>: </td>';
-								html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
-								html +=					'<td colspan="1">'+z[i]['hadiah1']+'</td>';
-								html += 			"</tr>";
-							}
-							else if(indeks==1)
-							{
-								if( z[i]['hadiah2']!=0)
-								{
-									tempIndeks=tempIndeks+1;
-									html += 			"<tr>";
-									html +=					'<td colspan="2" width="100px;" height="30px;"</td>';
-									html +=					'<td>: </td>';
-									html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
-									html +=					'<td colspan="1">'+z[i]['hadiah2']+'</td>';
-									html += 			"</tr>";
-								}
-							}
-							else
-							{
-								if( z[i]['hadiah3']!=0)
-								{
-									tempIndeks=tempIndeks+1;
-									html += 			"<tr>";
-									html +=					'<td colspan="2" width="100px;" height="30px;"</td>';
-									html +=					'<td>: </td>';
-									html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
-									html +=					'<td colspan="1">'+z[i]['hadiah3']+'</td>';
-									html += 			"</tr>";
-								}
-							}
-						}
+					}).fail(function(x){
+						myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
+					}); 	
+				}else{
+						html +=					'<td colspan="2">'+globalKota[tempIndeks]['nama']+'</td>';
+				}
+				html += 			"</tr>";
+				var tempIndeks=0;
+				for (var indeks=0;indeks<3;indeks++)
+				{
+					if(indeks==0)
+					{
+						tempIndeks=tempIndeks+1;
 						html += 			"<tr>";
-						html +=					'<td colspan="2" height="30px;" style="font-weight:bold;"><div style="width:100px;">Kelas Lomba</div></td>';
+						html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Hadiah</div> </td>';
 						html +=					'<td>: </td>';
-						if(z[i]['id_kelas']==1)
-							html +=					'<td colspan="2" style="font-weight:bold;">STB</td>';
-						else if(z[i]['id_kelas']==2)
-							html +=					'<td colspan="2" style="font-weight:bold;">STO</td>';
-						else if(z[i]['id_kelas']==3)
-							html +=					'<td colspan="2" style="font-weight:bold;">SPEED</td>';
+						html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
+						html +=					'<td colspan="1">'+z[i]['hadiah1']+'</td>';
 						html += 			"</tr>";
-						html += 			"<tr>";
-						html += 				'<td colspan="5" class="q" >';
-						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%;'>";
-						html += 				"</td>";
-						html += 			"</tr>";
-						html += 		"</table>";
-						html += 		"<div id='kolom_komentar_event_"+z[i]['id']+"'>";
-						html += 		"</div>";
-						html += 			"<div id='btn_komentari_event_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariEventPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
-						html += 			"<p><a href='#' onclick='bacaEventKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
-						html += 	"</div>";
-						
-						
-						$("#isi_container_event").append(html);
-						myApp.closeModal();
+					}
+					else if(indeks==1)
+					{
+						if( z[i]['hadiah2']!=0)
+						{
+							tempIndeks=tempIndeks+1;
+							html += 			"<tr>";
+							html +=					'<td colspan="2" width="100px;" height="30px;"</td>';
+							html +=					'<td>: </td>';
+							html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
+							html +=					'<td colspan="1">'+z[i]['hadiah2']+'</td>';
+							html += 			"</tr>";
+						}
+					}
+					else
+					{
+						if( z[i]['hadiah3']!=0)
+						{
+							tempIndeks=tempIndeks+1;
+							html += 			"<tr>";
+							html +=					'<td colspan="2" width="100px;" height="30px;"</td>';
+							html +=					'<td>: </td>';
+							html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
+							html +=					'<td colspan="1">'+z[i]['hadiah3']+'</td>';
+							html += 			"</tr>";
+						}
 					}
 				}
+				html += 			"<tr>";
+				html +=					'<td colspan="2" height="30px;" style="font-weight:bold;"><div style="width:100px;">Kelas Lomba</div></td>';
+				html +=					'<td>: </td>';
+				if(z[i]['id_kelas']==1)
+					html +=					'<td colspan="2" style="font-weight:bold;">STB</td>';
+				else if(z[i]['id_kelas']==2)
+					html +=					'<td colspan="2" style="font-weight:bold;">STO</td>';
+				else if(z[i]['id_kelas']==3)
+					html +=					'<td colspan="2" style="font-weight:bold;">SPEED</td>';
+				html += 			"</tr>";
+				html += 			"<tr>";
+				html += 				'<td colspan="5" class="q" >';
+				html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%;'>";
+				html += 				"</td>";
+				html += 			"</tr>";
+				html += 		"</table>";
+				html += 		"<div id='kolom_komentar_event_"+z[i]['id']+"'>";
+				html += 		"</div>";
+				html += 			"<div id='btn_komentari_event_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariEventPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
+				html += 			"<p><a href='#' onclick='bacaEventKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
+				html += 	"</div>";
 				
-			}).fail(function(x){
+				
+				$("#isi_container_event").append(html);
 				myApp.closeModal();
-				myApp.alert("Pengambilan postingan Event gagal", 'Perhatian!');
-			});
-			
-		}).fail(function(x){
-			myApp.closeModal();
-			myApp.alert("Pengambilan data kota gagal (line 170)", 'Perhatian!');
-		});
+			}
+		}
+		
+	}).fail(function(x){
+		myApp.closeModal();
+		myApp.alert("Pengambilan postingan Event gagal", 'Perhatian!');
+	});
 }
 
 function getAllEventPostVar(id_post) {
 	myApp.showPreloader('Mengambil data...');
 	var id_user=getData("active_user_id");
-	
-	var link=urlnya+'/api/kota/';
-		$.ajax({ dataType: "jsonp",
-			dataType: 'jsonp',
-		    url: link,
-		    type: 'GET',
-		    contentType: false,
-		    processData: false
-		}).done(function(dataKota){
-	
-			var link=urlnya+'/api/event/getAllEvent?id_user='+id_user;
-
+	var link=urlnya+'/api/event/getAllEvent?id_user='+id_user;
+	$.ajax({ dataType: "jsonp",
+		url: link,
+		type: 'GET',
+		contentType: false,
+		processData: false
+	}).done(function(z){
+		var coba="";
+		var dataLength=0;
+		for (var ii = 0 ; ii < z.length ; ii++) {
+			coba+=z[ii]['id']+"|"; 
+			dataLength++;
+		}
+		$("#isi_container_event").html("");
+		
+		//munculkan semua post
+		for(var i=0;i<dataLength;i++)
+		{
+			var html=	"<div id='posting_event_"+z[i]['id']+"' style='margin-bottom:50px;'>";
+			html += 		"<table id='table_event_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
+			html += 			"<tr>";
+			html += 				"<td rowspan='2' width='10%'>";
+			if(z[i]['user_nama']==getData("active_user_nama"))
+			{
+				html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+			}
+			else
+			{
+				html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+			}
+			html += 				"</td>";
+			html += 				"<td style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
+			if(z[i]['user_nama']==getData("active_user_nama"))
+			{
+				html += 				"<td style='font-weight:bold;'><i onclick='gotoUpdateEvent(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
+				html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusEventData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+			}
+			html += 			"</tr>";
+			html += 			"<tr>";
+			html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
+			html += 			"</tr>";
+			html += 			"<tr>";
+			html +=					'<td colspan="2" height="30px;" style="font-weight:bold;"><div style="width:100px;">Judul Lomba</div></td>';
+			html +=					'<td>: </td>';
+			html +=					'<td colspan="2" style="font-weight:bold;">'+z[i]['nama']+'</td>';
+			html += 			"</tr>";
+			html += 			"<tr>";
+			html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Tanggal</div></td>';
+			html +=					'<td>: </td>';
+			html +=					'<td colspan="2">16/03/2016</td>';
+			html += 			"</tr>";
+			html += 			"<tr>";
+			html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Tanggal</div></td>';
+			html +=					'<td>: </td>';
+			html +=					'<td colspan="2">'+z[i]['tanggal']+'</td>';
+			html += 			"</tr>";
+			html += 			"<tr>";
+			html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Kota</div></td>';
+			html +=					'<td>: </td>';
+			tempIndeks=z[i]['id_kota']-1;
+			if(globalKota.length == 0){
+				var link=urlnya+'/api/kota/';
 				$.ajax({ dataType: "jsonp",
-					url: link,
-					type: 'GET',
-					contentType: false,
-					processData: false
-				}).done(function(z){
-					var coba="";
-					var dataLength=0;
-					for (var ii = 0 ; ii < z.length ; ii++) {
-						coba+=z[ii]['id']+"|"; 
-						dataLength++;
-					}
-					$("#isi_container_event").html("");
-					
-					//munculkan semua post
-					for(var i=0;i<dataLength;i++)
-					{
-							var html=	"<div id='posting_event_"+z[i]['id']+"' style='margin-bottom:50px;'>";
-							html += 		"<table id='table_event_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
-							html += 			"<tr>";
-							html += 				"<td rowspan='2' width='10%'>";
-							if(z[i]['user_nama']==getData("active_user_nama"))
-							{
-								html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
-							}
-							else
-							{
-								html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
-							}
-							html += 				"</td>";
-							html += 				"<td style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
-							if(z[i]['user_nama']==getData("active_user_nama"))
-							{
-								html += 				"<td style='font-weight:bold;'><i onclick='gotoUpdateEvent(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-								html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusEventData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
-							}
-							html += 			"</tr>";
-							html += 			"<tr>";
-							html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
-							html += 			"</tr>";
-							html += 			"<tr>";
-							html +=					'<td colspan="2" height="30px;" style="font-weight:bold;"><div style="width:100px;">Judul Lomba</div></td>';
-							html +=					'<td>: </td>';
-							html +=					'<td colspan="2" style="font-weight:bold;">'+z[i]['nama']+'</td>';
-							html += 			"</tr>";
-							html += 			"<tr>";
-							html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Tanggal</div></td>';
-							html +=					'<td>: </td>';
-							html +=					'<td colspan="2">16/03/2016</td>';
-							html += 			"</tr>";
-							html += 			"<tr>";
-							html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Tanggal</div></td>';
-							html +=					'<td>: </td>';
-							html +=					'<td colspan="2">'+z[i]['tanggal']+'</td>';
-							html += 			"</tr>";
-							html += 			"<tr>";
-							html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Kota</div></td>';
-							html +=					'<td>: </td>';
-							tempIndeks=z[i]['id_kota']-1;
-							html +=					'<td colspan="2">'+dataKota[tempIndeks]['nama']+'</td>';
-							html += 			"</tr>";
-							var tempIndeks=0;
-							for (var indeks=0;indeks<3;indeks++)
-							{
-								if(indeks==0)
-								{
-									tempIndeks=tempIndeks+1;
-									html += 			"<tr>";
-									html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Hadiah</div> </td>';
-									html +=					'<td>: </td>';
-									html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
-									html +=					'<td colspan="1">'+z[i]['hadiah1']+'</td>';
-									html += 			"</tr>";
-								}
-								else if(indeks==1)
-								{
-									if( z[i]['hadiah2']!=0)
-									{
-										tempIndeks=tempIndeks+1;
-										html += 			"<tr>";
-										html +=					'<td colspan="2" width="100px;" height="30px;"</td>';
-										html +=					'<td>: </td>';
-										html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
-										html +=					'<td colspan="1">'+z[i]['hadiah2']+'</td>';
-										html += 			"</tr>";
-									}
-								}
-								else
-								{
-									if( z[i]['hadiah3']!=0)
-									{
-										tempIndeks=tempIndeks+1;
-										html += 			"<tr>";
-										html +=					'<td colspan="2" width="100px;" height="30px;"</td>';
-										html +=					'<td>: </td>';
-										html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
-										html +=					'<td colspan="1">'+z[i]['hadiah3']+'</td>';
-										html += 			"</tr>";
-									}
-								}
-							}
-							html += 			"<tr>";
-							html +=					'<td colspan="2" width="100px;" height="30px;"><div style="width:100px;font-weight:bold;">Tiket</div></td>';
-							html +=					'<td>: </td>';
-							html +=					'<td colspan="2">'+z[i]['harga_tiket']+'</td>';
-							html += 			"</tr>";
-							html += 			"<tr>";
-							html += 				'<td colspan="5" class="q" >';
-							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%;'>";
-							html += 				"</td>";
-							html += 			"</tr>";
-							html += 		"</table>";
-							html += 		"<div id='kolom_komentar_event_"+z[i]['id']+"'>";
-							html += 		"</div>";
-							html += 			"<div id='btn_komentari_event_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariEventPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
-							html += 			"<p><a href='#' onclick='bacaEventKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
-							html += 	"</div>";
-							
-							
-							$("#isi_container_event").append(html);
-							
-					}
-					bacaEventKomentar(id_post);
-					myApp.closeModal();
+				    url: link,
+				    type: 'GET',
+				    contentType: false,
+				    processData: false
+				}).done(function(dataKota){
+					globalKota = dataKota;
+					html +=					'<td colspan="2">'+dataKota[tempIndeks]['nama']+'</td>';
 				}).fail(function(x){
-					myApp.alert("Pengambilan postingan Event gagal", 'Perhatian!');
-				}); 
-				
-		}).fail(function(x){
-		myApp.alert("Pengambilan data kota gagal (line 170)", 'Perhatian!');
-	});			
+					myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
+				}); 	
+			}else{
+				html +=					'<td colspan="2">'+globalKota[tempIndeks]['nama']+'</td>';
+			}
+			
+			html += 			"</tr>";
+			var tempIndeks=0;
+			for (var indeks=0;indeks<3;indeks++)
+			{
+				if(indeks==0)
+				{
+					tempIndeks=tempIndeks+1;
+					html += 			"<tr>";
+					html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Hadiah</div> </td>';
+					html +=					'<td>: </td>';
+					html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
+					html +=					'<td colspan="1">'+z[i]['hadiah1']+'</td>';
+					html += 			"</tr>";
+				}
+				else if(indeks==1)
+				{
+					if( z[i]['hadiah2']!=0)
+					{
+						tempIndeks=tempIndeks+1;
+						html += 			"<tr>";
+						html +=					'<td colspan="2" width="100px;" height="30px;"</td>';
+						html +=					'<td>: </td>';
+						html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
+						html +=					'<td colspan="1">'+z[i]['hadiah2']+'</td>';
+						html += 			"</tr>";
+					}
+				}
+				else
+				{
+					if( z[i]['hadiah3']!=0)
+					{
+						tempIndeks=tempIndeks+1;
+						html += 			"<tr>";
+						html +=					'<td colspan="2" width="100px;" height="30px;"</td>';
+						html +=					'<td>: </td>';
+						html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
+						html +=					'<td colspan="1">'+z[i]['hadiah3']+'</td>';
+						html += 			"</tr>";
+					}
+				}
+			}
+			html += 			"<tr>";
+			html +=					'<td colspan="2" width="100px;" height="30px;"><div style="width:100px;font-weight:bold;">Tiket</div></td>';
+			html +=					'<td>: </td>';
+			html +=					'<td colspan="2">'+z[i]['harga_tiket']+'</td>';
+			html += 			"</tr>";
+			html += 			"<tr>";
+			html += 				'<td colspan="5" class="q" >';
+			html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%;'>";
+			html += 				"</td>";
+			html += 			"</tr>";
+			html += 		"</table>";
+			html += 		"<div id='kolom_komentar_event_"+z[i]['id']+"'>";
+			html += 		"</div>";
+			html += 			"<div id='btn_komentari_event_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariEventPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
+			html += 			"<p><a href='#' onclick='bacaEventKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
+			html += 	"</div>";
+			
+			$("#isi_container_event").append(html);
+		}
+		bacaEventKomentar(id_post);
+		myApp.closeModal();
+	}).fail(function(x){
+		myApp.alert("Pengambilan postingan Event gagal", 'Perhatian!');
+	}); 		
 }
 
 function bacaEventKomentar(clicked_id) {
@@ -662,141 +670,142 @@ function editEventPost(clicked_id)
 	    contentType: false,
 	    processData: false
 	}).done(function(z){
+		var myOptions = null;
+		if(globalKota.length == 0){
+			var link=urlnya+'/api/kota/';
+			$.ajax({ dataType: "jsonp",
+			    url: link,
+			    type: 'GET',
+			    contentType: false,
+			    processData: false
+			}).done(function(dataKota){
+				globalKota = dataKota;
+				myOptions = dataKota;
+			}).fail(function(x){
+				myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
+			}); 	
+		}else{
+			myOptions = globalKota;
+		}
 		
-		var link=urlnya+'/api/kota/';
-		$.ajax({ dataType: "jsonp",
-			dataType: 'jsonp',
-		    url: link,
-		    type: 'GET',
-		    contentType: false,
-		    processData: false
-		}).done(function(dataKota){
-			var myOptions = dataKota;
-			
-			var dataLengthKota=0;
-					for (var aaa = 0 ; aaa < dataKota.length ; aaa++) {
-						dataLengthKota++;
-					}
-			
-					var coba="";
-					var dataLength=0;
-					for (var ii = 0 ; ii < z.length ; ii++) {
-						coba+=z[ii]['id']+"|"; 
-						dataLength++;
-					}
-					var popupHTML="";
-					$("#isiDataUpdateEvent").append("");
-					for(var i=0;i<dataLength;i++)
-					{
-						if(clicked_id==z[i]['id'])
-						{
-								//myApp.popup('.popup-editEvent');
+		var dataLengthKota=0;
+		for (var aaa = 0 ; aaa < dataKota.length ; aaa++) {
+			dataLengthKota++;
+		}
+
+		var coba="";
+		var dataLength=0;
+		for (var ii = 0 ; ii < z.length ; ii++) {
+			coba+=z[ii]['id']+"|"; 
+			dataLength++;
+		}
+		var popupHTML="";
+		$("#isiDataUpdateEvent").append("");
+		for(var i=0;i<dataLength;i++)
+		{
+			if(clicked_id==z[i]['id'])
+			{
+			//myApp.popup('.popup-editEvent');
 			popupHTML=	'<div class="content-block">'+
-								'<table style="margin-top:-0px;">'+
-									'<tr>'+
-										'<td><p>Nama Event Lomba</p></td>'+
-										'<td><input id="nama_buatEventEdit" type="text" required value="'+z[i]['nama']+'"></td>'+
-									'</tr>'+
-									'<tr>'+
-										'<td><p>Tanggal</p></td>'+
-										'<td><input type="date" id="tanggal_buatEventEdit" name="tanggal_buatEventEdit"  value="'+z[i]['tanggal']+'"></td>'+
-									'</tr>'+
-									'<tr>'+
-										'<td><p>Kelas</p></td>'+
-										'<td>'+
-										'<select name="kelas_buatEventEdit" id="kelas_buatEventEdit"  class="select-list-kelas">'+
-										  '<option value="0">Pilih Kelas</option>'+
-										  '<option value="1">STB</option>'+
-										  '<option value="2">STO</option>'+
-										  '<option value="3">Speed</option>'+
-										'</select>'+
-										'</td>'+
-									'</tr>'+
-									'<tr>'+
-										'<td><p>Hadiah</p></td>'+
-										'<td>'+
-											'1. Rp<input id="total_juara1EventEdit" type="number" required value="'+z[i]['hadiah1']+'"></td>'+
-										'</td>'+
-									'</tr>'+
-									'<tr>'+
-										'<td height="48"></td>'+
-										'<td>'+
-											'2. Rp<input id="total_juara2EventEdit" type="number" required value="'+z[i]['hadiah2']+'"></td>'+
-										'</td>'+
-									'</tr>'+
-									'<tr>'+
-										'<td height="48"></td>'+
-										'<td>'+
-											'3. Rp<input id="total_juara3EventEdit" type="number" required value="'+z[i]['hadiah3']+'"></td>'+
-										'</td>'+
-									'</tr>'+
-									'<tr>'+
-										'<td><p>Harga Tiket</p></td>'+
-										'<td>&nbsp;&nbsp;&nbsp;&nbsp;Rp<input id="ticket_buatEventEdit" type="number" required value="'+z[i]['harga_tiket']+'"></td>'+
-									'</tr>'+
-									'<tr>'+
-										'<td><p>Kota</p></td>'+
-										'<td>'+
-										'<select name="kota_buatEventEdit" id="kota_buatEventEdit">'+
-										  '<option value="0">Pilih Kota</option>';
-										  for(var indeksKota=0;indeksKota<dataLengthKota;indeksKota++)
-										  {
-											var tempIdKota=dataKota[indeksKota]['id'];
-											if(tempIdKota==z[i]['id_kota'])
-											{
-											  popupHTML+=	'<option value="'+dataKota[indeksKota]['id']+'" selected>'+dataKota[indeksKota]['nama']+'</option>';
-											}
-											else
-											{
-											  popupHTML+=	'<option value="'+dataKota[indeksKota]['id']+'">'+dataKota[indeksKota]['nama']+'</option>';
-											}
-										  }
-								popupHTML+=		'</select>'+
-										'</td>'+
-									'</tr>'+
-									'<tr>'+
-										'<td><p>Detil Lokasi</p></td>'+
-										'<td><input id="lokasi_buatEventEdit" type="text" required value="'+z[i]['tempat']+'"></td>'+
-									'</tr>'+
-									'<tr>'+
-										'<td><p>Track</p></td>'+
-										'<div style="height:0px;overflow:hidden">'+
-											'<input type="file" id="file_buatEventEdit" accept="image/*"/>'+
-											'</div>'+
-										'<td>'+
-											"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%; height:100%;'>"+
-											
-											'<p><a href="#" class="button" onclick="pilihanTrackEdit();" style="width:150px;">Pilih Track..</a></p>'+
-										'</td>'+
-									'</tr>'+
-									'<tr>'+
-										'<td><p>Deskripsi</p></td>'+
-										'<td><textarea id="deskripsiBuatEventEdit" style="resize:none; margin-top:10px; height:60px;">'+z[i]['deskripsi']+'</textarea></td>'+
-									'</tr>'+
+							'<table style="margin-top:-0px;">'+
+								'<tr>'+
+									'<td><p>Nama Event Lomba</p></td>'+
+									'<td><input id="nama_buatEventEdit" type="text" required value="'+z[i]['nama']+'"></td>'+
+								'</tr>'+
+								'<tr>'+
+									'<td><p>Tanggal</p></td>'+
+									'<td><input type="date" id="tanggal_buatEventEdit" name="tanggal_buatEventEdit"  value="'+z[i]['tanggal']+'"></td>'+
+								'</tr>'+
+								'<tr>'+
+									'<td><p>Kelas</p></td>'+
+									'<td>'+
+									'<select name="kelas_buatEventEdit" id="kelas_buatEventEdit"  class="select-list-kelas">'+
+									  '<option value="0">Pilih Kelas</option>'+
+									  '<option value="1">STB</option>'+
+									  '<option value="2">STO</option>'+
+									  '<option value="3">Speed</option>'+
+									'</select>'+
+									'</td>'+
+								'</tr>'+
+								'<tr>'+
+									'<td><p>Hadiah</p></td>'+
+									'<td>'+
+										'1. Rp<input id="total_juara1EventEdit" type="number" required value="'+z[i]['hadiah1']+'"></td>'+
+									'</td>'+
+								'</tr>'+
+								'<tr>'+
+									'<td height="48"></td>'+
+									'<td>'+
+										'2. Rp<input id="total_juara2EventEdit" type="number" required value="'+z[i]['hadiah2']+'"></td>'+
+									'</td>'+
+								'</tr>'+
+								'<tr>'+
+									'<td height="48"></td>'+
+									'<td>'+
+										'3. Rp<input id="total_juara3EventEdit" type="number" required value="'+z[i]['hadiah3']+'"></td>'+
+									'</td>'+
+								'</tr>'+
+								'<tr>'+
+									'<td><p>Harga Tiket</p></td>'+
+									'<td>&nbsp;&nbsp;&nbsp;&nbsp;Rp<input id="ticket_buatEventEdit" type="number" required value="'+z[i]['harga_tiket']+'"></td>'+
+								'</tr>'+
+								'<tr>'+
+									'<td><p>Kota</p></td>'+
+									'<td>'+
+									'<select name="kota_buatEventEdit" id="kota_buatEventEdit">'+
+									  '<option value="0">Pilih Kota</option>';
+									  for(var indeksKota=0;indeksKota<dataLengthKota;indeksKota++)
+									  {
+										var tempIdKota=dataKota[indeksKota]['id'];
+										if(tempIdKota==z[i]['id_kota'])
+										{
+										  popupHTML+=	'<option value="'+dataKota[indeksKota]['id']+'" selected>'+dataKota[indeksKota]['nama']+'</option>';
+										}
+										else
+										{
+										  popupHTML+=	'<option value="'+dataKota[indeksKota]['id']+'">'+dataKota[indeksKota]['nama']+'</option>';
+										}
+									  }
+			popupHTML+=	'			</select>'+
+								'</td>'+
+							'</tr>'+
+							'<tr>'+
+								'<td><p>Detil Lokasi</p></td>'+
+								'<td><input id="lokasi_buatEventEdit" type="text" required value="'+z[i]['tempat']+'"></td>'+
+							'</tr>'+
+							'<tr>'+
+								'<td><p>Track</p></td>'+
+								'<div style="height:0px;overflow:hidden">'+
+									'<input type="file" id="file_buatEventEdit" accept="image/*"/>'+
+									'</div>'+
+								'<td>'+
+									"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%; height:100%;'>"+
 									
-								'</table><center><td><p><a href="#" class="button"  onclick="saveEventEditPost('+z[i]['id']+');" style="width:250px;">Update</a></p></td></center>'+
-								'</div>';
-				
-						}
-					}
-							$("#isiDataUpdateEvent").append(popupHTML);
-					//ubah kelas=========================
-					$(".select-list-kelas").empty();
-					$.each(globalListKelas, function (id, text) {
-						var key = Object.keys(text);
-						var value = Object.values(text);
-						$(".select-list-kelas").append($('<option>', { 
-							value: key[0],
-							text : value[0]
-						}));
-					});
-					//==============================================
-			myApp.closeModal();
-		}).fail(function(x){
-			myApp.alert("Pengambilan data kota gagal (line 1626)", 'Perhatian!');
-		}); 
-		
-		
+									'<p><a href="#" class="button" onclick="pilihanTrackEdit();" style="width:150px;">Pilih Track..</a></p>'+
+								'</td>'+
+							'</tr>'+
+							'<tr>'+
+								'<td><p>Deskripsi</p></td>'+
+								'<td><textarea id="deskripsiBuatEventEdit" style="resize:none; margin-top:10px; height:60px;">'+z[i]['deskripsi']+'</textarea></td>'+
+							'</tr>'+
+					'</table>'+
+					'<center><td><p><a href="#" class="button"  onclick="saveEventEditPost('+z[i]['id']+');" style="width:250px;">Update</a></p></td></center>'+
+				'</div>';
+			}
+		}	
+		$("#isiDataUpdateEvent").append(popupHTML);
+		//ubah kelas=========================
+		$(".select-list-kelas").empty();
+		$.each(globalListKelas, function (id, text) {
+			var key = Object.keys(text);
+			var value = Object.values(text);
+			$(".select-list-kelas").append($('<option>', { 
+				value: key[0],
+				text : value[0]
+			}));
+		});
+		//==============================================
+		myApp.closeModal();
 	}).fail(function(x){
 		myApp.alert("Pengambilan status user gagal", 'Perhatian!');
 	}); 

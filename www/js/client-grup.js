@@ -323,27 +323,34 @@ function gotoGoogleMap(){
 }
 
 function getKotaBuatGrup() {
-	myApp.showPreloader('Mengambil data...');
-	var link=urlnya+'/api/kota/';
+	if(globalKota.length == 0){
+		myApp.showPreloader('Mengambil data...');
+		var link=urlnya+'/api/kota/';
 		$.ajax({ dataType: "jsonp",
 		    url: link,
 		    type: 'GET',
 		    contentType: false,
 		    processData: false
-		}).done(function(z){
+		}).done(function(dataKota){
+			globalKota = dataKota;
 			myApp.closeModal();
-			var myOptions = z;
-
-			$.each(myOptions, function(i, el) 
+			$.each(dataKota, function(i, el) 
 			{ 
 			   $('#kota_buatGrup').append(new Option(el.nama,el.id) );
 			});
 			var id_kota = getData("active_user_kota");
 			$("#kota_buatGrup").val(id_kota);
-			
 		}).fail(function(x){
 			myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
-		}); 
+		}); 	
+	}else{
+		$.each(globalKota, function(i, el) 
+		{ 
+		   $('#kota_buatGrup').append(new Option(el.nama,el.id) );
+		});
+		var id_kota = getData("active_user_kota");
+		$("#kota_buatGrup").val(id_kota);
+	}
 }
 
 function buatGrupPost() {
@@ -634,25 +641,25 @@ function leaveThisGrup(clickedId){
 	
 	var link=urlnya+'/api/grup/leaveGrup?id_grup='+id_grup+'&id_user='+id_user;
 
-		$.ajax({ dataType: "jsonp",
-		    url: link,
-		    type: 'GET',
-		    contentType: false,
-		    processData: false
-		}).done(function(z){
-			myApp.closeModal();
-			console.log(z.status);
-			if(z.status==true)
-			{
-				$("#isi_leaveGrup").remove();
-				$("#isi_postingan_grup").remove();
-				myApp.alert("Anda telah keluar dari grup", 'Perhatian!');
-				showButtonJoinGrup(clickedId);
-				allGrupUser = null;
-			}
-		}).fail(function(x){
-			myApp.alert("Pengambilan postingan grup gagal", 'Perhatian!');
-		}); 
+	$.ajax({ dataType: "jsonp",
+	    url: link,
+	    type: 'GET',
+	    contentType: false,
+	    processData: false
+	}).done(function(z){
+		myApp.closeModal();
+		console.log(z.status);
+		if(z.status==true)
+		{
+			$("#isi_leaveGrup").remove();
+			$("#isi_postingan_grup").remove();
+			myApp.alert("Anda telah keluar dari grup", 'Perhatian!');
+			showButtonJoinGrup(clickedId);
+			allGrupUser = null;
+		}
+	}).fail(function(x){
+		myApp.alert("Pengambilan postingan grup gagal", 'Perhatian!');
+	}); 
 }
 
 function joinThisGrup(clickedId){
@@ -976,51 +983,52 @@ function getInfoGrup(clickedId){
 				var kelas=z[i]['id_kelas'];
 				var id_kota=z[i]['id_kota'];
 				id_kota-=1;
-				
-				var link=urlnya+'/api/kota/';
-				$.ajax({ dataType: "jsonp",
-					url: link,
-					type: 'GET',
-					contentType: false,
-					processData: false
-				}).done(function(zz){
-					if(indeks==0)
-					{
-						indeks++;
-						var html=	'<input type="hidden" id="id_grup_temp" value="'+id_grup+'">';
-						html +=	'<table id="detil_grup" style="margin-top:20px;">';
-						html += 		'<tr>';
-						html += 			'<input id="temp_id_grup" type="hidden" value="'+id_grup+'">';
-						html += 			'<td rowspan="4"><img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:90px; height:90px;  margin-right:10px"></td>';
-						html += 			'<input id="temp_foto_grup" type="hidden" value="'+foto+'">';
-						html += 			'<td style="font-weight:bold;"><b id="nama_grup">'+nama+'</b></td>';
-						html += 			'<input id="temp_nama_grup" type="hidden" value="'+nama+'">';
-						html += 		'</tr>';
-						html += 		'<tr>';
-						html += 			'<td style="font-weight:bold;"><b id="kota_grup">'+zz[id_kota]['nama']+'</b></td>';
-						html += 			'<input id="temp_kota_grup" type="hidden" value="'+zz[id_kota]['id']+'">';
-						html += 			'<input id="temp_kelas_grup" type="hidden" value="'+kelas+'">';
-						html += 		'</tr>';
-						html += 		'<tr>';
-						html += 			' <td colspan="2"><b id="alamat_grup"><i class="icon fa fa-map-marker"></i><span style="margin:10px;">'+lokasi+'</span></b></td>';
-						html += 			'<input id="temp_alamat_grup" type="hidden" value="'+lokasi+'">';
-						html += 		'</tr>';
-						html += 		'<tr>';
-						html += 			'<td colspan="2"><a href="#" onclick="gotoPetaGrup('+lat+','+lng+');"><i class="icon fa fa-map"></i><span style="margin:10px;">Tap disini untuk melihat peta</span></a></td>';
-						html += 			'<input id="temp_lat_grup" type="hidden" value="'+lat+'">';
-						html += 			'<input id="temp_lng_grup" type="hidden" value="'+lng+'">';
-						html += 		'</tr>';
-						html += 	'</table';
-						
-						//jika sudah ada tidak perlu bikin lagi
-						if($("#detil_grup").length == 0) {
-							$("#isi_detil_grup").append(html);
-						}
+				if(globalKota.length == 0){
+					var link=urlnya+'/api/kota/';
+					$.ajax({ dataType: "jsonp",
+					    url: link,
+					    type: 'GET',
+					    contentType: false,
+					    processData: false
+					}).done(function(dataKota){
+						globalKota = dataKota;
+					}).fail(function(x){
+						myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
+					}); 	
+				}
+				if(indeks==0)
+				{
+					indeks++;
+					var html=	'<input type="hidden" id="id_grup_temp" value="'+id_grup+'">';
+					html +=	'<table id="detil_grup" style="margin-top:20px;">';
+					html += 		'<tr>';
+					html += 			'<input id="temp_id_grup" type="hidden" value="'+id_grup+'">';
+					html += 			'<td rowspan="4"><img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:90px; height:90px;  margin-right:10px"></td>';
+					html += 			'<input id="temp_foto_grup" type="hidden" value="'+foto+'">';
+					html += 			'<td style="font-weight:bold;"><b id="nama_grup">'+nama+'</b></td>';
+					html += 			'<input id="temp_nama_grup" type="hidden" value="'+nama+'">';
+					html += 		'</tr>';
+					html += 		'<tr>';
+					html += 			'<td style="font-weight:bold;"><b id="kota_grup">'+globalKota[id_kota]['nama']+'</b></td>';
+					html += 			'<input id="temp_kota_grup" type="hidden" value="'+globalKota[id_kota]['id']+'">';
+					html += 			'<input id="temp_kelas_grup" type="hidden" value="'+kelas+'">';
+					html += 		'</tr>';
+					html += 		'<tr>';
+					html += 			' <td colspan="2"><b id="alamat_grup"><i class="icon fa fa-map-marker"></i><span style="margin:10px;">'+lokasi+'</span></b></td>';
+					html += 			'<input id="temp_alamat_grup" type="hidden" value="'+lokasi+'">';
+					html += 		'</tr>';
+					html += 		'<tr>';
+					html += 			'<td colspan="2"><a href="#" onclick="gotoPetaGrup('+lat+','+lng+');"><i class="icon fa fa-map"></i><span style="margin:10px;">Tap disini untuk melihat peta</span></a></td>';
+					html += 			'<input id="temp_lat_grup" type="hidden" value="'+lat+'">';
+					html += 			'<input id="temp_lng_grup" type="hidden" value="'+lng+'">';
+					html += 		'</tr>';
+					html += 	'</table';
+					
+					//jika sudah ada tidak perlu bikin lagi
+					if($("#detil_grup").length == 0) {
+						$("#isi_detil_grup").append(html);
 					}
-					myApp.closeModal();
-				}).fail(function(x){
-					myApp.alert("Pengambilan data kota gagal", 'Perhatian!(line 1323)');
-				}); 	
+				}	
 			}
 			
 		}).fail(function(x){

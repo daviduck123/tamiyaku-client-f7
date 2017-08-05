@@ -4,7 +4,8 @@ function gotoRegister(){
 }
 
 function getKota() {
-	var link=urlnya+'/api/kota/';
+	if(globalKota.length == 0){
+		var link=urlnya+'/api/kota/';
 		$.ajax({ dataType: "jsonp",
 		    url: link,
 		    type: 'GET',
@@ -19,7 +20,8 @@ function getKota() {
 			
 		}).fail(function(x){
 			myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
-		}); 
+		}); 	
+	}
 }
 
 function setCookie(){

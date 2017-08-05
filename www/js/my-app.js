@@ -109,45 +109,49 @@ myApp.onPageInit('editGrup', function (page) {
 	});
 	
 	var arrKota=[];
-	var link=urlnya+'/api/kota/';
-	$.ajax({ dataType: "jsonp",
-		url: link,
-		type: 'GET',
-		contentType: false,
-		processData: false
-	}).done(function(zz){
-		arrKota=zz;	
-		$("#kota_editGrup").empty();
-		$("#kota_editGrup").append('<option value="0">Pilih Kota</option>');
+	if(globalKota.length == 0){
+		var link=urlnya+'/api/kota/';
+		$.ajax({ dataType: "jsonp",
+		    url: link,
+		    type: 'GET',
+		    async: false,
+		    contentType: false,
+		    processData: false
+		}).done(function(dataKota){
+			globalKota = dataKota;
+		}).fail(function(x){
+			myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
+		}); 	
+	}
+	arrKota=globalKota;	
 		
-		for(var i=0;i<arrKota.length;i++)
+	$("#kota_editGrup").empty();
+	$("#kota_editGrup").append('<option value="0">Pilih Kota</option>');
+	
+	for(var i=0;i<arrKota.length;i++)
+	{
+		var tempIdKota=1+i;
+		if(arrKota[i]["id"]==id_kota)
 		{
-			var tempIdKota=1+i;
-			if(arrKota[i]["id"]==id_kota)
-			{
-				$("#kota_editGrup").append('<option value="'+tempIdKota+'" selected>'+arrKota[i]["nama"]+'</option>');
-			}
-			else
-			{
-				$("#kota_editGrup").append('<option value="'+tempIdKota+'">'+arrKota[i]["nama"]+'</option>');
-			}
+			$("#kota_editGrup").append('<option value="'+tempIdKota+'" selected>'+arrKota[i]["nama"]+'</option>');
 		}
-		
-		$('#lokasi_editGrup').val(alamat);
-		
-		var html =	"<div id='isi_latlng_editGrup'>Latitude = "+lat+"<br>Longitude = "+lng;
-		html	+=		"<input type='hidden' id='lat_editGrup' value='"+lat+"'>";
-		html	+=		"<input type='hidden' id='lng_editGrup' value='"+lng+"'>";
-		html	+=	"</div>"
-		$("#isi_latlng_editGrup").remove();
-		$("#latlng_editGrup").append(html);
-		
-		$("#isi_foto_editGrup").remove();
-		$('#foto_editGrup').append('<img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:240px; height:120px;">');
-		
-	}).fail(function(x){
-		myApp.alert("Pengambilan data kota gagal", 'Perhatian!(line 1323)');
-	}); 
+		else
+		{
+			$("#kota_editGrup").append('<option value="'+tempIdKota+'">'+arrKota[i]["nama"]+'</option>');
+		}
+	}
+	
+	$('#lokasi_editGrup').val(alamat);
+	
+	var html =	"<div id='isi_latlng_editGrup'>Latitude = "+lat+"<br>Longitude = "+lng;
+	html	+=		"<input type='hidden' id='lat_editGrup' value='"+lat+"'>";
+	html	+=		"<input type='hidden' id='lng_editGrup' value='"+lng+"'>";
+	html	+=	"</div>"
+	$("#isi_latlng_editGrup").remove();
+	$("#latlng_editGrup").append(html);
+	
+	$("#isi_foto_editGrup").remove();
+	$('#foto_editGrup').append('<img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:240px; height:120px;">');
 });
 
 myApp.onPageInit('editProfile', function (page) {
@@ -157,45 +161,49 @@ myApp.onPageInit('editProfile', function (page) {
 	var gender = getData("active_user_jenis_kelamin");
 	$('#nama_editProfile').val(nama);
 	var arrKota=[];
-	var link=urlnya+'/api/kota/';
-	$.ajax({ dataType: "jsonp",
-		url: link,
-		type: 'GET',
-		contentType: false,
-		processData: false
-	}).done(function(zz){
-		arrKota=zz;	
-		$("#kota_editProfile").empty();
-		$("#kota_editProfile").append('<option value="0">Pilih Kota</option>');
-		
-		for(var i=0;i<arrKota.length;i++)
+	if(globalKota.length == 0){
+		var link=urlnya+'/api/kota/';
+		$.ajax({ dataType: "jsonp",
+		    url: link,
+		    type: 'GET',
+		    async: false,
+		    contentType: false,
+		    processData: false
+		}).done(function(dataKota){
+			globalKota = dataKota;
+		}).fail(function(x){
+			myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
+		}); 	
+	}
+	arrKota=globalKota;	
+	
+	$("#kota_editProfile").empty();
+	$("#kota_editProfile").append('<option value="0">Pilih Kota</option>');
+	
+	for(var i=0;i<arrKota.length;i++)
+	{
+		var tempIdKota=1+i;
+		if(arrKota[i]["id"]==id_kota)
 		{
-			var tempIdKota=1+i;
-			if(arrKota[i]["id"]==id_kota)
-			{
-				$("#kota_editProfile").append('<option value="'+tempIdKota+'" selected>'+arrKota[i]["nama"]+'</option>');
-			}
-			else
-			{
-				$("#kota_editProfile").append('<option value="'+tempIdKota+'">'+arrKota[i]["nama"]+'</option>');
-			}
-		}
-		
-		$("#isi_foto_editProfile").remove();
-		$('#foto_editProfile').append('<img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:240px; height:120px;">');
-		
-		if(gender=="Laki-laki")
-		{
-			$("#laki_editProfile").attr('checked', 'checked');
+			$("#kota_editProfile").append('<option value="'+tempIdKota+'" selected>'+arrKota[i]["nama"]+'</option>');
 		}
 		else
 		{
-			$("#perempuan_editProfile").attr('checked', 'checked');
+			$("#kota_editProfile").append('<option value="'+tempIdKota+'">'+arrKota[i]["nama"]+'</option>');
 		}
-		
-	}).fail(function(x){
-		myApp.alert("Pengambilan data kota gagal", 'Perhatian!(line 1323)');
-	}); 
+	}
+	
+	$("#isi_foto_editProfile").remove();
+	$('#foto_editProfile').append('<img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:240px; height:120px;">');
+	
+	if(gender=="Laki-laki")
+	{
+		$("#laki_editProfile").attr('checked', 'checked');
+	}
+	else
+	{
+		$("#perempuan_editProfile").attr('checked', 'checked');
+	}
 });
 
 myApp.onPageInit('buatEvent', function (page) {

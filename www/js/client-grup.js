@@ -2,13 +2,14 @@
 var list_id_kelas=getData("list_id_kelas");
 var currentLat = 0;
 var currentLng = 0;
+var allGrupUser = null;
 function getNearbyGrup(){
 	$(document).ready(function(){
 		myApp.showPreloader('Mengambil data...');
 		
 		if ( navigator.geolocation )
 		{
-			navigator.geolocation.getCurrentPosition(showPosition, onError, {timeout: 10000, enableHighAccuracy: true});
+			navigator.geolocation.getCurrentPosition(showPosition, onError, {enableHighAccuracy: true});
 		}
 		else
 		{
@@ -22,6 +23,7 @@ function getNearbyGrup(){
 	    }
 		
 		function showPosition(position) {
+			//Get current data and User current Location
 			var id_user = getData("active_user_id");
 			var latKuSekarang = position.coords.latitude;
 			var lngKuSekarang = position.coords.longitude;
@@ -416,6 +418,7 @@ function buatGrupPost() {
 							}).done(function(z){
 								mainView.router.loadPage('home.html');
 								myApp.alert('Grup berhasil dibuat', 'Berhasil!');
+								allGrupUser = null;
 							}).fail(function(x){
 								myApp.alert(x.message+" "+x.error, 'Perhatian!');
 							});
@@ -428,17 +431,18 @@ function buatGrupPost() {
 }
 
 function getAllGrup() {
-	myApp.showPreloader('Mengambil data...');
-	var id_user = getData("active_user_id");
-	var link=urlnya+'/api/grup?id_user='+id_user;
+	if(allGrupUser == null){
+		myApp.showPreloader('Mengambil data...');
+		var id_user = getData("active_user_id");
+		var link=urlnya+'/api/grup?id_user='+id_user;
 		$.ajax({ dataType: "jsonp",
 		    url: link,
 		    type: 'GET',
 		    contentType: false,
 		    processData: false
 		}).done(function(z){
-			
 			myApp.closeModal();
+			allGrupUser = z;
 			$("#isi_kumpulan_grup").remove();
 			$("#kumpulan_grup").append('<div id="isi_kumpulan_grup"></div>');
 			
@@ -461,13 +465,39 @@ function getAllGrup() {
 					html += 					'</div>';
 					html += 				'</li>';
 					html += 			'</a>';
-					
 					$("#isi_kumpulan_grup").append(html);
 				}
 			}
 		}).fail(function(x){
 			myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
 		}); 
+	}else{
+		$("#isi_kumpulan_grup").remove();
+		$("#kumpulan_grup").append('<div id="isi_kumpulan_grup"></div>');
+		
+		var dataLength=0;
+		for (var ii = 0 ; ii < allGrupUser.length ; ii++) {
+			dataLength++;
+		}
+		
+		if(dataLength!=0)
+		{
+			for(var i=0;i<dataLength;i++)
+			{
+				var html =	'<a href="#" onclick="gotoGroup('+allGrupUser[i]['id']+');" id="grup_'+allGrupUser[i]['id']+'" style="color:white;">';
+				html += 		'<li class="item-content">';
+				html += 			'<div class="item-media">';
+				html += 				"<img class='lazy' src='data:image/jpeg;base64,"+allGrupUser[i]['foto']+"' style='padding:0px; margin-right:10px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+				html += 			'</div>';
+				html += 			'<div class="item-inner">';
+				html += 			'<div class="item-title">'+allGrupUser[i]['nama']+'</div>';
+				html += 			'</div>';
+				html += 		'</li>';
+				html += 	'</a>';
+				$("#isi_kumpulan_grup").append(html);
+			}
+		}
+	}
 }
 
 function showButtonJoinGrup(id){
@@ -618,6 +648,7 @@ function leaveThisGrup(clickedId){
 				$("#isi_postingan_grup").remove();
 				myApp.alert("Anda telah keluar dari grup", 'Perhatian!');
 				showButtonJoinGrup(clickedId);
+				allGrupUser = null;
 			}
 		}).fail(function(x){
 			myApp.alert("Pengambilan postingan grup gagal", 'Perhatian!');
@@ -643,6 +674,7 @@ function joinThisGrup(clickedId){
 				myApp.alert("Join grup berhasil", 'Perhatian!');
 				showButtonLeaveGrup(clickedId);
 				getAllGrupPost(clickedId);
+				allGrupUser = null;
 			}
 		}).fail(function(x){
 			myApp.alert("Pengambilan postingan grup gagal", 'Perhatian!');

@@ -217,9 +217,17 @@ function gotoGoogleMap(){
 	var map;
 	function showPosition(position) {
 		//console.log("lat:"+position.coords.latitude+"\nlng:"+position.coords.longitude);
-		if(currentLat == 0 && currentLng == 0){
-			currentLat = position.coords.latitude;
-			currentLng = position.coords.longitude;
+		var id_kota = $("#kota_buatGrup").val();
+		if(globalKota.length > 0){
+			for(var xx = 0 ; xx < globalKota.length; xx++){
+				if(globalKota[xx].id === id_kota){
+					//currentLat = position.coords.latitude;
+					//currentLng = position.coords.longitude;
+					currentLat = globalKota[xx].lat;
+					currentLng = globalKota[xx].lng;
+					break;
+				}
+			}
 		}
 		map = new GMaps({
 			div: '#petaku',

@@ -482,7 +482,6 @@ function bacaEventKomentar(clicked_id) {
 							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 							html += 				"</td>";
 							html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
-							html += 				"<td style='font-size:10px;'>"+z[i]['deskripsi']+"</td>";
 							if(z[i]['nama']==getData("active_user_nama"))
 							{
 								html += 				"<td style='font-weight:bold;'><i onclick='editKomentarKuEvent("+clicked_id+",this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
@@ -491,6 +490,9 @@ function bacaEventKomentar(clicked_id) {
 							html += 			"</tr>";
 							html += 			"<tr>";
 							html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
+							html += 			"</tr>";
+							html += 			"<tr>";
+							html += 				"<td colspan='5'>"+z[i]['deskripsi']+"</td>";
 							html += 			"</tr>";
 							html += 		"</table>";
 							

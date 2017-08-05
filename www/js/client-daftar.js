@@ -12,7 +12,6 @@ function getKota() {
 		    processData: false
 		}).done(function(z){
 			var myOptions = z;
-
 			$.each(myOptions, function(i, el) 
 			{ 
 			   $('#kota_register').append( new Option(el.nama,el.id) );

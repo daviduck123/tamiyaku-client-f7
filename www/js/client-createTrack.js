@@ -1,5 +1,5 @@
 var cPushArray = new Array();
-var cStep = 0;
+var cStep = -1;
 // ctx = document.getElementById('myCanvas').getContext("2d");
     
 function cPush() {
@@ -9,9 +9,9 @@ function cPush() {
 }
 
 function cUndo() {
-    if (cStep > 0) {
+    if (cStep >= 0) {
         cStep--;
-        if(cStep > 0){
+        if(cStep >= 0){
             var canvasPic = new Image();
             canvasPic.src = cPushArray[cStep];
             canvasPic.onload = function () { 
@@ -20,22 +20,6 @@ function cUndo() {
             }
         }else{
             cClear();
-            var canvas = $('#myCanvas') ;
-            ctx = canvas.get(0).getContext('2d') ;
-            ctx.strokeStyle="silver";
-            var w = 300;
-            var h = 300;
-            var width = $('.draggableItem').width();
-            for (x=0;x<=w;x+=width) {
-                for (y=0;y<=h;y+=width) {
-                    ctx.moveTo(x, 0);
-                    ctx.lineTo(x, h);
-                    ctx.stroke();
-                    ctx.moveTo(0, y);
-                    ctx.lineTo(w, y);
-                    ctx.stroke();
-                }
-            }
         }
         
     }
@@ -55,9 +39,24 @@ function cRedo() {
 
 function cClear() {
     var canvas = document.getElementById('myCanvas');
-    var context = canvas.getContext('2d');
+    var ctx = canvas.getContext('2d');
     
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.strokeStyle="silver";
+    var w = 300;
+    var h = 300;
+    var width = $('.draggableItem').width();
+    for (x=0;x<=w;x+=width) {
+        for (y=0;y<=h;y+=width) {
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, h);
+            ctx.stroke();
+            ctx.moveTo(0, y);
+            ctx.lineTo(w, y);
+            ctx.stroke();
+        }
+    }
 }
 
 function gambar() {
@@ -66,7 +65,7 @@ function gambar() {
 
 function bindDraggableTrack(){
     cPushArray = new Array();
-    cStep = 0;
+    cStep = -1;
     ctx;
     $('.draggableItem').draggable({ helper: "clone" });
 

@@ -21,6 +21,11 @@ function getKota() {
 		}).fail(function(x){
 			myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
 		}); 	
+	}else{
+		$.each(globalKota, function(i, el) 
+		{ 
+		   $('#kota_register').append( new Option(el.nama,el.id) );
+		});
 	}
 }
 

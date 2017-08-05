@@ -988,6 +988,7 @@ function getInfoGrup(clickedId){
 					$.ajax({ dataType: "jsonp",
 					    url: link,
 					    type: 'GET',
+				  	  	async: false,
 					    contentType: false,
 					    processData: false
 					}).done(function(dataKota){

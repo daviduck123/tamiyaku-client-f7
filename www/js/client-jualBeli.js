@@ -33,10 +33,10 @@ function getKotaBuatJualBarang() {
 	}else{
 		$.each(globalKota, function(i, el) 
 		{ 
-		   $('#kota_buatGrup').append(new Option(el.nama,el.id) );
+		   $('#kota_buatJualBarang').append(new Option(el.nama,el.id) );
 		});
 		var id_kota = getData("active_user_kota");
-		$("#kota_buatGrup").val(id_kota);
+		$("#kota_buatJualBarang").val(id_kota);
 	}
 }
 

@@ -226,6 +226,7 @@ function getAllEventPost() {
 					$.ajax({ dataType: "jsonp",
 					    url: link,
 					    type: 'GET',
+					    async: false,
 					    contentType: false,
 					    processData: false
 					}).done(function(dataKota){
@@ -380,6 +381,7 @@ function getAllEventPostVar(id_post) {
 				$.ajax({ dataType: "jsonp",
 				    url: link,
 				    type: 'GET',
+				    async: false,
 				    contentType: false,
 				    processData: false
 				}).done(function(dataKota){
@@ -676,6 +678,7 @@ function editEventPost(clicked_id)
 			$.ajax({ dataType: "jsonp",
 			    url: link,
 			    type: 'GET',
+			    async: false,
 			    contentType: false,
 			    processData: false
 			}).done(function(dataKota){

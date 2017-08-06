@@ -368,7 +368,7 @@ function detailEvent(z,id_post) {
 
 	mainView.router.loadPage('detailEvent.html');
 	myApp.showPreloader('Mengambil data...');
-	
+
 	$(document).ready(function() { 
 		var id_user=getData("active_user_id");
 		var link=urlnya+'/api/event/getAllEvent?id_user='+id_user;
@@ -522,27 +522,6 @@ function bacaEventKomentar(clicked_id) {
 	
 	if($("#isi_komentar_event_"+id_post).length == 0) 
 	{
-		var vardeksripsi="deskripsi_event_"+id_post;
-		var vartable="table_event_"+id_post;
-		
-		var table = document.getElementById(vartable).value;
-		
-		//console.log(vartable);
-		
-		if($("#" + vardeksripsi).length == 0) {
-			$("textarea[id^=deskripsi_event_]").each(function(e){
-				$(this).remove();
-			});
-			$("#kolom_komentar_event_"+id_post).after(" <tr> <td colspan='5'><textarea id='"+vardeksripsi+"' style='resize:none; margin-top:10px; margin-left:10px; width:90%; height:60px;' placeholder='Tulis Komentar Anda..'></textarea> </td></tr>.");
-			
-			$("#btn_komentari_event_"+id_post).html("");
-			
-			var html = "<p><a href='#' class='button' onclick='komentariEventPost(this.id);' id='"+id_post+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Send</a></p>";
-			
-			$("#btn_komentari_event_"+id_post).append(html);
-		} 
-
-
 			$(document).ready(function(){
 			var link=urlnya+'/api/komentar?id_event='+id_post;
 				
@@ -552,6 +531,26 @@ function bacaEventKomentar(clicked_id) {
 				contentType: false,
 				processData: false
 			}).done(function(z){
+
+				var vardeksripsi="deskripsi_event_"+id_post;
+				var vartable="table_event_"+id_post;
+				
+				var table = document.getElementById(vartable).value;
+				
+				//console.log(vartable);
+				
+				if($("#" + vardeksripsi).length == 0) {
+					$("textarea[id^=deskripsi_event_]").each(function(e){
+						$(this).remove();
+					});
+					$("#kolom_komentar_event_"+id_post).after(" <tr> <td colspan='5'><textarea id='"+vardeksripsi+"' style='resize:none; margin-top:10px; margin-left:10px; width:90%; height:60px;' placeholder='Tulis Komentar Anda..'></textarea> </td></tr>.");
+					
+					$("#btn_komentari_event_"+id_post).html("");
+					
+					var html = "<p><a href='#' class='button' onclick='komentariEventPost(this.id);' id='"+id_post+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Send</a></p>";
+					
+					$("#btn_komentari_event_"+id_post).append(html);
+				} 
 				
 				if(z.length>0)
 				{

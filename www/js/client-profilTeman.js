@@ -449,6 +449,7 @@ function bacaTemanKomentar(clicked_id) {
 	if($("#isi_komentar_teman_"+id_post).length == 0) 
 	{
 		
+		
 			$(document).ready(function(){
 			var link=urlnya+'/api/komentar?id_post='+id_post;
 				
@@ -458,6 +459,23 @@ function bacaTemanKomentar(clicked_id) {
 				contentType: false,
 				processData: false
 			}).done(function(z){
+
+				var vardeksripsi="deskripsi_teman_"+id_post;
+				var vartable="table_teman_"+id_post;
+				
+				
+				if($("#" + vardeksripsi).length == 0) {
+						$("textarea[id^=deskripsi_teman_]").each(function(e){
+							$(this).remove();
+						});
+						$("#kolom_komentar_teman_"+id_post).after(" <tr> <td colspan='5'><textarea id='"+vardeksripsi+"' style='resize:none; margin-top:10px; margin-left:10px; width:90%; height:60px;' placeholder='Tulis Komentar Anda..'></textarea> </td></tr>.");
+						
+						$("#btn_komentari_teman_"+id_post).html("");
+						
+						var html = 			"<p><a href='#' class='button' onclick='komentariTemanPost(this.id);' id='"+id_post+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Send</a></p>";
+						
+						$("#btn_komentari_teman_"+id_post).append(html);
+				} 
 				
 				if(z.length>0)
 				{
@@ -509,7 +527,10 @@ function bacaTemanKomentar(clicked_id) {
 	} 
 	else 
 	{
+		var vardeksripsi="deskripsi_teman_"+id_post;
+		$("#"+vardeksripsi).remove();
 		$("#isi_komentar_teman_"+id_post).remove();
+		myApp.closeModal();
 	}
 	
 }

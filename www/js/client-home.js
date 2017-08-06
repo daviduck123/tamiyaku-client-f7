@@ -14,7 +14,7 @@ function komentariPost(clicked_id) {
 		var vardeksripsi="deskripsi_"+id_post;
 		var vartable="table_"+id_post;
 		
-		var table = document.getElementById(vartable).value;
+		//var table = document.getElementById(vartable).value;
 		
 		if($("#" + vardeksripsi).length == 0) {
 			$("textarea[id^=deskripsi_]").each(function(e){
@@ -81,7 +81,7 @@ function bacaKomentar(clicked_id) {
 				var vardeksripsi="deskripsi_"+id_post;
 				var vartable="table_"+id_post;
 				
-				var table = document.getElementById(vartable).value;
+				//var table = document.getElementById(vartable).value;
 				
 				if($("#" + vardeksripsi).length == 0) {
 					$("textarea[id^=deskripsi_]").each(function(e){

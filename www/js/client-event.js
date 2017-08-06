@@ -53,99 +53,122 @@ function buatEventPost() {
 	var juara3 = document.getElementById("total_juara3Event").value;
 	var ticket = document.getElementById("ticket_buatEvent").value;
 	var kota = $('#kota_buatEvent').find(":selected").val();
+	var lat = document.getElementById("lat_buatEvent").value;
+	var lng = document.getElementById("lng_buatEvent").value;
 	var lokasi = document.getElementById("lokasi_buatEvent").value;
 	var deskripsi = document.getElementById("deskripsiBuatEvent").value;
 	var fileinput = document.getElementById("file_buatEvent").value;
 	
 	if(namaEvent=="")
 	{
+		myApp.closeModal();
 		myApp.alert('Silahkan isi nama Event', 'Perhatian!');
 	}
 	else
 	{
 		if(tanggal=="")
 		{
+			myApp.closeModal();
 			myApp.alert('Silahkan isi tanggal Event', 'Perhatian!');
 		}
 		else
 		{
 			if(kelas=="" || kelas==0 || kelas=="0")
 			{
+				myApp.closeModal();
 				myApp.alert('Silahkan pilih kelas Event', 'Perhatian!');
 			}
 			else
 			{
 				if(juara1=="" || juara1==0 || juara1=="0")
 				{
+					myApp.closeModal();
 					myApp.alert('Silahkan isi total hadiah juara 1', 'Perhatian!');
 				}
 				else
 				{
 					if(ticket=="" || ticket==0 || ticket=="0")
 					{
+						myApp.closeModal();
 						myApp.alert('Silahkan isi biaya ticket masuk', 'Perhatian!');
 					}
 					else
 					{
 						if(kota=="" || kota==0 || kota=="0")
 						{
+							myApp.closeModal();
 							myApp.alert('Silahkan pilih kota Event', 'Perhatian!');
 						}
 						else
 						{
-							if(lokasi=="")
+							if(lat == "" || lng == "")
 							{
-								myApp.alert('Silahkan pilih lokasi Event', 'Perhatian!');
+								myApp.closeModal();
+								myApp.alert('Silahkan pilih lokasi peta Event', 'Perhatian!');
 							}
 							else
 							{
-								if(deskripsi=="")
+								if(lokasi=="")
 								{
-									myApp.alert('Silahkan isi deskripsi event lomba', 'Perhatian!');
+									myApp.closeModal();
+									myApp.alert('Silahkan pilih lokasi Event', 'Perhatian!');
 								}
 								else
 								{
-									if(ctx === null && fileinput === "")
+									if(deskripsi=="")
 									{
-										myApp.alert('Silahkan pilih foto track event lomba', 'Perhatian!');
+										myApp.closeModal();
+										myApp.alert('Silahkan isi deskripsi event lomba', 'Perhatian!');
 									}
 									else
 									{
-										var blob=$("#file_buatEvent")[0].files[0];
-										var formData = new FormData();
-										formData.append("nama", namaEvent);
-										formData.append("tanggal", tanggal);
-										formData.append("tempat", lokasi);
-										formData.append("hadiah1", juara1);
-										formData.append("hadiah2", juara2);
-										formData.append("hadiah3", juara3);
-										formData.append("harga_tiket", ticket);
-										formData.append("deskripsi", deskripsi);
-										formData.append("id_user", id_user);
-										formData.append("id_kota", kota);
-										formData.append("id_kelas", kelas);
-										formData.append('file',blob);
-										if(ctx !== null){
-											formData.append("canvas",ctx.canvas.toDataURL());
-										}
-										
-										var link=urlnya+'/api/event/createEvent';
-										
-										$.ajax({
-											url: link,
-											data: formData,
-											type: 'POST',
-											contentType: false,
-											processData: false
-										}).done(function(z){
-											myApp.alert('Event berhasil dibuat', 'Berhasil!');
-											ctx = null;
-											viewRouterBack();
-											getAllEventPost();
+										if(ctx === null && fileinput === "")
+										{
 											myApp.closeModal();
-										}).fail(function(x){
-											myApp.alert(x.message+" "+x.error, 'Perhatian!');
-										});
+											myApp.alert('Silahkan pilih foto track event lomba', 'Perhatian!');
+										}
+										else
+										{
+											var blob=$("#file_buatEvent")[0].files[0];
+											var formData = new FormData();
+											formData.append("nama", namaEvent);
+											formData.append("tanggal", tanggal);
+											formData.append("tempat", lokasi);
+											formData.append("hadiah1", juara1);
+											formData.append("hadiah2", juara2);
+											formData.append("hadiah3", juara3);
+											formData.append("harga_tiket", ticket);
+											formData.append("deskripsi", deskripsi);
+											formData.append("lat", lat);
+											formData.append("lng", lng);
+											formData.append("id_user", id_user);
+											formData.append("id_kota", kota);
+											formData.append("id_kelas", kelas);
+											formData.append('file',blob);
+											if(ctx !== null){
+												formData.append("canvas",ctx.canvas.toDataURL());
+											}
+											
+											var link=urlnya+'/api/event/createEvent';
+											
+											$.ajax({
+												url: link,
+												data: formData,
+												type: 'POST',
+												contentType: false,
+												processData: false
+											}).done(function(z){
+												myApp.closeModal();
+												myApp.alert('Event berhasil dibuat', 'Berhasil!');
+												ctx = null;
+												viewRouterBack();
+												getAllEventPost();
+												//myApp.closeModal();
+											}).fail(function(x){
+												myApp.closeModal();
+												myApp.alert(x.message+" "+x.error, 'Perhatian!');
+											});
+										}
 									}
 								}
 							}
@@ -364,7 +387,7 @@ function getAllEventPostVar(id_post) {
 	}); 		
 }
 
-function detailEvent(z,id_post) {
+function detailEvent(id_post) {
 
 	mainView.router.loadPage('detailEvent.html');
 	myApp.showPreloader('Mengambil data...');
@@ -513,6 +536,133 @@ function detailEvent(z,id_post) {
 			myApp.alert("Pengambilan postingan Event gagal", 'Perhatian!');
 		}); 
 	});
+}
+
+function gotoGmapEvent(){
+	//myApp.popup('.popup-about');
+	var popupHTML = '<div class="popup">'+
+                    '<div class="content-block">'+
+                      '<p>Silahkan pilih peta letak lokasi grup.</p>'+
+					  '<div id="petakuEvent" style="width:330px; height:300px;"></div>'+
+                      '<p><a href="#" class="close-popup">Kembali</a></p>'+
+                    '</div>'+
+                  '</div>'
+	myApp.popup(popupHTML);
+	
+	var map;
+	function showPosition(position) {
+		//console.log("lat:"+position.coords.latitude+"\nlng:"+position.coords.longitude);
+		var id_kota = $("#kota_buatEvent").val();
+		if(globalKota.length > 0){
+			for(var xx = 0 ; xx < globalKota.length; xx++){
+				if(globalKota[xx].id === id_kota){
+					//currentLat = position.coords.latitude;
+					//currentLng = position.coords.longitude;
+					currentLat = globalKota[xx].lat;
+					currentLng = globalKota[xx].lng;
+					break;
+				}
+			}
+		}
+		map = new GMaps({
+			div: '#petakuEvent',
+			lat: currentLat,
+			lng: currentLng,
+			click: function(e) {
+			  },
+		});
+			
+		var lat = currentLat;
+		var lng = currentLng;
+		
+		if(lat != null && lng != null)
+		{
+			var html =	"<div id='isi_latlng_buatEvent'>Latitude = "+lat+"<br>Longitude = "+lng;
+			html	+=	"</div>"
+			$("#isi_latlng_buatEvent").remove();
+			$("#lat_buatEvent").val(lat);
+			$("#lng_buatEvent").val(lng);
+			$("#latlng_buatEvent").append(html);
+		}
+		
+		map.addMarker({
+
+			lat: currentLat,
+			lng: currentLng,
+			draggable: true,
+			dragend: function(event) {
+				var lat = event.latLng.lat();
+				var lng = event.latLng.lng();
+				//myApp.alert('Latitude = '+lat+"\nLongitude = "+lng, 'Lokasi');
+				currentLat = lat;
+				currentLng = lng;
+				if(lat != null && lng != null)
+				{
+					var html =	"<div id='isi_latlng_buatEvent'>Latitude = "+lat+"<br>Longitude = "+lng;
+					html	+=	"</div>"
+					$("#isi_latlng_buatEvent").remove();
+					$("#lat_buatEvent").val(lat);
+					$("#lng_buatEvent").val(lng);
+					$("#latlng_buatEvent").append(html);
+				}
+			}
+		});
+		google.maps.event.trigger(map, 'resize');
+	}
+    
+	$(document).ready(function(){
+		if (navigator.geolocation) 
+		{
+			navigator.geolocation.getCurrentPosition(showPosition);
+		} 
+		else 
+		{ 
+			var lat = -7.2582548000000005;
+			var lng = 112.76117359999999;
+			
+			if(lat != null && lng != null)
+			{
+				var html =	"<div id='isi_latlng_buatGrup'>Latitude = "+lat+"<br>Longitude = "+lng;
+				html	+=	"</div>"
+				$("#isi_latlng_buatGrup").remove();
+				$("#lat_buatGrup").val(lat);
+				$("#lng_buatGrup").val(lng);
+				$("#latlng_buatGrup").append(html);
+			}
+			
+			map = new GMaps({
+				div: '#petaku',
+				lat: ﻿﻿-7.2582548000000005,
+				lng: 112.76117359999999,
+				click: function(e) {
+					alert('Silahkan geser marker ke lokasi yang anda inginkan!');
+				  },
+			});	
+			
+			map.addMarker({
+
+				lat:  ﻿-7.2582548000000005,
+				lng: 112.76117359999999,
+				draggable: true,
+				dragend: function(event) {
+					var lat = event.latLng.lat();
+					var lng = event.latLng.lng();
+					//myApp.alert('Latitude = '+lat+"\nLongitude = "+lng, 'Lokasi');
+					
+					if(lat != null && lng != null)
+					{
+						var html =	"<div id='isi_latlng_buatGrup'>Latitude = "+lat+"<br>Longitude = "+lng;
+						html	+=	"</div>"
+						$("#isi_latlng_buatGrup").remove();
+						$("#lat_buatGrup").val(lat);
+						$("#lng_buatGrup").val(lng);
+						$("#latlng_buatGrup").append(html);
+					}
+				}
+			});
+			google.maps.event.trigger(map, 'resize');
+		}
+	});	
 }
 
 function bacaEventKomentar(clicked_id) {

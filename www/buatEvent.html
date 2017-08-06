@@ -81,6 +81,24 @@
             </td>
           </tr>
           <tr>
+              <td>
+                <p>Lokasi Peta</p>
+              </td>
+              <td>
+                <p><a href="#" class="button"  onclick="gotoGmapEvent();" style="width:150px;">Pilih Lokasi..</a></p>
+              </td>
+          </tr>
+          <tr>
+              <td></td>
+              <td>
+                <div id="latlng_buatEvent">
+                  <div id="isi_latlng_buatEvent">Lokasi belum ditentukan..</div>
+                  <input type='hidden' id='lat_buatEvent'>
+                  <input type='hidden' id='lng_buatEvent'>
+                </div>
+              </td>
+          </tr>
+          <tr>
             <td>
               <p>Detil Lokasi</p>
             </td>
@@ -124,6 +142,15 @@
 </div>
 <!-- About Popup -->
 <div class="popup popup-about">
+  <div class="content-block">
+    <p>About</p>
+    <p><a href="#" class="close-popup">Close popup</a></p>
+    <p>Lorem ipsum dolor ...</p>
+  </div>
+</div>
+
+<!-- gmap Popup -->
+<div class="popup popup-gmap">
   <div class="content-block">
     <p>About</p>
     <p><a href="#" class="close-popup">Close popup</a></p>

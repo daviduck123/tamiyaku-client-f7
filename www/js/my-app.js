@@ -115,6 +115,9 @@ myApp.onPageInit('detailEvent', function (page) {
 					html +=					'<td>: </td>';
 					html +=					'<td colspan="2">'+kota+'</td>';
 					html += 			"</tr>";
+					html += 			"<tr>";
+					html +=					'<td colspan="12"><center><div id="petaEventDetail" style="width:250px; height:200px;"></div></center></td>';
+					html += 			"</tr>";
 					var tempIndeks=0;
 					for (var indeks=0;indeks<3;indeks++)
 					{
@@ -172,6 +175,25 @@ myApp.onPageInit('detailEvent', function (page) {
 					html += 			"<p><a href='#' onclick='bacaEventKomentar(this.id);' id='"+id+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+count_komentar+" Komentar</a></p>";
 					html += 	"</div>";
 					$("#isi_detail_event").append(html);
+
+				var map;
+				$(document).ready(function(){
+
+					map = new GMaps({
+						div: '#petaEventDetail',
+						lat: ﻿﻿lat,
+						lng: lng,
+					});	
+					
+					map.addMarker({
+
+						lat: lat,
+						lng: lng,
+						draggable: false,
+					});
+					google.maps.event.trigger(map, 'resize');
+				
+			});	
 	});
 });
 

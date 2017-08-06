@@ -7,16 +7,16 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-whitelist": {
+        "cordova-plugin-console": {
             "PACKAGE_NAME": "com.phonegap.tamiyaku"
         },
-        "cordova-plugin-console": {
+        "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.phonegap.tamiyaku"
         },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.phonegap.tamiyaku"
         },
-        "cordova-plugin-geolocation": {
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.phonegap.tamiyaku"
         }
     },

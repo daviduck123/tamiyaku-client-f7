@@ -184,7 +184,7 @@ function getAllEventPost() {
 			if(kelas_dipilih==z[i]["id_kelas"])
 			{
 				var html=	"<div id='posting_event_"+z[i]['id']+"' style='margin-bottom:50px;'>";
-				html += 		"<table id='table_event_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
+				html += 		"<table id='table_event_"+z[i]['id']+"' style='background-color:white;  width=100%;'>";
 				html += 			"<tr>";
 				html += 				"<td rowspan='2' width='10%'>";
 				if(z[i]['user_nama']==getData("active_user_nama"))
@@ -196,7 +196,7 @@ function getAllEventPost() {
 					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 				}
 				html += 				"</td>";
-				html += 				"<td style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
+				html += 				"<td colspan='8' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
 				if(z[i]['user_nama']==getData("active_user_nama"))
 				{
 					html += 				"<td style='font-weight:bold;'><i onclick='gotoUpdateEvent(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
@@ -207,18 +207,19 @@ function getAllEventPost() {
 				html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
 				html += 			"</tr>";
 				html += 			"<tr>";
-				html +=					'<td colspan="2" height="30px;" style="font-weight:bold;"><div style="width:100px;">Judul Lomba</div></td>';
-				html +=					'<td>: </td>';
-				html +=					'<td colspan="2" style="font-weight:bold;">'+z[i]['nama']+'</td>';
-				html += 			"</tr>";
-				html += 			"<tr>";
-				html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Tanggal</div></td>';
-				html +=					'<td>: </td>';
-				html +=					'<td colspan="2">'+z[i]['tanggal']+'</td>';
-				html += 			"</tr>";
-				html += 			"<tr>";
-				html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Kota</div></td>';
-				html +=					'<td>: </td>';
+				html += 				'<td colspan="4" style="width:40%;">';
+				html += 					"<center> <img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:60%;'> </center>";
+				html += 				"</td>";
+				html += 				'<td colspan="3">';
+				html += 					'<div style="font-weight:bold;" ><p class="block">Judul Lomba</p></div>';
+				html += 					'<div style="font-weight:bold;" class="block"><p>Tanggal</p></div>';
+				html += 					'<div style="font-weight:bold;" class="block"><p>Kota</p></div>';
+				html += 					'<div style="font-weight:bold;" class="block"><p>Harga Tiket</p></div>';
+				html += 				"</td>";
+				html += 				'<td colspan="3" >';
+				html +=						'<div class="block"><p>'+z[i]['nama']+'</p></div>';
+				html +=						'<div class="block"><p>'+z[i]['tanggal']+'</p></div>';
+
 				tempIndeks=z[i]['id_kota']-1;
 
 				if(globalKota.length == 0){
@@ -231,67 +232,17 @@ function getAllEventPost() {
 					    processData: false
 					}).done(function(dataKota){
 						globalKota = dataKota;
-						html +=					'<td colspan="2">'+dataKota[tempIndeks]['nama']+'</td>';
+						html +=					'<div><p class="block">'+dataKota[tempIndeks]['nama']+'</p></div>';
 					}).fail(function(x){
 						myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
 					}); 	
 				}else{
-						html +=					'<td colspan="2">'+globalKota[tempIndeks]['nama']+'</td>';
+						html +=					'<div><p class="block">'+globalKota[tempIndeks]['nama']+'</p></div>';
 				}
-				html += 			"</tr>";
-				var tempIndeks=0;
-				for (var indeks=0;indeks<3;indeks++)
-				{
-					if(indeks==0)
-					{
-						tempIndeks=tempIndeks+1;
-						html += 			"<tr>";
-						html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Hadiah</div> </td>';
-						html +=					'<td>: </td>';
-						html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
-						html +=					'<td colspan="1">'+z[i]['hadiah1']+'</td>';
-						html += 			"</tr>";
-					}
-					else if(indeks==1)
-					{
-						if( z[i]['hadiah2']!=0)
-						{
-							tempIndeks=tempIndeks+1;
-							html += 			"<tr>";
-							html +=					'<td colspan="2" width="100px;" height="30px;"</td>';
-							html +=					'<td>: </td>';
-							html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
-							html +=					'<td colspan="1">'+z[i]['hadiah2']+'</td>';
-							html += 			"</tr>";
-						}
-					}
-					else
-					{
-						if( z[i]['hadiah3']!=0)
-						{
-							tempIndeks=tempIndeks+1;
-							html += 			"<tr>";
-							html +=					'<td colspan="2" width="100px;" height="30px;"</td>';
-							html +=					'<td>: </td>';
-							html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
-							html +=					'<td colspan="1">'+z[i]['hadiah3']+'</td>';
-							html += 			"</tr>";
-						}
-					}
-				}
-				html += 			"<tr>";
-				html +=					'<td colspan="2" height="30px;" style="font-weight:bold;"><div style="width:100px;">Kelas Lomba</div></td>';
-				html +=					'<td>: </td>';
-				if(z[i]['id_kelas']==1)
-					html +=					'<td colspan="2" style="font-weight:bold;">STB</td>';
-				else if(z[i]['id_kelas']==2)
-					html +=					'<td colspan="2" style="font-weight:bold;">STO</td>';
-				else if(z[i]['id_kelas']==3)
-					html +=					'<td colspan="2" style="font-weight:bold;">SPEED</td>';
-				html += 			"</tr>";
-				html += 			"<tr>";
-				html += 				'<td colspan="5" class="q" >';
-				html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%;'>";
+				html +=						'<div class="block"><p>'+z[i]['harga_tiket']+'</p></div>';
+				html += 				"</td>";
+				html += 				'<td>';
+				html += 			"<div id='btn_detail_event_"+z[i]['id']+"'><p><a href='#' class='button' onclick='detailEvent("+z+",this.id);' id='"+z[i]['id']+"'>Detail</a></p></div>";
 				html += 				"</td>";
 				html += 			"</tr>";
 				html += 		"</table>";
@@ -323,6 +274,98 @@ function getAllEventPostVar(id_post) {
 		contentType: false,
 		processData: false
 	}).done(function(z){
+		var coba="";
+		var dataLength=0;
+		for (var ii = 0 ; ii < z.length ; ii++) {
+			coba+=z[ii]['id']+"|"; 
+			dataLength++;
+		}
+		$("#isi_container_event").html("");
+		
+		//munculkan semua post
+		for(var i=0;i<dataLength;i++)
+		{
+			var html=	"<div id='posting_event_"+z[i]['id']+"' style='margin-bottom:50px;'>";
+				html += 		"<table id='table_event_"+z[i]['id']+"' style='background-color:white;  width=100%;'>";
+				html += 			"<tr>";
+				html += 				"<td rowspan='2' width='10%'>";
+				if(z[i]['user_nama']==getData("active_user_nama"))
+				{
+					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+				}
+				else
+				{
+					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+				}
+				html += 				"</td>";
+				html += 				"<td colspan='8' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
+				if(z[i]['user_nama']==getData("active_user_nama"))
+				{
+					html += 				"<td style='font-weight:bold;'><i onclick='gotoUpdateEvent(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
+					html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusEventData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+				}
+				html += 			"</tr>";
+				html += 			"<tr>";
+				html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
+				html += 			"</tr>";
+				html += 			"<tr>";
+				html += 				'<td colspan="4" style="width:40%;">';
+				html += 					"<center> <img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:60%;'> </center>";
+				html += 				"</td>";
+				html += 				'<td colspan="3">';
+				html += 					'<div style="font-weight:bold;" ><p class="block">Judul Lomba</p></div>';
+				html += 					'<div style="font-weight:bold;" class="block"><p>Tanggal</p></div>';
+				html += 					'<div style="font-weight:bold;" class="block"><p>Kota</p></div>';
+				html += 					'<div style="font-weight:bold;" class="block"><p>Harga Tiket</p></div>';
+				html += 				"</td>";
+				html += 				'<td colspan="3" >';
+				html +=						'<div class="block"><p>'+z[i]['nama']+'</p></div>';
+				html +=						'<div class="block"><p>'+z[i]['tanggal']+'</p></div>';
+
+				tempIndeks=z[i]['id_kota']-1;
+
+				if(globalKota.length == 0){
+					var link=urlnya+'/api/kota/';
+					$.ajax({ dataType: "jsonp",
+					    url: link,
+					    type: 'GET',
+					    async: false,
+					    contentType: false,
+					    processData: false
+					}).done(function(dataKota){
+						globalKota = dataKota;
+						html +=					'<div><p class="block">'+dataKota[tempIndeks]['nama']+'</p></div>';
+					}).fail(function(x){
+						myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
+					}); 	
+				}else{
+						html +=					'<div><p class="block">'+globalKota[tempIndeks]['nama']+'</p></div>';
+				}
+				html +=						'<div class="block"><p>'+z[i]['harga_tiket']+'</p></div>';
+				html += 				"</td>";
+				html += 				'<td>';
+				html += 			"<div id='btn_detail_event_"+z[i]['id']+"'><p><a href='#' class='button' onclick='detailEvent("+z+",this.id);' id='"+z[i]['id']+"'>Detail</a></p></div>";
+				html += 				"</td>";
+				html += 			"</tr>";
+				html += 		"</table>";
+				html += 		"<div id='kolom_komentar_event_"+z[i]['id']+"'>";
+				html += 		"</div>";
+				html += 			"<div id='btn_komentari_event_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariEventPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
+				html += 			"<p><a href='#' onclick='bacaEventKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
+				html += 	"</div>";
+				
+				
+				$("#isi_container_event").append(html);
+		}
+		bacaEventKomentar(id_post);
+		myApp.closeModal();
+	}).fail(function(x){
+		myApp.alert("Pengambilan postingan Event gagal", 'Perhatian!');
+	}); 		
+}
+
+function detailEvent(z,id_post) {
+	
 		var coba="";
 		var dataLength=0;
 		for (var ii = 0 ; ii < z.length ; ii++) {
@@ -446,19 +489,11 @@ function getAllEventPostVar(id_post) {
 			html += 				"</td>";
 			html += 			"</tr>";
 			html += 		"</table>";
-			html += 		"<div id='kolom_komentar_event_"+z[i]['id']+"'>";
 			html += 		"</div>";
-			html += 			"<div id='btn_komentari_event_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariEventPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
-			html += 			"<p><a href='#' onclick='bacaEventKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
 			html += 	"</div>";
 			
 			$("#isi_container_event").append(html);
 		}
-		bacaEventKomentar(id_post);
-		myApp.closeModal();
-	}).fail(function(x){
-		myApp.alert("Pengambilan postingan Event gagal", 'Perhatian!');
-	}); 		
 }
 
 function bacaEventKomentar(clicked_id) {
@@ -468,7 +503,27 @@ function bacaEventKomentar(clicked_id) {
 	
 	if($("#isi_komentar_event_"+id_post).length == 0) 
 	{
+		var vardeksripsi="deskripsi_event_"+id_post;
+		var vartable="table_event_"+id_post;
 		
+		var table = document.getElementById(vartable).value;
+		
+		//console.log(vartable);
+		
+		if($("#" + vardeksripsi).length == 0) {
+			$("textarea[id^=deskripsi_event_]").each(function(e){
+				$(this).remove();
+			});
+			$("#kolom_komentar_event_"+id_post).after(" <tr> <td colspan='5'><textarea id='"+vardeksripsi+"' style='resize:none; margin-top:10px; margin-left:10px; width:90%; height:60px;' placeholder='Tulis Komentar Anda..'></textarea> </td></tr>.");
+			
+			$("#btn_komentari_event_"+id_post).html("");
+			
+			var html = "<p><a href='#' class='button' onclick='komentariEventPost(this.id);' id='"+id_post+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Send</a></p>";
+			
+			$("#btn_komentari_event_"+id_post).append(html);
+		} 
+
+
 			$(document).ready(function(){
 			var link=urlnya+'/api/komentar?id_event='+id_post;
 				
@@ -520,6 +575,8 @@ function bacaEventKomentar(clicked_id) {
 				else
 				{
 					//nggak ada yang komentar
+					
+						
 				}
 				myApp.closeModal();
 			}).fail(function(x){
@@ -530,7 +587,10 @@ function bacaEventKomentar(clicked_id) {
 	} 
 	else 
 	{
+		var vardeksripsi="deskripsi_event_"+id_post;
+		$("#"+vardeksripsi).remove();
 		$("#isi_komentar_event_"+id_post).remove();
+		myApp.closeModal();
 	}
 }
 

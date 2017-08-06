@@ -5,6 +5,7 @@ function gotoRegister(){
 
 function getKota() {
 	if(globalKota.length == 0){
+		myApp.showPreloader("Mengambil Data..");
 		var link=urlnya+'/api/kota/';
 		$.ajax({ dataType: "jsonp",
 		    url: link,
@@ -17,9 +18,10 @@ function getKota() {
 			{ 
 			   $('#kota_register').append( new Option(el.nama,el.id) );
 			});
-			
+			myApp.closeModal();
 		}).fail(function(x){
 			myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
+			myApp.closeModal();
 		}); 	
 	}else{
 		$.each(globalKota, function(i, el) 

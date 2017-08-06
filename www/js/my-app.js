@@ -12,20 +12,20 @@ var mainView = myApp.addView('.view-main', {
 
 
 var globalKota = [];
+if(globalKota.length == 0){
+	var link=urlnya+'/api/kota/';
+	$.ajax({ dataType: "jsonp",
+	    url: link,
+	    type: 'GET',
+	    contentType: false,
+	    processData: false
+	}).done(function(dataKota){
+		globalKota = dataKota;
+	}).fail(function(x){
+		myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
+	}); 	
+}
 myApp.onPageInit('index', function (page) {
-	if(globalKota.length == 0){
-		var link=urlnya+'/api/kota/';
-		$.ajax({ dataType: "jsonp",
-		    url: link,
-		    type: 'GET',
-		    contentType: false,
-		    processData: false
-		}).done(function(dataKota){
-			globalKota = dataKota;
-		}).fail(function(x){
-			myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
-		}); 	
-	}
 });
 
 myApp.onPageInit('grup', function (page) {

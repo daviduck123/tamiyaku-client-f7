@@ -4,6 +4,7 @@ var urlnya="http://server.neoalitcahya.com";
 var globalListKelas = [];
 var globalCookie = [];
 var globalLapak = [];
+var globalEvent = [];
 
 function logout() {
 	myApp.closePanel();

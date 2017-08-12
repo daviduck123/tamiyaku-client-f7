@@ -373,11 +373,11 @@ function getProfilTeman(clickedId, statusTeman){
 							html +=	'<center>';
 							html +=	'<table id="infoProfile" style="margin-top:20px;">';
 							html += 		'<tr>';
-							html += 			'<td rowspan="3">';
-							html += 				'<img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:80px; height:80px;">';
+							html += 			'<td rowspan="4">';
+							html += 				'<img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:100px;">';
 							html += 			'<td style="font-weight:bold;"><center>'+banyakPost+'</center></td>';
 							html +=				'<td style="font-weight:bold;"><center>'+banyakTeman+'</center></td>';
-							html += 	'</tr>';
+							html += 		'</tr>';
 							html +=			'<tr>';
 							html +=				'<td style="font-weight:bold;"><center>Post</center></td>';
 							html +=				'<td style="font-weight:bold;"><center>Teman</center></td>';
@@ -399,8 +399,8 @@ function getProfilTeman(clickedId, statusTeman){
 						{
 							var html=	'<table id="infoProfile" style="margin-top:20px;">';
 							html += 		'<tr>';
-							html += 			'<td rowspan="3">';
-							html += 				'<img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:80px; height:80px;">';
+							html += 			'<td rowspan="4">';
+							html += 				'<img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:100px;">';
 							html += 			'</td>';
 							html +=				'<td colspan="3" style="width:300px;"><a href="#" onclick="addFriend('+id+')" class="button" style="width:100%;">Tambah teman</a></td>';
 							html += 		'</tr>';
@@ -428,11 +428,11 @@ function getProfilTeman(clickedId, statusTeman){
 							html +=	'<table id="infoProfile" style="margin-top:20px;">';
 							html += 		'<tr>';
 							html += 			'<td rowspan="4">';
-							html += 				'<img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:80px; height:80px; margin-right:10px;">';
+							html += 				'<img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:100px; margin-right:10px;">';
 							html += 			'</td>';
 							html +=				'<td style="font-weight:bold;"><center>'+banyakPost+'</center></td>';
 							html +=				'<td style="font-weight:bold;"><center>'+banyakTeman+'</center></td>';
-							html += 	'</tr>';
+							html += 	'	</tr>';
 							html +=			'<tr>';
 							html +=				'<td style="font-weight:bold;"><center>Post</center></td>';
 							html +=				'<td style="font-weight:bold;"><center>Teman</center></td>';

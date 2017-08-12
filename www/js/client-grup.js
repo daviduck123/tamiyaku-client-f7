@@ -747,7 +747,7 @@ function getAllGrupPost(clickedId) {
 					var html=	"<div id='posting_grup_"+z[i]['id']+"' style='margin-bottom:50px;'>";
 					html += 		"<table id='table_grup_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 					html += 			"<tr>";
-					html += 				"<td rowspan='2'>";
+					html += 				"<td rowspan='2' width='10%'>";
 					if(z[i]['nama']==getData("active_user_nama"))
 					{
 						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
@@ -790,7 +790,7 @@ function getAllGrupPost(clickedId) {
 					var html=	"<div id='posting_grup_"+z[i]['id']+"' style='margin-bottom:50px;'>";
 					html += 		"<table id='table_grup_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 					html += 			"<tr>";
-					html += 				"<td rowspan='2'>";
+					html += 				"<td rowspan='2' width='10%'>";
 					if(z[i]['nama']==getData("active_user_nama"))
 					{
 						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
@@ -880,7 +880,7 @@ function getAllGrupPostWithIdPost(clickedId, id_post) {
 					var html=	"<div id='posting_grup_"+z[i]['id']+"' style='margin-bottom:50px;'>";
 					html += 		"<table id='table_grup_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 					html += 			"<tr>";
-					html += 				"<td rowspan='2'>";
+					html += 				"<td rowspan='2' width='10%'>";
 					if(z[i]['nama']==getData("active_user_nama"))
 					{
 						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
@@ -923,7 +923,7 @@ function getAllGrupPostWithIdPost(clickedId, id_post) {
 					var html=	"<div id='posting_grup_"+z[i]['id']+"' style='margin-bottom:50px;'>";
 					html += 		"<table id='table_grup_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 					html += 			"<tr>";
-					html += 				"<td rowspan='2'>";
+					html += 				"<td rowspan='2' width='10%'>";
 					if(z[i]['nama']==getData("active_user_nama"))
 					{
 						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";

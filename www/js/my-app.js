@@ -377,7 +377,7 @@ myApp.onPageInit('editProfile', function (page) {
 	}
 	
 	$("#isi_foto_editProfile").remove();
-	$('#foto_editProfile').append('<img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:240px; height:120px;">');
+	$('#foto_editProfile').append('<img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:100%; height:100%;">');
 	
 	if(gender=="Laki-laki")
 	{

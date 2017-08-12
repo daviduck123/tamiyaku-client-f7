@@ -828,7 +828,7 @@ function getAllGrupPost(clickedId) {
 		}); 
 }
 
-function getAllGrupPost(clickedId, id_post) {
+function getAllGrupPostWithIdPost(clickedId, id_post) {
 	myApp.showPreloader('Mengambil data...');
 	var id_grup = clickedId;
 	var link=urlnya+'/api/post/getAllPostByGrup?id_grup='+id_grup;
@@ -1039,7 +1039,7 @@ function getInfoGrup(clickedId){
 					}
 				}	
 			}
-			
+			myApp.closeModal();
 		}).fail(function(x){
 			myApp.alert("Pengambilan informasi grup gagal", 'Perhatian!');
 		}); 
@@ -1237,7 +1237,7 @@ function komentariGrupPost(clicked_id) {
 				}).done(function(z){
 					//mainView.router.loadPage('grup.html');
 					var id_grup = document.getElementById("id_grup_temp").value;
-					getAllGrupPost(id_grup,id_post);
+					getAllGrupPostWithIdPost(id_grup,id_post);
 					//myApp.alert('Komentar dibuat', 'Berhasil!');
 				}).fail(function(x){
 					myApp.alert('Maaf tidak dapat mengomentari status, silahkan coba lagi', 'Perhatian!');
@@ -1443,7 +1443,7 @@ function hapusKomentarGrupTrue(clicked_id, id_komentar)
 		    processData: false
 		}).done(function(z){
 			var id_grup = document.getElementById("id_grup_temp").value;
-			getAllGrupPost(id_grup,clicked_id);
+			getAllGrupPostWithIdPost(id_grup,clicked_id);
 		}).fail(function(x){
 			myApp.alert('Maaf tidak dapat menghapus komentar, silahkan coba lagi', 'Perhatian!');
 			console.log(x);

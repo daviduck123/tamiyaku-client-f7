@@ -745,7 +745,7 @@ function getAllGrupPost(clickedId) {
 				if(z[i]['foto']!="")
 				{
 					var html=	"<div id='posting_grup_"+z[i]['id']+"' style='margin-bottom:50px;'>";
-					html += 		"<table id='table__grup_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
+					html += 		"<table id='table_grup_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 					html += 			"<tr>";
 					html += 				"<td rowspan='2'>";
 					if(z[i]['nama']==getData("active_user_nama"))
@@ -768,10 +768,10 @@ function getAllGrupPost(clickedId) {
 					html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
 					html += 			"</tr>";
 					html += 			"<tr>";
-					html += 				"<td colspan='2'>"+z[i]['deskripsi']+"</td>";
+					html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
 					html += 			"</tr>";
 					html += 			"<tr>";
-					html += 				"<td colspan='2' >";
+					html += 				"<td colspan='4' >";
 					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%; height:100%;'>";
 					html += 				"</td>";
 					html += 			"</tr>";
@@ -811,7 +811,7 @@ function getAllGrupPost(clickedId) {
 					html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
 					html += 			"</tr>";
 					html += 			"<tr>";
-					html += 				"<td colspan='2'>"+z[i]['deskripsi']+"</td>";
+					html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
 					html += 			"</tr>";
 					html += 		"</table>";
 					html += 		"<div id='kolom_komentar_grup_"+z[i]['id']+"'>";
@@ -901,10 +901,10 @@ function getAllGrupPostWithIdPost(clickedId, id_post) {
 					html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
 					html += 			"</tr>";
 					html += 			"<tr>";
-					html += 				"<td colspan='2'>"+z[i]['deskripsi']+"</td>";
+					html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
 					html += 			"</tr>";
 					html += 			"<tr>";
-					html += 				"<td colspan='2' >";
+					html += 				"<td colspan='4' >";
 					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%; height:100%;'>";
 					html += 				"</td>";
 					html += 			"</tr>";
@@ -944,7 +944,7 @@ function getAllGrupPostWithIdPost(clickedId, id_post) {
 					html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
 					html += 			"</tr>";
 					html += 			"<tr>";
-					html += 				"<td colspan='2'>"+z[i]['deskripsi']+"</td>";
+					html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
 					html += 			"</tr>";
 					html += 		"</table>";
 					html += 		"<div id='kolom_komentar_grup_"+z[i]['id']+"'>";

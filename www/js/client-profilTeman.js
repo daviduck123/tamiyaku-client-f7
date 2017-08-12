@@ -309,6 +309,28 @@ function getProfilTeman(clickedId, statusTeman){
 			var foto=z.foto;
 			var email=z.email;
 			var telepon=z.telepon;
+			var kota = "";
+			if(globalKota.length == 0){
+				var link=urlnya+'/api/kota/';
+				$.ajax({ dataType: "jsonp",
+				    url: link,
+				    type: 'GET',
+			  	  	async: false,
+				    contentType: false,
+				    processData: false
+				}).done(function(dataKota){
+					globalKota = dataKota;
+				}).fail(function(x){
+					myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
+				}); 	
+			}
+			for(var xx = 0 ; xx < globalKota.length; xx++){
+				if(globalKota[xx].id === z.id_kota){
+					kota = globalKota[xx].nama;
+					break;
+				}
+			}
+			
 			
 			var link=urlnya+'/api/post/getAllPostByUser?id_user='+id_teman;
 			$.ajax({ dataType: "jsonp",
@@ -360,8 +382,10 @@ function getProfilTeman(clickedId, statusTeman){
 							html +=				'<td style="font-weight:bold;"><center>Post</center></td>';
 							html +=				'<td style="font-weight:bold;"><center>Teman</center></td>';
 							html +=			'</tr>';
-							html += 		'<tr>';
-							html += 			'<td colspan="3"><a href="#" ><i class="icon fa fa-envelope-o"></i><span style="margin:10px;">'+email+'</span></a></td>';
+							html += 			'<td colspan="3"><a href="#" ><i class="icon fa fa-map-marker"></i><span style="margin-left:10px;">'+kota+'</span></a></td>';
+							html += 		'</tr>';
+							html +=			'</tr>';
+							html += 			'<td colspan="3"><a href="#" ><i class="icon fa fa-envelope-o"></i><span style="margin-left:10px;">'+email+'</span></a></td>';
 							html += 		'</tr>';
 							html += 	'</table>';
 							html +='						<br>';
@@ -379,9 +403,12 @@ function getProfilTeman(clickedId, statusTeman){
 							html += 				'<img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:80px; height:80px;">';
 							html += 			'</td>';
 							html +=				'<td colspan="3" style="width:300px;"><a href="#" onclick="addFriend('+id+')" class="button" style="width:100%;">Tambah teman</a></td>';
-							html += 	'</tr>';
-							html += 		'<tr>';
-							html += 			'<td colspan="3"><a href="#" ><i class="icon fa fa-envelope-o"></i><span style="margin:10px;">'+email+'</span></a></td>';
+							html += 		'</tr>';
+							html +=			'</tr>';
+							html += 			'<td colspan="3"><a href="#" ><i class="icon fa fa-map-marker"></i><span style="margin-left:10px;">'+kota+'</span></a></td>';
+							html += 		'</tr>';
+							html +=			'</tr>';
+							html += 			'<td colspan="3"><a href="#" ><i class="icon fa fa-envelope-o"></i><span style="margin-left:10px;">'+email+'</span></a></td>';
 							html += 		'</tr>';
 							html += 	'</table>';
 						}
@@ -410,8 +437,11 @@ function getProfilTeman(clickedId, statusTeman){
 							html +=				'<td style="font-weight:bold;"><center>Post</center></td>';
 							html +=				'<td style="font-weight:bold;"><center>Teman</center></td>';
 							html +=			'</tr>';
-							html += 		'<tr>';
-							html += 			'<td colspan="4"><a href="#" ><i class="icon fa fa-envelope-o"></i><span style="margin:10px;">'+email+'</span></a></td>';
+							html +=			'</tr>';
+							html += 			'<td colspan="3"><a href="#" ><i class="icon fa fa-map-marker"></i><span style="margin-left:10px;">'+kota+'</span></a></td>';
+							html += 		'</tr>';
+							html +=			'</tr>';
+							html += 			'<td colspan="3"><a href="#" ><i class="icon fa fa-envelope-o"></i><span style="margin-left:10px;">'+email+'</span></a></td>';
 							html += 		'</tr>';
 							html += 		'<tr>';
 							html += 			'<td colspan="4" align="right"><a href="editProfile.html" class ="badge" >Edit Profile</a></td>';

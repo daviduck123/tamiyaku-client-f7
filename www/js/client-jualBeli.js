@@ -1040,11 +1040,12 @@ function hapusKomentarJualBeliTrue(clicked_id, id_komentar)
 function ubahView()
 {
 	var id_kategori = $('#show_kategori_jualBeli').find(":selected").val();
+	var id_urutan = $('#show_urutan_jualBeli').find(":selected").val();
 	//console.log(id_kategori);
-	getAllJualBeliPostByKategori(id_kategori);
+	getAllJualBeliPostByKategori(id_kategori,id_urutan);
 }
 
-function getAllJualBeliPostByKategori(id_kategori) {
+function getAllJualBeliPostByKategori(id_kategori,id_urutan) {
 	myApp.showPreloader('Mengambil data...');
 	var id_user=getData("active_user_id");
 	var kelas_dipilih = $('#kelas_dipilih').find(":selected").val();
@@ -1093,6 +1094,78 @@ function getAllJualBeliPostByKategori(id_kategori) {
 			for (var ii = 0 ; ii < z.length; ii++) {
 				coba+=z[ii]['id']+"|"; 
 				dataLength++;
+			}
+
+			var d, position, swap;
+
+			if(id_urutan!=0)
+			{
+				if(id_urutan==1)//urutan tanggal terlama
+				{
+					for ( var i = 0 ; i < ( dataLength - 1 ) ; i++ )
+				   	{
+				      	position = i;
+				 
+				      	for ( d = i + 1 ; d < dataLength ; d++ )
+				      	{
+				      		var date1 = new Date(z[position]['created_at']);
+				      		var date2 = new Date(z[d]['created_at']);
+
+				        	if ( date1 > date2 )
+				            	position = d;
+				      	}
+				      	if ( position != i )
+				      	{
+				         	swap = z[i];
+				        	z[i] = z[position];
+				         	z[position] = swap;
+				      	}
+				   	}
+				}
+				else if(id_urutan==2)//urutan harg termurah
+				{
+					for ( var i = 0 ; i < ( dataLength - 1 ) ; i++ )
+				   	{
+				      	position = i;
+				 
+				      	for ( d = i + 1 ; d < dataLength ; d++ )
+				      	{
+				      		var harga1 = parseInt(z[position]['harga']);
+				      		var harga2 = parseInt(z[d]['harga']);
+
+				        	if ( harga1 > harga2 )
+				            	position = d;
+				      	}
+				      	if ( position != i )
+				      	{
+				         	swap = z[i];
+				        	z[i] = z[position];
+				         	z[position] = swap;
+				      	}
+				   	}
+				}
+				else if(id_urutan==3)//urutan harga termahal
+				{
+					for ( var i = 0 ; i < ( dataLength - 1 ) ; i++ )
+				   	{
+				      	position = i;
+				 
+				      	for ( d = i + 1 ; d < dataLength ; d++ )
+				      	{
+				      		var harga1 = parseInt(z[position]['harga']);
+				      		var harga2 = parseInt(z[d]['harga']);
+
+				        	if ( harga1 < harga2 )
+				            	position = d;
+				      	}
+				      	if ( position != i )
+				      	{
+				         	swap = z[i];
+				        	z[i] = z[position];
+				         	z[position] = swap;
+				      	}
+				   	}
+				}
 			}
 			
 			$("#isi_container_jualBeli").html("");

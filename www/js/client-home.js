@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------------------------------------------------------------------------HOME
 
 function gotoHome(){
-	mainView.router.loadPage('home.html');
+	mainView.router.refreshPage('home.html');
 	myApp.closePanel();
 }
 
@@ -179,90 +179,187 @@ function getAllPost() {
 			dataLength++;
 		}
 		$("#isi_postingan").html("");
-		for(var i=0;i<dataLength;i++)
+
+		var notif_id=getData("notif_id");
+		if(notif_id != null)
 		{
-			if(z[i]['foto']!="")
+			for(var i=0;i<dataLength;i++)
 			{
-				var html=	"<div id='posting_"+z[i]['id']+"' style='margin-bottom:50px;'>";
-				html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
-				html += 			"<tr>";
-				html += 				"<td rowspan='2' width='10%'>";
-				if(z[i]['nama']==getData("active_user_nama"))
+				if(z[i]['id']==notif_id)
 				{
-					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+					if(z[i]['foto']!="")
+					{
+						var html=	"<div id='posting_"+z[i]['id']+"' style='margin-bottom:50px;'>";
+						html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
+						html += 			"<tr>";
+						html += 				"<td rowspan='2' width='10%'>";
+						if(z[i]['nama']==getData("active_user_nama"))
+						{
+							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+						}
+						else
+						{
+							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+						}
+						html += 				"</td>";
+						html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+						if(z[i]['nama']==getData("active_user_nama"))
+						{
+							html += 				"<td style='font-weight:bold;'><i onclick='gotoUpdateEvent(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
+							html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusEventData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+						}
+						html += 			"</tr>";
+						html += 			"<tr>";
+						html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
+						html += 			"</tr>";
+						html += 			"<tr>";
+						html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
+						html += 			"</tr>";
+						html += 			"<tr>";
+						html += 				"<td colspan='4' >";
+						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%; height:100%;'>";
+						html += 				"</td>";
+						html += 			"</tr>";
+						html += 		"</table>";
+						html += 		"<div id='kolom_komentar_"+z[i]['id']+"'>";
+						html += 		"</div>";
+						html += 			"<div id='btn_komentari_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
+						html += 			"<p><a href='#' onclick='bacaKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
+						html += 	"</div>";
+						
+						$("#isi_postingan").append(html);
+					}
+					else
+					{
+						
+						var html=	"<div id='posting_"+z[i]['id']+"' style='margin-bottom:50px;'>";
+						html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
+						html += 			"<tr>";
+						html += 				"<td rowspan='2' width='10%'>";
+						if(z[i]['nama']==getData("active_user_nama"))
+						{
+							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+						}
+						else
+						{
+							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+						}
+						html += 				"</td>";
+						html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+						if(z[i]['nama']==getData("active_user_nama"))
+						{
+							html += 				"<td style='font-weight:bold;'><i onclick='gotoUpdateEvent(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
+							html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusEventData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+						}
+						html += 			"</tr>";
+						html += 			"<tr>";
+						html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
+						html += 			"</tr>";
+						html += 			"<tr>";
+						html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
+						html += 			"</tr>";
+						html += 		"</table>";
+						html += 		"<div id='kolom_komentar_"+z[i]['id']+"'>";
+						html += 		"</div>";
+						html += 			"<div id='btn_komentari_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
+						html += 			"<p><a href='#' onclick='bacaKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
+						html += 	"</div>";
+						
+						$("#isi_postingan").append(html);
+					}
 				}
-				else
-				{
-					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
-				}
-				html += 				"</td>";
-				html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
-				if(z[i]['nama']==getData("active_user_nama"))
-				{
-					html += 				"<td style='font-weight:bold;'><i onclick='gotoUpdateEvent(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-					html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusEventData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
-				}
-				html += 			"</tr>";
-				html += 			"<tr>";
-				html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
-				html += 			"</tr>";
-				html += 			"<tr>";
-				html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
-				html += 			"</tr>";
-				html += 			"<tr>";
-				html += 				"<td colspan='4' >";
-				html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%; height:100%;'>";
-				html += 				"</td>";
-				html += 			"</tr>";
-				html += 		"</table>";
-				html += 		"<div id='kolom_komentar_"+z[i]['id']+"'>";
-				html += 		"</div>";
-				html += 			"<div id='btn_komentari_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
-				html += 			"<p><a href='#' onclick='bacaKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
-				html += 	"</div>";
-				
-				$("#isi_postingan").append(html);
 			}
-			else
-			{
-				
-				var html=	"<div id='posting_"+z[i]['id']+"' style='margin-bottom:50px;'>";
-				html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
-				html += 			"<tr>";
-				html += 				"<td rowspan='2' width='10%'>";
-				if(z[i]['nama']==getData("active_user_nama"))
-				{
-					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
-				}
-				else
-				{
-					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
-				}
-				html += 				"</td>";
-				html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
-				if(z[i]['nama']==getData("active_user_nama"))
-				{
-					html += 				"<td style='font-weight:bold;'><i onclick='gotoUpdateEvent(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-					html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusEventData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
-				}
-				html += 			"</tr>";
-				html += 			"<tr>";
-				html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
-				html += 			"</tr>";
-				html += 			"<tr>";
-				html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
-				html += 			"</tr>";
-				html += 		"</table>";
-				html += 		"<div id='kolom_komentar_"+z[i]['id']+"'>";
-				html += 		"</div>";
-				html += 			"<div id='btn_komentari_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
-				html += 			"<p><a href='#' onclick='bacaKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
-				html += 	"</div>";
-				
-				$("#isi_postingan").append(html);
-			}
+			eraseData("notif_id");
+			eraseData("notif_komentar");
+			myApp.closeModal();
 		}
-	myApp.closeModal();
+		else
+		{
+			for(var i=0;i<dataLength;i++)
+			{
+				if(z[i]['foto']!="")
+				{
+					var html=	"<div id='posting_"+z[i]['id']+"' style='margin-bottom:50px;'>";
+					html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
+					html += 			"<tr>";
+					html += 				"<td rowspan='2' width='10%'>";
+					if(z[i]['nama']==getData("active_user_nama"))
+					{
+						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+					}
+					else
+					{
+						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+					}
+					html += 				"</td>";
+					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+					if(z[i]['nama']==getData("active_user_nama"))
+					{
+						html += 				"<td style='font-weight:bold;'><i onclick='gotoUpdateEvent(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
+						html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusEventData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+					}
+					html += 			"</tr>";
+					html += 			"<tr>";
+					html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
+					html += 			"</tr>";
+					html += 			"<tr>";
+					html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
+					html += 			"</tr>";
+					html += 			"<tr>";
+					html += 				"<td colspan='4' >";
+					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%; height:100%;'>";
+					html += 				"</td>";
+					html += 			"</tr>";
+					html += 		"</table>";
+					html += 		"<div id='kolom_komentar_"+z[i]['id']+"'>";
+					html += 		"</div>";
+					html += 			"<div id='btn_komentari_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
+					html += 			"<p><a href='#' onclick='bacaKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
+					html += 	"</div>";
+					
+					$("#isi_postingan").append(html);
+				}
+				else
+				{
+					
+					var html=	"<div id='posting_"+z[i]['id']+"' style='margin-bottom:50px;'>";
+					html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
+					html += 			"<tr>";
+					html += 				"<td rowspan='2' width='10%'>";
+					if(z[i]['nama']==getData("active_user_nama"))
+					{
+						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+					}
+					else
+					{
+						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+					}
+					html += 				"</td>";
+					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+					if(z[i]['nama']==getData("active_user_nama"))
+					{
+						html += 				"<td style='font-weight:bold;'><i onclick='gotoUpdateEvent(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
+						html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusEventData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+					}
+					html += 			"</tr>";
+					html += 			"<tr>";
+					html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
+					html += 			"</tr>";
+					html += 			"<tr>";
+					html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
+					html += 			"</tr>";
+					html += 		"</table>";
+					html += 		"<div id='kolom_komentar_"+z[i]['id']+"'>";
+					html += 		"</div>";
+					html += 			"<div id='btn_komentari_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
+					html += 			"<p><a href='#' onclick='bacaKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
+					html += 	"</div>";
+					
+					$("#isi_postingan").append(html);
+				}
+			}
+			myApp.closeModal();
+		}
 	}).fail(function(x){
 		myApp.alert("Pengambilan status user gagal", 'Perhatian!');
 	}); 
@@ -289,91 +386,195 @@ function getAllPost(id_post) {
 			dataLength++;
 		}
 		$("#isi_postingan").html("");
-		for(var i=0;i<dataLength;i++)
+		var notif_id=getData("notif_id");
+		console.log(notif_id);
+		if(notif_id != null)
 		{
-			if(z[i]['foto']!="")
-			{
-				var html=	"<div id='posting_"+z[i]['id']+"' style='margin-bottom:50px;'>";
-				html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
-				html += 			"<tr>";
-				html += 				"<td rowspan='2' width='10%'>";
-				if(z[i]['nama']==getData("active_user_nama"))
-				{
-					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
-				}
-				else
-				{
-					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
-				}
-				html += 				"</td>";
-				html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
-				if(z[i]['nama']==getData("active_user_nama"))
-				{
-					html += 				"<td style='font-weight:bold;'><i onclick='editPost(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-					html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
-				}
-				html += 			"</tr>";
-				html += 			"<tr>";
-				html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
-				html += 			"</tr>";
-				html += 			"<tr>";
-				html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
-				html += 			"</tr>";
-				html += 			"<tr>";
-				html += 				"<td colspan='4' >";
-				html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%; height:100%;'>";
-				html += 				"</td>";
-				html += 			"</tr>";
-				html += 		"</table>";
-				html += 		"<div id='kolom_komentar_"+z[i]['id']+"'>";
-				html += 		"</div>";
-				html += 			"<div id='btn_komentari_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
-				html += 			"<p><a href='#' onclick='bacaKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
-				html += 	"</div>";
-				
-				$("#isi_postingan").append(html);
-			}
-			else
-			{
-				
-				var html=	"<div id='posting_"+z[i]['id']+"' style='margin-bottom:50px;'>";
-				html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
-				html += 			"<tr>";
-				html += 				"<td rowspan='2' width='10%'>";
-				if(z[i]['nama']==getData("active_user_nama"))
-				{
-					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
-				}
-				else
-				{
-					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
-				}
-				html += 				"</td>";
-				html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
-				if(z[i]['nama']==getData("active_user_nama"))
-				{
-					html += 				"<td style='font-weight:bold;'><i onclick='editPost(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-					html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
-				}
-				html += 			"</tr>";
-				html += 			"<tr>";
-				html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
-				html += 			"</tr>";
-				html += 			"<tr>";
-				html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
-				html += 			"</tr>";
-				html += 		"</table>";
-				html += 		"<div id='kolom_komentar_"+z[i]['id']+"'>";
-				html += 		"</div>";
-				html += 			"<div id='btn_komentari_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
-				html += 			"<p><a href='#' onclick='bacaKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
-				html += 	"</div>";
-				
-				$("#isi_postingan").append(html);
-			}
-		}
+			$("#baseHome").html("");
+			$("#bottomHome").html("");
+			var ht='<div class="list-block">'+
+  								'<div id="isi_postingan">'+
+  								'</div>'+
+  							'</div>';
 
-		bacaKomentar(id_post);
+			$("#bottomHome").append(ht);
+			for(var i=0;i<dataLength;i++)
+			{
+				if(z[i]['id']==notif_id)
+				{
+					if(z[i]['foto']!="")
+					{
+						var html=	"<div id='posting_"+z[i]['id']+"' style='margin-bottom:50px;'>";
+						html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
+						html += 			"<tr>";
+						html += 				"<td rowspan='2' width='10%'>";
+						if(z[i]['nama']==getData("active_user_nama"))
+						{
+							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+						}
+						else
+						{
+							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+						}
+						html += 				"</td>";
+						html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+						if(z[i]['nama']==getData("active_user_nama"))
+						{
+							html += 				"<td style='font-weight:bold;'><i onclick='editPost(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
+							html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+						}
+						html += 			"</tr>";
+						html += 			"<tr>";
+						html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
+						html += 			"</tr>";
+						html += 			"<tr>";
+						html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
+						html += 			"</tr>";
+						html += 			"<tr>";
+						html += 				"<td colspan='4' >";
+						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%; height:100%;'>";
+						html += 				"</td>";
+						html += 			"</tr>";
+						html += 		"</table>";
+						html += 		"<div id='kolom_komentar_"+z[i]['id']+"'>";
+						html += 		"</div>";
+						html += 			"<div id='btn_komentari_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
+						html += 			"<p><a href='#' onclick='bacaKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
+						html += 	"</div>";
+						
+						$("#isi_postingan").append(html);
+					}
+					else
+					{
+						
+						var html=	"<div id='posting_"+z[i]['id']+"' style='margin-bottom:50px;'>";
+						html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
+						html += 			"<tr>";
+						html += 				"<td rowspan='2' width='10%'>";
+						if(z[i]['nama']==getData("active_user_nama"))
+						{
+							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+						}
+						else
+						{
+							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+						}
+						html += 				"</td>";
+						html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+						if(z[i]['nama']==getData("active_user_nama"))
+						{
+							html += 				"<td style='font-weight:bold;'><i onclick='editPost(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
+							html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+						}
+						html += 			"</tr>";
+						html += 			"<tr>";
+						html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
+						html += 			"</tr>";
+						html += 			"<tr>";
+						html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
+						html += 			"</tr>";
+						html += 		"</table>";
+						html += 		"<div id='kolom_komentar_"+z[i]['id']+"'>";
+						html += 		"</div>";
+						html += 			"<div id='btn_komentari_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
+						html += 			"<p><a href='#' onclick='bacaKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
+						html += 	"</div>";
+						
+						$("#isi_postingan").append(html);
+					}
+				}
+			}
+			bacaKomentar(getData("notif_id"));
+			eraseData("notif_id");
+			eraseData("notif_komentar");
+		}
+		else
+		{
+			for(var i=0;i<dataLength;i++)
+			{
+				if(z[i]['foto']!="")
+				{
+					var html=	"<div id='posting_"+z[i]['id']+"' style='margin-bottom:50px;'>";
+					html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
+					html += 			"<tr>";
+					html += 				"<td rowspan='2' width='10%'>";
+					if(z[i]['nama']==getData("active_user_nama"))
+					{
+						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+					}
+					else
+					{
+						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+					}
+					html += 				"</td>";
+					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+					if(z[i]['nama']==getData("active_user_nama"))
+					{
+						html += 				"<td style='font-weight:bold;'><i onclick='editPost(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
+						html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+					}
+					html += 			"</tr>";
+					html += 			"<tr>";
+					html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
+					html += 			"</tr>";
+					html += 			"<tr>";
+					html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
+					html += 			"</tr>";
+					html += 			"<tr>";
+					html += 				"<td colspan='4' >";
+					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%; height:100%;'>";
+					html += 				"</td>";
+					html += 			"</tr>";
+					html += 		"</table>";
+					html += 		"<div id='kolom_komentar_"+z[i]['id']+"'>";
+					html += 		"</div>";
+					html += 			"<div id='btn_komentari_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
+					html += 			"<p><a href='#' onclick='bacaKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
+					html += 	"</div>";
+					
+					$("#isi_postingan").append(html);
+				}
+				else
+				{
+					
+					var html=	"<div id='posting_"+z[i]['id']+"' style='margin-bottom:50px;'>";
+					html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
+					html += 			"<tr>";
+					html += 				"<td rowspan='2' width='10%'>";
+					if(z[i]['nama']==getData("active_user_nama"))
+					{
+						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+					}
+					else
+					{
+						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+					}
+					html += 				"</td>";
+					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+					if(z[i]['nama']==getData("active_user_nama"))
+					{
+						html += 				"<td style='font-weight:bold;'><i onclick='editPost(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
+						html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+					}
+					html += 			"</tr>";
+					html += 			"<tr>";
+					html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
+					html += 			"</tr>";
+					html += 			"<tr>";
+					html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
+					html += 			"</tr>";
+					html += 		"</table>";
+					html += 		"<div id='kolom_komentar_"+z[i]['id']+"'>";
+					html += 		"</div>";
+					html += 			"<div id='btn_komentari_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
+					html += 			"<p><a href='#' onclick='bacaKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
+					html += 	"</div>";
+					
+					$("#isi_postingan").append(html);
+				}
+			}
+			bacaKomentar(id_post);
+		}
 	myApp.closeModal();
 	}).fail(function(x){
 		myApp.alert("Pengambilan status user gagal", 'Perhatian!');

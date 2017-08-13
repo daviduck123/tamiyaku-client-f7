@@ -86,25 +86,30 @@ function getAllNotif() {
 function gotoFriendNotif(id_user,id,komentar,type) {
 	//mainView.router.loadPage('notif.html');
 	
-	if(type="post")
+	if(type=="post")
 	{
 		saveData( "notif_id",id);
 		saveData( "notif_komentar",komentar);
 		//console.log(getData("notif_id"));
 		gotoHome();
 	}
-	else if(type="grup")
+	else if(type.includes("grup"))
 	{
-		//goto();
+		var temps =s.split('/');
+		var id_grup =temps[1];
+		saveData( "notif_id",id);
+		saveData( "notif_komentar",komentar);
+		gotoGroup(id_grup);
 	}
-	else if(type="event")
+	else if(type=="event")
 	{
 		saveData( "notif_komentar",komentar);
 		detailEvent(id);
 	}
-	else if(type="jualbeli")
+	else if(type=="jualbeli")
 	{
+		saveData( "notif_id",id);
 		saveData( "notif_komentar",komentar);
-		detailEvent(id);
+		gotoJualBeli();
 	}
 }

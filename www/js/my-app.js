@@ -176,10 +176,10 @@ myApp.onPageInit('detailEvent', function (page) {
 					html += 	"</div>";
 					$("#isi_detail_event").append(html);
 
-					var $komentar = getData("notif_komentar");
-					if ($komentar != null)
+					var komentar = getData("notif_komentar");
+					if (komentar != null)
 					{
-						komentariEventPost($komentar);
+						komentariEventPost(komentar);
 					}
 
 				var map;

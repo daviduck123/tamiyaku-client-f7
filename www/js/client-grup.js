@@ -112,6 +112,8 @@ function gotoGroup(clickedId){
 			if(notif_id!=null)
 			{
 				getAllGrupPost(id_grup);
+				eraseData("notif_id");
+				eraseData("notif_komentar");
 			}
 			else
 			{

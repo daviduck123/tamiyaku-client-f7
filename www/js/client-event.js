@@ -387,7 +387,9 @@ function getAllEventPostVar(id_post) {
 			
 			$("#isi_container_event").append(html);
 		}
+		mainView.router.refreshPage('lomba.html');
 		bacaEventKomentar(id_post);
+		//bacaEventKomentar(id_post);
 		myApp.closeModal();
 	}).fail(function(x){
 		myApp.alert("Pengambilan postingan Event gagal", 'Perhatian!');
@@ -730,6 +732,7 @@ function komentariEventPost(clicked_id) {
 					processData: false
 				}).done(function(z){
 					//mainView.router.loadPage('lomba.html');
+					
 					getAllEventPostVar(id_post);
 					//myApp.alert('Komentar dibuat', 'Berhasil!');
 				}).fail(function(x){

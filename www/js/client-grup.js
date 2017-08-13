@@ -88,8 +88,7 @@ function gotoGroup(clickedId){
 	eraseData("id_grup");
 	saveData("id_grup",clickedId);
 	mainView.router.loadPage('grup.html');
-	//getAllGroupPost dipanggil akan dipanggil jika saat ini user buka page grup dan ingin membuka grup yg lain karena element html terbuat dan dapat diakses
-	//jika mengakses grup pertama kali fungsi dibawah tidak akan berguna karena element belum dapat diakses, oleh karena itu butuh bantuan myApp.onPageInit pada my-app.js
+	mainView.router.refreshPage('grup.html');
 	var id_user = getData("active_user_id");
 	var id_grup = getData("id_grup");
 	
@@ -105,12 +104,21 @@ function gotoGroup(clickedId){
 		for (var ii = 0 ; ii < z.length ; ii++) {
 			dataLength++;
 		}
+
+		var notif_id=getData("notif_id");
 		
 		if(dataLength>0)
 		{
-			getAllGrupPost(id_grup);
-			getInfoGrup(id_grup);
-			showButtonLeaveGrup(id_grup);
+			if(notif_id!=null)
+			{
+				getAllGrupPost(id_grup);
+			}
+			else
+			{
+				getAllGrupPost(id_grup);
+				getInfoGrup(id_grup);
+				showButtonLeaveGrup(id_grup);
+			}
 		}
 		else
 		{
@@ -691,6 +699,138 @@ function joinThisGrup(clickedId){
 				showButtonLeaveGrup(clickedId);
 				getAllGrupPost(clickedId);
 				allGrupUser = null;
+			}
+		}).fail(function(x){
+			myApp.alert("Pengambilan postingan grup gagal", 'Perhatian!');
+		}); 
+}
+
+function getAllGrupPost(clickedId) {
+	myApp.showPreloader('Mengambil data...');
+	var id_grup = clickedId;
+	var link=urlnya+'/api/post/getAllPostByGrup?id_grup='+id_grup;
+
+		$.ajax({ dataType: "jsonp",
+		    url: link,
+		    type: 'GET',
+		    contentType: false,
+		    processData: false
+		}).done(function(z){
+			myApp.closeModal();
+			var coba="";
+			var dataLength=0;
+			for (var ii = 0 ; ii < z.length ; ii++) {
+				coba+=z[ii]['id']+"|"; 
+				dataLength++;
+			}
+			$("#isi_postingan_grup").html("");
+			$("#isi_form_komentari_grup").html("");
+			
+			var html2= '<form action="/action_page.php">';
+			html2 +=	'<div class="item-content">';
+			html2 +=		'<div class="item-inner">';
+			html2 +=			'<div class="item-input">';
+			html2 +=				'<center><textarea id="status_grup" style="resize:none; margin-top:10px; width:90%; height:60px;" ';
+			html2 +=					'placeholder="Tulis apa yang ingin anda bahas.."></textarea>';
+			html2 +=				'</center>';
+			html2 +=			'</div>';
+			html2 +=		'</div>';
+			html2 +=	' </div>';
+			html2 +=	'<div class="item-content" style="margin-top:-10px;">';
+			html2 +=	'<div class="item-inner" >';
+			html2 +=	'<div style="height:0px;overflow:hidden">';
+			html2 +=	'<input type="file" id="file_grup" accept="image/*"/>';
+			html2 +=	'</div>';
+			html2 +=	'<p><a href="#" class="button active" onclick="statusGrupPost();" type="submit" style="width:70px; float:right; margin-right:5%;">Kirim</a></p>';
+			html2 +=	'<p><a href="#" class="button"  onclick="chooseFile_grup();" style=" float:right; margin-right:10px; width:85px;">Gambar..</a></p>';
+			html2 +=	'</form>';
+			
+			
+			$("#isi_form_komentari_grup").append(html2);
+			
+			//munculkan semua post
+			for(var i=0;i<dataLength;i++)
+			{
+				if(z[i]['foto']!="")
+				{
+					var html=	"<div id='posting_grup_"+z[i]['id']+"' style='margin-bottom:50px;'>";
+					html += 		"<table id='table_grup_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
+					html += 			"<tr>";
+					html += 				"<td rowspan='2' width='10%'>";
+					if(z[i]['nama']==getData("active_user_nama"))
+					{
+						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+					}
+					else
+					{
+						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+					}
+					html += 				"</td>";
+					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+					if(z[i]['nama']==getData("active_user_nama"))
+					{
+						html += 				"<td style='font-weight:bold;'><i onclick='editGrupPost(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
+						html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+					}
+					html += 			"</tr>";
+					html += 			"<tr>";
+					html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
+					html += 			"</tr>";
+					html += 			"<tr>";
+					html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
+					html += 			"</tr>";
+					html += 			"<tr>";
+					html += 				"<td colspan='4' >";
+					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%; height:100%;'>";
+					html += 				"</td>";
+					html += 			"</tr>";
+					html += 		"</table>";
+					html += 		"<div id='kolom_komentar_grup_"+z[i]['id']+"'>";
+					html += 		"</div>";
+					html += 			"<div id='btn_komentari_grup_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariGrupPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
+					html += 			"<p><a href='#' onclick='bacaGrupKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
+					html += 	"</div>";
+					
+					$("#isi_postingan_grup").append(html);
+				}
+				else
+				{
+					
+					var html=	"<div id='posting_grup_"+z[i]['id']+"' style='margin-bottom:50px;'>";
+					html += 		"<table id='table_grup_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
+					html += 			"<tr>";
+					html += 				"<td rowspan='2' width='10%'>";
+					if(z[i]['nama']==getData("active_user_nama"))
+					{
+						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+					}
+					else
+					{
+						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+					}
+					html += 				"</td>";
+					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+					if(z[i]['nama']==getData("active_user_nama"))
+					{
+						html += 				"<td style='font-weight:bold;'><i onclick='editGrupPost(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
+						html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+					}
+					html += 			"</tr>";
+					html += 			"<tr>";
+					html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
+					html += 			"</tr>";
+					html += 			"<tr>";
+					html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
+					html += 			"</tr>";
+					html += 		"</table>";
+					html += 		"<div id='kolom_komentar_grup_"+z[i]['id']+"'>";
+					html += 		"</div>";
+					html += 			"<div id='btn_komentari_grup_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariGrupPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
+					html += 			"<p><a href='#' onclick='bacaGrupKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
+					html += 	"</div>";
+					
+					$("#isi_postingan_grup").append(html);
+				}
 			}
 		}).fail(function(x){
 			myApp.alert("Pengambilan postingan grup gagal", 'Perhatian!');

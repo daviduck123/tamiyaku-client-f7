@@ -85,11 +85,26 @@ function getAllNotif() {
 
 function gotoFriendNotif(id_user,id,komentar,type) {
 	//mainView.router.loadPage('notif.html');
-	saveData( "notif_id",id);
-	saveData( "notif_komentar",komentar);
-	console.log(getData("notif_id"));
+	
 	if(type="post")
 	{
+		saveData( "notif_id",id);
+		saveData( "notif_komentar",komentar);
+		//console.log(getData("notif_id"));
 		gotoHome();
+	}
+	else if(type="grup")
+	{
+		//goto();
+	}
+	else if(type="event")
+	{
+		saveData( "notif_komentar",komentar);
+		detailEvent(id);
+	}
+	else if(type="jualbeli")
+	{
+		saveData( "notif_komentar",komentar);
+		detailEvent(id);
 	}
 }

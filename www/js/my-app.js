@@ -176,6 +176,12 @@ myApp.onPageInit('detailEvent', function (page) {
 					html += 	"</div>";
 					$("#isi_detail_event").append(html);
 
+					var $komentar = getData("notif_komentar");
+					if ($komentar != null)
+					{
+						komentariEventPost($komentar);
+					}
+
 				var map;
 				$(document).ready(function(){
 
@@ -201,37 +207,6 @@ myApp.onPageInit('grup', function (page) {
 	$("textarea[id^=deskripsi_]").each(function(e){
 		$(this).remove();
 	});
-	/*var id_user = getData("active_user_id");
-	var id_grup = getData("id_grup");
-	
-	var link=urlnya+'/api/grup/checkJoinedGrup?id_user='+id_user+'&id_grup='+id_grup;
-	console.log(link);
-	$.ajax({ dataType: "jsonp",
-	    url: link,
-	    type: 'GET',
-	    contentType: false,
-	    processData: false
-	}).done(function(z){
-		var dataLength=0;
-		for (var ii = 0 ; ii < z.length ; ii++) {
-			dataLength++;
-		}
-		
-		if(dataLength>0)
-		{
-			getAllGrupPost(id_grup);
-			getInfoGrup(id_grup);
-			showButtonLeaveGrup(id_grup);
-			setPullRefreshGrup();
-		}
-		else
-		{
-			getInfoGrup(id_grup);
-			showButtonJoinGrup(id_grup);
-		}
-	}).fail(function(x){
-		myApp.alert("Pengambilan data grup disekitar gagal", 'Perhatian!');
-	});*/
 	
 });
 

@@ -156,6 +156,8 @@ function bacaKomentar(clicked_id) {
 }
 
 function getAllPost() {
+	//eraseData( "notif_id");
+	//eraseData( "notif_komentar");
 	myApp.showPreloader('Mengambil data...');
 	$("textarea[id^=deskripsi_]").each(function(e){
 		$(this).remove();
@@ -366,6 +368,8 @@ function getAllPost() {
 }
 
 function getAllPost(id_post) {
+	//eraseData( "notif_id");
+	//eraseData( "notif_komentar");
 	myApp.showPreloader('Mengambil data...');
 	var id_user = getData("active_user_id");
 	var formData=JSON.stringify({
@@ -387,6 +391,7 @@ function getAllPost(id_post) {
 		}
 		$("#isi_postingan").html("");
 		var notif_id=getData("notif_id");
+		var komentar=getData("notif_komentar");
 		console.log(notif_id);
 		if(notif_id != null)
 		{
@@ -484,7 +489,10 @@ function getAllPost(id_post) {
 					}
 				}
 			}
-			bacaKomentar(getData("notif_id"));
+			if(komentar==1)
+			{
+				bacaKomentar(getData("notif_id"));
+			}
 			eraseData("notif_id");
 			eraseData("notif_komentar");
 		}

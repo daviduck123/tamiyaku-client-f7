@@ -236,7 +236,7 @@ function getAllEventPost() {
 			html += 			"<tr>";
 			html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Tanggal</div></td>';
 			html +=					'<td>: </td>';
-			html +=					'<td colspan="2">16/03/2016</td>';
+			html +=					'<td colspan="2">'+z[i]['tanggal']+'</td>';
 			html += 			"</tr>";
 			html += 			"<tr>";
 			html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Kota</div></td>';
@@ -398,6 +398,61 @@ function detailEvent(id_post) {
 
 	mainView.router.loadPage('detailEvent.html');
 	saveData("id_lihat_detail_event",id_post);
+}
+
+function gotoPetaEventDetail(latData, lngData){
+	//myApp.popup('.popup-grup');
+	var popupHTML = '<div class="popup">'+
+                    '<div class="content-block">'+
+                      '<p>Letak lokasi lomba.</p>'+
+					  '<div id="petaLokasiEventDetail" style="width:330px; height:500px;"></div>'+
+						"<div><p><a href='#' onClick='gotoGooleMapDevice("+latData+","+lngData+");' class='button' style='margin-right:5%; margin-top:-10px; float:right;'>Buka di Google Maps</a></p></div>"+
+						"<p><a href='#' class='close-popup' style='margin-top:-5px; float:left; margin-right:10px;'>Kembali</a></p>"+
+                    '</div>'+
+                  '</div>'
+	myApp.popup(popupHTML);
+
+	$(document).ready(function(){	
+		var map = new GMaps({
+			div: '#petaLokasiEventDetail',
+			lat: latData,
+			lng: lngData,
+		});
+
+		//tidak bisa ambil lat lng
+		map.addMarker({
+			lat: latData,
+			lng: lngData,
+			draggable: false
+		});
+		google.maps.event.trigger(map, 'resize');
+
+	    // Convert Degress to Radians
+	    function Deg2Rad( deg ) {
+	       return deg * Math.PI / 180;
+	    }
+
+	    // Get Distance between two lat/lng points using the Haversine function
+	    // First published by Roger Sinnott in Sky & Telescope magazine in 1984 (“Virtues of the Haversine”)
+	    //
+	    function Haversine( lat1, lon1, lat2, lon2 )
+	    {
+	        var R = 6372.8; // Earth Radius in Kilometers
+
+	        var dLat = Deg2Rad(lat2-lat1);  
+	        var dLon = Deg2Rad(lon2-lon1);  
+
+	        var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
+	                        Math.cos(Deg2Rad(lat1)) * Math.cos(Deg2Rad(lat2)) * 
+	                        Math.sin(dLon/2) * Math.sin(dLon/2);  
+	        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+	        var d = R * c; 
+
+	        // Return Distance in Kilometers
+	        return d;
+	    }
+
+    });
 }
 
 function gotoGmapEvent(){

@@ -51,3 +51,9 @@ function getImage(imageName) {
 	return "kosong.png";
   }
 }
+
+function gotoGooleMapDevice(latData,lngData)
+{
+	var url="geo:"+latData+","+lngData;
+	window.open(url, '_system');
+}

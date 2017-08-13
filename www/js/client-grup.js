@@ -130,8 +130,9 @@ function gotoPetaGrup(latData, lngData){
 	var popupHTML = '<div class="popup">'+
                     '<div class="content-block">'+
                       '<p>Letak lokasi grup.</p>'+
-					  '<div id="petaLokasiGrup" style="width:330px; height:300px;"></div>'+
-                      '<p><a href="#" class="close-popup">Kembali</a></p>'+
+					  '<div id="petaLokasiGrup" style="width:330px; height:500px;"></div>'+
+					  	"<div><p><a href='#' class='button' onclick='gotoGooleMapDevice("+latData+","+lngData+");' style='margin-right:5%; margin-top:-10px; float:right;'>Buka di Google Map</a></p></div>"+
+						"<p><a href='#' class='close-popup' style='margin-top:-5px; float:left; margin-right:10px;'>Kembali</a></p>"+
                     '</div>'+
                   '</div>'
 	myApp.popup(popupHTML);

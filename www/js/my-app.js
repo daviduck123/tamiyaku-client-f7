@@ -103,11 +103,6 @@ myApp.onPageInit('detailEvent', function (page) {
 					html += 			"<tr>";
 					html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Tanggal</div></td>';
 					html +=					'<td>: </td>';
-					html +=					'<td colspan="2">16/03/2016</td>';
-					html += 			"</tr>";
-					html += 			"<tr>";
-					html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Tanggal</div></td>';
-					html +=					'<td>: </td>';
 					html +=					'<td colspan="2">'+tanggal+'</td>';
 					html += 			"</tr>";
 					html += 			"<tr>";
@@ -116,8 +111,13 @@ myApp.onPageInit('detailEvent', function (page) {
 					html +=					'<td colspan="2">'+kota+'</td>';
 					html += 			"</tr>";
 					html += 			"<tr>";
-					html +=					'<td colspan="12"><center><div id="petaEventDetail" style="width:250px; height:200px;"></div></center></td>';
+					html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;"></div></td>';
+					html +=					'<td></td>';
+					html +=					'<td colspan="2"><a href="#" onclick="gotoPetaEventDetail('+lat+','+lng+');"><i class="icon fa fa-map"></i><span style="margin:10px;"> Lihat peta</span></a></td>';
 					html += 			"</tr>";
+					//html += 			"<tr>";
+					//html +=					'<td colspan="12"><center><div id="petaEventDetail" style="width:250px; height:200px;"></div></center></td>';
+					//html += 			"</tr>";
 					var tempIndeks=0;
 					for (var indeks=0;indeks<3;indeks++)
 					{

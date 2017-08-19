@@ -216,9 +216,6 @@ myApp.onPageInit('detailEvent', function (page) {
 });
 
 myApp.onPageInit('grup', function (page) {
-
-        "<script>document.addEventListener("backbutton", onBackKeyDown, false);</script>";
-
 	$("textarea[id^=deskripsi_]").each(function(e){
 		$(this).remove();
 	});	

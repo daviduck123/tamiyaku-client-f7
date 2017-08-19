@@ -28,6 +28,16 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
+        document.addEventListener('backbutton', function(e){
+        if (confirm("Press a button!"))
+        {
+            alert("You pressed OK!");
+            navigator.app.exitApp();
+        }
+        else
+        {
+            alert("You pressed Cancel!");
+        }
     },
 
     // Update DOM on a Received Event

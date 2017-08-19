@@ -229,28 +229,31 @@ function registerPost() {
 		    contentType: false
 		}).done(function(z){
 			myApp.closeModal();
-			//mainView.router.loadPage('login.html');
-			myApp.alert('Data anda berhasil dibuat, silahkan cek email untuk kode aktivasi', 'Berhasil!');
-			
-			saveData( "temp_active_email",email);
-			saveData( "temp_active_password",password);
-			
-			
-			eraseData("username");
-			eraseData("kota");
-			eraseData("email");
-			eraseData("password");
-			eraseData("fileInput");
-			eraseData("gender");
-			eraseData("kelas1");
-			eraseData("kelas2");
-			eraseData("kelas3");
-			
-			loginBySavedData();
-
+			if(z.status==true){
+				//mainView.router.loadPage('login.html');
+				myApp.alert('Data anda berhasil dibuat, silahkan cek email untuk kode aktivasi', 'Berhasil!');
+				
+				saveData( "temp_active_email",email);
+				saveData( "temp_active_password",password);
+				
+				
+				eraseData("username");
+				eraseData("kota");
+				eraseData("email");
+				eraseData("password");
+				eraseData("fileInput");
+				eraseData("gender");
+				eraseData("kelas1");
+				eraseData("kelas2");
+				eraseData("kelas3");
+				
+				loginBySavedData();
+			}else{
+				myApp.alert('Email telah terdaftar', 'Gagal!');
+			}
 		}).fail(function(x){
 			myApp.closeModal();
-			myApp.alert(x.message+" "+x.error, 'Perhatian!');
+			myApp.alert(x.responseJSON.message, 'Perhatian!');
 			
 			eraseData("username");
 			eraseData("kota");

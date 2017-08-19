@@ -462,8 +462,9 @@ function gotoGmapEvent(){
 	var popupHTML = '<div class="popup">'+
                     '<div class="content-block">'+
                       '<p>Silahkan pilih peta letak lokasi grup.</p>'+
-					  '<div id="petakuEvent" style="width:330px; height:300px;"></div>'+
-                      '<p><a href="#" class="close-popup">Kembali</a></p>'+
+					  '<div id="petakuEvent" style="width:330px; height:500px;"></div>'+
+                      //"<div><p><a href='#' onClick='' class='button' style='margin-right:5%; margin-top:-5px; float:right;'>a</a></p></div>"+
+					  "<center><p><a href='#' class='close-popup button' style='margin-top:-5px; margin-right:10px; width:90%;'>Simpan</a></p></center>"+
                     '</div>'+
                   '</div>'
 	myApp.popup(popupHTML);

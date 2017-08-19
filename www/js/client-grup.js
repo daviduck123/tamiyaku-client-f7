@@ -219,8 +219,8 @@ function gotoGoogleMap(){
 	var popupHTML = '<div class="popup">'+
                     '<div class="content-block">'+
                       '<p>Silahkan pilih peta letak lokasi grup.</p>'+
-					  '<div id="petaku" style="width:330px; height:300px;"></div>'+
-                      '<p><a href="#" class="close-popup">Kembali</a></p>'+
+					  '<div id="petaku" style="width:330px; height:500px;"></div>'+
+                      "<center><p><a href='#' class='close-popup button' style='margin-top:-5px; margin-right:10px; width:90%;'>Simpan</a></p></center>"+
                     '</div>'+
                   '</div>'
 	myApp.popup(popupHTML);

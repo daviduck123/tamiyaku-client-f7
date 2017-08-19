@@ -201,13 +201,27 @@ myApp.onPageInit('detailEvent', function (page) {
 				
 			});	
 	});
+
+
+	$(document).ready(function() 
+	{ 
+        document.addEventListener("deviceready", onDeviceReady, false);
+	});
+
+    function onDeviceReady() {
+
+        document.addEventListener("backbutton", onBackKeyDown, false);
+    }
+
 });
 
 myApp.onPageInit('grup', function (page) {
+
+        "<script>document.addEventListener("backbutton", onBackKeyDown, false);</script>";
+
 	$("textarea[id^=deskripsi_]").each(function(e){
 		$(this).remove();
-	});
-	
+	});	
 });
 
 myApp.onPageInit('nearbyGrup', function (page) {
@@ -310,6 +324,19 @@ myApp.onPageInit('editGrup', function (page) {
 	
 	$("#isi_foto_editGrup").remove();
 	$('#foto_editGrup').append('<img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:240px; height:120px;">');
+
+
+
+	$(document).ready(function() 
+	{ 
+        document.addEventListener("deviceready", onDeviceReady, false);
+	});
+
+    function onDeviceReady() {
+
+        document.addEventListener("backbutton", onBackKeyDown, false);
+    }
+
 });
 
 myApp.onPageInit('editProfile', function (page) {
@@ -362,6 +389,19 @@ myApp.onPageInit('editProfile', function (page) {
 	{
 		$("#perempuan_editProfile").attr('checked', 'checked');
 	}
+
+
+
+	$(document).ready(function() 
+	{ 
+        document.addEventListener("deviceready", onDeviceReady, false);
+	});
+
+    function onDeviceReady() {
+
+        document.addEventListener("backbutton", onBackKeyDown, false);
+    }
+
 });
 
 myApp.onPageInit('buatEvent', function (page) {
@@ -378,6 +418,19 @@ myApp.onPageInit('buatEvent', function (page) {
 	        text : value[0]
 	    }));
 	});
+
+
+
+	$(document).ready(function() 
+	{ 
+        document.addEventListener("deviceready", onDeviceReady, false);
+	});
+
+    function onDeviceReady() {
+
+        document.addEventListener("backbutton", onBackKeyDown, false);
+    }
+
 });
 
 myApp.onPageInit('home', function (page) {
@@ -604,9 +657,34 @@ myApp.onPageInit('buatJualBarang', function (page) {
 	}).fail(function(x){
 			myApp.alert("Pengambilan data kota gagal (line 28)", 'Perhatian!');
 	}); 
+
+
+
+	$(document).ready(function() 
+	{ 
+        document.addEventListener("deviceready", onDeviceReady, false);
+	});
+
+    function onDeviceReady() {
+
+        document.addEventListener("backbutton", onBackKeyDown, false);
+    }
+
 });
 
 myApp.onPageInit('lapakSaya', function (page) {
+	
+
+	$(document).ready(function() 
+	{ 
+        document.addEventListener("deviceready", onDeviceReady, false);
+	});
+
+    function onDeviceReady() {
+
+        document.addEventListener("backbutton", onBackKeyDown, false);
+    }
+
 
 });
 

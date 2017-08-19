@@ -58,6 +58,39 @@ function gotoGooleMapDevice(latData,lngData)
 	window.open(url, '_system');
 }
 
-function onBackKeyDown() {
-    viewRouterBack();
+function onDeviceReady() {
+
+        document.addEventListener("backbutton", onBackKeyDown, false);
 }
+
+function onBackKeyDown() {
+	var activepage = mainView.activePage.name;
+
+	if(activepage=="home")
+	{
+		myApp.modal({
+	    title:  'Pilihan',
+	    text: 'Apakah anda keluar dari aplikasi?',
+	    buttons: [
+	      {
+	        text: 'Tidak',
+	        onClick: function() {
+	          //myApp.alert('You clicked first button!')
+	        }
+	      },
+	      {
+	        text: 'Ya',
+			bold: true,
+	        onClick: function() {
+				navigator.app.exitApp();
+	        }
+	      },
+	    ]
+	  })
+	}
+	else
+	{
+		viewRouterBack();
+	}
+}
+

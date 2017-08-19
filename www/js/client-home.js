@@ -392,7 +392,6 @@ function getAllPost(id_post) {
 		$("#isi_postingan").html("");
 		var notif_id=getData("notif_id");
 		var komentar=getData("notif_komentar");
-		console.log(notif_id);
 		if(notif_id != null)
 		{
 			$("#baseHome").html("");

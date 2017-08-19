@@ -125,6 +125,13 @@ function loginPost() {
 
 function loginBySavedData() {
 	myApp.showPreloader('Mengambil data...');
+
+
+	$(document).ready(function() 
+	{ 
+        document.addEventListener("deviceready", onDeviceReady, false);
+	});
+	
 	var email = getData("temp_active_email");
 	var password = getData("temp_active_password");
 	
@@ -247,6 +254,13 @@ function loginBySavedData() {
 	
 function cekLoginAktif() {
 	myApp.showPreloader('Mengambil data...');
+
+
+	$(document).ready(function() 
+	{ 
+        document.addEventListener("deviceready", onDeviceReady, false);
+	});
+
 	var active_user_id="";
 	var expires="";
 	active_user_id=getData("active_user_id");
@@ -332,6 +346,13 @@ function cekLoginAktif() {
 
 function cekLoginAktifAwal() {
 	myApp.showPreloader('Mengambil data...');
+
+
+	$(document).ready(function() 
+	{ 
+        document.addEventListener("deviceready", onDeviceReady, false);
+	});
+
 	var active_user_id="";
 	var expires="";
 	active_user_id=getData("active_user_id");

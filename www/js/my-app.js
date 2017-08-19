@@ -202,17 +202,6 @@ myApp.onPageInit('detailEvent', function (page) {
 			});	
 	});
 
-
-	$(document).ready(function() 
-	{ 
-        document.addEventListener("deviceready", onDeviceReady, false);
-	});
-
-    function onDeviceReady() {
-
-        document.addEventListener("backbutton", onBackKeyDown, false);
-    }
-
 });
 
 myApp.onPageInit('grup', function (page) {
@@ -324,16 +313,6 @@ myApp.onPageInit('editGrup', function (page) {
 
 
 
-	$(document).ready(function() 
-	{ 
-        document.addEventListener("deviceready", onDeviceReady, false);
-	});
-
-    function onDeviceReady() {
-
-        document.addEventListener("backbutton", onBackKeyDown, false);
-    }
-
 });
 
 myApp.onPageInit('editProfile', function (page) {
@@ -389,16 +368,6 @@ myApp.onPageInit('editProfile', function (page) {
 
 
 
-	$(document).ready(function() 
-	{ 
-        document.addEventListener("deviceready", onDeviceReady, false);
-	});
-
-    function onDeviceReady() {
-
-        document.addEventListener("backbutton", onBackKeyDown, false);
-    }
-
 });
 
 myApp.onPageInit('buatEvent', function (page) {
@@ -417,16 +386,6 @@ myApp.onPageInit('buatEvent', function (page) {
 	});
 
 
-
-	$(document).ready(function() 
-	{ 
-        document.addEventListener("deviceready", onDeviceReady, false);
-	});
-
-    function onDeviceReady() {
-
-        document.addEventListener("backbutton", onBackKeyDown, false);
-    }
 
 });
 
@@ -657,30 +616,11 @@ myApp.onPageInit('buatJualBarang', function (page) {
 
 
 
-	$(document).ready(function() 
-	{ 
-        document.addEventListener("deviceready", onDeviceReady, false);
-	});
-
-    function onDeviceReady() {
-
-        document.addEventListener("backbutton", onBackKeyDown, false);
-    }
-
 });
 
 myApp.onPageInit('lapakSaya', function (page) {
 	
 
-	$(document).ready(function() 
-	{ 
-        document.addEventListener("deviceready", onDeviceReady, false);
-	});
-
-    function onDeviceReady() {
-
-        document.addEventListener("backbutton", onBackKeyDown, false);
-    }
 
 
 });

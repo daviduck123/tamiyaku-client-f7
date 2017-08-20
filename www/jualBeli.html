@@ -20,48 +20,48 @@
             </div>
           </div>
         </div>
-          <div id="baseJualBeli">
-            <center><a href="#" onclick="gotoBuatJualBarang();" class="button" style="width:90%; height:50px; margin-top:10px; padding-top:10px;">Jual Barang</a></center>
-            <center><a href="#" onclick="gotoLapakSaya();" class="button" style="width:90%; height:50px; margin-top:10px; padding-top:10px;">Lapak Saya</a></center>
-            <br>
+        <div id='pullToRefreshJualBeli' class="page-content pull-to-refresh-content" data-ptr-distance="2">
+         <div style ="margin-top: 20px; " class="pull-to-refresh-layer">
+               <div id="baseJualBeli">
+                  <center><a href="#" onclick="gotoBuatJualBarang();" class="button" style="width:90%; height:50px; margin-top:10px; padding-top:10px;">Jual Barang</a></center>
+                  <center><a href="#" onclick="gotoLapakSaya();" class="button" style="width:90%; height:50px; margin-top:10px; padding-top:10px;">Lapak Saya</a></center>
+                  <br>
+               </div>
+              <center>
+                <table id="baseJualBeli2" style="margin-top:-0px;">
+               <tr>
+                 <td colspan="6" height="30px;"><div style="width:100px;">Kategori</div></td>
+                 <td>: </td>
+                 <td colspan="6">
+                   <select onchange="ubahView()" id="show_kategori_jualBeli">
+                     <option value="0">Semua Kategori</option>
+                 </td>
+               </tr>
+                <tr>
+                  <td colspan="6" height="30px;"><div style="width:100px;">Urutkan</div></td>
+                  <td>: </td>
+                  <td colspan="6">
+                    <select onchange="ubahView()" id="show_urutan_jualBeli">
+                      <option value="0">Tanggal Terbaru</option>
+                      <option value="1">Tanggal Terlama</option>
+                      <option value="2">Harga Termurah</option>
+                      <option value="3">Harga Termahal</option>
+                  </td>
+                </tr>
+                 </table>
+              </center>
+              <br>
+                  <!-- Default pull to refresh layer-->
+                     <div style ="margin-top:185px;" class="preloader"></div>
+                     <div style ="margin-top:185px;" class="pull-to-refresh-arrow"></div>
           </div>
-          <center>
-          <table id="baseJualBeli2" style="margin-top:-0px;">
-          <tr>
-            <td colspan="6" height="30px;"><div style="width:100px;">Kategori</div></td>
-            <td>: </td>
-            <td colspan="6">
-              <select onchange="ubahView()" id="show_kategori_jualBeli">
-                <option value="0">Semua Kategori</option>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="6" height="30px;"><div style="width:100px;">Urutkan</div></td>
-            <td>: </td>
-            <td colspan="6">
-              <select onchange="ubahView()" id="show_urutan_jualBeli">
-                <option value="0">Tanggal Terbaru</option>
-                <option value="1">Tanggal Terlama</option>
-                <option value="2">Harga Termurah</option>
-                <option value="3">Harga Termahal</option>
-            </td>
-          </tr>
-          </table>
-          </center>
-          <br>
-          <div style='margin-top: 50px; !important;'  id='pullToRefreshJualBeli' class="pull-to-refresh-content" data-ptr-distance="55">
-            <!-- Default pull to refresh layer-->
-            <div class="pull-to-refresh-layer">
-              <div class="preloader"></div>
-                <div class="pull-to-refresh-arrow"></div>
+                  <div style="margin-top:200px;" class="list-block">
+                      <div id="container_event">
+                        <div id="isi_container_jualBeli"></div>
+                      </div>
+                  </div>
+               </div>
             </div>
-            <div class="list-block">
-                <div id="container_event">
-                    <div id="isi_container_jualBeli"></div>
-                </div>
-            </div>
-          </div>
-      </div>
       </div>
     </div>
   </div>

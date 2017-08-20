@@ -88,10 +88,11 @@ function gotoFriendNotif(id_user,id,komentar,type) {
 	
 	if(type=="post")
 	{
+		saveData( "notif_id_user",id_user);
 		saveData( "notif_id",id);
 		saveData( "notif_komentar",komentar);
 		//console.log(getData("notif_id"));
-		gotoHome();
+		gotoProfilTeman(id_user);
 	}
 	else if(type.includes("grup"))
 	{

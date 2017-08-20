@@ -3,7 +3,7 @@ function loginPost() {
 	myApp.showPreloader('Mengambil data...');
 	var email = document.getElementById("email_login").value;
 	var password = document.getElementById("password_login").value;
-	
+	allGrupUser = null;
 	$(document).ready(function() {
 	if(email=="")
 	{
@@ -125,7 +125,7 @@ function loginPost() {
 
 function loginBySavedData() {
 	myApp.showPreloader('Mengambil data...');
-
+	allGrupUser = null;
 
 	$(document).ready(function() 
 	{ 
@@ -254,7 +254,7 @@ function loginBySavedData() {
 	
 function cekLoginAktif() {
 	myApp.showPreloader('Mengambil data...');
-
+	allGrupUser = null;
 
 	$(document).ready(function() 
 	{ 
@@ -346,7 +346,7 @@ function cekLoginAktif() {
 
 function cekLoginAktifAwal() {
 	myApp.showPreloader('Mengambil data...');
-
+	allGrupUser = null;
 
 	$(document).ready(function() 
 	{ 

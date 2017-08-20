@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------------------------------------------------------------------------HOME
 
 function gotoHome(){
-	mainView.router.refreshPage('home.html');
+	mainView.router.loadPage('home.html');
 	myApp.closePanel();
 }
 

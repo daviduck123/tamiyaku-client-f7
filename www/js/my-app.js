@@ -205,6 +205,7 @@ myApp.onPageInit('detailEvent', function (page) {
 });
 
 myApp.onPageInit('grup', function (page) {
+	setPullRefreshGrup();
 	$("textarea[id^=deskripsi_]").each(function(e){
 		$(this).remove();
 	});	
@@ -412,6 +413,7 @@ myApp.onPageInit('daftar', function (page) {
 
 myApp.onPageInit('lomba', function (page) {
 	getAllEventPost();
+	setPullRefreshEvent();
 	myApp.closePanel();
 });
 
@@ -426,8 +428,7 @@ myApp.onPageInit('createTrack', function (page) {
 });
 
 myApp.onPageInit('profilTeman', function (page) {
-	//var id_teman = getData("id_profilTeman");
-	//getProfilTeman(id_teman);
+	setPullRefreshProfilTeman();
 });
 
 myApp.onPageInit('notif', function (page) {
@@ -553,6 +554,7 @@ myApp.onPageInit('searchTemanGrup', function (page) {
 });
 
 myApp.onPageInit('jualBeli', function (page) {
+	setPullRefreshEvent();
 	$("textarea[id^=deskripsi_]").each(function(e){
 		$(this).remove();
 	});
@@ -691,6 +693,18 @@ function setPullRefreshProfilTeman(){
 				var id_teman = getData("id_teman");
 				console.log(id_teman+"aaa");
                 getAllTemanPost(id_teman);
+                myApp.pullToRefreshDone(); // After we refreshed page content, we need to reset pull to refresh component to let user pull it again:
+            }, 2000);
+        });
+}
+
+function setPullRefreshEvent(){
+    var ptrContent = $$('#pullToRefreshEvent');
+    ptrContent.on('refresh', function (e) {
+            // Emulate 2s loading
+            setTimeout(function () {
+				//var id_teman=document.getElementById('#id_teman_temp').value;
+                getAllEventPost
                 myApp.pullToRefreshDone(); // After we refreshed page content, we need to reset pull to refresh component to let user pull it again:
             }, 2000);
         });

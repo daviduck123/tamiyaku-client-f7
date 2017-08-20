@@ -599,6 +599,7 @@ function pilihanHapusGrup(id_grup){
 		bold: true,
         onClick: function() {
 			hapusGrupTrue(id_grup);
+			allGrupUser = null;
         }
       },
     ]
@@ -647,6 +648,7 @@ function pilihanKeluarGrup(id_grup){
 		bold: true,
         onClick: function() {
 			leaveThisGrup(clicked_id, id_komentar);
+			allGrupUser = null;
         }
       },
     ]
@@ -688,23 +690,24 @@ function joinThisGrup(clickedId){
 	
 	var link=urlnya+'/api/grup/joinGrup?id_grup='+id_grup+'&id_user='+id_user;
 
-		$.ajax({ dataType: "jsonp",
-		    url: link,
-		    type: 'GET',
-		    contentType: false,
-		    processData: false
-		}).done(function(z){
-			myApp.closeModal();
-			if(z.status==true)
-			{
-				myApp.alert("Join grup berhasil", 'Perhatian!');
-				showButtonLeaveGrup(clickedId);
-				getAllGrupPost(clickedId);
-				allGrupUser = null;
-			}
-		}).fail(function(x){
-			myApp.alert("Pengambilan postingan grup gagal", 'Perhatian!');
-		}); 
+	$.ajax({ dataType: "jsonp",
+	    url: link,
+	    type: 'GET',
+	    contentType: false,
+	    processData: false
+	}).done(function(z){
+		myApp.closeModal();
+		if(z.status==true)
+		{
+			myApp.alert("Join grup berhasil", 'Perhatian!');
+			showButtonLeaveGrup(clickedId);
+			getAllGrupPost(clickedId);
+		}
+		allGrupUser = null;
+	}).fail(function(x){
+		myApp.alert("Pengambilan postingan grup gagal", 'Perhatian!');
+		allGrupUser = null;
+	}); 
 }
 
 function getAllGrupPost(clickedId) {

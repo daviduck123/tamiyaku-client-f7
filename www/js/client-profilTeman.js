@@ -37,8 +37,8 @@ function gotoProfilTeman(clickedId){
 			else
 			{
 				//ini buka profile akun sendiri
-				getAllTemanPost(id_teman);
 				getProfilTeman(id_teman,1);
+				getAllTemanPost(id_teman);
 			}
 		}
 		myApp.closeModal();

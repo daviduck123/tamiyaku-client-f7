@@ -23,9 +23,17 @@ function gotoProfilTeman(clickedId){
 		{
 			//getAllTemanPost dipanggil akan dipanggil jika saat ini user buka page teman dan ingin membuka teman yg lain karena element html terbuat dan dapat diakses
 			//jika mengakses teman pertama kali fungsi dibawah tidak akan berguna karena element belum dapat diakses, oleh karena itu butuh bantuan myApp.onPageInit pada my-app.js
-			getAllTemanPost(id_teman);
-			//console.log("teman");
-			getProfilTeman(id_teman,1);
+			var notif_id=getData("notif_id");
+			if(notif_id != null)
+			{
+				getAllTemanPost(id_teman);
+				console.log("post dan data");
+			}
+			else
+			{
+				getAllTemanPost(id_teman);
+				getProfilTeman(id_teman,1);
+			}
 		}
 		else
 		{
@@ -209,78 +217,168 @@ function getAllTemanPost(clickedId, id_post) {
 			
 			$("#isi_form_komentari_teman").append(html2);
 			
-			//munculkan semua post
-			for(var i=0;i<dataLength;i++)
+			var notif_id=getData("notif_id");
+			var komentar=getData("notif_komentar");
+			if(notif_id != null)
 			{
-				if(z[i]['foto']!="")
+				//munculkan semua post
+				for(var i=0;i<dataLength;i++)
 				{
-					var html=	"<div id='posting_teman_"+z[i]['id']+"' style='margin-bottom:50px;'>";
-					html += 		"<table id='table_teman_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
-					html += 			"<tr>";
-					html += 				"<td rowspan='2' width='10%'>";
-					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
-					html += 				"</td>";
-					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
-					if(z[i]['nama']==getData("active_user_nama"))
+					//console.log(z[i]['id']+"=="+notif_id);
+					if(z[i]['id']==notif_id)
 					{
-						html += 				"<td style='font-weight:bold;'><i onclick='editPostProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-						html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusDataProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+						if(z[i]['foto']!="")
+						{
+							var html=	"<div id='posting_teman_"+z[i]['id']+"' style='margin-bottom:50px;'>";
+							html += 		"<table id='table_teman_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
+							html += 			"<tr>";
+							html += 				"<td rowspan='2' width='10%'>";
+							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+							html += 				"</td>";
+							html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+							if(z[i]['nama']==getData("active_user_nama"))
+							{
+								html += 				"<td style='font-weight:bold;'><i onclick='editPostProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
+								html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusDataProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+							}
+							html += 			"</tr>";
+							html += 			"<tr>";
+							html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
+							html += 			"</tr>";
+							html += 			"<tr>";
+							html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
+							html += 			"</tr>";
+							html += 			"<tr>";
+							html += 				"<td colspan='4' >";
+							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%; height:100%;'>";
+							html += 				"</td>";
+							html += 			"</tr>";
+							html += 		"</table>";
+							html += 		"<div id='kolom_komentar_teman_"+z[i]['id']+"'>";
+							html += 		"</div>";
+							html += 			"<div id='btn_komentari_teman_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariTemanPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
+							html += 			"<p><a href='#' onclick='bacaTemanKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
+							html += 	"</div>";
+							
+							$("#isi_postingan_teman").append(html);
+						}
+						else
+						{
+							
+							var html=	"<div id='posting_teman_"+z[i]['id']+"' style='margin-bottom:50px;'>";
+							html += 		"<table id='table_teman_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
+							html += 			"<tr>";
+							html += 				"<td rowspan='2' width='10%'>";
+							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+							html += 				"</td>";
+							html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+							if(z[i]['nama']==getData("active_user_nama"))
+							{
+								html += 				"<td style='font-weight:bold;'><i onclick='editPostProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
+								html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusDataProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+							}
+							html += 			"</tr>";
+							html += 			"<tr>";
+							html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
+							html += 			"</tr>";
+							html += 			"<tr>";
+							html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
+							html += 			"</tr>";
+							html += 		"</table>";
+							html += 		"<div id='kolom_komentar_teman_"+z[i]['id']+"'>";
+							html += 		"</div>";
+							html += 			"<div id='btn_komentari_teman_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariTemanPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
+							html += 			"<p><a href='#' onclick='bacaTemanKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
+							html += 	"</div>";
+							
+							$("#isi_postingan_teman").append(html);
+						}
 					}
-					html += 			"</tr>";
-					html += 			"<tr>";
-					html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
-					html += 			"</tr>";
-					html += 			"<tr>";
-					html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
-					html += 			"</tr>";
-					html += 			"<tr>";
-					html += 				"<td colspan='4' >";
-					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%; height:100%;'>";
-					html += 				"</td>";
-					html += 			"</tr>";
-					html += 		"</table>";
-					html += 		"<div id='kolom_komentar_teman_"+z[i]['id']+"'>";
-					html += 		"</div>";
-					html += 			"<div id='btn_komentari_teman_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariTemanPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
-					html += 			"<p><a href='#' onclick='bacaTemanKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
-					html += 	"</div>";
-					
-					$("#isi_postingan_teman").append(html);
 				}
-				else
+				if(komentar==1)
 				{
-					
-					var html=	"<div id='posting_teman_"+z[i]['id']+"' style='margin-bottom:50px;'>";
-					html += 		"<table id='table_teman_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
-					html += 			"<tr>";
-					html += 				"<td rowspan='2' width='10%'>";
-					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
-					html += 				"</td>";
-					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
-					if(z[i]['nama']==getData("active_user_nama"))
-					{
-						html += 				"<td style='font-weight:bold;'><i onclick='editPostProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-						html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusDataProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
-					}
-					html += 			"</tr>";
-					html += 			"<tr>";
-					html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
-					html += 			"</tr>";
-					html += 			"<tr>";
-					html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
-					html += 			"</tr>";
-					html += 		"</table>";
-					html += 		"<div id='kolom_komentar_teman_"+z[i]['id']+"'>";
-					html += 		"</div>";
-					html += 			"<div id='btn_komentari_teman_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariTemanPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
-					html += 			"<p><a href='#' onclick='bacaTemanKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
-					html += 	"</div>";
-					
-					$("#isi_postingan_teman").append(html);
+					bacaTemanKomentar(id_post);
 				}
+				eraseData("notif_id_user");
+				eraseData("notif_id");
+				eraseData("notif_komentar");
+				myApp.closeModal();
 			}
-			bacaTemanKomentar(id_post);
-			myApp.closeModal();
+			else
+			{
+				//munculkan semua post
+				for(var i=0;i<dataLength;i++)
+				{
+					if(z[i]['foto']!="")
+					{
+						var html=	"<div id='posting_teman_"+z[i]['id']+"' style='margin-bottom:50px;'>";
+						html += 		"<table id='table_teman_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
+						html += 			"<tr>";
+						html += 				"<td rowspan='2' width='10%'>";
+						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+						html += 				"</td>";
+						html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+						if(z[i]['nama']==getData("active_user_nama"))
+						{
+							html += 				"<td style='font-weight:bold;'><i onclick='editPostProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
+							html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusDataProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+						}
+						html += 			"</tr>";
+						html += 			"<tr>";
+						html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
+						html += 			"</tr>";
+						html += 			"<tr>";
+						html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
+						html += 			"</tr>";
+						html += 			"<tr>";
+						html += 				"<td colspan='4' >";
+						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%; height:100%;'>";
+						html += 				"</td>";
+						html += 			"</tr>";
+						html += 		"</table>";
+						html += 		"<div id='kolom_komentar_teman_"+z[i]['id']+"'>";
+						html += 		"</div>";
+						html += 			"<div id='btn_komentari_teman_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariTemanPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
+						html += 			"<p><a href='#' onclick='bacaTemanKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
+						html += 	"</div>";
+						
+						$("#isi_postingan_teman").append(html);
+					}
+					else
+					{
+						
+						var html=	"<div id='posting_teman_"+z[i]['id']+"' style='margin-bottom:50px;'>";
+						html += 		"<table id='table_teman_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
+						html += 			"<tr>";
+						html += 				"<td rowspan='2' width='10%'>";
+						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+						html += 				"</td>";
+						html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+						if(z[i]['nama']==getData("active_user_nama"))
+						{
+							html += 				"<td style='font-weight:bold;'><i onclick='editPostProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
+							html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusDataProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+						}
+						html += 			"</tr>";
+						html += 			"<tr>";
+						html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
+						html += 			"</tr>";
+						html += 			"<tr>";
+						html += 				"<td colspan='4'>"+z[i]['deskripsi']+"</td>";
+						html += 			"</tr>";
+						html += 		"</table>";
+						html += 		"<div id='kolom_komentar_teman_"+z[i]['id']+"'>";
+						html += 		"</div>";
+						html += 			"<div id='btn_komentari_teman_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariTemanPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
+						html += 			"<p><a href='#' onclick='bacaTemanKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
+						html += 	"</div>";
+						
+						$("#isi_postingan_teman").append(html);
+					}
+				}
+				bacaTemanKomentar(id_post);
+				myApp.closeModal();
+			}
 		}).fail(function(x){
 			myApp.alert("Pengambilan postingan teman gagal", 'Perhatian!');
 		}); 

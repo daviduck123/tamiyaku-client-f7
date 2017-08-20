@@ -21,17 +21,19 @@
    </div>
 </div>
 <div class="page-content">
-     <center><textarea id="status" style="resize:none; margin-top:10px; width:90%; height:60px;" 
-        placeholder="Tulis Status Anda.."></textarea>
-     </center>
-     <div style="height:0px;overflow:hidden">
-        <input type="file" id="file_home" accept="image/*"/>
+     <div>
+       <center><textarea id="status" style="resize:none; margin-top:10px; width:90%; height:60px;" 
+          placeholder="Tulis Status Anda.."></textarea>
+       </center>
+       <div style="height:0px;overflow:hidden">
+          <input type="file" id="file_home" accept="image/*"/>
+       </div>
+       <p><a href="#" class="button active" onclick="statusPost();" type="submit" style="width:70px; float:right; margin-right:5%;">Kirim</a></p>
+       <p><a href="#" class="button"  onclick="chooseFile_home();" style=" float:right; margin-right:10px; width:85px;">Gambar..</a></p>
+       <br>
+       <br>
      </div>
-     <p><a href="#" class="button active" onclick="statusPost();" type="submit" style="width:70px; float:right; margin-right:5%;">Kirim</a></p>
-     <p><a href="#" class="button"  onclick="chooseFile_home();" style=" float:right; margin-right:10px; width:85px;">Gambar..</a></p>
-     <br>
-     <br>
-     <div style='margin-top: 0px !important;' id='pullToRefreshHome' class="page-content pull-to-refresh-content" data-ptr-distance="55">
+     <div style='margin-top: 50px; !important;' id='pullToRefreshHome' class="pull-to-refresh-content" data-ptr-distance="55">
         <!-- Default pull to refresh layer-->
         <div class="pull-to-refresh-layer">
            <div class="preloader"></div>

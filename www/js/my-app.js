@@ -633,6 +633,7 @@ $$('.panel-left').on('panel:opened', function () {
 	var idUser=getData("active_user_id");
 	$("#index_name").html("");
 	$("#index_name").append(username);
+	$('#kelas_dipilih').val(id_kelas);
 	
 	
 	
@@ -654,12 +655,20 @@ $$('.panel-left').on('panel:opened', function () {
 		});
 	//==============================================
 	}
+	var id_kelas=getData("active_user_kelas");
+	if(id_kelas != null && id_kelas != "")
+		$('#kelas_dipilih').val(id_kelas);
 });
 
 $$('.panel-right').on('panel:opened', function () {
 	var id_user = getData("active_user_id");
 	getAllNotif(id_user);
 });
+
+function saveKelas(el){
+	var id_kelas = $('#kelas_dipilih').find(":selected").val();
+	saveData( "active_user_kelas",id_kelas);
+}
 
 function setPullRefreshHome(){
     var ptrContent = $$('#pullToRefreshHome');

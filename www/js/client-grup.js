@@ -1158,7 +1158,7 @@ function getInfoGrup(clickedId){
 					html +=	'<table id="detil_grup" style="margin-top:20px;">';
 					html += 		'<tr>';
 					html += 			'<input id="temp_id_grup" type="hidden" value="'+id_grup+'">';
-					html += 			'<td rowspan="4"><img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:90px; height:90px;  margin-right:10px"></td>';
+					html += 			'<td rowspan="4"><img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="max-width: 100px; max-height: 100px; margin-right:10px"></td>';
 					html += 			'<input id="temp_foto_grup" type="hidden" value="'+foto+'">';
 					html += 			'<td style="font-weight:bold;"><b id="nama_grup">'+nama+'</b></td>';
 					html += 			'<input id="temp_nama_grup" type="hidden" value="'+nama+'">';

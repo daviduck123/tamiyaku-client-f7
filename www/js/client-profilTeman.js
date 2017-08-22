@@ -472,7 +472,7 @@ function getProfilTeman(clickedId, statusTeman){
 							html +=	'<table id="infoProfile" style="margin-top:20px;">';
 							html += 		'<tr>';
 							html += 			'<td rowspan="4">';
-							html += 				'<img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:100px;">';
+							html += 				'<img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="max-width:100px;max-height: 100px;">';
 							html += 			'<td style="font-weight:bold;"><center>'+banyakPost+'</center></td>';
 							html +=				'<td style="font-weight:bold;"><center>'+banyakTeman+'</center></td>';
 							html += 		'</tr>';
@@ -498,7 +498,7 @@ function getProfilTeman(clickedId, statusTeman){
 							var html=	'<table id="infoProfile" style="margin-top:20px;">';
 							html += 		'<tr>';
 							html += 			'<td rowspan="4">';
-							html += 				'<img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:100px;">';
+							html += 				'<img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="max-width:100px;max-height: 100px;">';
 							html += 			'</td>';
 							html +=				'<td colspan="3" style="width:300px;"><a href="#" onclick="addFriend('+id+')" class="button" style="width:100%;">Tambah teman</a></td>';
 							html += 		'</tr>';
@@ -526,7 +526,7 @@ function getProfilTeman(clickedId, statusTeman){
 							html +=	'<table id="infoProfile" style="margin-top:20px;">';
 							html += 		'<tr>';
 							html += 			'<td rowspan="4">';
-							html += 				'<img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:100px; margin-right:10px;">';
+							html += 				'<img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="max-width:100px;max-height: 100px; margin-right:10px;">';
 							html += 			'</td>';
 							html +=				'<td style="font-weight:bold;"><center>'+banyakPost+'</center></td>';
 							html +=				'<td style="font-weight:bold;"><center>'+banyakTeman+'</center></td>';

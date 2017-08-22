@@ -310,7 +310,7 @@ myApp.onPageInit('editGrup', function (page) {
 	$("#latlng_editGrup").append(html);
 	
 	$("#isi_foto_editGrup").remove();
-	$('#foto_editGrup').append('<img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="width:240px; height:120px;">');
+	$('#foto_editGrup').append('<img class="lazy" src="data:image/jpeg;base64,'+foto+'" style="max-width: 120px; max-height:120px;">');
 
 
 

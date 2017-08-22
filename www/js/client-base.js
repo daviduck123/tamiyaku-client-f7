@@ -85,7 +85,7 @@ function onDeviceReady() {
 function onBackKeyDown() {
 	var activepage = mainView.activePage.name;
 
-	if(activepage=="home")
+	if(activepage=="home" || activepage == "index")
 	{
 		myApp.modal({
 	    title:  'Pilihan',
@@ -109,6 +109,7 @@ function onBackKeyDown() {
 	}
 	else
 	{
+		myApp.closeModal();
 		viewRouterBack();
 	}
 }

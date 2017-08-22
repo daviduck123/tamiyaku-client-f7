@@ -253,7 +253,11 @@ function registerPost() {
 			}
 		}).fail(function(x){
 			myApp.closeModal();
-			myApp.alert(x.responseJSON.message, 'Perhatian!');
+			if(x.responseJSON.message != null){
+				myApp.alert(x.responseJSON.message, 'Perhatian!');	
+			}else{
+				myApp.alert(x.responseJSON.error, 'Perhatian!');
+			}
 			
 			eraseData("username");
 			eraseData("kota");

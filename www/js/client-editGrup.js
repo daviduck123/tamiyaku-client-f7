@@ -179,6 +179,7 @@ function editGrupPost()
 							contentType: false,
 							processData: false
 						}).done(function(z){
+							allGrupUser = null;
 							myApp.closeModal();
 							mainView.router.loadPage('home.html');
 							myApp.alert('Grup berhasil diubah', 'Berhasil!');

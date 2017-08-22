@@ -74,6 +74,7 @@ function editProfileSimpan()
 						//for (var z[ii] of formData.entries()) {
 						//	console.log(z[ii][0]+ ', ' + z[ii][1]); 
 						//}
+						myApp.showPreloader('Update profile...');
 						$.ajax({
 							url: link,
 						data: formData,
@@ -93,7 +94,7 @@ function editProfileSimpan()
 								contentType: false,
 								processData: false
 							}).done(function(z){
-								
+								myApp.closeModal();
 								saveData("profilePic",z.foto);
 								myApp.closeModal();
 								mainView.router.loadPage('home.html');

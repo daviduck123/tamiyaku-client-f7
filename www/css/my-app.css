@@ -5,3 +5,29 @@
     width: 30px;
     height: 30px;
 }
+
+#pullToRefreshHome .preloader, 
+#pullToRefreshHome .pull-to-refresh-arrow, 
+#pullToRefreshHome .pull-to-refresh-layer,
+#pullToRefreshProfileTeman .pull-to-refresh-layer,
+#pullToRefreshProfileTeman .preloader, 
+#pullToRefreshProfileTeman .pull-to-refresh-arrow,
+#pullToRefreshGrup .pull-to-refresh-layer,
+#pullToRefreshGrup .preloader, 
+#pullToRefreshGrup .pull-to-refresh-arrow
+{
+    margin-top : 0px !important;
+}
+#pullToRefreshLomba .pull-to-refresh-layer{
+    margin-top : -22px !important;
+}
+#pullToRefreshLomba .preloader, 
+#pullToRefreshLomba .pull-to-refresh-arrow{
+  margin-top : 0px !important;
+}
+#pullToRefreshHome .list-block,
+#pullToRefreshLomba .list-block,
+#pullToRefreshProfileTeman .list-block,
+#pullToRefreshGrup .list-block{
+	margin : 5px 0 !important;
+}

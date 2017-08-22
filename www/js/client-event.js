@@ -457,14 +457,129 @@ function gotoPetaEventDetail(latData, lngData){
     });
 }
 
+function recenterEventMap()
+{
+	var map;
+	function showPosition(position) {
+		//console.log("lat:"+position.coords.latitude+"\nlng:"+position.coords.longitude);
+		var id_kota = $("#kota_buatEvent").val();
+		if(globalKota.length > 0){
+			for(var xx = 0 ; xx < globalKota.length; xx++){
+				if(globalKota[xx].id === id_kota){
+					currentLat = position.coords.latitude;
+					currentLng = position.coords.longitude;
+					break;
+				}
+			}
+		}
+		map = new GMaps({
+			div: '#petakuEvent',
+			lat: currentLat,
+			lng: currentLng,
+			click: function(e) {
+			  },
+		});
+			
+		var lat = currentLat;
+		var lng = currentLng;
+		
+		if(lat != null && lng != null)
+		{
+			var html =	"<div id='isi_latlng_buatEvent'>Latitude = "+lat+"<br>Longitude = "+lng;
+			html	+=	"</div>"
+			$("#isi_latlng_buatEvent").remove();
+			$("#lat_buatEvent").val(lat);
+			$("#lng_buatEvent").val(lng);
+			$("#latlng_buatEvent").append(html);
+		}
+		
+		map.addMarker({
+
+			lat: currentLat,
+			lng: currentLng,
+			draggable: true,
+			dragend: function(event) {
+				var lat = event.latLng.lat();
+				var lng = event.latLng.lng();
+				//myApp.alert('Latitude = '+lat+"\nLongitude = "+lng, 'Lokasi');
+				currentLat = lat;
+				currentLng = lng;
+				if(lat != null && lng != null)
+				{
+					var html =	"<div id='isi_latlng_buatEvent'>Latitude = "+lat+"<br>Longitude = "+lng;
+					html	+=	"</div>"
+					$("#isi_latlng_buatEvent").remove();
+					$("#lat_buatEvent").val(lat);
+					$("#lng_buatEvent").val(lng);
+					$("#latlng_buatEvent").append(html);
+				}
+			}
+		});
+		google.maps.event.trigger(map, 'resize');
+	}
+    
+	$(document).ready(function(){
+		if (navigator.geolocation) 
+		{
+			navigator.geolocation.getCurrentPosition(showPosition);
+		} 
+		else 
+		{ 
+			var lat = -7.2582548000000005;
+			var lng = 112.76117359999999;
+			
+			if(lat != null && lng != null)
+			{
+				var html =	"<div id='isi_latlng_buatGrup'>Latitude = "+lat+"<br>Longitude = "+lng;
+				html	+=	"</div>"
+				$("#isi_latlng_buatGrup").remove();
+				$("#lat_buatGrup").val(lat);
+				$("#lng_buatGrup").val(lng);
+				$("#latlng_buatGrup").append(html);
+			}
+			
+			map = new GMaps({
+				div: '#petakuEvent',
+				lat: ﻿﻿-7.2582548000000005,
+				lng: 112.76117359999999,
+				click: function(e) {
+					alert('Silahkan geser marker ke lokasi yang anda inginkan!');
+				  },
+			});	
+			
+			map.addMarker({
+
+				lat:  ﻿-7.2582548000000005,
+				lng: 112.76117359999999,
+				draggable: true,
+				dragend: function(event) {
+					var lat = event.latLng.lat();
+					var lng = event.latLng.lng();
+					//myApp.alert('Latitude = '+lat+"\nLongitude = "+lng, 'Lokasi');
+					
+					if(lat != null && lng != null)
+					{
+						var html =	"<div id='isi_latlng_buatGrup'>Latitude = "+lat+"<br>Longitude = "+lng;
+						html	+=	"</div>"
+						$("#isi_latlng_buatGrup").remove();
+						$("#lat_buatGrup").val(lat);
+						$("#lng_buatGrup").val(lng);
+						$("#latlng_buatGrup").append(html);
+					}
+				}
+			});
+			google.maps.event.trigger(map, 'resize');
+		}
+	});	
+}
 function gotoGmapEvent(){
 	//myApp.popup('.popup-about');
 	var popupHTML = '<div class="popup">'+
                     '<div class="content-block">'+
                       '<p>Silahkan pilih peta letak lokasi grup.</p>'+
 					  '<div id="petakuEvent" style="width:330px; height:500px;"></div>'+
-                      //"<div><p><a href='#' onClick='' class='button' style='margin-right:5%; margin-top:-5px; float:right;'>a</a></p></div>"+
-					  "<center><p><a href='#' class='close-popup button' style='margin-top:-5px; margin-right:10px; width:90%;'>Simpan</a></p></center>"+
+                      "<p><a href='#' class='close-popup button' style='margin-top:-5px; margin-left:10px; width:75%; float:left;'>Simpan</a></p>"+
+					  "<p><a href='#'  class='button' onclick='recenterEventMap();' style='margin-top:-5px; float:right; margin-right:10px;'><i class='icon fa fa-compass fa-4'></i></a></p>"+
                     '</div>'+
                   '</div>'
 	myApp.popup(popupHTML);
@@ -551,7 +666,7 @@ function gotoGmapEvent(){
 			}
 			
 			map = new GMaps({
-				div: '#petaku',
+				div: '#petakuEvent',
 				lat: ﻿﻿-7.2582548000000005,
 				lng: 112.76117359999999,
 				click: function(e) {

@@ -62,6 +62,21 @@ function onDeviceReady() {
 
     document.addEventListener("backbutton", onBackKeyDown, false);
 	setDeviceOnGPS();
+	pictureSource=navigator.camera.PictureSourceType;
+	destinationType=navigator.camera.DestinationType;
+}
+function capturePhoto() {
+	navigator.camera.getPicture(onPhotoDataSuccess, onPhotoDataFail, { quality: 50,
+	destinationType: destinationType.DATA_URL });
+}
+
+function onPhotoDataSuccess(imageData) {
+    var image = document.getElementById('photoImage');
+    image.src = "data:image/jpeg;base64," + imageData;
+}
+
+function onPhotoDataFail(message) {
+    alert('Failed because: ' + message);
 }
 
 function onBackKeyDown() {
@@ -117,11 +132,3 @@ function setDeviceOnGPS(){
 	    }
 	});
 }
- pictureSource=navigator.camera.PictureSourceType;
- destinationType=navigator.camera.DestinationType;
-
-  function capturePhoto() {
-
-   navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
-    destinationType: destinationType.DATA_URL });
-  }

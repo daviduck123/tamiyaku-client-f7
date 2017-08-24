@@ -275,3 +275,31 @@ function registerPost() {
 		});
 	}
 }
+function pilihanTrack(){
+  myApp.modal({
+    title:  'Pilihan',
+    text: 'Anda bisa pilih foto dari galeri (Galeri) atau gunakan kamera untuk mengambil foto (Camera)',
+    buttons: [
+      {
+        text: 'Cancel',
+        onClick: function() {
+          //myApp.alert('You clicked first button!')
+        }
+      },
+      {
+        text: 'Camera',
+		bold: true,
+        onClick: function() {
+			capturePhoto();
+        }
+      },
+      {
+        text: 'Galeri',
+        bold: true,
+        onClick: function() {
+          getPhoto();
+        }
+      },
+    ]
+  })
+}

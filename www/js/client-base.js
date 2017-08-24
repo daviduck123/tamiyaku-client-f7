@@ -117,3 +117,18 @@ function setDeviceOnGPS(){
 	    }
 	});
 }
+ pictureSource=navigator.camera.PictureSourceType;
+ destinationType=navigator.camera.DestinationType;
+
+  function capturePhoto() {
+
+   navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
+    destinationType: destinationType.DATA_URL });
+  }
+
+	function getPhoto() {
+  // Retrieve image file location from specified source
+  navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
+    destinationType: destinationType.FILE_URI,
+    sourceType: pictureSource.PHOTOLIBRARY});
+}

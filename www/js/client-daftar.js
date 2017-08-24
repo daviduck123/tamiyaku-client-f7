@@ -275,7 +275,7 @@ function registerPost() {
 		});
 	}
 }
-function pilihanTrack(){
+function galeriOrCamera(){
   myApp.modal({
     title:  'Pilihan',
     text: 'Anda bisa pilih foto dari galeri (Galeri) atau gunakan kamera untuk mengambil foto (Camera)',
@@ -297,7 +297,7 @@ function pilihanTrack(){
         text: 'Galeri',
         bold: true,
         onClick: function() {
-          getPhoto();
+          chooseFile_register();
         }
       },
     ]

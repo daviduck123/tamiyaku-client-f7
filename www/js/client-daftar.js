@@ -2,6 +2,10 @@
 function gotoRegister(){
 	mainView.router.loadPage('daftar.html');
 }
+$(document).ready(function() 
+{ 
+    document.addEventListener("deviceready", onDeviceReady, false);
+});
 
 function getKota() {
 	if(globalKota.length == 0){

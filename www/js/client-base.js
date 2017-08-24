@@ -61,16 +61,19 @@ function gotoGooleMapDevice(latData,lngData)
 function onDeviceReady() {
 
     document.addEventListener("backbutton", onBackKeyDown, false);
-	setDeviceOnGPS();
+	console.log(navigator.camera);
 	pictureSource=navigator.camera.PictureSourceType;
 	destinationType=navigator.camera.DestinationType;
 }
 function capturePhoto() {
+	alert("Capture Photo");
 	navigator.camera.getPicture(onPhotoDataSuccess, onPhotoDataFail, { quality: 50,
 	destinationType: destinationType.DATA_URL });
+	alert("Capture Done");
 }
 
 function onPhotoDataSuccess(imageData) {
+	alert("Capture Success");
     var image = document.getElementById('photoImage');
     image.src = "data:image/jpeg;base64," + imageData;
 }

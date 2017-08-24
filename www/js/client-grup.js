@@ -6,7 +6,7 @@ var allGrupUser = null;
 function getNearbyGrup(){
 	$(document).ready(function(){
 		myApp.showPreloader('Mengambil data...');
-		
+		setDeviceOnGPS();
 		if ( navigator.geolocation )
 		{
 			navigator.geolocation.getCurrentPosition(showPosition, onError, {enableHighAccuracy: true});
@@ -152,7 +152,7 @@ function gotoPetaGrup(latData, lngData){
 		lat: latData,
 		lng: lngData,
 	});
-	
+	setDeviceOnGPS();
 	if ( navigator.geolocation )
     {
 		navigator.geolocation.getCurrentPosition(showPosition);
@@ -278,6 +278,7 @@ function recenterGrupMap()
 	}
     
 	$(document).ready(function(){
+		setDeviceOnGPS();
 		if (navigator.geolocation) 
 		{
 			navigator.geolocation.getCurrentPosition(showPosition);
@@ -406,6 +407,7 @@ function gotoGoogleMap(){
 	}
     
 	$(document).ready(function(){
+		setDeviceOnGPS();
 		if (navigator.geolocation) 
 		{
 			navigator.geolocation.getCurrentPosition(showPosition);

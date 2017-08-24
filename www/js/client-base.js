@@ -61,25 +61,7 @@ function gotoGooleMapDevice(latData,lngData)
 function onDeviceReady() {
 
     document.addEventListener("backbutton", onBackKeyDown, false);
-	cordova.plugins.locationAccuracy.canRequest(function(canRequest){
-	    if(canRequest){
-	        cordova.plugins.locationAccuracy.request(function(){
-	            console.log("Request successful");
-	        }, function (error){
-	            console.error("Request failed");
-	            if(error){
-	                // Android only
-	                console.error("error code="+error.code+"; error message="+error.message);
-	                if(error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED){
-	                    if(window.confirm("Failed to automatically set Location Mode to 'High Accuracy'. Would you like to switch to the Location Settings page and do this manually?")){
-	                        cordova.plugins.diagnostic.switchToLocationSettings();
-	                    }
-	                }
-	            }
-	        }, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY // iOS will ignore this
-	        );
-	    }
-	});
+	setDeviceOnGPS();
 }
 
 function onBackKeyDown() {
@@ -114,3 +96,24 @@ function onBackKeyDown() {
 	}
 }
 
+function setDeviceOnGPS(){
+	cordova.plugins.locationAccuracy.canRequest(function(canRequest){
+	    if(canRequest){
+	        cordova.plugins.locationAccuracy.request(function(){
+	            console.log("Request successful");
+	        }, function (error){
+	            console.error("Request failed");
+	            if(error){
+	                // Android only
+	                console.error("error code="+error.code+"; error message="+error.message);
+	                if(error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED){
+	                    if(window.confirm("Failed to automatically set Location Mode to 'High Accuracy'. Would you like to switch to the Location Settings page and do this manually?")){
+	                        cordova.plugins.diagnostic.switchToLocationSettings();
+	                    }
+	                }
+	            }
+	        }, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY // iOS will ignore this
+	        );
+	    }
+	});
+}

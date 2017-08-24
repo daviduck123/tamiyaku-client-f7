@@ -15,7 +15,7 @@ function aktivasi(clickedId){
 		}
 		else
 		{
-			alert(z.message);
+			myApp.alert(z.message, "Perhatian!");
 		}
 	}).fail(function(x){
 		myApp.alert("Pengiriman data gagal", 'Perhatian!');

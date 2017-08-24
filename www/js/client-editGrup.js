@@ -57,6 +57,7 @@ function gotoGoogleMapEdit(){
 	}
     
 	$(document).ready(function(){
+		setDeviceOnGPS();
 		if (navigator.geolocation) 
 		{
 			navigator.geolocation.getCurrentPosition(showPosition);

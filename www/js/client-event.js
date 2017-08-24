@@ -519,6 +519,7 @@ function recenterEventMap()
 	}
     
 	$(document).ready(function(){
+		setDeviceOnGPS();
 		if (navigator.geolocation) 
 		{
 			navigator.geolocation.getCurrentPosition(showPosition);
@@ -646,6 +647,7 @@ function gotoGmapEvent(){
 	}
     
 	$(document).ready(function(){
+		setDeviceOnGPS();
 		if (navigator.geolocation) 
 		{
 			navigator.geolocation.getCurrentPosition(showPosition);

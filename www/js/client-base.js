@@ -87,7 +87,7 @@ function onPhotoDataFail(message) {
 function onBackKeyDown() {
 	var activepage = mainView.activePage.name;
 
-	if(activepage=="home" || activepage == "index")
+	if(activepage=="home" || activepage == "index" || activepage == "login")
 	{
 		myApp.modal({
 	    title:  'Pilihan',

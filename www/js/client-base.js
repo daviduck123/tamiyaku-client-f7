@@ -5,6 +5,8 @@ var globalListKelas = [];
 var globalCookie = [];
 var globalLapak = [];
 var globalEvent = [];
+var pictureSource;
+var	destinationType;
 
 function logout() {
 	myApp.closePanel();

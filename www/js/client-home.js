@@ -2,6 +2,7 @@
 
 function gotoHome(){
 	mainView.router.loadPage('home.html');
+	mainView.router.refreshPage('home.html');
 	myApp.closePanel();
 }
 

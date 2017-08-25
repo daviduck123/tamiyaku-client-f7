@@ -113,6 +113,11 @@ function onBackKeyDown() {
 	{
 		myApp.closeModal();
 		viewRouterBack();
+		var activepage = mainView.activePage.name;
+		if(activepage=="home")
+		{
+			mainView.router.refreshPage('home.html');
+		}
 	}
 }
 

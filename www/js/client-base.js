@@ -86,11 +86,7 @@ function onPhotoDataFail(message) {
 
 function onBackKeyDown() {
 
-	if ($('.popup.modal-in').length > 0) 
-	{
-	  viewRouterBack();
-	}
-	else
+	if(myApp.closeModal() != true)
 	{
 		var activepage = mainView.activePage.name;
 

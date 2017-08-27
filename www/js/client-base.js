@@ -86,7 +86,7 @@ function onPhotoDataFail(message) {
 
 function onBackKeyDown() {
 
-	if(myApp.closeModal() != true)
+	if ($('.popup.modal-in').length <= 0) 
 	{
 		var activepage = mainView.activePage.name;
 

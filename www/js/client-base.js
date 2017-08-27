@@ -86,42 +86,43 @@ function onPhotoDataFail(message) {
 
 function onBackKeyDown() {
 
-	if (typeof myApp.closeModal() != 'undefined')
+	if ($('.modal-overlay-visible').length > 0) 
 		return;
-	
-	var activepage = mainView.activePage.name;
-	if(activepage=="home" || activepage == "index" || activepage == "login")
-	{
-		myApp.modal({
-	    title:  'Pilihan',
-	    text: 'Apakah anda keluar dari aplikasi?',
-	    buttons: [
-	      {
-	        text: 'Tidak',
-	        onClick: function() {
-	          //myApp.alert('You clicked first button!')
-	        }
-	      },
-	      {
-	        text: 'Ya',
-			bold: true,
-	        onClick: function() {
-				navigator.app.exitApp();
-	        }
-	      },
-	    ]
-	  })
-	}
-	else
-	{
-		myApp.closeModal();
-		viewRouterBack();
 		var activepage = mainView.activePage.name;
-		if(activepage=="home")
+
+		if(activepage=="home" || activepage == "index" || activepage == "login")
 		{
-			mainView.router.refreshPage('home.html');
+			myApp.modal({
+		    title:  'Pilihan',
+		    text: 'Apakah anda keluar dari aplikasi?',
+		    buttons: [
+		      {
+		        text: 'Tidak',
+		        onClick: function() {
+		          //myApp.alert('You clicked first button!')
+		        }
+		      },
+		      {
+		        text: 'Ya',
+				bold: true,
+		        onClick: function() {
+					navigator.app.exitApp();
+		        }
+		      },
+		    ]
+		  })
 		}
-	}
+		else
+		{
+			myApp.closeModal();
+			viewRouterBack();
+			var activepage = mainView.activePage.name;
+			if(activepage=="home")
+			{
+				mainView.router.refreshPage('home.html');
+			}
+		}
+	
 	
 }
 

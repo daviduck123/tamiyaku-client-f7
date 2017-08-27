@@ -204,7 +204,7 @@ function getAllEventPost() {
 		//munculkan semua post
 		for(var i=0;i<dataLength;i++)
 		{
-
+			if(z[i]['id_kelas'] !== kelas_dipilih) continue;
 			var html=	"<div id='posting_event_"+z[i]['id']+"' style='margin-bottom:50px;'>";
 			html += 		"<table id='table_event_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 			html += 			"<tr>";

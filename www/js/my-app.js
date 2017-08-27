@@ -628,7 +628,6 @@ myApp.onPageInit('lapakSaya', function (page) {
 });
 
 $$('.panel-left').on('panel:opened', function () {
-	getAllGrup();
 	var username = getData("active_user_nama");
 	var idUser=getData("active_user_id");
 	$("#index_name").html("");
@@ -658,6 +657,8 @@ $$('.panel-left').on('panel:opened', function () {
 	var id_kelas=getData("active_user_kelas");
 	if(id_kelas != null && id_kelas != "")
 		$('#kelas_dipilih').val(id_kelas);
+	
+	getAllGrup();
 });
 
 $$('.panel-right').on('panel:opened', function () {
@@ -668,6 +669,15 @@ $$('.panel-right').on('panel:opened', function () {
 function saveKelas(el){
 	var id_kelas = $('#kelas_dipilih').find(":selected").val();
 	saveData( "active_user_kelas",id_kelas);
+	allGrupUser = null;
+	getAllGrup();
+	var activePage = mainView.activePage.name;
+
+	if(activePage === "jualBeli"){
+		getAllJualBeliPost();
+	}else if(activePage === "lomba"){
+		getAllEventPost();
+	}
 }
 
 function setPullRefreshHome(){

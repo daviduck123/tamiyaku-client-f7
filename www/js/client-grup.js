@@ -582,6 +582,7 @@ function getAllGrup() {
 		myApp.showPreloader('Mengambil data...');
 		var id_user = getData("active_user_id");
 		var link=urlnya+'/api/grup?id_user='+id_user;
+		var kelas_dipilih = $('#kelas_dipilih').find(":selected").val();
 		$.ajax({ dataType: "jsonp",
 		    url: link,
 		    type: 'GET',
@@ -589,7 +590,6 @@ function getAllGrup() {
 		    processData: false
 		}).done(function(z){
 			myApp.closeModal();
-			allGrupUser = z;
 			$("#isi_kumpulan_grup").remove();
 			$("#kumpulan_grup").append('<div id="isi_kumpulan_grup"></div>');
 			
@@ -602,6 +602,7 @@ function getAllGrup() {
 			{
 				for(var i=0;i<dataLength;i++)
 				{
+					if(z[i]['id_kelas'] !== kelas_dipilih) continue;
 					var html =	'<a href="#" onclick="gotoGroup('+z[i]['id']+');" id="grup_'+z[i]['id']+'" style="color:white;">';
 					html += 				'<li class="item-content">';
 					html += 					'<div class="item-media">';
@@ -613,6 +614,10 @@ function getAllGrup() {
 					html += 				'</li>';
 					html += 			'</a>';
 					$("#isi_kumpulan_grup").append(html);
+					if(allGrupUser == null){
+						allGrupUser = [];
+					}
+					allGrupUser.push(z[i]);
 				}
 			}
 		}).fail(function(x){

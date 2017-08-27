@@ -41,7 +41,6 @@ function getKotaEditLapakSaya() {
 }
 
 function buatLapakSayaPost() {
-	myApp.showPreloader('Mengambil data...');
 	var id_user=getData("active_user_id");
 	var namaLapakSaya = document.getElementById("nama_buatLapakSaya").value;
 	var kelas = $('#kelas_buatLapakSaya').find(":selected").val();
@@ -97,7 +96,7 @@ function buatLapakSayaPost() {
 							formData.append("file", blob);
 							
 							console.log(formData);
-												
+							myApp.showPreloader('Proses Data...');		
 							var link=urlnya+'/api/jualBeli/createJualBeli';
 							$.ajax({ 
 								url: link,

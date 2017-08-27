@@ -42,7 +42,6 @@ function getKotaBuatEvent() {
 }
 
 function buatEventPost() {
-	myApp.showPreloader('Mengambil data...');
 	var id_user=getData("active_user_id");
 	var namaEvent = document.getElementById("nama_buatEvent").value;
 	var tanggal = document.getElementById("tanggal_buatEvent").value;
@@ -149,7 +148,7 @@ function buatEventPost() {
 											}
 											
 											var link=urlnya+'/api/event/createEvent';
-											
+											myApp.showPreloader('Proses Data...');
 											$.ajax({
 												url: link,
 												data: formData,
@@ -1124,11 +1123,8 @@ function hapusEventData(clicked_id)
 }
 
 function saveEventEditPost(clicked_id) {
-	myApp.showPreloader('Mengambil data...');
 	//ON PROGRESS
 	var id_user = getData("active_user_id");
-	
-	var link=urlnya+'/api/post/updateEven/';
 	
 	var id_event = clicked_id;
 	var namaEvent = document.getElementById("nama_buatEventEdit").value;
@@ -1219,7 +1215,7 @@ function saveEventEditPost(clicked_id) {
 												}
 												console.log(formData);
 												var link=urlnya+'/api/event/updateEvent/';
-												
+												myApp.showPreloader('Update Data...');
 												$.ajax({
 													url: link,
 													data: formData,

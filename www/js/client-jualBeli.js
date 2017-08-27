@@ -42,7 +42,6 @@ function getKotaBuatJualBarang() {
 }
 
 function buatJualBarangPost() {
-	myApp.showPreloader('Mengambil data...');
 	var id_user=getData("active_user_id");
 	var namaJualBarang = document.getElementById("nama_buatJualBarang").value;
 	var kategori = $('#kategori_buatJualBarang').find(":selected").val();
@@ -98,7 +97,8 @@ function buatJualBarangPost() {
 							formData.append("id_kota", kota);
 							formData.append("id_kelas", kelas);
 							formData.append("file", blob);
-												
+										
+							myApp.showPreloader('Mengambil data...');		
 							var link=urlnya+'/api/jualBeli/createJualBeli';
 							$.ajax({ 
 								url: link,

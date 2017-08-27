@@ -86,7 +86,11 @@ function onPhotoDataFail(message) {
 
 function onBackKeyDown() {
 
-	if ($('.popup.modal-in').length <= 0) 
+	if ($('.modal-overlay-visible').length > 0) 
+	{
+	  //some popup opened
+	}
+	else
 	{
 		var activepage = mainView.activePage.name;
 

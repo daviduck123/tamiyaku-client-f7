@@ -86,12 +86,7 @@ function onPhotoDataFail(message) {
 
 function onBackKeyDown() {
 
-	if ($('.modal-overlay-visible').length > 0) 
-	{
-		myApp.closeModal(); 
-	}
-	else
-	{
+	if(typeof  myApp.closeModal() == "undefined")
 
 		var activepage = mainView.activePage.name;
 
@@ -119,7 +114,7 @@ function onBackKeyDown() {
 		}
 		else
 		{
-			myApp.closeModal();
+			//myApp.closeModal();
 			viewRouterBack();
 			var activepage = mainView.activePage.name;
 			if(activepage=="home")

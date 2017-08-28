@@ -87,7 +87,12 @@ function onPhotoDataFail(message) {
 function onBackKeyDown() {
 
 	if ($('.modal-overlay-visible').length > 0) 
-		return;
+	{
+		myApp.closeModal(); 
+	}
+	else
+	{
+
 		var activepage = mainView.activePage.name;
 
 		if(activepage=="home" || activepage == "index" || activepage == "login")
@@ -122,7 +127,7 @@ function onBackKeyDown() {
 				mainView.router.refreshPage('home.html');
 			}
 		}
-	
+	}
 	
 }
 

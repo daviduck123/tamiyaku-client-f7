@@ -86,7 +86,14 @@ function onPhotoDataFail(message) {
 
 function onBackKeyDown() {
 
-	if(typeof  myApp.closeModal() == "undefined")
+
+
+	if(myApp.closeModal())
+	{
+		myApp.closeModal();
+	}
+	else
+	{
 
 		var activepage = mainView.activePage.name;
 

@@ -86,14 +86,7 @@ function onPhotoDataFail(message) {
 
 function onBackKeyDown() {
 
-$coba=myApp.closeModal();
 
-	if($coba)
-	{
-		myApp.closeModal();
-	}
-	else
-	{
 
 		var activepage = mainView.activePage.name;
 
@@ -129,7 +122,7 @@ $coba=myApp.closeModal();
 				mainView.router.refreshPage('home.html');
 			}
 		}
-	}
+	
 	
 }
 

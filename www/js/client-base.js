@@ -88,6 +88,13 @@ function onBackKeyDown() {
 
 
 
+	//if(myApp.closeModal() == true)
+	//{
+	//	myApp.closeModal();
+	//}
+	//else
+	//{
+
 		var activepage = mainView.activePage.name;
 
 		if(activepage=="home" || activepage == "index" || activepage == "login")
@@ -114,15 +121,18 @@ function onBackKeyDown() {
 		}
 		else
 		{
-			//myApp.closeModal();
-			viewRouterBack();
-			var activepage = mainView.activePage.name;
-			if(activepage=="home")
-			{
-				mainView.router.refreshPage('home.html');
-			}
+			//if(myApp.closeModal() == true)
+			//{
+				myApp.closeModal();
+				viewRouterBack();
+				var activepage = mainView.activePage.name;
+				if(activepage=="home")
+				{
+					mainView.router.refreshPage('home.html');
+				}
+			//}
 		}
-	
+	//}
 	
 }
 

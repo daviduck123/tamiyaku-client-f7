@@ -86,9 +86,9 @@ function onPhotoDataFail(message) {
 
 function onBackKeyDown() {
 
+$coba=myApp.closeModal();
 
-
-	if(myApp.closeModal())
+	if($coba)
 	{
 		myApp.closeModal();
 	}

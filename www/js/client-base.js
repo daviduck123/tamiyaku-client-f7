@@ -56,7 +56,7 @@ function getImage(imageName) {
 
 function gotoGooleMapDevice(latData,lngData)
 {
-	var url="geo:"+latData+","+lngData;
+	var url="geo:"+latData+","+lngData+"?q="+latData+","+lngData;
 	window.open(url, '_system');
 }
 

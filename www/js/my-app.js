@@ -372,6 +372,7 @@ myApp.onPageInit('editProfile', function (page) {
 });
 
 myApp.onPageInit('buatEvent', function (page) {
+	document.addEventListener('load', checkPastDate("tanggal_buatEvent"), false);
 	$("textarea[id^=deskripsi_]").each(function(e){
 		$(this).remove();
 	});
@@ -385,9 +386,6 @@ myApp.onPageInit('buatEvent', function (page) {
 	        text : value[0]
 	    }));
 	});
-
-
-
 });
 
 myApp.onPageInit('home', function (page) {
@@ -547,6 +545,10 @@ myApp.onPageInit('notif', function (page) {
 		}).fail(function(x){
 			myApp.alert("Pengambilan postingan teman gagal", 'Perhatian!');
 		}); 
+});
+
+myApp.onPageInit('updateEvent', function (page) {
+	
 });
 
 myApp.onPageInit('searchTemanGrup', function (page) {

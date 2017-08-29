@@ -957,7 +957,7 @@ function editEventPost(clicked_id)
 		}
 		
 		var dataLengthKota=0;
-		for (var aaa = 0 ; aaa < dataKota.length ; aaa++) {
+		for (var aaa = 0 ; aaa < globalKota.length ; aaa++) {
 			dataLengthKota++;
 		}
 
@@ -1022,16 +1022,16 @@ function editEventPost(clicked_id)
 									'<td>'+
 									'<select name="kota_buatEventEdit" id="kota_buatEventEdit">'+
 									  '<option value="0">Pilih Kota</option>';
-									  for(var indeksKota=0;indeksKota<dataLengthKota;indeksKota++)
+									  for(var indeksKota=0;indeksKota<globalKota.length;indeksKota++)
 									  {
-										var tempIdKota=dataKota[indeksKota]['id'];
+										var tempIdKota=globalKota[indeksKota]['id'];
 										if(tempIdKota==z[i]['id_kota'])
 										{
-										  popupHTML+=	'<option value="'+dataKota[indeksKota]['id']+'" selected>'+dataKota[indeksKota]['nama']+'</option>';
+										  popupHTML+=	'<option value="'+globalKota[indeksKota]['id']+'" selected>'+globalKota[indeksKota]['nama']+'</option>';
 										}
 										else
 										{
-										  popupHTML+=	'<option value="'+dataKota[indeksKota]['id']+'">'+dataKota[indeksKota]['nama']+'</option>';
+										  popupHTML+=	'<option value="'+globalKota[indeksKota]['id']+'">'+globalKota[indeksKota]['nama']+'</option>';
 										}
 									  }
 			popupHTML+=	'			</select>'+
@@ -1073,6 +1073,10 @@ function editEventPost(clicked_id)
 			}));
 		});
 		//==============================================
+		$(document).ready(function() 
+		{ 
+			document.addEventListener('load', checkPastDate("tanggal_buatEventEdit"), false);
+		});
 		myApp.closeModal();
 	}).fail(function(x){
 		myApp.alert("Pengambilan status user gagal", 'Perhatian!');

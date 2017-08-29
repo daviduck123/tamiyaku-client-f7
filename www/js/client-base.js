@@ -174,3 +174,18 @@ function checkPastDate(idName){
   input.disabled = false; 
   input.setAttribute('min', date);
 }
+
+function ubahFormat(id){
+	$(document).ready(function(){	
+		var value = document.getElementById(id).value;
+	  	var temp = numberWithCommas(value);
+	  	document.getElementById(id).value=temp;
+  });
+};
+
+function numberWithCommas(x) {
+	x = x.split('.').join('');
+    var parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return parts.join(".");
+}

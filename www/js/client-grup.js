@@ -37,6 +37,11 @@ function getNearbyGrup(){
 			    processData: false
 			}).done(function(z){
 				var dataLength=0;
+				if(z.length == 0){
+					myApp.alert("Tidak ada Grup di sekitar", 'Perhatian!');
+					myApp.closeModal();
+					return;
+				}
 				for (var ii = 0 ; ii < z.length ; ii++) {
 					dataLength++;
 				}

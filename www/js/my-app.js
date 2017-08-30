@@ -15,10 +15,10 @@ var globalKota = [];
 if(globalKota.length == 0){
 	var link=urlnya+'/api/kota/';
 	$.ajax({ dataType: "jsonp",
-	    url: link,
-	    type: 'GET',
-	    contentType: false,
-	    processData: false
+		url: link,
+		type: 'GET',
+		contentType: false,
+		processData: false
 	}).done(function(dataKota){
 		globalKota = dataKota;
 	}).fail(function(x){
@@ -73,48 +73,48 @@ myApp.onPageInit('detailEvent', function (page) {
 		}
 		
 		var html=	"<div id='posting_event_"+id+"' style='margin-bottom:50px;'>";
-					html += 		"<table id='table_event_"+id+"' style='background-color:white;'  width='100%;'>";
-					html += 			"<tr>";
-					html += 				"<td rowspan='2' width='10%'>";
-					if(user_nama==getData("active_user_nama"))
-					{
-						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+user_foto+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
-					}
-					else
-					{
-						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+user_foto+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
-					}
-					html += 				"</td>";
-					html += 				"<td style='font-weight:bold;'>"+user_nama+"</td>";
-					if(user_nama==getData("active_user_nama"))
-					{
-						html += 				"<td style='font-weight:bold;'><i onclick='gotoUpdateEvent(this.id)' id='"+id+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-						html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusEventData(this.id)' id='"+id+"' class='fa fa-minus' aria-hidden='true'></i></td>";
-					}
-					html += 			"</tr>";
-					html += 			"<tr>";
-					html += 				"<td style='font-size:10px;'>"+created_at+"</td>";
-					html += 			"</tr>";
-					html += 			"<tr>";
-					html +=					'<td colspan="2" height="30px;" style="font-weight:bold;"><div style="width:100px;">Judul Lomba</div></td>';
-					html +=					'<td>: </td>';
-					html +=					'<td colspan="2" style="font-weight:bold;">'+nama+'</td>';
-					html += 			"</tr>";
-					html += 			"<tr>";
-					html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Tanggal</div></td>';
-					html +=					'<td>: </td>';
-					html +=					'<td colspan="2">'+tanggal+'</td>';
-					html += 			"</tr>";
-					html += 			"<tr>";
-					html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Kota</div></td>';
-					html +=					'<td>: </td>';
-					html +=					'<td colspan="2">'+kota+'</td>';
-					html += 			"</tr>";
-					html += 			"<tr>";
-					html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;"></div></td>';
-					html +=					'<td></td>';
-					html +=					'<td colspan="2"><a href="#" onclick="gotoPetaEventDetail('+lat+','+lng+');"><i class="icon fa fa-map"></i><span style="margin:10px;"> Lihat peta</span></a></td>';
-					html += 			"</tr>";
+		html += 		"<table id='table_event_"+id+"' style='background-color:white;'  width='100%;'>";
+		html += 			"<tr>";
+		html += 				"<td rowspan='2' width='10%'>";
+		if(user_nama==getData("active_user_nama"))
+		{
+			html += 					"<img class='lazy' src='data:image/jpeg;base64,"+user_foto+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+		}
+		else
+		{
+			html += 					"<img class='lazy' src='data:image/jpeg;base64,"+user_foto+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+		}
+		html += 				"</td>";
+		html += 				"<td style='font-weight:bold;'>"+user_nama+"</td>";
+		if(user_nama==getData("active_user_nama"))
+		{
+			html += 				"<td style='font-weight:bold;'><i onclick='gotoUpdateEvent(this.id)' id='"+id+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
+			html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusEventData(this.id)' id='"+id+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+		}
+		html += 			"</tr>";
+		html += 			"<tr>";
+		html += 				"<td style='font-size:10px;'>"+created_at+"</td>";
+		html += 			"</tr>";
+		html += 			"<tr>";
+		html +=					'<td colspan="2" height="30px;" style="font-weight:bold;"><div style="width:100px;">Judul Lomba</div></td>';
+		html +=					'<td>: </td>';
+		html +=					'<td colspan="2" style="font-weight:bold;">'+nama+'</td>';
+		html += 			"</tr>";
+		html += 			"<tr>";
+		html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Tanggal</div></td>';
+		html +=					'<td>: </td>';
+		html +=					'<td colspan="2">'+tanggal+'</td>';
+		html += 			"</tr>";
+		html += 			"<tr>";
+		html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Kota</div></td>';
+		html +=					'<td>: </td>';
+		html +=					'<td colspan="2">'+kota+'</td>';
+		html += 			"</tr>";
+		html += 			"<tr>";
+		html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;"></div></td>';
+		html +=					'<td></td>';
+		html +=					'<td colspan="2"><a href="#" onclick="gotoPetaEventDetail('+lat+','+lng+');"><i class="icon fa fa-map"></i><span style="margin:10px;"> Lihat peta</span></a></td>';
+		html += 			"</tr>";
 					//html += 			"<tr>";
 					//html +=					'<td colspan="12"><center><div id="petaEventDetail" style="width:250px; height:200px;"></div></center></td>';
 					//html += 			"</tr>";
@@ -182,25 +182,25 @@ myApp.onPageInit('detailEvent', function (page) {
 						komentariEventPost(komentar);
 					}
 
-				var map;
-				$(document).ready(function(){
+					var map;
+					$(document).ready(function(){
 
-					map = new GMaps({
-						div: '#petaEventDetail',
-						lat: ﻿﻿lat,
-						lng: lng,
+						map = new GMaps({
+							div: '#petaEventDetail',
+							lat: ﻿﻿lat,
+							lng: lng,
+						});	
+
+						map.addMarker({
+
+							lat: lat,
+							lng: lng,
+							draggable: false,
+						});
+						google.maps.event.trigger(map, 'resize');
+
 					});	
-					
-					map.addMarker({
-
-						lat: lat,
-						lng: lng,
-						draggable: false,
-					});
-					google.maps.event.trigger(map, 'resize');
-				
-			});	
-	});
+				});
 
 });
 
@@ -227,10 +227,10 @@ myApp.onPageInit('buatGrup', function (page) {
 	$.each(globalListKelas, function (id, text) {
 		var key = Object.keys(text);
 		var value = Object.values(text);
-	    $(".select-list-kelas").append($('<option>', { 
-	        value: key[0],
-	        text : value[0]
-	    }));
+		$(".select-list-kelas").append($('<option>', { 
+			value: key[0],
+			text : value[0]
+		}));
 	});
 });
 
@@ -271,11 +271,11 @@ myApp.onPageInit('editGrup', function (page) {
 	if(globalKota.length == 0){
 		var link=urlnya+'/api/kota/';
 		$.ajax({ dataType: "jsonp",
-		    url: link,
-		    type: 'GET',
-		    async: false,
-		    contentType: false,
-		    processData: false
+			url: link,
+			type: 'GET',
+			async: false,
+			contentType: false,
+			processData: false
 		}).done(function(dataKota){
 			globalKota = dataKota;
 		}).fail(function(x){
@@ -283,7 +283,7 @@ myApp.onPageInit('editGrup', function (page) {
 		}); 	
 	}
 	arrKota=globalKota;	
-		
+
 	$("#kota_editGrup").empty();
 	$("#kota_editGrup").append('<option value="0">Pilih Kota</option>');
 	
@@ -326,11 +326,11 @@ myApp.onPageInit('editProfile', function (page) {
 	if(globalKota.length == 0){
 		var link=urlnya+'/api/kota/';
 		$.ajax({ dataType: "jsonp",
-		    url: link,
-		    type: 'GET',
-		    async: false,
-		    contentType: false,
-		    processData: false
+			url: link,
+			type: 'GET',
+			async: false,
+			contentType: false,
+			processData: false
 		}).done(function(dataKota){
 			globalKota = dataKota;
 		}).fail(function(x){
@@ -381,10 +381,10 @@ myApp.onPageInit('buatEvent', function (page) {
 	$.each(globalListKelas, function (id, text) {
 		var key = Object.keys(text);
 		var value = Object.values(text);
-	    $(".select-list-kelas").append($('<option>', { 
-	        value: key[0],
-	        text : value[0]
-	    }));
+		$(".select-list-kelas").append($('<option>', { 
+			value: key[0],
+			text : value[0]
+		}));
 	});
 });
 
@@ -393,15 +393,15 @@ myApp.onPageInit('home', function (page) {
 		$(this).remove();
 	});
 	getAllPost();
-    setPullRefreshHome();
-    $(".select-list-kelas").empty();
+	setPullRefreshHome();
+	$(".select-list-kelas").empty();
 	$.each(globalListKelas, function (id, text) {
 		var key = Object.keys(text);
 		var value = Object.values(text);
-	    $(".select-list-kelas").append($('<option>', { 
-	        value: key[0],
-	        text : value[0]
-	    }));
+		$(".select-list-kelas").append($('<option>', { 
+			value: key[0],
+			text : value[0]
+		}));
 	});
 });
 
@@ -437,44 +437,44 @@ myApp.onPageInit('notif', function (page) {
 
 	var link=urlnya+'/api/post/getPostById?id='+id;
 
-		$.ajax({ dataType: "jsonp",
-		    url: link,
-		    type: 'GET',
-		    contentType: false,
-		    processData: false
-		}).done(function(z){
-			$(document).ready(function(){
-				var coba="";
-				var dataLength=0;
-				for (var ii = 0 ; ii < z.length; ii++) {
-					coba+=z['id']+"|"; 
-					dataLength++;
-				}
-				$("#isi_postingan_notif").html("");
-				$("#isi_form_komentari_notif").html("");
-				
-				var html2= '<form action="/action_page.php">';
-				html2 +=	'<div class="item-content">';
-				html2 +=		'<div class="item-inner">';
-				html2 +=			'<div class="item-input">';
-				html2 +=				'<center><textarea id="status_teman" style="resize:none; margin-top:10px; width:90%; height:60px;" ';
-				html2 +=					'placeholder="Tulis apa yang ingin anda bahas.."></textarea>';
-				html2 +=				'</center>';
-				html2 +=			'</div>';
-				html2 +=		'</div>';
-				html2 +=	' </div>';
-				html2 +=	'<div class="item-content" style="margin-top:-10px;">';
-				html2 +=	'<div class="item-inner" >';
-				html2 +=	'<div style="height:0px;overflow:hidden">';
-				html2 +=	'<input type="file" id="file_teman" accept="image/*"/>';
-				html2 +=	'</div>';
-				html2 +=	'<p><a href="#" class="button active" onclick="statusTemanPost();" type="submit" style="width:70px; float:right; margin-right:5%;">Kirim</a></p>';
-				html2 +=	'<p><a href="#" class="button"  onclick="chooseFile_teman();" style=" float:right; margin-right:10px; width:85px;">Gambar..</a></p>';
-				html2 +=	'</form>';
-				
-				
-				$("#isi_form_komentari_notif").append(html2);
-				
+	$.ajax({ dataType: "jsonp",
+		url: link,
+		type: 'GET',
+		contentType: false,
+		processData: false
+	}).done(function(z){
+		$(document).ready(function(){
+			var coba="";
+			var dataLength=0;
+			for (var ii = 0 ; ii < z.length; ii++) {
+				coba+=z['id']+"|"; 
+				dataLength++;
+			}
+			$("#isi_postingan_notif").html("");
+			$("#isi_form_komentari_notif").html("");
+
+			var html2= '<form action="/action_page.php">';
+			html2 +=	'<div class="item-content">';
+			html2 +=		'<div class="item-inner">';
+			html2 +=			'<div class="item-input">';
+			html2 +=				'<center><textarea id="status_teman" style="resize:none; margin-top:10px; width:90%; height:60px;" ';
+			html2 +=					'placeholder="Tulis apa yang ingin anda bahas.."></textarea>';
+			html2 +=				'</center>';
+			html2 +=			'</div>';
+			html2 +=		'</div>';
+			html2 +=	' </div>';
+			html2 +=	'<div class="item-content" style="margin-top:-10px;">';
+			html2 +=	'<div class="item-inner" >';
+			html2 +=	'<div style="height:0px;overflow:hidden">';
+			html2 +=	'<input type="file" id="file_teman" accept="image/*"/>';
+			html2 +=	'</div>';
+			html2 +=	'<p><a href="#" class="button active" onclick="statusTemanPost();" type="submit" style="width:70px; float:right; margin-right:5%;">Kirim</a></p>';
+			html2 +=	'<p><a href="#" class="button"  onclick="chooseFile_teman();" style=" float:right; margin-right:10px; width:85px;">Gambar..</a></p>';
+			html2 +=	'</form>';
+
+
+			$("#isi_form_komentari_notif").append(html2);
+
 				//munculkan semua post
 				for(var i=0;i<dataLength;i++)
 				{
@@ -541,10 +541,10 @@ myApp.onPageInit('notif', function (page) {
 					bacaTemanKomentar(id);
 				}
 			}); 
-			
-		}).fail(function(x){
-			myApp.alert("Pengambilan postingan teman gagal", 'Perhatian!');
-		}); 
+
+}).fail(function(x){
+	myApp.alert("Pengambilan postingan teman gagal", 'Perhatian!');
+}); 
 });
 
 myApp.onPageInit('updateEvent', function (page) {
@@ -553,6 +553,42 @@ myApp.onPageInit('updateEvent', function (page) {
 
 myApp.onPageInit('searchTemanGrup', function (page) {
 	myApp.closePanel();
+});
+
+myApp.onPageInit('lomba', function (page) {
+	var id_kota=getData("active_user_kota");
+	var arrKota=[];
+	if(globalKota.length == 0){
+		var link=urlnya+'/api/kota/';
+		$.ajax({ dataType: "jsonp",
+			url: link,
+			type: 'GET',
+			async: false,
+			contentType: false,
+			processData: false
+		}).done(function(dataKota){
+			globalKota = dataKota;
+		}).fail(function(x){
+			myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
+		}); 	
+	}
+	arrKota=globalKota;	
+
+	$("#show_filter_event").empty();
+	$("#show_filter_event").append('<option value="0">Semua Kota</option>');
+	
+	for(var i=0;i<arrKota.length;i++)
+	{
+		var tempIdKota=1+i;
+		if(arrKota[i]["id"]==id_kota)
+		{
+			$("#show_filter_event").append('<option value="'+arrKota[i]["id"]+'" selected>'+arrKota[i]["nama"]+'</option>');
+		}
+		else
+		{
+			$("#show_filter_event").append('<option value="'+arrKota[i]["id"]+'">'+arrKota[i]["nama"]+'</option>');
+		}
+	}
 });
 
 myApp.onPageInit('jualBeli', function (page) {
@@ -571,7 +607,7 @@ myApp.onPageInit('jualBeli', function (page) {
 		var dataLengthKategori=0;
 		for (var aaa = 0 ; aaa < dataKategori.length ; aaa++) {
 			var tempA=aaa+1;
-			 $('#show_kategori_jualBeli').append('<option value="'+tempA+'">'+dataKategori[aaa]["nama"]+'</option>');
+			$('#show_kategori_jualBeli').append('<option value="'+tempA+'">'+dataKategori[aaa]["nama"]+'</option>');
 		}
 	}).fail(function(x){
 		myApp.closePanel();
@@ -586,10 +622,10 @@ myApp.onPageInit('buatJualBarang', function (page) {
 	$.each(globalListKelas, function (id, text) {
 		var key = Object.keys(text);
 		var value = Object.values(text);
-	    $(".select-list-kelas").append($('<option>', { 
-	        value: key[0],
-	        text : value[0]
-	    }));
+		$(".select-list-kelas").append($('<option>', { 
+			value: key[0],
+			text : value[0]
+		}));
 	});
 	$(".active_user_email").empty();
 	$email=getData("active_user_email");
@@ -610,12 +646,12 @@ myApp.onPageInit('buatJualBarang', function (page) {
 		//}
 		$.each(myOptions, function(i, el) 
 		{ 
-		   $('#kategori_buatJualBarang').append( new Option(el.nama,el.id) );
+			$('#kategori_buatJualBarang').append( new Option(el.nama,el.id) );
 		});
 		mainView.router.loadPage('buatJualBarang.html');
 		myApp.closePanel();
 	}).fail(function(x){
-			myApp.alert("Pengambilan data kota gagal (line 28)", 'Perhatian!');
+		myApp.alert("Pengambilan data kota gagal (line 28)", 'Perhatian!');
 	}); 
 
 
@@ -655,12 +691,12 @@ $$('.panel-left').on('panel:opened', function () {
 			}));
 		});
 	//==============================================
-	}
-	var id_kelas=getData("active_user_kelas");
-	if(id_kelas != null && id_kelas != "")
-		$('#kelas_dipilih').val(id_kelas);
-	
-	getAllGrup();
+}
+var id_kelas=getData("active_user_kelas");
+if(id_kelas != null && id_kelas != "")
+	$('#kelas_dipilih').val(id_kelas);
+
+getAllGrup();
 });
 
 $$('.panel-right').on('panel:opened', function () {
@@ -683,60 +719,60 @@ function saveKelas(el){
 }
 
 function setPullRefreshHome(){
-    var ptrContent = $$('#pullToRefreshHome');
-    ptrContent.on('refresh', function (e) {
+	var ptrContent = $$('#pullToRefreshHome');
+	ptrContent.on('refresh', function (e) {
             // Emulate 2s loading
             setTimeout(function () {
-                getAllPost();
+            	getAllPost();
                 myApp.pullToRefreshDone(); // After we refreshed page content, we need to reset pull to refresh component to let user pull it again:
             }, 2000);
         });
 }
 
 function setPullRefreshGrup(){
-    var ptrContent = $$('#pullToRefreshGrup');
-    ptrContent.on('refresh', function (e) {
+	var ptrContent = $$('#pullToRefreshGrup');
+	ptrContent.on('refresh', function (e) {
             // Emulate 2s loading
             setTimeout(function () {
-                var id_grup = getData("id_grup");
-                getAllGrupPost(id_grup);
+            	var id_grup = getData("id_grup");
+            	getAllGrupPost(id_grup);
                 myApp.pullToRefreshDone(); // After we refreshed page content, we need to reset pull to refresh component to let user pull it again:
             }, 2000);
         });
 }
 
 function setPullRefreshProfilTeman(){
-    var ptrContent = $$('#pullToRefreshProfileTeman');
-    ptrContent.on('refresh', function (e) {
+	var ptrContent = $$('#pullToRefreshProfileTeman');
+	ptrContent.on('refresh', function (e) {
             // Emulate 2s loading
             setTimeout(function () {
 				//var id_teman=document.getElementById('#id_teman_temp').value;
 				var id_teman = getData("id_teman");
-                getAllTemanPost(id_teman);
+				getAllTemanPost(id_teman);
                 myApp.pullToRefreshDone(); // After we refreshed page content, we need to reset pull to refresh component to let user pull it again:
             }, 2000);
         });
 }
 
 function setPullRefreshEvent(){
-    var ptrContent = $$('#pullToRefreshLomba');
-    ptrContent.on('refresh', function (e) {
+	var ptrContent = $$('#pullToRefreshLomba');
+	ptrContent.on('refresh', function (e) {
             // Emulate 2s loading
             setTimeout(function () {
 				//var id_teman=document.getElementById('#id_teman_temp').value;
-                getAllEventPost();
+				getAllEventPost();
                 myApp.pullToRefreshDone(); // After we refreshed page content, we need to reset pull to refresh component to let user pull it again:
             }, 2000);
         });
 }
 
 function setPullRefreshJualBeli(){
-    var ptrContent = $$('#pullToRefreshJualBeli');
-    ptrContent.on('refresh', function (e) {
+	var ptrContent = $$('#pullToRefreshJualBeli');
+	ptrContent.on('refresh', function (e) {
             // Emulate 2s loading
             setTimeout(function () {
 				//var id_teman=document.getElementById('#id_teman_temp').value;
-                getAllJualBeliPost();
+				getAllJualBeliPost();
                 myApp.pullToRefreshDone(); // After we refreshed page content, we need to reset pull to refresh component to let user pull it again:
             }, 2000);
         });

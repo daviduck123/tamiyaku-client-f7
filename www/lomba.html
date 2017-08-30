@@ -21,22 +21,37 @@
                </div>
             </div>
             <div id='pullToRefreshLomba' class="page-content pull-to-refresh-content" data-ptr-distance="55">
-               <center><a href="#" onclick="gotoBuatEvent();" class="button" style="width:90%; height:50px; margin-top:10px; padding-top:10px; margin-bottom:30px;">Buat Event Lomba</a></center>
-                  <!-- Default pull to refresh layer-->
-                  <div class="pull-to-refresh-layer">
-                     <div style ="margin-top:15px;" class="preloader"></div>
-                     <div style ="margin-top:15px;" class="pull-to-refresh-arrow"></div>
-                  </div>
-                  <div class="list-block">
-                     <div id="container_event">
-                        <div id="isi_container_event"></div>
-                     </div>
-                  </div>
+               <center>
+                  <a href="#" onclick="gotoBuatEvent();" class="button" style="width:90%; height:50px; margin-top:10px; padding-top:10px; margin-bottom:30px;">Buat Event Lomba</a>
+               </center>
+               <center>
+                <table id="baseJualBeli2" style="margin-top:-0px;">
+                  <tr>
+                    <td colspan="6" height="30px;"><div style="width:100px;">Filter Kota</div></td>
+                    <td>: </td>
+                    <td colspan="6">
+                      <select onchange="ubahViewEventFilter()" id="show_filter_event">
+                        <option value="0">Semua Kota</option>
+                     </td>
+                  </tr>
+               </table>
+            </center>
+            <br>
+            <!-- Default pull to refresh layer-->
+            <div class="pull-to-refresh-layer">
+               <div style ="margin-top:15px;" class="preloader"></div>
+               <div style ="margin-top:15px;" class="pull-to-refresh-arrow"></div>
+            </div>
+            <div class="list-block">
+               <div id="container_event">
+                  <div id="isi_container_event"></div>
                </div>
             </div>
          </div>
       </div>
    </div>
+</div>
+</div>
 </div>
 <!-- Path to Framework7 Library JS-->
 <div class="popup editKomentarKuEvent">

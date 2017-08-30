@@ -25,10 +25,17 @@ function autoCariTemanGrup() {
 }
 
 function searchTeman(paramData){
-	myApp.showPreloader('Mengambil data...');
-	mainView.router.loadPage('searchTemanGrup.html');
-	myApp.closePanel();
+	
 	var param = paramData;
+	if(param=="")
+	{
+		myApp.alert('Silahkan isi karakter pencarian', 'Info!');
+	}
+	else
+	{
+		myApp.showPreloader('Mengambil data...');
+		mainView.router.loadPage('searchTemanGrup.html');
+		myApp.closePanel();
 		var link=urlnya+'/api/user/searchUser?param='+param;
 		console.log(link);
 		$.ajax({ 
@@ -255,6 +262,7 @@ function searchTeman(paramData){
 			myApp.closeModal();
 			myApp.alert("Pengambilan data user gagal", 'Perhatian!');
 		});
+	}
 }
 
 

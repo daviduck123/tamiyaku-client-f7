@@ -29,7 +29,7 @@ function searchTeman(paramData){
 	var param = paramData;
 	if(param=="")
 	{
-		myApp.alert('Silahkan isi karakter pencarian', 'Info!');
+		myApp.alert('Silahkan isi karakter pencarian', 'Perhatian!');
 	}
 	else
 	{

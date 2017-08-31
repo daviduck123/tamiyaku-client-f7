@@ -60,6 +60,7 @@ function searchTeman(paramData){
 					if(z['status']=="FALSE" && zz['status']=="FALSE")
 					{
 						$("#isi_container_searchTemanGrup").append("<center><p>Tidak ditemukan</p></center>");
+						myApp.alert("Data tidak ditemukan", "Perhatian!");
 					}
 					else if(z['status']!="FALSE" && zz['status']=="FALSE")
 					{

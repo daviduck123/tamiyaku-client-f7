@@ -27,6 +27,8 @@ function autoCariTemanGrup() {
 function searchTeman(paramData){
 	
 	var param = paramData;
+	var kelas_dipilih = $('#kelas_dipilih').find(":selected").val();
+
 	if(param=="")
 	{
 		myApp.alert('Silahkan isi karakter pencarian', 'Perhatian!');
@@ -126,6 +128,7 @@ function searchTeman(paramData){
 						
 						for(var i=0; i<dataLengthGrup;i++)
 						{
+							if(zz['grups'][i]['id_kelas'] !== kelas_dipilih) continue;
 							availableTagsGrup.push({
 								id: zz['grups'][i]['id'],
 								nama: zz['grups'][i]['nama'],
@@ -196,6 +199,8 @@ function searchTeman(paramData){
 						
 						for(var i=0; i<dataLengthGrup;i++)
 						{
+							if(zz['grups'][i]['id_kelas'] !== kelas_dipilih) continue;
+							
 							availableTagsGrup.push({
 								id: zz['grups'][i]['id'],
 								nama: zz['grups'][i]['nama'],

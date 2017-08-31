@@ -51,21 +51,23 @@ function getNearbyGrup(){
 				
 				for(var i=0;i<dataLength;i++)
 				{
+					if(z[i]['id_kelas'] !== kelas_dipilih) continue;
+					
 					var jarak=parseFloat(z[i]['distance']);
 					jarak = jarak.toFixed(1);
-						var html =			'<li>';
-						html += 				'<a href="#" onclick="gotoGroup('+z[i]['id']+');" id="grup_'+z[i]['id']+'" class="item-link">';
-						html += 					'<div class="item-content">';
-						html += 						'<div class="item-media"><img class="lazy" src="data:image/jpeg;base64,'+z[i]['foto']+'" style="width:35px; height:35px;"></div>';
-						html += 						'<div class="item-inner">';
-						html += 							'<div class="item-title">'+z[i]['nama']+'</div>';
-						html += 							'<div class="item-after"><span class="badge">'+jarak+'km</span></div>';
-						html += 						'</div>';
-						html += 					'</div>';
-						html += 				'</a>';
-						html += 			'</li>';
-						
-						$("#isi_list_grup_disekitar").append(html);
+					var html =			'<li>';
+					html += 				'<a href="#" onclick="gotoGroup('+z[i]['id']+');" id="grup_'+z[i]['id']+'" class="item-link">';
+					html += 					'<div class="item-content">';
+					html += 						'<div class="item-media"><img class="lazy" src="data:image/jpeg;base64,'+z[i]['foto']+'" style="width:35px; height:35px;"></div>';
+					html += 						'<div class="item-inner">';
+					html += 							'<div class="item-title">'+z[i]['nama']+'</div>';
+					html += 							'<div class="item-after"><span class="badge">'+jarak+'km</span></div>';
+					html += 						'</div>';
+					html += 					'</div>';
+					html += 				'</a>';
+					html += 			'</li>';
+					
+					$("#isi_list_grup_disekitar").append(html);
 				}
 				myApp.closeModal();
 			}).fail(function(x){

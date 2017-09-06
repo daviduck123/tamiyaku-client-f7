@@ -780,7 +780,7 @@ function pilihanKeluarGrup(id_grup){
         text: 'Ya',
 		bold: true,
         onClick: function() {
-			leaveThisGrup(clicked_id, id_komentar);
+			leaveThisGrup(id_grup);
 			allGrupUser = null;
         }
       },

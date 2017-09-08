@@ -277,10 +277,11 @@ function getAllEventPost() {
 				}
 				saveData("globalEventFoto_"+i,z[i]['foto']);
 				saveData("globalEventUserFoto_"+i,z[i]['user_foto']);
+				var test = z[i]['harga_tiket'].toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.");
 				html += 			"<tr>";
 				html +=					'<td colspan="2" width="100px;" height="30px;"><div style="width:100px;font-weight:bold;">Tiket</div></td>';
 				html +=					'<td>: </td>';
-				html +=					'<td colspan="2">'+z[i]['harga_tiket']+'</td>';
+				html +=					'<td colspan="2">Rp '+test+'</td>';
 				html += 			"</tr>";
 				html += 			"<tr>";
 				html += 				'<td colspan="5" class="q" >';
@@ -362,10 +363,11 @@ function getAllEventPost() {
 					}
 					saveData("globalEventFoto_"+i,z[i]['foto']);
 					saveData("globalEventUserFoto_"+i,z[i]['user_foto']);
+					var test = z[i]['harga_tiket'].toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.");
 					html += 			"<tr>";
 					html +=					'<td colspan="2" width="100px;" height="30px;"><div style="width:100px;font-weight:bold;">Tiket</div></td>';
 					html +=					'<td>: </td>';
-					html +=					'<td colspan="2">'+z[i]['harga_tiket']+'</td>';
+					html +=					'<td colspan="2">'+test+'</td>';
 					html += 			"</tr>";
 					html += 			"<tr>";
 					html += 				'<td colspan="5" class="q" >';
@@ -473,10 +475,11 @@ function getAllEventPostVar(id_post) {
 				}
 				saveData("globalEventFoto_"+i,z[i]['foto']);
 				saveData("globalEventUserFoto_"+i,z[i]['user_foto']);
+				var test = z[i]['harga_tiket'].toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.");
 				html += 			"<tr>";
 				html +=					'<td colspan="2" width="100px;" height="30px;"><div style="width:100px;font-weight:bold;">Tiket</div></td>';
 				html +=					'<td>: </td>';
-				html +=					'<td colspan="2">'+z[i]['harga_tiket']+'</td>';
+				html +=					'<td colspan="2">'+test+'</td>';
 				html += 			"</tr>";
 				html += 			"<tr>";
 				html += 				'<td colspan="5" class="q" >';
@@ -560,10 +563,11 @@ function getAllEventPostVar(id_post) {
 					}
 					saveData("globalEventFoto_"+i,z[i]['foto']);
 					saveData("globalEventUserFoto_"+i,z[i]['user_foto']);
+					var test = z[i]['harga_tiket'].toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.");
 					html += 			"<tr>";
 					html +=					'<td colspan="2" width="100px;" height="30px;"><div style="width:100px;font-weight:bold;">Tiket</div></td>';
 					html +=					'<td>: </td>';
-					html +=					'<td colspan="2">'+z[i]['harga_tiket']+'</td>';
+					html +=					'<td colspan="2">'+test+'</td>';
 					html += 			"</tr>";
 					html += 			"<tr>";
 					html += 				'<td colspan="5" class="q" >';

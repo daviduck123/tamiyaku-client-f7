@@ -178,7 +178,8 @@ function getAllLapakSayaPost() {
 				html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">'+z[i]['nama']+'</div></td>';
 				html += 			"</tr>";
 				html += 			"<tr>";
-				html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">Rp.'+z[i]['harga']+',-</div></td>';
+				var test = z[i]['harga'].toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.");
+				html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">Rp '+test+',-</div></td>';
 				html += 			"<tr>";
 				html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Kategori</div></td>';
 				html +=					'<td>: </td>';

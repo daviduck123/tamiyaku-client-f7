@@ -142,7 +142,7 @@ myApp.onPageInit('detailEvent', function (page) {
 								html +=					'<td colspan="2" width="100px;" height="30px;"</td>';
 								html +=					'<td>: </td>';
 								html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
-								html +=					'<td colspan="1">Rp'+test+'</td>';
+								html +=					'<td colspan="1">Rp '+test+'</td>';
 								html += 			"</tr>";
 							}
 						}

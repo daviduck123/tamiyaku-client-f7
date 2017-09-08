@@ -220,7 +220,8 @@ function getAllJualBeliPost() {
 							html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">'+z[i]['nama']+'</div></td>';
 							html += 			"</tr>";
 							html += 			"<tr>";
-							html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">Rp.'+z[i]['harga']+',-</div></td>';
+							var test = z[i]['harga'].toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.");
+							html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">Rp '+test+',-</div></td>';
 							html += 			"</tr>";
 							html += 			"<tr>";
 							html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Kategori</div></td>';
@@ -314,7 +315,8 @@ function getAllJualBeliPost() {
 						html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">'+z[i]['nama']+'</div></td>';
 						html += 			"</tr>";
 						html += 			"<tr>";
-						html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">Rp.'+z[i]['harga']+',-</div></td>';
+						var test = z[i]['harga'].toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.");
+						html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">Rp '+test+',-</div></td>';
 						html += 			"</tr>";
 						html += 			"<tr>";
 						html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Kategori</div></td>';
@@ -464,7 +466,8 @@ function getAllJualBeliPostVar(id_post) {
 						//html +=					'<td colspan="2" style="font-weight:bold;">'+z[i]['deskripsi']+'</td>';
 						html += 			"</tr>";
 						html += 			"<tr>";
-						html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">Rp.'+z[i]['harga']+',-</div></td>';
+						var test = z[i]['harga'].toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.");
+						html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">Rp '+test+',-</div></td>';
 						html += 			"</tr>";
 						html += 			"<tr>";
 						html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Kategori</div></td>';
@@ -552,7 +555,8 @@ function getAllJualBeliPostVar(id_post) {
 							//html +=					'<td colspan="2" style="font-weight:bold;">'+z[i]['deskripsi']+'</td>';
 							html += 			"</tr>";
 							html += 			"<tr>";
-							html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">Rp.'+z[i]['harga']+',-</div></td>';
+							var test = z[i]['harga'].toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.");
+							html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">Rp '+test+',-</div></td>';
 							html += 			"</tr>";
 							html += 			"<tr>";
 							html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Kategori</div></td>';
@@ -1313,7 +1317,8 @@ function getAllJualBeliPostByKategori(id_kategori,id_urutan) {
 						html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">'+z[i]['nama']+'</div></td>';
 						html += 			"</tr>";
 						html += 			"<tr>";
-						html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">Rp.'+z[i]['harga']+',-</div></td>';
+						var test = z[i]['harga'].toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.");
+						html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">Rp '+test+',-</div></td>';
 						html += 			"</tr>";
 						html += 			"<tr>";
 						html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Kategori</div></td>';
@@ -1399,7 +1404,8 @@ function getAllJualBeliPostByKategori(id_kategori,id_urutan) {
 							html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">'+z[i]['nama']+'</div></td>';
 							html += 			"</tr>";
 							html += 			"<tr>";
-							html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">Rp.'+z[i]['harga']+',-</div></td>';
+							var test = z[i]['harga'].toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.");
+							html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">Rp '+test+',-</div></td>';
 							html += 			"</tr>";
 							html += 			"<tr>";
 							html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Kategori</div></td>';

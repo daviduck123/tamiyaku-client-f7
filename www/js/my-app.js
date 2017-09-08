@@ -123,24 +123,26 @@ myApp.onPageInit('detailEvent', function (page) {
 					{
 						if(indeks==0)
 						{
+							var test = hadiah1.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.")
 							tempIndeks=tempIndeks+1;
 							html += 			"<tr>";
 							html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Hadiah</div> </td>';
 							html +=					'<td>: </td>';
 							html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
-							html +=					'<td colspan="1">'+hadiah1+'</td>';
+							html +=					'<td colspan="1">Rp '+test+'</td>';
 							html += 			"</tr>";
 						}
 						else if(indeks==1)
 						{
 							if(hadiah2!=0)
 							{
+								var test = hadiah2.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.")
 								tempIndeks=tempIndeks+1;
 								html += 			"<tr>";
 								html +=					'<td colspan="2" width="100px;" height="30px;"</td>';
 								html +=					'<td>: </td>';
 								html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
-								html +=					'<td colspan="1">'+hadiah2+'</td>';
+								html +=					'<td colspan="1">Rp'+test+'</td>';
 								html += 			"</tr>";
 							}
 						}
@@ -148,20 +150,22 @@ myApp.onPageInit('detailEvent', function (page) {
 						{
 							if( hadiah3!=0)
 							{
+								var test = hadiah3.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.")
 								tempIndeks=tempIndeks+1;
 								html += 			"<tr>";
 								html +=					'<td colspan="2" width="100px;" height="30px;"</td>';
 								html +=					'<td>: </td>';
 								html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
-								html +=					'<td colspan="1">'+hadiah3+'</td>';
+								html +=					'<td colspan="1">Rp '+test+'</td>';
 								html += 			"</tr>";
 							}
 						}
 					}
+					var test = harga_tiket.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.")
 					html += 			"<tr>";
 					html +=					'<td colspan="2" width="100px;" height="30px;"><div style="width:100px;font-weight:bold;">Tiket</div></td>';
 					html +=					'<td>: </td>';
-					html +=					'<td colspan="2">'+harga_tiket+'</td>';
+					html +=					'<td colspan="2">Rp '+test+'</td>';
 					html += 			"</tr>";
 					html += 			"<tr>";
 					html += 				'<td colspan="5" class="q" >';

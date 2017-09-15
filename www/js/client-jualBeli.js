@@ -199,11 +199,11 @@ function getAllJualBeliPost() {
 							html += 				"<td rowspan='2' width='10%'>";
 							if(z[i]['user_foto']==getData("active_user_nama"))
 							{
-								html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+								html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px;  margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 							}
 							else
 							{
-								html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+								html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px;  margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 							}
 							html += 				"</td>";
 							html += 				"<td colspan='2' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
@@ -294,11 +294,11 @@ function getAllJualBeliPost() {
 						html += 				"<td rowspan='2' width='10%'>";
 						if(z[i]['user_foto']==getData("active_user_nama"))
 						{
-							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px;  margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 						}
 						else
 						{
-							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px;  margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 						}
 						html += 				"</td>";
 						html += 				"<td colspan='2' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
@@ -443,11 +443,11 @@ function getAllJualBeliPostVar(id_post) {
 						html += 				"<td rowspan='2' width='10%'>";
 						if(z[i]['user_foto']==getData("active_user_nama"))
 						{
-							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px;  margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 						}
 						else
 						{
-							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px;  margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 						}
 						html += 				"</td>";
 						html += 				"<td colspan='2' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
@@ -532,11 +532,11 @@ function getAllJualBeliPostVar(id_post) {
 							html += 				"<td rowspan='2' width='10%'>";
 							if(z[i]['user_foto']==getData("active_user_nama"))
 							{
-								html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+								html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px;  margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 							}
 							else
 							{
-								html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+								html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px;  margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 							}
 							html += 				"</td>";
 							html += 				"<td colspan='2' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
@@ -1297,11 +1297,11 @@ function getAllJualBeliPostByKategori(id_kategori,id_urutan) {
 						html += 				"<td rowspan='2' width='10%'>";
 						if(z[i]['user_foto']==getData("active_user_nama"))
 						{
-							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px;  margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 						}
 						else
 						{
-							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px;  margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 						}
 						html += 				"</td>";
 						html += 				"<td colspan='2' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
@@ -1384,11 +1384,11 @@ function getAllJualBeliPostByKategori(id_kategori,id_urutan) {
 							html += 				"<td rowspan='2' width='10%'>";
 							if(z[i]['user_foto']==getData("active_user_nama"))
 							{
-								html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+								html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px;  margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 							}
 							else
 							{
-								html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+								html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px;  margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 							}
 							html += 				"</td>";
 							html += 				"<td colspan='2' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";

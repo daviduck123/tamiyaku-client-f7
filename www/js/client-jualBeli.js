@@ -206,7 +206,7 @@ function getAllJualBeliPost() {
 								html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 							}
 							html += 				"</td>";
-							html += 				"<td style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
+							html += 				"<td colspan='2' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
 							if(z[i]['user_nama']==getData("active_user_nama"))
 							{
 								html += 				"<td style='font-weight:bold;'><i onclick='editPostJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
@@ -301,7 +301,7 @@ function getAllJualBeliPost() {
 							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 						}
 						html += 				"</td>";
-						html += 				"<td style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
+						html += 				"<td colspan='2' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
 						if(z[i]['user_nama']==getData("active_user_nama"))
 						{
 							html += 				"<td style='font-weight:bold;'><i onclick='editPostJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
@@ -450,7 +450,7 @@ function getAllJualBeliPostVar(id_post) {
 							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 						}
 						html += 				"</td>";
-						html += 				"<td style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
+						html += 				"<td colspan='2' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
 						if(z[i]['user_nama']==getData("active_user_nama"))
 						{
 							html += 				"<td style='font-weight:bold;'><i onclick='editPostJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
@@ -539,7 +539,7 @@ function getAllJualBeliPostVar(id_post) {
 								html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 							}
 							html += 				"</td>";
-							html += 				"<td style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
+							html += 				"<td colspan='2' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
 							if(z[i]['user_nama']==getData("active_user_nama"))
 							{
 								html += 				"<td style='font-weight:bold;'><i onclick='editPostJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
@@ -687,6 +687,7 @@ function bacaJualBeliKomentar(clicked_id) {
 
 function komentariJualBeliPost(clicked_id) {
 	//ON PROGRESS
+	bacaJualBeliKomentar(clicked_id);
 	var id_user = getData("active_user_id");
 	var id_post = "";
 	$(document).ready(function(){
@@ -1303,7 +1304,7 @@ function getAllJualBeliPostByKategori(id_kategori,id_urutan) {
 							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 						}
 						html += 				"</td>";
-						html += 				"<td style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
+						html += 				"<td colspan='2' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
 						if(z[i]['user_nama']==getData("active_user_nama"))
 						{
 							html += 				"<td style='font-weight:bold;'><i onclick='editPostJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
@@ -1390,7 +1391,7 @@ function getAllJualBeliPostByKategori(id_kategori,id_urutan) {
 								html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 							}
 							html += 				"</td>";
-							html += 				"<td style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
+							html += 				"<td colspan='2' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
 							if(z[i]['user_nama']==getData("active_user_nama"))
 							{
 								html += 				"<td style='font-weight:bold;'><i onclick='editPostJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";

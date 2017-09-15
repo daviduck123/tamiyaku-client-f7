@@ -835,6 +835,7 @@ function joinThisGrup(clickedId){
 			myApp.alert("Join grup berhasil", 'Perhatian!');
 			showButtonLeaveGrup(clickedId);
 			getAllGrupPost(clickedId);
+			myApp.closeModal();
 		}
 		allGrupUser = null;
 	}).fail(function(x){
@@ -1466,6 +1467,7 @@ function bacaGrupKomentar(clicked_id) {
 
 function komentariGrupPost(clicked_id) {
 	//ON PROGRESS
+	bacaGrupKomentar(clicked_id);
 	var id_user = getData("active_user_id");
 	var id_post = "";
 	$(document).ready(function(){

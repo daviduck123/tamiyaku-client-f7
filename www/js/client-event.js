@@ -997,6 +997,7 @@ function bacaEventKomentar(clicked_id) {
 
 function komentariEventPost(clicked_id) {
 	//ON PROGRESS
+	bacaEventKomentar(clicked_id);
 	var id_user = getData("active_user_id");
 	var id_post = "";
 	$(document).ready(function(){

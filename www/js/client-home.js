@@ -7,7 +7,7 @@ function gotoHome(){
 }
 
 function komentariPost(clicked_id) {
-	
+	bacaKomentar(clicked_id);
 	var id_user = getData("active_user_id");
 	var id_post = "";
 	$(document).ready(function(){

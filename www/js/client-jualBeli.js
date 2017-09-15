@@ -250,7 +250,7 @@ function getAllJualBeliPost() {
 							html += 			"</tr>";
 							html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Email</div></td>';
 							html +=					'<td>: </td>';
-							html +=					'<td colspan="2"><a href="mailto:'+z[i]['email']+'?Subject='+z[i]['nama']+'" class="external">'+z[i]['user_email']+'</a></td>';
+							html +=					'<td colspan="2"><a href="mailto:'+z[i]['user_email']+'?Subject='+z[i]['nama']+'" class="external">'+z[i]['user_email']+'</a></td>';
 							html += 			"</tr>";
 							html += 			"<tr>";
 							html += 				'<td colspan="5" class="q" >';
@@ -345,7 +345,7 @@ function getAllJualBeliPost() {
 						html += 			"</tr>";
 						html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Email</div></td>';
 						html +=					'<td>: </td>';
-						html +=					'<td colspan="2"><a href="mailto:'+z[i]['email']+'?Subject='+z[i]['nama']+'" class="external">'+z[i]['user_email']+'</a></td>';
+						html +=					'<td colspan="2"><a href="mailto:'+z[i]['user_email']+'?Subject='+z[i]['nama']+'" class="external">'+z[i]['user_email']+'</a></td>';
 						html += 			"</tr>";
 						html += 			"<tr>";
 						html += 				'<td colspan="5" class="q" >';
@@ -1347,7 +1347,7 @@ function getAllJualBeliPostByKategori(id_kategori,id_urutan) {
 						html += 			"</tr>";
 						html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Email</div></td>';
 						html +=					'<td>: </td>';
-						html +=					'<td colspan="2"><a href="mailto:'+z[i]['email']+'?Subject='+z[i]['nama']+'" class="external">'+z[i]['user_email']+'</a></td>';
+						html +=					'<td colspan="2"><a href="mailto:'+z[i]['user_email']+'?Subject='+z[i]['nama']+'" class="external">'+z[i]['user_email']+'</a></td>';
 						html += 			"</tr>";
 						html += 			"<tr>";
 						html += 				'<td colspan="5" class="q" >';
@@ -1434,7 +1434,7 @@ function getAllJualBeliPostByKategori(id_kategori,id_urutan) {
 							html += 			"</tr>";
 							html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Email</div></td>';
 							html +=					'<td>: </td>';
-							html +=					'<td colspan="2"><a href="mailto:'+z[i]['email']+'?Subject='+z[i]['nama']+'" class="external">'+z[i]['user_email']+'</a></td>';
+							html +=					'<td colspan="2"><a href="mailto:'+z[i]['user_email']+'?Subject='+z[i]['nama']+'" class="external">'+z[i]['user_email']+'</a></td>';
 							html += 			"</tr>";
 							html += 			"<tr>";
 							html += 				'<td colspan="5" class="q" >';

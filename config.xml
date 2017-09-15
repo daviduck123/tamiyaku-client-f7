@@ -8,7 +8,7 @@
         Apache Cordova Team
     </author>
     <content src="index.html" />
-    <access origin="*" />
+    <access origin="*" launch-external="yes" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -31,4 +31,6 @@
 	<plugin name="cordova-plugin-geolocation" />
     <plugin name="cordova-plugin-request-location-accuracy" source="npm" />
     <plugin name="cordova-plugin-camera"/>
+
+    
 </widget>

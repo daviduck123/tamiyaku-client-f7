@@ -33,7 +33,7 @@ function getAllTeman() {
 						html +=	'</div>';
 						tambahTutupdiv=0;
 					}
-					html +=	'<div class="list-group" style="margin-bottom:20px; margin-top:-30px;">';
+					html +=	'<div class="list-group" style="margin-bottom:20px; margin-top:-20px;">';
 					html +=		'<ul>';
 					html +=			'<li class="list-group-title" >'+hurufDepan+'</li>';
 					html +=	'';

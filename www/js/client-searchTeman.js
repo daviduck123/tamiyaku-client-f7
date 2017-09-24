@@ -82,7 +82,7 @@ function searchTeman(paramData){
 						$("#isi_container_searchTemanGrup").remove();
 						$("#container_searchTemanGrup").append('<div id="isi_container_searchTemanGrup"></div>');
 						
-						var html =	'<div class="list-group" style="margin-bottom:20px; margin-top:-30px;">';
+						var html =	'<div class="list-group" style="margin-bottom:20px; margin-top:-20px;">';
 						html +=	'	<ul>';
 						html +=	'		<li class="list-group-title">Users</li>';
 						
@@ -140,7 +140,7 @@ function searchTeman(paramData){
 						$("#isi_container_searchTemanGrup").remove();
 						$("#container_searchTemanGrup").append('<div id="isi_container_searchTemanGrup"></div>');
 						
-						var html =	'<div class="list-group" style="margin-bottom:20px; margin-top:-30px;">';
+						var html =	'<div class="list-group" style="margin-bottom:20px; margin-top:-20px;">';
 						html +=	'	<ul>';
 						html +=	'		<li class="list-group-title">Users</li>';
 						html +=			'<li>';
@@ -212,7 +212,7 @@ function searchTeman(paramData){
 						$("#isi_container_searchTemanGrup").remove();
 						$("#container_searchTemanGrup").append('<div id="isi_container_searchTemanGrup"></div>');
 						
-						var html =	'<div class="list-group" style="margin-bottom:20px; margin-top:-30px;">';
+						var html =	'<div class="list-group" style="margin-bottom:20px; margin-top:-20px;">';
 						html +=	'	<ul>';
 						html +=	'		<li class="list-group-title">Users</li>';
 						

@@ -192,3 +192,14 @@ function numberWithCommas(x) {
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     return parts.join(".");
 }
+$(document).on("change","input[type='file']", function(){             
+    var has_selected_file = $('input[type=file]').filter(function(){
+        return $.trim(this.value) != ''
+    }).length  > 0 ;
+
+    if (has_selected_file) {
+        $(".file-selected").show();
+    }else{
+        $(".file-selected").hide();
+    }
+});

@@ -641,6 +641,7 @@ function statusPost() {
 			getAllPost();
 			$("#status").val("");
 			$("#file_home").val("");
+			$(".file-selected").hide();
 			myApp.closeModal();
 		}).fail(function(x){
 			myApp.alert('Maaf tidak dapat menambah status, silahkan coba lagi', 'Perhatian!');
@@ -697,6 +698,7 @@ function editPost(clicked_id)
 										'</div>'+
 										'<p><a href="#" class="button active" onclick="statusEditPost(this.id);" id='+clicked_id+' type="submit" style="width:70px; float:right; margin-right:5%;">Update</a></p>'+
 										'<p><a href="#" class="button"  onclick="chooseFile_editHome();" style=" float:right; margin-right:10px; width:85px;">Gambar..</a></p>'+
+										' <small class="file-selected">file selected</small>'+
 							   ' </div>'+
 							   '<p><a href="#" onclick="tutupModal()" class="close-popup">Kembali</a></p>'+
 						'</div>'+
@@ -718,6 +720,7 @@ function editPost(clicked_id)
 										'</div>'+
 										'<p><a href="#" class="button active" onclick="statusEditPost(this.id);" id='+clicked_id+' type="submit" style="width:70px; float:right; margin-right:5%;">Update</a></p>'+
 										'<p><a href="#" class="button"  onclick="chooseFile_editHome();" style=" float:right; margin-right:10px; width:85px;">Gambar..</a></p>'+
+										' <small class="file-selected">file selected</small>'+
 							   ' </div>'+
 							   '<p><a href="#" onclick="tutupModal()" class="close-popup">Kembali</a></p>'+
 						'</div>'+
@@ -807,6 +810,7 @@ function statusEditPost(clicked_id) {
 		}).done(function(z){
 			myApp.closeModal();
 			$(".modal-overlay-visible").remove();
+			$(".file-selected").hide();
 			getAllPost();
 		}).fail(function(x){
 			myApp.alert('Maaf tidak dapat menambah status, silahkan coba lagi', 'Perhatian!');
@@ -822,6 +826,7 @@ function statusEditPost(clicked_id) {
 
 function tutupModal() {
 	getAllPost();
+	$(".file-selected").hide();
 }
 
 function editKomentarKu(id_post,clicked_id)

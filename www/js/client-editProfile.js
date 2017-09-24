@@ -111,6 +111,8 @@ function editProfileSimpan()
 							saveData("active_user_kota",id_kota);
 							saveData("active_user_jenis_kelamin",gender);
 
+							$(".file-selected").hide();
+
 							globalListKelas = [];
 							$.ajax({ dataType: "jsonp",
 								url: urlnya+'/api/kelas/getAllByUserId?id_user='+id_user,

@@ -121,6 +121,7 @@ function loginPost() {
 		}
 	}
 	});
+	myApp.closeModal();
 }
 
 function loginBySavedData() {
@@ -250,6 +251,7 @@ function loginBySavedData() {
 		}
 	}
 	});
+	myApp.closeModal();
 }
 	
 function cekLoginAktif() {

@@ -572,6 +572,7 @@ function buatGrupPost() {
 							}).done(function(z){
 								mainView.router.loadPage('home.html');
 								myApp.alert('Grup berhasil dibuat', 'Berhasil!');
+								$(".file-selected").hide();
 								allGrupUser = null;
 							}).fail(function(x){
 								myApp.alert(x.message+" "+x.error, 'Perhatian!');
@@ -882,6 +883,7 @@ function getAllGrupPost(clickedId) {
 			html2 +=	'</div>';
 			html2 +=	'<p><a href="#" class="button active" onclick="statusGrupPost();" type="submit" style="width:70px; float:right; margin-right:5%;">Kirim</a></p>';
 			html2 +=	'<p><a href="#" class="button"  onclick="chooseFile_grup();" style=" float:right; margin-right:10px; width:85px;">Gambar..</a></p>';
+			html2 +=	'<small class="file-selected">file selected</small>';
 			html2 +=	'</form>';
 			
 			
@@ -1018,6 +1020,7 @@ function getAllGrupPost(clickedId) {
 			html2 +=	'</div>';
 			html2 +=	'<p><a href="#" class="button active" onclick="statusGrupPost();" type="submit" style="width:70px; float:right; margin-right:5%;">Kirim</a></p>';
 			html2 +=	'<p><a href="#" class="button"  onclick="chooseFile_grup();" style=" float:right; margin-right:10px; width:85px;">Gambar..</a></p>';
+			html2 +=	'<small class="file-selected">file selected</small>';
 			html2 +=	'</form>';
 			
 			
@@ -1155,6 +1158,7 @@ function getAllGrupPostWithIdPost(clickedId, id_post) {
 			html2 +=	'</div>';
 			html2 +=	'<p><a href="#" class="button active" onclick="statusGrupPost();" type="submit" style="width:70px; float:right; margin-right:5%;">Kirim</a></p>';
 			html2 +=	'<p><a href="#" class="button"  onclick="chooseFile_grup();" style=" float:right; margin-right:10px; width:85px;">Gambar..</a></p>';
+			html2 +=	'<small class="file-selected">file selected</small>';
 			html2 +=	'</form>';
 			
 			
@@ -1360,6 +1364,7 @@ function statusGrupPost() {
 		formData.append("deskripsi", status);
 		formData.append("file", blob);
 
+
 		$.ajax({
 		    url: link,
 		    data: formData,
@@ -1370,6 +1375,7 @@ function statusGrupPost() {
 			mainView.router.loadPage('grup.html');
 			$("#status_grup").val("");
 			$("#file_grup").val("");
+			$(".file-selected").hide();	
 			getAllGrupPost(id_grup);
 			$("#status_grup").val("");
 			myApp.closeModal();

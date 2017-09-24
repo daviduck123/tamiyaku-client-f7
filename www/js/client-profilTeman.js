@@ -95,6 +95,7 @@ function getAllTemanPost(clickedId) {
 			html2 +=	'</div>';
 			html2 +=	'<p><a href="#" class="button active" onclick="statusTemanPost();" type="submit" style="width:70px; float:right; margin-right:5%;">Kirim</a></p>';
 			html2 +=	'<p><a href="#" class="button"  onclick="chooseFile_teman();" style=" float:right; margin-right:10px; width:85px;">Gambar..</a></p>';
+			html2 +=	'<small class="file-selected">file selected</small>';
 			html2 +=	'</form>';
 			
 			
@@ -212,6 +213,7 @@ function getAllTemanPost(clickedId, id_post) {
 			html2 +=	'</div>';
 			html2 +=	'<p><a href="#" class="button active" onclick="statusTemanPost();" type="submit" style="width:70px; float:right; margin-right:5%;">Kirim</a></p>';
 			html2 +=	'<p><a href="#" class="button"  onclick="chooseFile_teman();" style=" float:right; margin-right:10px; width:85px;">Gambar..</a></p>';
+			html2 +=	'<small class="file-selected">file selected</small>';
 			html2 +=	'</form>';
 			
 			
@@ -751,6 +753,7 @@ function statusTemanPost() {
 			getAllTemanPost(id_teman);
 			$("#status").val("");
 			$("#file_profilTeman").val("");
+			$(".file-selected").hide();
 			myApp.closeModal();
 		}).fail(function(x){
 			myApp.alert('Maaf tidak dapat mengirim status pada teman, silahkan coba lagi', 'Perhatian!');
@@ -829,6 +832,7 @@ function editPostProfile(clicked_id)
 										'</div>'+
 										'<p><a href="#" class="button active" onclick="statusEditPostProfile(this.id);" id='+clicked_id+' type="submit" style="width:70px; float:right; margin-right:5%;">Update</a></p>'+
 										'<p><a href="#" class="button"  onclick="chooseFile_editProfile();" style=" float:right; margin-right:10px; width:85px;">Gambar..</a></p>'+
+										'<small class="file-selected">file selected</small>'+
 							   ' </div>'+
 							   '<p><a href="#" onclick="tutupModalProfile()" class="close-popup">Kembali</a></p>'+
 						'</div>'+
@@ -850,6 +854,7 @@ function editPostProfile(clicked_id)
 										'</div>'+
 										'<p><a href="#" class="button active" onclick="statusEditPostProfile(this.id);" id='+clicked_id+' type="submit" style="width:70px; float:right; margin-right:5%;">Update</a></p>'+
 										'<p><a href="#" class="button"  onclick="chooseFile_editProfile();" style=" float:right; margin-right:10px; width:85px;">Gambar..</a></p>'+
+										'<small class="file-selected">file selected</small>'+
 							   ' </div>'+
 							   '<p><a href="#" onclick="tutupModalProfile()" class="close-popup">Kembali</a></p>'+
 						'</div>'+
@@ -939,6 +944,7 @@ function statusEditPostProfile(clicked_id) {
 			myApp.closeModal();
 			$(".popup-overlay").remove();
 			$(".modal-overlay").remove();
+			$(".file-selected").hide();
 			getAllTemanPost(id_user,null);
 			
 		}).fail(function(x){

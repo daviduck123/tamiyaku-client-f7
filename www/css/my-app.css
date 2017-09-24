@@ -31,3 +31,10 @@
 #pullToRefreshGrup .list-block{
 	margin : 5px 0 !important;
 }
+.file-selected{
+	display:none;
+	float: right;
+    text-align: right;
+    width: 85px;
+    margin-right: 10px;
+}

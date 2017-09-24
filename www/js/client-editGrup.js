@@ -183,6 +183,7 @@ function editGrupPost()
 						}).done(function(z){
 							allGrupUser = null;
 							myApp.closeModal();
+							$(".file-selected").hide();
 							mainView.router.loadPage('home.html');
 							myApp.alert('Grup berhasil diubah', 'Berhasil!');
 						}).fail(function(x){

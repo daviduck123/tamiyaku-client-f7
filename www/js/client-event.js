@@ -171,6 +171,7 @@ function buatEventPost() {
 												myApp.closeModal();
 												myApp.alert('Event berhasil dibuat', 'Berhasil!');
 												ctx = null;
+												$(".file-selected").hide();
 												viewRouterBack();
 												getAllEventPost();
 												//myApp.closeModal();
@@ -1253,7 +1254,7 @@ function editEventPost(clicked_id)
 			'<td><input id="lokasi_buatEventEdit" type="text" required value="'+z[i]['tempat']+'"></td>'+
 			'</tr>'+
 			'<tr>'+
-			'<td><p>Track</p></td>'+
+			'<td style="vertical-align: top;"><p>Track</p></td>'+
 			'<div style="height:0px;overflow:hidden">'+
 			'<input type="file" id="file_buatEventEdit" accept="image/*"/>'+
 			'</div>'+
@@ -1261,6 +1262,7 @@ function editEventPost(clicked_id)
 			"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%; height:100%;'>"+
 
 			'<p><a href="#" class="button" onclick="pilihanTrackEdit();" style="width:150px;">Pilih Track..</a></p>'+
+			'<small class="file-selected" style="float: left;">file selected</small>' +
 			'</td>'+
 			'</tr>'+
 			'<tr>'+
@@ -1448,6 +1450,7 @@ function saveEventEditPost(clicked_id) {
 													getAllEventPost();
 													myApp.alert('Event berhasil diubah!', 'Berhasil!');
 													ctx = null;
+													$(".file-selected").hide();
 													myApp.closeModal();
 												}).fail(function(x){
 													myApp.alert(x.message+" "+x.error, 'Perhatian!');

@@ -371,7 +371,17 @@ myApp.onPageInit('editProfile', function (page) {
 		$("#perempuan_editProfile").attr('checked', 'checked');
 	}
 
-
+	var kelas = document.getElementsByName('kelas_editProfile');
+	var i, j;
+	for (i = 0; i < kelas.length; i++) {
+		for(j = 0 ; j < globalListKelas.length; j++){
+			if (kelas[i].value === Object.values(globalListKelas[j])[0]) 
+			{
+				$(kelas[i]).attr('checked', 'checked');
+				break;
+			}
+		}
+	}
 
 });
 

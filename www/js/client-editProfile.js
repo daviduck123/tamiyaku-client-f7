@@ -55,6 +55,29 @@ function editProfileSimpan()
 					}
 					else
 					{
+						var kelas = document.getElementsByName('kelas_editProfile');
+						var i;
+						var update = false;
+						var id_kelas = [];
+						for (i = 0; i < kelas.length; i++) {
+							if (kelas[i].checked) 
+							{
+								if(i == 0){
+									id_kelas.push(1);
+								}
+								else if(i == 1){
+									id_kelas.push(2);
+								}else if(i == 2){
+									id_kelas.push(3);
+								}
+								update = true;
+							}
+						}
+						if(!update){
+							myApp.alert('Silahkan pilih kelas anda', 'Perhatian!');
+							return;
+						}
+
 						var blob=$("#file_editProfile")[0].files[0];
 						var formData = new FormData();
 						formData.append("nama", nama);
@@ -65,6 +88,7 @@ function editProfileSimpan()
 							formData.append("password", password);
 						}
 						formData.append("id_kota", id_kota);
+						formData.append("id_kelas", id_kelas);
 						formData.append("id_user", id_user);
 						formData.append("file", blob);
 						
@@ -82,9 +106,34 @@ function editProfileSimpan()
 						contentType: false,
 							processData: false
 						}).done(function(z){
+							saveData("active_user_kelas",id_kelas[0]);
 							saveData("active_user_nama",nama);
 							saveData("active_user_kota",id_kota);
 							saveData("active_user_jenis_kelamin",gender);
+
+							globalListKelas = [];
+							$.ajax({ dataType: "jsonp",
+								url: urlnya+'/api/kelas/getAllByUserId?id_user='+id_user,
+								type: 'GET',
+								contentType: false,
+								processData: false
+							}).done(function(data){
+								if(data.length > 0){
+									for(var zzz = 0 ; zzz < data.length ; zzz++){
+										if(data[zzz]['id_kelas'] === "1"){
+											globalListKelas.push({"1":"STB"});
+										}else if(data[zzz]['id_kelas'] === "2"){
+											globalListKelas.push({"2":"STO"});
+										}else if(data[zzz]['id_kelas'] === "3"){
+											globalListKelas.push({"3":"Speed"});
+										}
+									}
+								}else{
+									globalListKelas = [];
+								}
+								$(".profilePicture").attr('src','data:image/jpeg;base64,'+getImage('profilePic'));
+								myApp.closeModal();
+							});
 							
 							var link=urlnya+'/api/user/getUserByIdUser?id_user='+id_user;
 							console.log(link);

@@ -271,29 +271,29 @@ function cekLoginAktif() {
 		if(expires=="true")
 		{
 			globalListKelas = [];
-				$.ajax({ dataType: "jsonp",
-					url: urlnya+'/api/kelas/getAllByUserId?id_user='+active_user_id,
-					type: 'GET',
-					contentType: false,
-					processData: false
-				}).done(function(data){
-					if(data.length > 0){
-						for(var zzz = 0 ; zzz < data.length ; zzz++){
-							if(data[zzz]['id_kelas'] === "1"){
-								globalListKelas.push({"1":"STB"});
-							}else if(data[zzz]['id_kelas'] === "2"){
-								globalListKelas.push({"2":"STO"});
-							}else if(data[zzz]['id_kelas'] === "3"){
-								globalListKelas.push({"3":"Speed"});
-							}
+			$.ajax({ dataType: "jsonp",
+				url: urlnya+'/api/kelas/getAllByUserId?id_user='+active_user_id,
+				type: 'GET',
+				contentType: false,
+				processData: false
+			}).done(function(data){
+				if(data.length > 0){
+					for(var zzz = 0 ; zzz < data.length ; zzz++){
+						if(data[zzz]['id_kelas'] === "1"){
+							globalListKelas.push({"1":"STB"});
+						}else if(data[zzz]['id_kelas'] === "2"){
+							globalListKelas.push({"2":"STO"});
+						}else if(data[zzz]['id_kelas'] === "3"){
+							globalListKelas.push({"3":"Speed"});
 						}
-					}else{
-						globalListKelas = [];
 					}
-					mainView.router.loadPage('home.html');
-					$(".profilePicture").attr('src','data:image/jpeg;base64,'+getImage('profilePic'));
-					myApp.closeModal();
-				});
+				}else{
+					globalListKelas = [];
+				}
+				mainView.router.loadPage('home.html');
+				$(".profilePicture").attr('src','data:image/jpeg;base64,'+getImage('profilePic'));
+				myApp.closeModal();
+			});
 		}
 		else
 		{

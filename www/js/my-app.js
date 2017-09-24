@@ -445,51 +445,58 @@ myApp.onPageInit('profilTeman', function (page) {
 
 myApp.onPageInit('notif', function (page) {
 
-	var id = getData("notif_id");
-	var komentar =  getData("notif_komentar");
-	var type =  getData("notif_type");
+	$(document).ready(function()
+	{
+		var id_user = getData("notif_id_user");
+		var id = getData("notif_id");
+		var komentar =  getData("notif_komentar");
+		var type =  getData("notif_type");
+		var id_grup =  getData("notif_id_grup");
 
-	var link=urlnya+'/api/post/getPostById?id='+id;
+		if(type=="post")
+		{
+			var link=urlnya+'/api/post/getPostById?id='+id;
+			//console.log(link);
+			$.ajax({ dataType: "jsonp",
+				url: link,
+				type: 'GET',
+				contentType: false,
+				processData: false
+			}).done(function(z){
+				//console.log(z);
+				var coba="";
+				var dataLength=0;
+				for (var ii = 0 ; ii < z.length; ii++) 
+				{
+					coba+=z['id']+"|"; 
+					dataLength++;
+				}
 
-	$.ajax({ dataType: "jsonp",
-		url: link,
-		type: 'GET',
-		contentType: false,
-		processData: false
-	}).done(function(z){
-		$(document).ready(function(){
-			var coba="";
-			var dataLength=0;
-			for (var ii = 0 ; ii < z.length; ii++) {
-				coba+=z['id']+"|"; 
-				dataLength++;
-			}
-			$("#isi_postingan_notif").html("");
-			$("#isi_form_komentari_notif").html("");
-
-			var html2= '<form action="/action_page.php">';
-			html2 +=	'<div class="item-content">';
-			html2 +=		'<div class="item-inner">';
-			html2 +=			'<div class="item-input">';
-			html2 +=				'<center><textarea id="status_teman" style="resize:none; margin-top:10px; width:90%; height:60px;" ';
-			html2 +=					'placeholder="Tulis apa yang ingin anda bahas.."></textarea>';
-			html2 +=				'</center>';
-			html2 +=			'</div>';
-			html2 +=		'</div>';
-			html2 +=	' </div>';
-			html2 +=	'<div class="item-content" style="margin-top:-10px;">';
-			html2 +=	'<div class="item-inner" >';
-			html2 +=	'<div style="height:0px;overflow:hidden">';
-			html2 +=	'<input type="file" id="file_teman" accept="image/*"/>';
-			html2 +=	'</div>';
-			html2 +=	'<p><a href="#" class="button active" onclick="statusTemanPost();" type="submit" style="width:70px; float:right; margin-right:5%;">Kirim</a></p>';
-			html2 +=	'<p><a href="#" class="button"  onclick="chooseFile_teman();" style=" float:right; margin-right:10px; width:85px;">Gambar..</a></p>';
-			html2 +=	'</form>';
+				$("#isi_postingan_notif").html("");
+				$("#isi_komentari_notif").html("");
+				/*
+				var html2= '<form action="/action_page.php">';
+				html2 +=	'<div class="item-content">';
+				html2 +=		'<div class="item-inner">';
+				html2 +=			'<div class="item-input">';
+				html2 +=				'<center><textarea id="status_teman" style="resize:none; margin-top:10px; width:90%; height:60px;" ';
+				html2 +=					'placeholder="Tulis apa yang ingin anda bahas.."></textarea>';
+				html2 +=				'</center>';
+				html2 +=			'</div>';
+				html2 +=		'</div>';
+				html2 +=	' </div>';
+				html2 +=	'<div class="item-content" style="margin-top:-10px;">';
+				html2 +=	'<div class="item-inner" >';
+				html2 +=	'<div style="height:0px;overflow:hidden">';
+				html2 +=	'<input type="file" id="file_teman" accept="image/*"/>';
+				html2 +=	'</div>';
+				html2 +=	'<p><a href="#" class="button active" onclick="statusTemanPost();" type="submit" style="width:70px; float:right; margin-right:5%;">Kirim</a></p>';
+				html2 +=	'<p><a href="#" class="button"  onclick="chooseFile_teman();" style=" float:right; margin-right:10px; width:85px;">Gambar..</a></p>';
+				html2 +=	'</form>';
 
 
-			$("#isi_form_komentari_notif").append(html2);
-
-				//munculkan semua post
+				$("#isi_komentari_notif").append(html2);
+				*/
 				for(var i=0;i<dataLength;i++)
 				{
 					if(z[i]['foto']!="")
@@ -519,12 +526,13 @@ myApp.onPageInit('notif', function (page) {
 						html += 			"<div id='btn_komentari_teman_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariTemanPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
 						html += 			"<p><a href='#' onclick='bacaTemanKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
 						html += 	"</div>";
-						
+
+						//console.log(html);
 						$("#isi_postingan_notif").append(html);
 					}
 					else
 					{
-						
+
 						var html=	"<div id='posting_teman_"+z[i]['id']+"' style='margin-bottom:50px;'>";
 						html += 		"<table id='table_teman_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 						html += 			"<tr>";
@@ -545,7 +553,8 @@ myApp.onPageInit('notif', function (page) {
 						html += 			"<div id='btn_komentari_teman_"+z[i]['id']+"'><p><a href='#' class='button' onclick='komentariTemanPost(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
 						html += 			"<p><a href='#' onclick='bacaTemanKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
 						html += 	"</div>";
-						
+
+						//console.log(html);
 						$("#isi_postingan_notif").append(html);
 					}
 				}
@@ -554,11 +563,39 @@ myApp.onPageInit('notif', function (page) {
 				{
 					bacaTemanKomentar(id);
 				}
-			}); 
 
-}).fail(function(x){
-	myApp.alert("Pengambilan postingan teman gagal", 'Perhatian!');
-}); 
+
+			}).fail(function(x){
+				myApp.alert("Pengambilan postingan teman gagal", 'Perhatian!');
+			}); 
+		}
+		else if(type.includes("grup"))
+		{
+			var temps =s.split('/');
+			var id_grup =temps[1];
+			saveData( "notif_id",id);
+			saveData( "notif_komentar",komentar);
+			gotoGroup(id_grup);
+		}
+		else if(type=="event")
+		{
+			saveData( "notif_komentar",komentar);
+			detailEvent(id);
+		}
+		else if(type=="jualbeli")
+		{
+			saveData( "notif_id",id);
+			saveData( "notif_komentar",komentar);
+			gotoJualBeli();
+		}
+
+		eraseData("notif_id_user");
+		eraseData("notif_id");
+		eraseData("notif_komentar");
+		eraseData("notif_type");
+		eraseData("notif_id_grup");
+
+	});
 });
 
 myApp.onPageInit('updateEvent', function (page) {
@@ -617,7 +654,7 @@ myApp.onPageInit('jualBeli', function (page) {
 		contentType: false,
 		processData: false
 	}).done(function(dataKategori){
-		console.log("masuk");
+		//console.log("masuk");
 		var dataLengthKategori=0;
 		for (var aaa = 0 ; aaa < dataKategori.length ; aaa++) {
 			var tempA=aaa+1;

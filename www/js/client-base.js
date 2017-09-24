@@ -139,7 +139,7 @@ function onBackKeyDown() {
 }
 
 function setDeviceOnGPS(){
-	/*cordova.plugins.locationAccuracy.canRequest(function(canRequest){
+	cordova.plugins.locationAccuracy.canRequest(function(canRequest){
 	    if(canRequest){
 	        cordova.plugins.locationAccuracy.request(function(){
 	            console.log("Request successful");
@@ -158,7 +158,7 @@ function setDeviceOnGPS(){
 	        );
 	    }
 	});
-	*/
+	
 }
 
 function checkPastDate(idName){

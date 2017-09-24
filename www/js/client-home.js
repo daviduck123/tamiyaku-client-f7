@@ -599,7 +599,9 @@ function statusPost() {
 	
 	if(status=="")
 	{
+		myApp.closeModal();
 		myApp.alert('Anda belum mengisi status anda', 'Perhatian!');
+
 	}
 	else
 	{

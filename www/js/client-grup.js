@@ -1336,6 +1336,7 @@ function statusGrupPost() {
 	
 	if(status=="")
 	{
+		myApp.closeModal();
 		myApp.alert('Anda belum mengisi isi postingan anda', 'Perhatian!');
 	}
 	else

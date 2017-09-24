@@ -185,8 +185,6 @@ function getAllJualBeliPost() {
 				//munculkan semua post
 				for(var i=0;i<dataLength;i++)
 				{
-					console.log(notif_id);
-					console.log(z[i]['id']);
 					if(notif_id==z[i]['id'])
 					{
 						//if(kelas_dipilih==z[i]['id_kelas'])
@@ -219,11 +217,11 @@ function getAllJualBeliPost() {
 							html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
 							html += 			"</tr>";
 							html += 			"<tr>";
-							html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">'+z[i]['nama']+'</div></td>';
+							html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div>'+z[i]['nama']+'</div></td>';
 							html += 			"</tr>";
 							html += 			"<tr>";
 							var test = z[i]['harga'].toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.");
-							html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">Rp '+test+',-</div></td>';
+							html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div>Rp '+test+',-</div></td>';
 							html += 			"</tr>";
 							html += 			"<tr>";
 							html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Kategori</div></td>';
@@ -316,11 +314,11 @@ function getAllJualBeliPost() {
 						html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
 						html += 			"</tr>";
 						html += 			"<tr>";
-						html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">'+z[i]['nama']+'</div></td>';
+						html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div>'+z[i]['nama']+'</div></td>';
 						html += 			"</tr>";
 						html += 			"<tr>";
 						var test = z[i]['harga'].toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.");
-						html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">Rp '+test+',-</div></td>';
+						html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div>Rp '+test+',-</div></td>';
 						html += 			"</tr>";
 						html += 			"<tr>";
 						html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Kategori</div></td>';
@@ -467,13 +465,13 @@ function getAllJualBeliPostVar(id_post) {
 						html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
 						html += 			"</tr>";
 						html += 			"<tr>";
-						html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">'+z[i]['nama']+'</div></td>';
+						html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div>'+z[i]['nama']+'</div></td>';
 						//html +=					'<td>: </td>';
 						//html +=					'<td colspan="2" style="font-weight:bold;">'+z[i]['deskripsi']+'</td>';
 						html += 			"</tr>";
 						html += 			"<tr>";
 						var test = z[i]['harga'].toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.");
-						html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">Rp '+test+',-</div></td>';
+						html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div>Rp '+test+',-</div></td>';
 						html += 			"</tr>";
 						html += 			"<tr>";
 						html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Kategori</div></td>';
@@ -558,13 +556,13 @@ function getAllJualBeliPostVar(id_post) {
 							html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
 							html += 			"</tr>";
 							html += 			"<tr>";
-							html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">'+z[i]['nama']+'</div></td>';
+							html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div>'+z[i]['nama']+'</div></td>';
 							//html +=					'<td>: </td>';
 							//html +=					'<td colspan="2" style="font-weight:bold;">'+z[i]['deskripsi']+'</td>';
 							html += 			"</tr>";
 							html += 			"<tr>";
 							var test = z[i]['harga'].toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.");
-							html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">Rp '+test+',-</div></td>';
+							html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div>Rp '+test+',-</div></td>';
 							html += 			"</tr>";
 							html += 			"<tr>";
 							html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Kategori</div></td>';
@@ -1327,11 +1325,11 @@ function getAllJualBeliPostByKategori(id_kategori,id_urutan) {
 						html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
 						html += 			"</tr>";
 						html += 			"<tr>";
-						html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">'+z[i]['nama']+'</div></td>';
+						html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div>'+z[i]['nama']+'</div></td>';
 						html += 			"</tr>";
 						html += 			"<tr>";
 						var test = z[i]['harga'].toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.");
-						html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">Rp '+test+',-</div></td>';
+						html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div>Rp '+test+',-</div></td>';
 						html += 			"</tr>";
 						html += 			"<tr>";
 						html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Kategori</div></td>';
@@ -1416,11 +1414,11 @@ function getAllJualBeliPostByKategori(id_kategori,id_urutan) {
 							html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
 							html += 			"</tr>";
 							html += 			"<tr>";
-							html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">'+z[i]['nama']+'</div></td>';
+							html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div>'+z[i]['nama']+'</div></td>';
 							html += 			"</tr>";
 							html += 			"<tr>";
 							var test = z[i]['harga'].toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.");
-							html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div style="width:100px;">Rp '+test+',-</div></td>';
+							html +=					'<td colspan="5" height="30px;" style="font-weight:bold;"><div>Rp '+test+',-</div></td>';
 							html += 			"</tr>";
 							html += 			"<tr>";
 							html +=					'<td colspan="2" height="30px;"><div style="width:100px;">Kategori</div></td>';

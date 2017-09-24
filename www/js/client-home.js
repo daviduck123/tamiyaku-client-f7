@@ -7,7 +7,9 @@ function gotoHome(){
 }
 
 function komentariPost(clicked_id) {
-	bacaKomentar(clicked_id);
+	if($("#deskripsi_"+clicked_id).length == 0){
+		bacaKomentar(clicked_id);
+	}
 	var id_user = getData("active_user_id");
 	var id_post = "";
 	$(document).ready(function(){

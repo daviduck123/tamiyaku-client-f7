@@ -1482,7 +1482,9 @@ function bacaGrupKomentar(clicked_id) {
 
 function komentariGrupPost(clicked_id) {
 	//ON PROGRESS
-	bacaGrupKomentar(clicked_id);
+	if($("#deskripsi_grup_"+clicked_id).length == 0){
+		bacaGrupKomentar(clicked_id);
+	}
 	var id_user = getData("active_user_id");
 	var id_post = "";
 	$(document).ready(function(){

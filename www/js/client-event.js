@@ -926,7 +926,7 @@ function bacaEventKomentar(clicked_id) {
 				var vardeksripsi="deskripsi_event_"+id_post;
 				var vartable="table_event_"+id_post;
 				
-				var table = document.getElementById(vartable).value;
+				//var table = document.getElementById(vartable);.value;
 				
 				//console.log(vartable);
 				
@@ -1007,7 +1007,10 @@ function bacaEventKomentar(clicked_id) {
 
 function komentariEventPost(clicked_id) {
 	//ON PROGRESS
-	bacaEventKomentar(clicked_id);
+	if($("#deskripsi_event_"+clicked_id).length == 0){
+		bacaEventKomentar(clicked_id);
+	}
+	
 	var id_user = getData("active_user_id");
 	var id_post = "";
 	$(document).ready(function(){
@@ -1016,7 +1019,7 @@ function komentariEventPost(clicked_id) {
 		var vardeksripsi="deskripsi_event_"+id_post;
 		var vartable="table_event_"+id_post;
 		
-		var table = document.getElementById(vartable).value;
+		//var table = document.getElementById(vartable).value;
 		
 		//console.log(vartable);
 		

@@ -695,7 +695,10 @@ function bacaJualBeliKomentar(clicked_id) {
 
 function komentariJualBeliPost(clicked_id) {
 	//ON PROGRESS
-	bacaJualBeliKomentar(clicked_id);
+	if($("#deskripsi_jualBeli_"+clicked_id).length == 0){
+		bacaJualBeliKomentar(clicked_id);
+	}
+	
 	var id_user = getData("active_user_id");
 	var id_post = "";
 	$(document).ready(function(){

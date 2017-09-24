@@ -167,7 +167,9 @@ function getAllLapakSayaPost() {
 				html += 		"<table id='table_lapakSaya_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 				html += 			"<tr>";
 				html += 				"<td rowspan='2' width='10%'>";
+				html +=                     "<a href='#'' onclick='gotoProfilTeman("+z[i]['id_user']+");' class='item-link'>";
 				html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+				html +=                     "</a>";
 				html += 				"</td>";
 				html += 				"<td style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
 				html += 			"</tr>";

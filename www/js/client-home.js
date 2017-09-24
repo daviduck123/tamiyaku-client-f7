@@ -107,7 +107,9 @@ function bacaKomentar(clicked_id) {
 							html += 		"<table style='background-color:#e6e6e6;'  width='100%;'>";
 							html += 			"<tr>";
 							html += 				"<td rowspan='2' width='10%'>";
+							html +=                     "<a href='#'' onclick='gotoProfilTeman("+z[i]['id_user']+");' class='item-link'>";
 							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+							html +=                     "</a>";
 							html += 				"</td>";
 							html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
 							if(z[i]['nama']==getData("active_user_nama"))
@@ -196,6 +198,7 @@ function getAllPost() {
 						html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 						html += 			"<tr>";
 						html += 				"<td rowspan='2' width='10%'>";
+						html +=                     "<a href='#'' onclick='gotoProfilTeman("+z[i]['id_user']+");' class='item-link'>";
 						if(z[i]['nama']==getData("active_user_nama"))
 						{
 							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
@@ -204,6 +207,7 @@ function getAllPost() {
 						{
 							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 						}
+						html +=                     "</a>";
 						html += 				"</td>";
 						html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
 						if(z[i]['nama']==getData("active_user_nama"))
@@ -239,6 +243,7 @@ function getAllPost() {
 						html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 						html += 			"<tr>";
 						html += 				"<td rowspan='2' width='10%'>";
+						html +=                     "<a href='#'' onclick='gotoProfilTeman("+z[i]['id_user']+");' class='item-link'>";
 						if(z[i]['nama']==getData("active_user_nama"))
 						{
 							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
@@ -247,6 +252,7 @@ function getAllPost() {
 						{
 							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 						}
+						html +=                     "</a>";
 						html += 				"</td>";
 						html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
 						if(z[i]['nama']==getData("active_user_nama"))
@@ -286,6 +292,7 @@ function getAllPost() {
 					html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 					html += 			"<tr>";
 					html += 				"<td rowspan='2' width='10%'>";
+					html +=                     "<a href='#'' onclick='gotoProfilTeman("+z[i]['id_user']+");' class='item-link'>";
 					if(z[i]['nama']==getData("active_user_nama"))
 					{
 						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
@@ -294,6 +301,7 @@ function getAllPost() {
 					{
 						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 					}
+					html +=                     "</a>";
 					html += 				"</td>";
 					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
 					if(z[i]['nama']==getData("active_user_nama"))
@@ -329,6 +337,7 @@ function getAllPost() {
 					html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 					html += 			"<tr>";
 					html += 				"<td rowspan='2' width='10%'>";
+					html +=                     "<a href='#'' onclick='gotoProfilTeman("+z[i]['id_user']+");' class='item-link'>";
 					if(z[i]['nama']==getData("active_user_nama"))
 					{
 						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
@@ -337,6 +346,7 @@ function getAllPost() {
 					{
 						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 					}
+					html +=                     "</a>";
 					html += 				"</td>";
 					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
 					if(z[i]['nama']==getData("active_user_nama"))
@@ -413,6 +423,7 @@ function getAllPost(id_post) {
 						html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 						html += 			"<tr>";
 						html += 				"<td rowspan='2' width='10%'>";
+						html +=                     "<a href='#'' onclick='gotoProfilTeman("+z[i]['id_user']+");' class='item-link'>";
 						if(z[i]['nama']==getData("active_user_nama"))
 						{
 							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
@@ -421,6 +432,7 @@ function getAllPost(id_post) {
 						{
 							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 						}
+						html +=                     "</a>";
 						html += 				"</td>";
 						html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
 						if(z[i]['nama']==getData("active_user_nama"))
@@ -456,6 +468,7 @@ function getAllPost(id_post) {
 						html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 						html += 			"<tr>";
 						html += 				"<td rowspan='2' width='10%'>";
+						html +=                     "<a href='#'' onclick='gotoProfilTeman("+z[i]['id_user']+");' class='item-link'>";
 						if(z[i]['nama']==getData("active_user_nama"))
 						{
 							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
@@ -464,6 +477,7 @@ function getAllPost(id_post) {
 						{
 							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 						}
+						html +=                     "</a>";
 						html += 				"</td>";
 						html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
 						if(z[i]['nama']==getData("active_user_nama"))
@@ -506,6 +520,7 @@ function getAllPost(id_post) {
 					html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 					html += 			"<tr>";
 					html += 				"<td rowspan='2' width='10%'>";
+					html +=                     "<a href='#'' onclick='gotoProfilTeman("+z[i]['id_user']+");' class='item-link'>";
 					if(z[i]['nama']==getData("active_user_nama"))
 					{
 						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
@@ -514,6 +529,7 @@ function getAllPost(id_post) {
 					{
 						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 					}
+					html +=                     "</a>";
 					html += 				"</td>";
 					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
 					if(z[i]['nama']==getData("active_user_nama"))
@@ -549,6 +565,7 @@ function getAllPost(id_post) {
 					html += 		"<table id='table_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
 					html += 			"<tr>";
 					html += 				"<td rowspan='2' width='10%'>";
+					html +=                     "<a href='#'' onclick='gotoProfilTeman("+z[i]['id_user']+");' class='item-link'>";
 					if(z[i]['nama']==getData("active_user_nama"))
 					{
 						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
@@ -557,6 +574,7 @@ function getAllPost(id_post) {
 					{
 						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 					}
+					html +=                     "</a>";
 					html += 				"</td>";
 					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
 					if(z[i]['nama']==getData("active_user_nama"))

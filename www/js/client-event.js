@@ -1450,6 +1450,11 @@ function saveEventEditPost(clicked_id) {
 													getAllEventPost();
 													myApp.alert('Event berhasil diubah!', 'Berhasil!');
 													ctx = null;
+													if(ctx != null){
+												        $(".track-selected").show();
+												    }else{
+												        $(".track-selected").hide();
+												    }
 													$(".file-selected").hide();
 													myApp.closeModal();
 												}).fail(function(x){

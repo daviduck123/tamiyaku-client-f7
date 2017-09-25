@@ -60,6 +60,11 @@ function cClear() {
 
 function gambar() {
     viewRouterBack();
+    if(ctx != null){
+        $(".track-selected").show();
+    }else{
+        $(".track-selected").hide();
+    }
 }
 
 function bindDraggableTrack(){

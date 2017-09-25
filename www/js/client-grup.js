@@ -909,11 +909,10 @@ function getAllGrupPost(clickedId) {
 					}
 					html +=                     "</a>";
 					html += 				"</td>";
-					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+					html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['nama']+"</td>";
 					if(z[i]['nama']==getData("active_user_nama"))
 					{
-						html += 				"<td style='font-weight:bold;'><i onclick='editGrupPost(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-						html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+						html += 				"<td class='text-right'><i onclick='editGrupPost(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 					}
 					html += 			"</tr>";
 					html += 			"<tr>";
@@ -954,11 +953,10 @@ function getAllGrupPost(clickedId) {
 					}
 					html +=                     "</a>";
 					html += 				"</td>";
-					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+					html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['nama']+"</td>";
 					if(z[i]['nama']==getData("active_user_nama"))
 					{
-						html += 				"<td style='font-weight:bold;'><i onclick='editGrupPost(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-						html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+						html += 				"<td class='text-right'><i onclick='editGrupPost(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 					}
 					html += 			"</tr>";
 					html += 			"<tr>";
@@ -1046,11 +1044,10 @@ function getAllGrupPost(clickedId) {
 					}
 					html +=                     "</a>";
 					html += 				"</td>";
-					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+					html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['nama']+"</td>";
 					if(z[i]['nama']==getData("active_user_nama"))
 					{
-						html += 				"<td style='font-weight:bold;'><i onclick='editGrupPost(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-						html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+						html += 				"<td class='text-right'><i onclick='editGrupPost(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 					}
 					html += 			"</tr>";
 					html += 			"<tr>";
@@ -1091,11 +1088,10 @@ function getAllGrupPost(clickedId) {
 					}
 					html +=                     "</a>";
 					html += 				"</td>";
-					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+					html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['nama']+"</td>";
 					if(z[i]['nama']==getData("active_user_nama"))
 					{
-						html += 				"<td style='font-weight:bold;'><i onclick='editGrupPost(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-						html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+						html += 				"<td class='text-right'><i onclick='editGrupPost(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 					}
 					html += 			"</tr>";
 					html += 			"<tr>";
@@ -1184,11 +1180,10 @@ function getAllGrupPostWithIdPost(clickedId, id_post) {
 					}
 					html +=                     "</a>";
 					html += 				"</td>";
-					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+					html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['nama']+"</td>";
 					if(z[i]['nama']==getData("active_user_nama"))
 					{
-						html += 				"<td style='font-weight:bold;'><i onclick='editGrupPost(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-						html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+						html += 				"<td class='text-right'><i onclick='editGrupPost(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 					}
 					html += 			"</tr>";
 					html += 			"<tr>";
@@ -1229,11 +1224,10 @@ function getAllGrupPostWithIdPost(clickedId, id_post) {
 					}
 					html +=                     "</a>";
 					html += 				"</td>";
-					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+					html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['nama']+"</td>";
 					if(z[i]['nama']==getData("active_user_nama"))
 					{
-						html += 				"<td style='font-weight:bold;'><i onclick='editGrupPost(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-						html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+						html += 				"<td class='text-right'><i onclick='editGrupPost(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 					}
 					html += 			"</tr>";
 					html += 			"<tr>";
@@ -1441,11 +1435,10 @@ function bacaGrupKomentar(clicked_id) {
 							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 							html +=                     "</a>";
 							html += 				"</td>";
-							html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+							html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['nama']+"</td>";
 							if(z[i]['nama']==getData("active_user_nama"))
 							{
-								html += 				"<td style='font-weight:bold;'><i onclick='editKomentarGrup("+clicked_id+",this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-								html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusKomentarGrup("+clicked_id+",this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+								html += 				"<td class='text-right'><i onclick='editKomentarGrup("+clicked_id+",this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusKomentarGrup("+clicked_id+",this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 							}
 							html += 			"</tr>";
 							html += 			"<tr>";

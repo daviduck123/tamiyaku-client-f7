@@ -112,11 +112,10 @@ function getAllTemanPost(clickedId) {
 					html += 				"<td rowspan='2' width='10%'>";
 					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 					html += 				"</td>";
-					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+					html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['nama']+"</td>";
 					if(z[i]['nama']==getData("active_user_nama"))
 					{
-						html += 				"<td style='font-weight:bold;'><i onclick='editPostProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-						html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusDataProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+						html += 				"<td class='text-right'><i onclick='editPostProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusDataProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 					}
 					html += 			"</tr>";
 					html += 			"<tr>";
@@ -148,11 +147,10 @@ function getAllTemanPost(clickedId) {
 					html += 				"<td rowspan='2' width='10%'>";
 					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 					html += 				"</td>";
-					html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+					html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['nama']+"</td>";
 					if(z[i]['nama']==getData("active_user_nama"))
 					{
-						html += 				"<td style='font-weight:bold;'><i onclick='editPostProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-						html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusDataProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+						html += 				"<td class='text-right'><i onclick='editPostProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusDataProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 					}
 					html += 			"</tr>";
 					html += 			"<tr>";
@@ -237,11 +235,10 @@ function getAllTemanPost(clickedId, id_post) {
 							html += 				"<td rowspan='2' width='10%'>";
 							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 							html += 				"</td>";
-							html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+							html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['nama']+"</td>";
 							if(z[i]['nama']==getData("active_user_nama"))
 							{
-								html += 				"<td style='font-weight:bold;'><i onclick='editPostProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-								html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusDataProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+								html += 				"<td class='text-right'><i onclick='editPostProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusDataProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 							}
 							html += 			"</tr>";
 							html += 			"<tr>";
@@ -273,11 +270,10 @@ function getAllTemanPost(clickedId, id_post) {
 							html += 				"<td rowspan='2' width='10%'>";
 							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 							html += 				"</td>";
-							html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+							html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['nama']+"</td>";
 							if(z[i]['nama']==getData("active_user_nama"))
 							{
-								html += 				"<td style='font-weight:bold;'><i onclick='editPostProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-								html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusDataProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+								html += 				"<td class='text-right'><i onclick='editPostProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusDataProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 							}
 							html += 			"</tr>";
 							html += 			"<tr>";
@@ -319,11 +315,10 @@ function getAllTemanPost(clickedId, id_post) {
 						html += 				"<td rowspan='2' width='10%'>";
 						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 						html += 				"</td>";
-						html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+						html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['nama']+"</td>";
 						if(z[i]['nama']==getData("active_user_nama"))
 						{
-							html += 				"<td style='font-weight:bold;'><i onclick='editPostProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-							html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusDataProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+							html += 				"<td class='text-right'><i onclick='editPostProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusDataProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 						}
 						html += 			"</tr>";
 						html += 			"<tr>";
@@ -355,11 +350,10 @@ function getAllTemanPost(clickedId, id_post) {
 						html += 				"<td rowspan='2' width='10%'>";
 						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 						html += 				"</td>";
-						html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+						html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['nama']+"</td>";
 						if(z[i]['nama']==getData("active_user_nama"))
 						{
-							html += 				"<td style='font-weight:bold;'><i onclick='editPostProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-							html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusDataProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+							html += 				"<td class='text-right'><i onclick='editPostProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusDataProfile(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 						}
 						html += 			"</tr>";
 						html += 			"<tr>";
@@ -619,11 +613,10 @@ function bacaTemanKomentar(clicked_id) {
 							html += 				"<td rowspan='2' width='10%'>";
 							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 							html += 				"</td>";
-							html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+							html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['nama']+"</td>";
 							if(z[i]['nama']==getData("active_user_nama"))
 							{
-								html += 				"<td style='font-weight:bold;'><i onclick='editKomentarKuProfile("+clicked_id+",this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-								html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusKomentarProfile("+clicked_id+",this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+								html += 				"<td class='text-right'><i onclick='editKomentarKuProfile("+clicked_id+",this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusKomentarProfile("+clicked_id+",this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 							}
 							html += 			"</tr>";
 							html += 			"<tr>";

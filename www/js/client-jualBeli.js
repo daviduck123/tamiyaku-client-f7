@@ -208,7 +208,7 @@ function getAllJualBeliPost() {
 							}
 							html +=                     "</a>";
 							html += 				"</td>";
-							html += 				"<td colspan='4' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
+							html += 				"<td colspan='2' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
 							if(z[i]['user_nama']==getData("active_user_nama"))
 							{
 								html += 				"<td style='font-weight:bold;'><i onclick='editPostJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
@@ -305,11 +305,10 @@ function getAllJualBeliPost() {
 						}
 						html +=                     "</a>";
 						html += 				"</td>";
-						html += 				"<td colspan='4' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
+						html += 				"<td colspan='3' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
 						if(z[i]['user_nama']==getData("active_user_nama"))
 						{
-							html += 				"<td style='font-weight:bold;'><i onclick='editPostJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-							html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+							html += 				"<td class='text-right'><i onclick='editPostJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 						}
 						html += 			"</tr>";
 						html += 			"<tr>";
@@ -457,11 +456,10 @@ function getAllJualBeliPostVar(id_post) {
 						}
 						html +=                     "</a>";
 						html += 				"</td>";
-						html += 				"<td colspan='4' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
+						html += 				"<td colspan='3' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
 						if(z[i]['user_nama']==getData("active_user_nama"))
 						{
-							html += 				"<td style='font-weight:bold;'><i onclick='editPostJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-							html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+							html += 				"<td class='text-right'><i onclick='editPostJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 						}
 						html += 			"</tr>";
 						html += 			"<tr>";
@@ -548,11 +546,10 @@ function getAllJualBeliPostVar(id_post) {
 							}
 							html +=                     "</a>";
 							html += 				"</td>";
-							html += 				"<td colspan='4' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
+							html += 				"<td colspan='3' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
 							if(z[i]['user_nama']==getData("active_user_nama"))
 							{
-								html += 				"<td style='font-weight:bold;'><i onclick='editPostJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-								html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+								html += 				"<td class='text-right'><i onclick='editPostJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 							}
 							html += 			"</tr>";
 							html += 			"<tr>";
@@ -654,11 +651,10 @@ function bacaJualBeliKomentar(clicked_id) {
 							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 							html +=                     "</a>";
 							html += 				"</td>";
-							html += 				"<td style='font-weight:bold;'>"+z[i]['nama']+"</td>";
+							html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['nama']+"</td>";
 							if(z[i]['nama']==getData("active_user_nama"))
 							{
-								html += 				"<td style='font-weight:bold;'><i onclick='editKomentarJualBeli("+clicked_id+", this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-								html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusKomentarJualBeli("+clicked_id+",this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+								html += 				"<td class='text-right'><i onclick='editKomentarJualBeli("+clicked_id+", this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusKomentarJualBeli("+clicked_id+",this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 							}
 							html += 			"</tr>";
 							html += 			"<tr>";
@@ -1321,11 +1317,10 @@ function getAllJualBeliPostByKategori(id_kategori,id_urutan) {
 						}
 						html +=                     "</a>";
 						html += 				"</td>";
-						html += 				"<td colspan='4' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
+						html += 				"<td colspan='3' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
 						if(z[i]['user_nama']==getData("active_user_nama"))
 						{
-							html += 				"<td style='font-weight:bold;'><i onclick='editPostJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-							html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+							html += 				"<td class='text-right'><i onclick='editPostJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 						}
 						html += 			"</tr>";
 						html += 			"<tr>";
@@ -1410,11 +1405,10 @@ function getAllJualBeliPostByKategori(id_kategori,id_urutan) {
 							}
 							html +=                     "</a>";
 							html += 				"</td>";
-							html += 				"<td colspan='4' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
+							html += 				"<td colspan='3' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
 							if(z[i]['user_nama']==getData("active_user_nama"))
 							{
-								html += 				"<td style='font-weight:bold;'><i onclick='editPostJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-								html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+								html += 				"<td class='text-right'><i onclick='editPostJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 							}
 							html += 			"</tr>";
 							html += 			"<tr>";

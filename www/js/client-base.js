@@ -87,8 +87,9 @@ function onPhotoDataFail(message) {
 }
 
 function onBackKeyDown() {
-
-	if($('.popup.modal-in').length > 0){
+	if ($('.panel-left').hasClass( "active" ) || $('.panel-right').hasClass( "active" )) { 
+		myApp.closePanel(); 
+	} else if($('.popup.modal-in').length > 0){
 		myApp.closeModal();
 	}else{
 		var activepage = mainView.activePage.name;

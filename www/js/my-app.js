@@ -548,15 +548,6 @@ myApp.onPageInit('notif', function (page) {
 		}
 		else if(type.includes("grup"))
 		{
-			/*
-			var temps =s.split('/');
-			var id_grup =temps[1];
-			saveData( "notif_id",id);
-			saveData( "notif_komentar",komentar);
-			gotoGroup(id_grup);
-			*/
-
-
 			//notif grup masuk pada post
 		}
 		else if(type=="event")
@@ -743,10 +734,6 @@ myApp.onPageInit('notif', function (page) {
 						coba+=z[ii]['id']+"|"; 
 						dataLength++;
 					}
-
-					$("#baseJualBeli").html("");
-					$("#baseJualBeli2").html("");
-					$("#isi_container_jualBeli").html("");
 
 					$("#isi_postingan_notif").html("");
 					$("#isi_komentari_notif").html("");

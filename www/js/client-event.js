@@ -169,7 +169,7 @@ function buatEventPost() {
 												processData: false
 											}).done(function(z){
 												myApp.closeModal();
-												myApp.alert('Event berhasil dibuat', 'Berhasil!');
+												//myApp.alert('Event berhasil dibuat', 'Berhasil!');
 												ctx = null;
 												$(".file-selected").hide();
 												viewRouterBack();

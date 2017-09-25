@@ -26,53 +26,53 @@ function getAllNotif() {
 				
 				if(type=="event")
 				{
-					var html=	'<a href="#" onClick="gotoFriendNotif('+id_user+','+id_tujuan+','+komen+','+"'"+'event'+"'"+')" style="color:white;">';
+					var html=	'<div><a href="#" onClick="gotoFriendNotif('+id_user+','+id_tujuan+','+komen+','+"'"+'event'+"'"+')" style="color:white;">';
 					html += 		'<li class="item-content" style="margin-bottom:-15px;">';
 					html += 			'<div class="item-media"><i class="icon fa fa-circle" style="color:white; font-size: 0.3em;"></i></div>';
 					html += 			'<div class="item-inner">';
 					html += 				' <div class="item-title" style="font-size:11px;">'+z[i]['deskripsi']+'</div>';
 					html += 			'</div>';
 					html += 		'</li>';
-					html += 	'</a>';
+					html += 	'</a></div><br>';
 
 					$("#isi_container_notifikasi").append(html);
 				}
 				else if(type=="post")
 				{
-					var html=	'<a href="#" onClick="gotoFriendNotif('+id_user+','+id_tujuan+','+komen+','+"'"+'post'+"'"+')" style="color:white;">';
+					var html=	'<div><a href="#" onClick="gotoFriendNotif('+id_user+','+id_tujuan+','+komen+','+"'"+'post'+"'"+')" style="color:white;">';
 					html += 		'<li class="item-content" style="margin-bottom:-15px;">';
 					html += 			'<div class="item-media"><i class="icon fa fa-circle" style="color:white; font-size: 0.3em;"></i></div>';
 					html += 			'<div class="item-inner">';
 					html += 				' <div class="item-title" style="font-size:11px;">'+z[i]['deskripsi']+'</div>';
 					html += 			'</div>';
 					html += 		'</li>';
-					html += 	'</a>';
+					html += 	'</a></div><br>';
 
 					$("#isi_container_notifikasi").append(html);
 				}
 				else if(type=="grup")
 				{
-					var html=	'<a href="#" onClick="gotoFriendNotif('+id_user+','+id_tujuan+','+komen+','+"'"+'grup'+"'"+')" style="color:white;">';
+					var html=	'<div><a href="#" onClick="gotoFriendNotif('+id_user+','+id_tujuan+','+komen+','+"'"+'grup'+"'"+')" style="color:white;">';
 					html += 		'<li class="item-content" style="margin-bottom:-15px;">';
 					html += 			'<div class="item-media"><i class="icon fa fa-circle" style="color:white; font-size: 0.3em;"></i></div>';
 					html += 			'<div class="item-inner">';
 					html += 				' <div class="item-title" style="font-size:11px;">'+z[i]['deskripsi']+'</div>';
 					html += 			'</div>';
 					html += 		'</li>';
-					html += 	'</a>';
+					html += 	'</a></div><br>';
 
 					$("#isi_container_notifikasi").append(html);
 				}
 				else if(type=="jualbeli")
 				{
-					var html=	'<a href="#" onClick="gotoFriendNotif('+id_user+','+id_tujuan+','+komen+','+"'"+'jualbeli'+"'"+')" style="color:white;">';
+					var html=	'<div><a href="#" onClick="gotoFriendNotif('+id_user+','+id_tujuan+','+komen+','+"'"+'jualbeli'+"'"+')" style="color:white;">';
 					html += 		'<li class="item-content" style="margin-bottom:-15px;">';
 					html += 			'<div class="item-media"><i class="icon fa fa-circle" style="color:white; font-size: 0.3em;"></i></div>';
 					html += 			'<div class="item-inner">';
 					html += 				' <div class="item-title" style="font-size:11px;">'+z[i]['deskripsi']+'</div>';
 					html += 			'</div>';
 					html += 		'</li>';
-					html += 	'</a>';
+					html += 	'</a></div><br>';
 
 					$("#isi_container_notifikasi").append(html);
 				}

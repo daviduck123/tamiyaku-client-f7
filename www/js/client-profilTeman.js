@@ -608,7 +608,7 @@ function bacaTemanKomentar(clicked_id) {
 					{
 						//if(z[i]['foto']!="")
 						//{
-							html += 		"<table style='background-color:#e6e6e6;'  width='100%;'>";
+							html += 		"<table style='background-color:#e6e6e6; padding-left:20px;'  width='100%;'>";
 							html += 			"<tr>";
 							html += 				"<td rowspan='2' width='10%'>";
 							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";

@@ -106,7 +106,7 @@ function bacaKomentar(clicked_id) {
 					{
 						//if(z[i]['foto']!="")
 						//{
-							html += 		"<table style='background-color:#e6e6e6;'  width='100%;'>";
+							html += 		"<table style='background-color:#e6e6e6; padding-left:20px;'  width='100%;'>";
 							html += 			"<tr>";
 							html += 				"<td rowspan='2' width='10%'>";
 							html +=                     "<a href='#'' onclick='gotoProfilTeman("+z[i]['id_user']+");' class='item-link'>";

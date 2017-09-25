@@ -236,6 +236,7 @@ function registerPost() {
 			if(z.status==true){
 				//mainView.router.loadPage('login.html');
 				myApp.alert('Data anda berhasil dibuat, silahkan cek email untuk kode aktivasi', 'Berhasil!');
+				$(".file-selected").hide();
 				
 				saveData( "temp_active_email",email);
 				saveData( "temp_active_password",password);

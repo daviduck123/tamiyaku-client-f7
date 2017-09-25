@@ -192,119 +192,34 @@ function buatEventPost() {
 }
 
 function getAllEventPost() {
-	myApp.showPreloader('Mengambil data...');
-	globalEvent=[];
-	var id_user=getData("active_user_id");
-	var kelas_dipilih = $('#kelas_dipilih').find(":selected").val();
-	var link=urlnya+'/api/event/getAllEvent?id_user='+id_user;
-	var id_kota_dipilih = $('#show_filter_event').find(":selected").val();
+	$(document).ready(function(){
+		//console.log("masuk2");
+		myApp.showPreloader('Mengambil data...');
+		globalEvent=[];
+		var id_user=getData("active_user_id");
+		var kelas_dipilih = $('#kelas_dipilih').find(":selected").val();
+		var link=urlnya+'/api/event/getAllEvent?id_user='+id_user;
+		var id_kota_dipilih = $('#show_filter_event').find(":selected").val();
 
-	$.ajax({ dataType: "jsonp",
-		url: link,
-		type: 'GET',
-		contentType: false,
-		processData: false
-	}).done(function(z){
-		myApp.closeModal();
-		var coba="";
-		var dataLength=0;
-		for (var ii = 0 ; ii < z.length ; ii++) {
-			coba+=z[ii]['id']+"|"; 
-			dataLength++;
-		}
-		$("#isi_container_event").html("");
-		
-		if(id_kota_dipilih==0)
-		{
-			//munculkan semua post
-			for(var i=0;i<dataLength;i++)
-			{
-				if(z[i]['id_kelas'] !== kelas_dipilih) continue;
-				var html=	"<div id='posting_event_"+z[i]['id']+"' style='margin-bottom:50px;'>";
-				html += 		"<table id='table_event_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
-				html += 			"<tr>";
-				html += 				"<td rowspan='2' width='10%'>";
-				html +=                     "<a href='#'' onclick='gotoProfilTeman("+z[i]['id_user']+");' class='item-link'>";
-				if(z[i]['user_nama']==getData("active_user_nama"))
-				{
-					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
-				}
-				else
-				{
-					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
-				}
-				html +=                     "</a>";
-				html += 				"</td>";
-				html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['user_nama']+"</td>";
-				if(z[i]['user_nama']==getData("active_user_nama"))
-				{
-					html += 				"<td class='text-right'><i onclick='gotoUpdateEvent(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusEventData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
-				}
-				html += 			"</tr>";
-				html += 			"<tr>";
-				html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
-				html += 			"</tr>";
-				html += 			"<tr>";
-				html +=					'<td colspan="2" height="30px;" style="font-weight:bold;"><div style="width:100px;">Judul Lomba</div></td>';
-				html +=					'<td>: </td>';
-				html +=					'<td colspan="2" style="font-weight:bold;">'+z[i]['nama']+'</td>';
-				html += 			"</tr>";
-				html += 			"<tr>";
-				html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Tanggal</div></td>';
-				html +=					'<td>: </td>';
-				html +=					'<td colspan="2">'+z[i]['tanggal']+'</td>';
-				html += 			"</tr>";
-				html += 			"<tr>";
-				html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Kota</div></td>';
-				html +=					'<td>: </td>';
-				tempIndeks=z[i]['id_kota']-1;
-				if(globalKota.length == 0){
-					var link=urlnya+'/api/kota/';
-					$.ajax({ dataType: "jsonp",
-						url: link,
-						type: 'GET',
-						async: false,
-						contentType: false,
-						processData: false
-					}).done(function(dataKota){
-						globalEvent.push({id:z[i]['id'], count_komentar:z[i]['count_komentar'], user_nama:z[i]['user_nama'], created_at:z[i]['created_at'], nama:z[i]['nama'], tanggal:z[i]['tanggal'], kota:dataKota[tempIndeks]['nama'], hadiah1:z[i]['hadiah1'], hadiah2:z[i]['hadiah2'], hadiah3:z[i]['hadiah3'], harga_tiket:z[i]['harga_tiket'], deskripsi:z[i]['deskripsi'], lat:z[i]['lat'], lng:z[i]['lng']});
-						globalKota = dataKota;
-						html +=					'<td colspan="2">'+dataKota[tempIndeks]['nama']+'</td>';
-					}).fail(function(x){
-						myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
-					}); 	
-				}else{
-					globalEvent.push({id:z[i]['id'], count_komentar:z[i]['count_komentar'], user_nama:z[i]['user_nama'], created_at:z[i]['created_at'], nama:z[i]['nama'], tanggal:z[i]['tanggal'], kota:globalKota[tempIndeks]['nama'], hadiah1:z[i]['hadiah1'], hadiah2:z[i]['hadiah2'], hadiah3:z[i]['hadiah3'], harga_tiket:z[i]['harga_tiket'], deskripsi:z[i]['deskripsi'], lat:z[i]['lat'], lng:z[i]['lng']});
-					html +=					'<td colspan="2">'+globalKota[tempIndeks]['nama']+'</td>';
-				}
-				saveData("globalEventFoto_"+i,z[i]['foto']);
-				saveData("globalEventUserFoto_"+i,z[i]['user_foto']);
-				var test = z[i]['harga_tiket'].toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.");
-				html += 			"<tr>";
-				html +=					'<td colspan="2" width="100px;" height="30px;"><div style="width:100px;font-weight:bold;">Tiket</div></td>';
-				html +=					'<td>: </td>';
-				html +=					'<td colspan="2">Rp '+test+'</td>';
-				html += 			"</tr>";
-				html += 			"<tr>";
-				html += 				'<td colspan="5" class="q" >';
-				html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%;'>";
-				html += 				"</td>";
-				html += 			"</tr>";
-				html += 		"</table>";
-				html += 		"<div id='kolom_komentar_event_"+z[i]['id']+"'>";
-				html += 		"</div>";
-				html += 			"<div id='btn_detail_event_"+z[i]['id']+"'><p><a href='#' class='button' onclick='detailEvent(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Detail</a></p></div>";
-				html += 	"</div>";
-
-				$("#isi_container_event").append(html);
+		$.ajax({ dataType: "jsonp",
+			url: link,
+			type: 'GET',
+			contentType: false,
+			processData: false
+		}).done(function(z){
+			myApp.closeModal();
+			var coba="";
+			var dataLength=0;
+			for (var ii = 0 ; ii < z.length ; ii++) {
+				coba+=z[ii]['id']+"|"; 
+				dataLength++;
 			}
-		}
-		else
-		{
-			//munculkan post sesuai kota dipilih
-			for(var i=0;i<dataLength;i++)
+			$("#isi_container_event").html("");
+
+			if(id_kota_dipilih==0)
 			{
-				if(id_kota_dipilih==z[i]['id_kota'])
+				//munculkan semua post
+				for(var i=0;i<dataLength;i++)
 				{
 					if(z[i]['id_kelas'] !== kelas_dipilih) continue;
 					var html=	"<div id='posting_event_"+z[i]['id']+"' style='margin-bottom:50px;'>";
@@ -370,7 +285,7 @@ function getAllEventPost() {
 					html += 			"<tr>";
 					html +=					'<td colspan="2" width="100px;" height="30px;"><div style="width:100px;font-weight:bold;">Tiket</div></td>';
 					html +=					'<td>: </td>';
-					html +=					'<td colspan="2">'+test+'</td>';
+					html +=					'<td colspan="2">Rp '+test+'</td>';
 					html += 			"</tr>";
 					html += 			"<tr>";
 					html += 				'<td colspan="5" class="q" >';
@@ -386,11 +301,99 @@ function getAllEventPost() {
 					$("#isi_container_event").append(html);
 				}
 			}
-		}
-		
-	}).fail(function(x){
-		myApp.closeModal();
-		myApp.alert("Pengambilan postingan Event gagal", 'Perhatian!');
+			else
+			{
+				//munculkan post sesuai kota dipilih
+				for(var i=0;i<dataLength;i++)
+				{
+					if(id_kota_dipilih==z[i]['id_kota'])
+					{
+						if(z[i]['id_kelas'] !== kelas_dipilih) continue;
+						var html=	"<div id='posting_event_"+z[i]['id']+"' style='margin-bottom:50px;'>";
+						html += 		"<table id='table_event_"+z[i]['id']+"' style='background-color:white;'  width='100%;'>";
+						html += 			"<tr>";
+						html += 				"<td rowspan='2' width='10%'>";
+						html +=                     "<a href='#'' onclick='gotoProfilTeman("+z[i]['id_user']+");' class='item-link'>";
+						if(z[i]['user_nama']==getData("active_user_nama"))
+						{
+							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' class='profilePicture' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+						}
+						else
+						{
+							html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['user_foto']+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
+						}
+						html +=                     "</a>";
+						html += 				"</td>";
+						html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['user_nama']+"</td>";
+						if(z[i]['user_nama']==getData("active_user_nama"))
+						{
+							html += 				"<td class='text-right'><i onclick='gotoUpdateEvent(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusEventData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+						}
+						html += 			"</tr>";
+						html += 			"<tr>";
+						html += 				"<td style='font-size:10px;'>"+z[i]['created_at']+"</td>";
+						html += 			"</tr>";
+						html += 			"<tr>";
+						html +=					'<td colspan="2" height="30px;" style="font-weight:bold;"><div style="width:100px;">Judul Lomba</div></td>';
+						html +=					'<td>: </td>';
+						html +=					'<td colspan="2" style="font-weight:bold;">'+z[i]['nama']+'</td>';
+						html += 			"</tr>";
+						html += 			"<tr>";
+						html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Tanggal</div></td>';
+						html +=					'<td>: </td>';
+						html +=					'<td colspan="2">'+z[i]['tanggal']+'</td>';
+						html += 			"</tr>";
+						html += 			"<tr>";
+						html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Kota</div></td>';
+						html +=					'<td>: </td>';
+						tempIndeks=z[i]['id_kota']-1;
+						if(globalKota.length == 0){
+							var link=urlnya+'/api/kota/';
+							$.ajax({ dataType: "jsonp",
+								url: link,
+								type: 'GET',
+								async: false,
+								contentType: false,
+								processData: false
+							}).done(function(dataKota){
+								globalEvent.push({id:z[i]['id'], count_komentar:z[i]['count_komentar'], user_nama:z[i]['user_nama'], created_at:z[i]['created_at'], nama:z[i]['nama'], tanggal:z[i]['tanggal'], kota:dataKota[tempIndeks]['nama'], hadiah1:z[i]['hadiah1'], hadiah2:z[i]['hadiah2'], hadiah3:z[i]['hadiah3'], harga_tiket:z[i]['harga_tiket'], deskripsi:z[i]['deskripsi'], lat:z[i]['lat'], lng:z[i]['lng']});
+								globalKota = dataKota;
+								html +=					'<td colspan="2">'+dataKota[tempIndeks]['nama']+'</td>';
+							}).fail(function(x){
+								myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
+							}); 	
+						}else{
+							globalEvent.push({id:z[i]['id'], count_komentar:z[i]['count_komentar'], user_nama:z[i]['user_nama'], created_at:z[i]['created_at'], nama:z[i]['nama'], tanggal:z[i]['tanggal'], kota:globalKota[tempIndeks]['nama'], hadiah1:z[i]['hadiah1'], hadiah2:z[i]['hadiah2'], hadiah3:z[i]['hadiah3'], harga_tiket:z[i]['harga_tiket'], deskripsi:z[i]['deskripsi'], lat:z[i]['lat'], lng:z[i]['lng']});
+							html +=					'<td colspan="2">'+globalKota[tempIndeks]['nama']+'</td>';
+						}
+						saveData("globalEventFoto_"+i,z[i]['foto']);
+						saveData("globalEventUserFoto_"+i,z[i]['user_foto']);
+						var test = z[i]['harga_tiket'].toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.");
+						html += 			"<tr>";
+						html +=					'<td colspan="2" width="100px;" height="30px;"><div style="width:100px;font-weight:bold;">Tiket</div></td>';
+						html +=					'<td>: </td>';
+						html +=					'<td colspan="2">'+test+'</td>';
+						html += 			"</tr>";
+						html += 			"<tr>";
+						html += 				'<td colspan="5" class="q" >';
+						html += 					"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%;'>";
+						html += 				"</td>";
+						html += 			"</tr>";
+						html += 		"</table>";
+						html += 		"<div id='kolom_komentar_event_"+z[i]['id']+"'>";
+						html += 		"</div>";
+						html += 			"<div id='btn_detail_event_"+z[i]['id']+"'><p><a href='#' class='button' onclick='detailEvent(this.id);' id='"+z[i]['id']+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Detail</a></p></div>";
+						html += 	"</div>";
+
+						$("#isi_container_event").append(html);
+					}
+				}
+			}
+
+		}).fail(function(x){
+			myApp.closeModal();
+			myApp.alert("Pengambilan postingan Event gagal", 'Perhatian!');
+		});
 	});
 }
 
@@ -600,7 +603,7 @@ function getAllEventPostVar(id_post) {
 
 function detailEvent(id_post) {
 
-	mainView.router.loadPage('detailEvent.html');
+	mainView.router.reloadPage('detailEvent.html');
 	saveData("id_lihat_detail_event",id_post);
 }
 
@@ -1447,10 +1450,10 @@ function saveEventEditPost(clicked_id) {
 													myApp.alert('Event berhasil diubah!', 'Berhasil!');
 													ctx = null;
 													if(ctx != null){
-												        $(".track-selected").show();
-												    }else{
-												        $(".track-selected").hide();
-												    }
+														$(".track-selected").show();
+													}else{
+														$(".track-selected").hide();
+													}
 													$(".file-selected").hide();
 													myApp.closeModal();
 												}).fail(function(x){

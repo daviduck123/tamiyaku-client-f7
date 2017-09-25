@@ -47,12 +47,12 @@ myApp.onPageInit('detailEvent', function (page) {
 		var foto = "";
 		var user_foto="";
 		var count_komentar = "";
-		console.log(globalEvent.length);
+		//console.log(globalEvent.length);
 		for(var i=0; i<globalEvent.length;i++)
 		{
 			if(globalEvent[i]["id"]==id_post)
 			{
-				console.log("globalEventUserFoto_"+i);
+				//console.log("globalEventUserFoto_"+i);
 				id= globalEvent[i]["id"];
 				nama = globalEvent[i]["nama"];
 				user_nama = globalEvent[i]["user_nama"];
@@ -424,9 +424,46 @@ myApp.onPageInit('daftar', function (page) {
 });
 
 myApp.onPageInit('lomba', function (page) {
-	getAllEventPost();
-	setPullRefreshEvent();
-	myApp.closePanel();
+	//console.log("masuk");
+	$(document).ready(function(){
+		var id_kota=getData("active_user_kota");
+		var arrKota=[];
+		if(globalKota.length == 0){
+			var link=urlnya+'/api/kota/';
+			$.ajax({ dataType: "jsonp",
+				url: link,
+				type: 'GET',
+				async: false,
+				contentType: false,
+				processData: false
+			}).done(function(dataKota){
+				globalKota = dataKota;
+			}).fail(function(x){
+				myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
+			}); 	
+		}
+		arrKota=globalKota;	
+
+		$("#show_filter_event").empty();
+		$("#show_filter_event").append('<option value="0">Semua Kota</option>');
+
+		for(var i=0;i<arrKota.length;i++)
+		{
+			var tempIdKota=1+i;
+			if(arrKota[i]["id"]==id_kota)
+			{
+				$("#show_filter_event").append('<option value="'+arrKota[i]["id"]+'" selected>'+arrKota[i]["nama"]+'</option>');
+			}
+			else
+			{
+				$("#show_filter_event").append('<option value="'+arrKota[i]["id"]+'">'+arrKota[i]["nama"]+'</option>');
+			}
+		}
+
+		getAllEventPost();
+		setPullRefreshEvent();
+		myApp.closePanel();
+	});
 });
 
 myApp.onPageInit('teman', function (page) {
@@ -854,41 +891,6 @@ myApp.onPageInit('searchTemanGrup', function (page) {
 	myApp.closePanel();
 });
 
-myApp.onPageInit('lomba', function (page) {
-	var id_kota=getData("active_user_kota");
-	var arrKota=[];
-	if(globalKota.length == 0){
-		var link=urlnya+'/api/kota/';
-		$.ajax({ dataType: "jsonp",
-			url: link,
-			type: 'GET',
-			async: false,
-			contentType: false,
-			processData: false
-		}).done(function(dataKota){
-			globalKota = dataKota;
-		}).fail(function(x){
-			myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
-		}); 	
-	}
-	arrKota=globalKota;	
-
-	$("#show_filter_event").empty();
-	$("#show_filter_event").append('<option value="0">Semua Kota</option>');
-	
-	for(var i=0;i<arrKota.length;i++)
-	{
-		var tempIdKota=1+i;
-		if(arrKota[i]["id"]==id_kota)
-		{
-			$("#show_filter_event").append('<option value="'+arrKota[i]["id"]+'" selected>'+arrKota[i]["nama"]+'</option>');
-		}
-		else
-		{
-			$("#show_filter_event").append('<option value="'+arrKota[i]["id"]+'">'+arrKota[i]["nama"]+'</option>');
-		}
-	}
-});
 
 myApp.onPageInit('jualBeli', function (page) {
 	setPullRefreshJualBeli();

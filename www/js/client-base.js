@@ -116,6 +116,10 @@ function onBackKeyDown() {
 		    ]
 		  })
 		}
+		else if(activepage=="detailEvent")
+		{
+			balik();
+		}
 		else
 		{
 			myApp.closeModal();

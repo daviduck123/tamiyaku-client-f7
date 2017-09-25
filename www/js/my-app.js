@@ -1082,3 +1082,7 @@ function setPullRefreshJualBeli(){
 function viewRouterBack(){
 	mainView.router.back();
 }
+
+function balik(){
+	mainView.router.reloadPage('lomba.html');
+}

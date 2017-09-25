@@ -116,6 +116,10 @@ function onBackKeyDown() {
 		    ]
 		  })
 		}
+		else if(activepage=="detailEvent")
+		{
+			mainView.router.reloadpage('lomba.html');
+		}
 		else
 		{
 			myApp.closeModal();

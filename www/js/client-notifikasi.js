@@ -29,7 +29,7 @@ function getAllNotif() {
 				html += 		'<li class="item-content" style="margin-bottom:-15px;">';
 				html += 			'<div class="item-media"><i class="icon fa fa-circle" style="color:white; font-size: 0.3em;"></i></div>';
 				html += 			'<div class="item-inner">';
-				html += 				' <div class="item-title" style="font-size:11px;">'+id_user+','+id_tujuan+','+komen+','+"'"+'event'+"'"+'+z[i]['deskripsi']+'</div>';
+				html += 				' <div class="item-title" style="font-size:11px;">'+id_user+','+id_tujuan+','+komen+','+"'"+'event'+"'"+z[i]['deskripsi']+'</div>';
 				html += 			'</div>';
 				html += 		'</li>';
 				html += 	'</a></div><br>';
@@ -42,7 +42,7 @@ function getAllNotif() {
 				html += 		'<li class="item-content" style="margin-bottom:-15px;">';
 				html += 			'<div class="item-media"><i class="icon fa fa-circle" style="color:white; font-size: 0.3em;"></i></div>';
 				html += 			'<div class="item-inner">';
-				html += 				' <div class="item-title" style="font-size:11px;">'+id_user+','+id_tujuan+','+komen+','+"'"+'event'+"'"+'+z[i]['deskripsi']+'</div>';
+				html += 				' <div class="item-title" style="font-size:11px;">'+id_user+','+id_tujuan+','+komen+','+"'"+'event'+"'"+z[i]['deskripsi']+'</div>';
 				html += 			'</div>';
 				html += 		'</li>';
 				html += 	'</a></div><br>';
@@ -55,7 +55,7 @@ function getAllNotif() {
 				html += 		'<li class="item-content" style="margin-bottom:-15px;">';
 				html += 			'<div class="item-media"><i class="icon fa fa-circle" style="color:white; font-size: 0.3em;"></i></div>';
 				html += 			'<div class="item-inner">';
-				html += 				' <div class="item-title" style="font-size:11px;">'+id_user+','+id_tujuan+','+komen+','+"'"+'event'+"'"+'+z[i]['deskripsi']+'</div>';
+				html += 				' <div class="item-title" style="font-size:11px;">'+id_user+','+id_tujuan+','+komen+','+"'"+'event'+"'"+z[i]['deskripsi']+'</div>';
 				html += 			'</div>';
 				html += 		'</li>';
 				html += 	'</a></div><br>';
@@ -68,7 +68,7 @@ function getAllNotif() {
 				html += 		'<li class="item-content" style="margin-bottom:-15px;">';
 				html += 			'<div class="item-media"><i class="icon fa fa-circle" style="color:white; font-size: 0.3em;"></i></div>';
 				html += 			'<div class="item-inner">';
-				html += 				' <div class="item-title" style="font-size:11px;">'+id_user+','+id_tujuan+','+komen+','+"'"+'event'+"'"+'+z[i]['deskripsi']+'</div>';
+				html += 				' <div class="item-title" style="font-size:11px;">'+id_user+','+id_tujuan+','+komen+','+"'"+'event'+"'"+z[i]['deskripsi']+'</div>';
 				html += 			'</div>';
 				html += 		'</li>';
 				html += 	'</a></div><br>';

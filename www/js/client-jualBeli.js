@@ -125,6 +125,7 @@ function buatJualBarangPost() {
 }
 
 function getAllJualBeliPost() {
+	console.log("masuk");
 	myApp.showPreloader('Mengambil data...');
 	var id_user=getData("active_user_id");
 	var kelas_dipilih = $('#kelas_dipilih').find(":selected").val();
@@ -154,7 +155,7 @@ function getAllJualBeliPost() {
 		contentType: false,
 		processData: false
 	}).done(function(z){
-		
+		console.log(z);
 		var link=urlnya+'/api/kategori/';
 		$.ajax({ dataType: "jsonp",
 			url: link,
@@ -175,9 +176,9 @@ function getAllJualBeliPost() {
 				dataLength++;
 			}
 
-			var notif_id= getData("notif_id");
-			var notif_komentar = getData("notif_komentar");
-
+			//var notif_id= getData("notif_id");
+			//var notif_komentar = getData("notif_komentar");
+/*
 			if(notif_id!=null)
 			{
 				$("#baseJualBeli").html("");
@@ -280,7 +281,7 @@ function getAllJualBeliPost() {
 				myApp.closeModal();
 			}
 			else
-			{
+			{*/
 				$("#isi_container_jualBeli").html("");
 				//munculkan semua post
 				for(var i=0;i<dataLength;i++)
@@ -363,10 +364,11 @@ function getAllJualBeliPost() {
 						html += 	"</div>";
 						
 						$("#isi_container_jualBeli").append(html);
+						console.log(html);
 					}
 				}
-				myApp.closeModal();
-			}
+				myApp.closeModal(html);
+			//}
 			
 		}).fail(function(x){
 			myApp.closeModal();

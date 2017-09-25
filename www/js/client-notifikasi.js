@@ -125,9 +125,9 @@ function getAllNotif() {
 	{
 		saveData( "notif_id_grup",id_grup);
 	}
-	//mainView.router.reloadPage('notif.html');
-	mainView.router.loadPage('notif.html');
-	mainView.router.refreshPage('notif.html');
+	mainView.router.reloadPage('notif.html');
+	//mainView.router.loadPage('notif.html');
+	//mainView.router.refreshPage('notif.html');
 	/*
 	if(type=="post")
 	{

@@ -118,7 +118,7 @@ function onBackKeyDown() {
 		}
 		else if(activepage=="detailEvent")
 		{
-			mainView.router.reloadpage('lomba.html');
+			mainView.router.reloadPage('lomba.html');
 		}
 		else
 		{

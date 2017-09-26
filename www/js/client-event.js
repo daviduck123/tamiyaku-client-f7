@@ -1197,8 +1197,9 @@ function komentariEventPost(clicked_id) {
 					processData: false
 				}).done(function(z){
 					//mainView.router.loadPage('lomba.html');
-					
-					getAllEventPostVar(id_post);
+					bacaEventKomentar(id_post);
+					bacaEventKomentar(id_post);
+					//getAllEventPostVar(id_post);
 					//myApp.alert('Komentar dibuat', 'Berhasil!');
 				}).fail(function(x){
 					myApp.alert('Maaf tidak dapat mengomentari status, silahkan coba lagi (line 1945)', 'Perhatian!');
@@ -1723,8 +1724,10 @@ function saveEventEditPost(clicked_id) {
 				contentType: false,
 				processData: false
 			}).done(function(z){
-				getAllEventPostVar(clicked_id);
+				//getAllEventPostVar(clicked_id);
 				myApp.closeModal();
+				bacaEventKomentar(clicked_id);
+				bacaEventKomentar(clicked_id);
 			}).fail(function(x){
 				myApp.alert('Maaf tidak dapat menghapus komentar, silahkan coba lagi', 'Perhatian!');
 				console.log(x);

@@ -176,7 +176,7 @@ myApp.onPageInit('detailEvent', function (page) {
 		html += 		"<div id='kolom_komentar_event_"+id+"'>";
 		html += 		"</div>";
 		html += 			"<div id='btn_komentari_event_"+id+"'><p><a href='#' class='button' onclick='komentariEventPost(this.id);' id='"+id+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
-		html += 			"<p><a href='#' onclick='bacaEventKomentar(this.id);' id='"+id+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+count_komentar+" Komentar</a></p>";
+		html += 			"<p><a href='#' onclick='bacaEventKomentar(this.id);' id='"+id+"' style='margin-top:-5px; float:right; margin-right:10px;' class='count_komentar_edit'>"+count_komentar+" Komentar</a></p>";
 		html += 	"</div>";
 		$("#isi_detail_event").append(html);
 

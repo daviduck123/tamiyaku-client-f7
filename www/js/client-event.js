@@ -1196,9 +1196,14 @@ function komentariEventPost(clicked_id) {
 					contentType: false,
 					processData: false
 				}).done(function(z){
-					//mainView.router.loadPage('lomba.html');
-					bacaEventKomentar(id_post);
-					bacaEventKomentar(id_post);
+					for(var i=0; i<globalEvent.length;i++)
+					{
+						if(globalEvent[i]["id"]==id_post)
+						{
+							globalEvent[i]['count_komentar'] = parseInt(globalEvent[i]['count_komentar']) + 1;
+						}
+					}
+					mainView.router.reloadPage('detailEvent.html');
 					//getAllEventPostVar(id_post);
 					//myApp.alert('Komentar dibuat', 'Berhasil!');
 				}).fail(function(x){
@@ -1693,9 +1698,14 @@ function saveEventEditPost(clicked_id) {
 				processData: false
 			}).done(function(z){
 				myApp.closeModal();
-				bacaEventKomentar(id_event);
-				bacaEventKomentar(id_event);
-				myApp.closeModal();
+				for(var i=0; i<globalEvent.length;i++)
+				{
+					if(globalEvent[i]["id"]==clicked_id)
+					{
+						globalEvent[i]['count_komentar'] = parseInt(globalEvent[i]['count_komentar']) - 1;
+					}
+				}
+				mainView.router.reloadPage('detailEvent.html');
 			}).fail(function(x){
 				myApp.alert('Maaf terjadi kesalahan, silahkan coba lagi', 'Perhatian!');
 			});
@@ -1739,8 +1749,14 @@ function saveEventEditPost(clicked_id) {
 			}).done(function(z){
 				//getAllEventPostVar(clicked_id);
 				myApp.closeModal();
-				bacaEventKomentar(clicked_id);
-				bacaEventKomentar(clicked_id);
+				for(var i=0; i<globalEvent.length;i++)
+				{
+					if(globalEvent[i]["id"]==clicked_id)
+					{
+						globalEvent[i]['count_komentar'] = parseInt(globalEvent[i]['count_komentar']) - 1;
+					}
+				}
+				mainView.router.reloadPage('detailEvent.html');
 			}).fail(function(x){
 				myApp.alert('Maaf tidak dapat menghapus komentar, silahkan coba lagi', 'Perhatian!');
 				console.log(x);

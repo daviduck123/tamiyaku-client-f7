@@ -66,8 +66,8 @@ myApp.onPageInit('detailEvent', function (page) {
 				lng = globalEvent[i]["lng"];
 				harga_tiket = globalEvent[i]["harga_tiket"];
 				deskripsi = globalEvent[i]["deskripsi"];
-				foto = getData("globalEventFoto_"+i);
-				user_foto = getData("globalEventUserFoto_"+i);
+				foto = globalEvent[i]["foto"];
+				user_foto = globalEvent[i]["user_foto"];
 				count_komentar = globalEvent[i]["count_komentar"];
 			}
 		}
@@ -85,11 +85,10 @@ myApp.onPageInit('detailEvent', function (page) {
 			html += 					"<img class='lazy' src='data:image/jpeg;base64,"+user_foto+"' style='padding:0px; margin-right:-20px; margin-bottom:-10px; position:relative; top:-5px;' width='30'>";
 		}
 		html += 				"</td>";
-		html += 				"<td style='font-weight:bold;'>"+user_nama+"</td>";
+		html += 				"<td style='font-weight:bold;' colspan='3'>"+user_nama+"</td>";
 		if(user_nama==getData("active_user_nama"))
 		{
-			html += 				"<td style='font-weight:bold;'><i onclick='gotoUpdateEvent(this.id)' id='"+id+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-			html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusEventData(this.id)' id='"+id+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+			html += 				"<td class='text-right'><i onclick='gotoUpdateEvent(this.id)' id='"+id+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusEventData(this.id)' id='"+id+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 		}
 		html += 			"</tr>";
 		html += 			"<tr>";
@@ -115,96 +114,77 @@ myApp.onPageInit('detailEvent', function (page) {
 		html +=					'<td></td>';
 		html +=					'<td colspan="2"><a href="#" onclick="gotoPetaEventDetail('+lat+','+lng+');"><i class="icon fa fa-map"></i><span style="margin:10px;"> Lihat peta</span></a></td>';
 		html += 			"</tr>";
-					//html += 			"<tr>";
-					//html +=					'<td colspan="12"><center><div id="petaEventDetail" style="width:250px; height:200px;"></div></center></td>';
-					//html += 			"</tr>";
-					var tempIndeks=0;
-					for (var indeks=0;indeks<3;indeks++)
-					{
-						if(indeks==0)
-						{
-							var test = hadiah1.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.")
-							tempIndeks=tempIndeks+1;
-							html += 			"<tr>";
-							html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Hadiah</div> </td>';
-							html +=					'<td>: </td>';
-							html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
-							html +=					'<td colspan="1">Rp '+test+'</td>';
-							html += 			"</tr>";
-						}
-						else if(indeks==1)
-						{
-							if(hadiah2!=0)
-							{
-								var test = hadiah2.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.")
-								tempIndeks=tempIndeks+1;
-								html += 			"<tr>";
-								html +=					'<td colspan="2" width="100px;" height="30px;"</td>';
-								html +=					'<td>: </td>';
-								html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
-								html +=					'<td colspan="1">Rp '+test+'</td>';
-								html += 			"</tr>";
-							}
-						}
-						else
-						{
-							if( hadiah3!=0)
-							{
-								var test = hadiah3.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.")
-								tempIndeks=tempIndeks+1;
-								html += 			"<tr>";
-								html +=					'<td colspan="2" width="100px;" height="30px;"</td>';
-								html +=					'<td>: </td>';
-								html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
-								html +=					'<td colspan="1">Rp '+test+'</td>';
-								html += 			"</tr>";
-							}
-						}
-					}
-					var test = harga_tiket.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.")
+		//html += 			"<tr>";
+		//html +=					'<td colspan="12"><center><div id="petaEventDetail" style="width:250px; height:200px;"></div></center></td>';
+		//html += 			"</tr>";
+		var tempIndeks=0;
+		for (var indeks=0;indeks<3;indeks++)
+		{
+			if(indeks==0)
+			{
+				var test = hadiah1.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.")
+				tempIndeks=tempIndeks+1;
+				html += 			"<tr>";
+				html +=					'<td colspan="2" height="30px;"style="font-weight:bold;"><div style="width:100px;">Hadiah</div> </td>';
+				html +=					'<td>: </td>';
+				html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
+				html +=					'<td colspan="1">Rp '+test+'</td>';
+				html += 			"</tr>";
+			}
+			else if(indeks==1)
+			{
+				if(hadiah2!=0)
+				{
+					var test = hadiah2.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.")
+					tempIndeks=tempIndeks+1;
 					html += 			"<tr>";
-					html +=					'<td colspan="2" width="100px;" height="30px;"><div style="width:100px;font-weight:bold;">Tiket</div></td>';
+					html +=					'<td colspan="2" width="100px;" height="30px;"</td>';
 					html +=					'<td>: </td>';
-					html +=					'<td colspan="2">Rp '+test+'</td>';
+					html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
+					html +=					'<td colspan="1">Rp '+test+'</td>';
 					html += 			"</tr>";
+				}
+			}
+			else
+			{
+				if( hadiah3!=0)
+				{
+					var test = hadiah3.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.")
+					tempIndeks=tempIndeks+1;
 					html += 			"<tr>";
-					html += 				'<td colspan="5" class="q" >';
-					html += 					"<img class='lazy' src='data:image/jpeg;base64,"+foto+"' style='width:100%;'>";
-					html += 				"</td>";
+					html +=					'<td colspan="2" width="100px;" height="30px;"</td>';
+					html +=					'<td>: </td>';
+					html +=					'<td width="20px;" style="font-weight:bold;">'+tempIndeks+'. </td>';
+					html +=					'<td colspan="1">Rp '+test+'</td>';
 					html += 			"</tr>";
-					html += 		"</table>";
-					html += 		"<div id='kolom_komentar_event_"+id+"'>";
-					html += 		"</div>";
-					html += 			"<div id='btn_komentari_event_"+id+"'><p><a href='#' class='button' onclick='komentariEventPost(this.id);' id='"+id+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
-					html += 			"<p><a href='#' onclick='bacaEventKomentar(this.id);' id='"+id+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+count_komentar+" Komentar</a></p>";
-					html += 	"</div>";
-					$("#isi_detail_event").append(html);
+				}
+			}
+		}
+		var test = harga_tiket.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1.")
+		html += 			"<tr>";
+		html +=					'<td colspan="2" width="100px;" height="30px;"><div style="width:100px;font-weight:bold;">Tiket</div></td>';
+		html +=					'<td>: </td>';
+		html +=					'<td colspan="2">Rp '+test+'</td>';
+		html += 			"</tr>";
+		html += 			"<tr>";
+		html += 				'<td colspan="5" class="q" >';
+		html += 					"<img class='lazy' src='data:image/jpeg;base64,"+foto+"' style='width:100%;'>";
+		html += 				"</td>";
+		html += 			"</tr>";
+		html += 		"</table>";
+		html += 		"<div id='kolom_komentar_event_"+id+"'>";
+		html += 		"</div>";
+		html += 			"<div id='btn_komentari_event_"+id+"'><p><a href='#' class='button' onclick='komentariEventPost(this.id);' id='"+id+"' style='margin-right:5%; margin-top:-10px; float:right; width:100px;'>Komentari</a></p></div>";
+		html += 			"<p><a href='#' onclick='bacaEventKomentar(this.id);' id='"+id+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+count_komentar+" Komentar</a></p>";
+		html += 	"</div>";
+		$("#isi_detail_event").append(html);
 
-					var komentar = getData("notif_komentar");
-					if (komentar != null)
-					{
-						komentariEventPost(komentar);
-					}
-
-					var map;
-					$(document).ready(function(){
-
-						map = new GMaps({
-							div: '#petaEventDetail',
-							lat: ﻿﻿lat,
-							lng: lng,
-						});	
-
-						map.addMarker({
-
-							lat: lat,
-							lng: lng,
-							draggable: false,
-						});
-						google.maps.event.trigger(map, 'resize');
-
-					});	
-				});
+		var komentar = getData("notif_komentar");
+		if (komentar != null)
+		{
+			komentariEventPost(komentar);
+		}
+	});
 
 });
 
@@ -634,11 +614,10 @@ myApp.onPageInit('notif', function (page) {
 						}
 						html +=                     "</a>";
 						html += 				"</td>";
-						html += 				"<td style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
+						html += 				"<td style='font-weight:bold;' colspan='3'>"+z[i]['user_nama']+"</td>";
 						if(z[i]['user_nama']==getData("active_user_nama"))
 						{
-							html += 				"<td style='font-weight:bold;'><i onclick='gotoUpdateEvent(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-							html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusEventData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+							html += 				"<td class='text-right'><i onclick='gotoUpdateEvent(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusEventData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 						}
 						html += 			"</tr>";
 						html += 			"<tr>";
@@ -667,14 +646,48 @@ myApp.onPageInit('notif', function (page) {
 								contentType: false,
 								processData: false
 							}).done(function(dataKota){
-								globalEvent.push({id:z[i]['id'], count_komentar:z[i]['count_komentar'], user_nama:z[i]['user_nama'], created_at:z[i]['created_at'], nama:z[i]['nama'], tanggal:z[i]['tanggal'], kota:dataKota[tempIndeks]['nama'], hadiah1:z[i]['hadiah1'], hadiah2:z[i]['hadiah2'], hadiah3:z[i]['hadiah3'], harga_tiket:z[i]['harga_tiket'], deskripsi:z[i]['deskripsi'], lat:z[i]['lat'], lng:z[i]['lng']});
 								globalKota = dataKota;
+								globalEvent.push({
+									id:z[i]['id'], 
+									count_komentar:z[i]['count_komentar'], 
+									user_nama:z[i]['user_nama'], 
+									created_at:z[i]['created_at'],
+									nama:z[i]['nama'], 
+									tanggal:z[i]['tanggal'], 
+									kota:globalKota[tempIndeks]['nama'], 
+									hadiah1:z[i]['hadiah1'], 
+									hadiah2:z[i]['hadiah2'], 
+									hadiah3:z[i]['hadiah3'], 
+									harga_tiket:z[i]['harga_tiket'], 
+									deskripsi:z[i]['deskripsi'], 
+									lat:z[i]['lat'], 
+									lng:z[i]['lng'],
+									user_foto:z[i]['user_foto'],
+									foto: z[i]["foto"]			
+								});
 								html +=					'<td colspan="2">'+dataKota[tempIndeks]['nama']+'</td>';
 							}).fail(function(x){
 								myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
 							}); 	
 						}else{
-							globalEvent.push({id:z[i]['id'], count_komentar:z[i]['count_komentar'], user_nama:z[i]['user_nama'], created_at:z[i]['created_at'], nama:z[i]['nama'], tanggal:z[i]['tanggal'], kota:globalKota[tempIndeks]['nama'], hadiah1:z[i]['hadiah1'], hadiah2:z[i]['hadiah2'], hadiah3:z[i]['hadiah3'], harga_tiket:z[i]['harga_tiket'], deskripsi:z[i]['deskripsi'], lat:z[i]['lat'], lng:z[i]['lng']});
+							globalEvent.push({
+									id:z[i]['id'], 
+									count_komentar:z[i]['count_komentar'], 
+									user_nama:z[i]['user_nama'], 
+									created_at:z[i]['created_at'],
+									nama:z[i]['nama'], 
+									tanggal:z[i]['tanggal'], 
+									kota:globalKota[tempIndeks]['nama'], 
+									hadiah1:z[i]['hadiah1'], 
+									hadiah2:z[i]['hadiah2'], 
+									hadiah3:z[i]['hadiah3'], 
+									harga_tiket:z[i]['harga_tiket'], 
+									deskripsi:z[i]['deskripsi'], 
+									lat:z[i]['lat'], 
+									lng:z[i]['lng'],
+									user_foto:z[i]['user_foto'],
+									foto: z[i]["foto"]			
+								});
 							html +=					'<td colspan="2">'+globalKota[tempIndeks]['nama']+'</td>';
 						}
 						saveData("globalEventFoto_"+i,z[i]['foto']);
@@ -796,11 +809,10 @@ myApp.onPageInit('notif', function (page) {
 							}
 							html +=                     "</a>";
 							html += 				"</td>";
-							html += 				"<td colspan='4' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
+							html += 				"<td colspan='3' style='font-weight:bold;'>"+z[i]['user_nama']+"</td>";
 							if(z[i]['user_nama']==getData("active_user_nama"))
 							{
-								html += 				"<td style='font-weight:bold;'><i onclick='editPostJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i></td>";
-								html += 				"<td style='font-weight:bold;'><i onclick='pilihanHapusJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+								html += 				"<td class='text-right'><i onclick='editPostJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusJualBeli(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 							}
 							html += 			"</tr>";
 							html += 			"<tr>";

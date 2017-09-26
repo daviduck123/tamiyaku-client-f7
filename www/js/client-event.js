@@ -269,14 +269,49 @@ function getAllEventPost() {
 							contentType: false,
 							processData: false
 						}).done(function(dataKota){
-							globalEvent.push({id:z[i]['id'], count_komentar:z[i]['count_komentar'], user_nama:z[i]['user_nama'], created_at:z[i]['created_at'], nama:z[i]['nama'], tanggal:z[i]['tanggal'], kota:dataKota[tempIndeks]['nama'], hadiah1:z[i]['hadiah1'], hadiah2:z[i]['hadiah2'], hadiah3:z[i]['hadiah3'], harga_tiket:z[i]['harga_tiket'], deskripsi:z[i]['deskripsi'], lat:z[i]['lat'], lng:z[i]['lng']});
+							globalEvent.push(
+								{
+									id:z[i]['id'], 
+									count_komentar:z[i]['count_komentar'], 
+									user_nama:z[i]['user_nama'], 
+									created_at:z[i]['created_at'], 
+									nama:z[i]['nama'], 
+									tanggal:z[i]['tanggal'], 
+									kota:dataKota[tempIndeks]['nama'], 
+									hadiah1:z[i]['hadiah1'], 
+									hadiah2:z[i]['hadiah2'], 
+									hadiah3:z[i]['hadiah3'], 
+									harga_tiket:z[i]['harga_tiket'], 
+									deskripsi:z[i]['deskripsi'], 
+									lat:z[i]['lat'], 
+									lng:z[i]['lng'],
+									user_foto:z[i]['user_foto'],
+									foto: z[i]["foto"]
+								});
 							globalKota = dataKota;
 							html +=					'<td colspan="2">'+dataKota[tempIndeks]['nama']+'</td>';
 						}).fail(function(x){
 							myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
 						}); 	
 					}else{
-						globalEvent.push({id:z[i]['id'], count_komentar:z[i]['count_komentar'], user_nama:z[i]['user_nama'], created_at:z[i]['created_at'], nama:z[i]['nama'], tanggal:z[i]['tanggal'], kota:globalKota[tempIndeks]['nama'], hadiah1:z[i]['hadiah1'], hadiah2:z[i]['hadiah2'], hadiah3:z[i]['hadiah3'], harga_tiket:z[i]['harga_tiket'], deskripsi:z[i]['deskripsi'], lat:z[i]['lat'], lng:z[i]['lng']});
+						globalEvent.push({
+							id:z[i]['id'], 
+							count_komentar:z[i]['count_komentar'], 
+							user_nama:z[i]['user_nama'], 
+							created_at:z[i]['created_at'],
+							nama:z[i]['nama'], 
+							tanggal:z[i]['tanggal'], 
+							kota:globalKota[tempIndeks]['nama'], 
+							hadiah1:z[i]['hadiah1'], 
+							hadiah2:z[i]['hadiah2'], 
+							hadiah3:z[i]['hadiah3'], 
+							harga_tiket:z[i]['harga_tiket'], 
+							deskripsi:z[i]['deskripsi'], 
+							lat:z[i]['lat'], 
+							lng:z[i]['lng'],
+							user_foto:z[i]['user_foto'],
+							foto: z[i]["foto"]			
+						});
 						html +=					'<td colspan="2">'+globalKota[tempIndeks]['nama']+'</td>';
 					}
 					saveData("globalEventFoto_"+i,z[i]['foto']);
@@ -356,14 +391,48 @@ function getAllEventPost() {
 								contentType: false,
 								processData: false
 							}).done(function(dataKota){
-								globalEvent.push({id:z[i]['id'], count_komentar:z[i]['count_komentar'], user_nama:z[i]['user_nama'], created_at:z[i]['created_at'], nama:z[i]['nama'], tanggal:z[i]['tanggal'], kota:dataKota[tempIndeks]['nama'], hadiah1:z[i]['hadiah1'], hadiah2:z[i]['hadiah2'], hadiah3:z[i]['hadiah3'], harga_tiket:z[i]['harga_tiket'], deskripsi:z[i]['deskripsi'], lat:z[i]['lat'], lng:z[i]['lng']});
 								globalKota = dataKota;
+								globalEvent.push({
+									id:z[i]['id'], 
+									count_komentar:z[i]['count_komentar'], 
+									user_nama:z[i]['user_nama'], 
+									created_at:z[i]['created_at'],
+									nama:z[i]['nama'], 
+									tanggal:z[i]['tanggal'], 
+									kota:globalKota[tempIndeks]['nama'], 
+									hadiah1:z[i]['hadiah1'], 
+									hadiah2:z[i]['hadiah2'], 
+									hadiah3:z[i]['hadiah3'], 
+									harga_tiket:z[i]['harga_tiket'], 
+									deskripsi:z[i]['deskripsi'], 
+									lat:z[i]['lat'], 
+									lng:z[i]['lng'],
+									user_foto:z[i]['user_foto'],
+									foto: z[i]["foto"]			
+								});
 								html +=					'<td colspan="2">'+dataKota[tempIndeks]['nama']+'</td>';
 							}).fail(function(x){
 								myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
 							}); 	
 						}else{
-							globalEvent.push({id:z[i]['id'], count_komentar:z[i]['count_komentar'], user_nama:z[i]['user_nama'], created_at:z[i]['created_at'], nama:z[i]['nama'], tanggal:z[i]['tanggal'], kota:globalKota[tempIndeks]['nama'], hadiah1:z[i]['hadiah1'], hadiah2:z[i]['hadiah2'], hadiah3:z[i]['hadiah3'], harga_tiket:z[i]['harga_tiket'], deskripsi:z[i]['deskripsi'], lat:z[i]['lat'], lng:z[i]['lng']});
+							globalEvent.push({
+									id:z[i]['id'], 
+									count_komentar:z[i]['count_komentar'], 
+									user_nama:z[i]['user_nama'], 
+									created_at:z[i]['created_at'],
+									nama:z[i]['nama'], 
+									tanggal:z[i]['tanggal'], 
+									kota:globalKota[tempIndeks]['nama'], 
+									hadiah1:z[i]['hadiah1'], 
+									hadiah2:z[i]['hadiah2'], 
+									hadiah3:z[i]['hadiah3'], 
+									harga_tiket:z[i]['harga_tiket'], 
+									deskripsi:z[i]['deskripsi'], 
+									lat:z[i]['lat'], 
+									lng:z[i]['lng'],
+									user_foto:z[i]['user_foto'],
+									foto: z[i]["foto"]			
+								});
 							html +=					'<td colspan="2">'+globalKota[tempIndeks]['nama']+'</td>';
 						}
 						saveData("globalEventFoto_"+i,z[i]['foto']);
@@ -471,14 +540,48 @@ function getAllEventPostVar(id_post) {
 						contentType: false,
 						processData: false
 					}).done(function(dataKota){
-						globalEvent.push({id:z[i]['id'], count_komentar:z[i]['count_komentar'], user_nama:z[i]['user_nama'], created_at:z[i]['created_at'], nama:z[i]['nama'], tanggal:z[i]['tanggal'], kota:dataKota[tempIndeks]['nama'], hadiah1:z[i]['hadiah1'], hadiah2:z[i]['hadiah2'], hadiah3:z[i]['hadiah3'], harga_tiket:z[i]['harga_tiket'], deskripsi:z[i]['deskripsi'], lat:z[i]['lat'], lng:z[i]['lng']});
 						globalKota = dataKota;
+						globalEvent.push({
+									id:z[i]['id'], 
+									count_komentar:z[i]['count_komentar'], 
+									user_nama:z[i]['user_nama'], 
+									created_at:z[i]['created_at'],
+									nama:z[i]['nama'], 
+									tanggal:z[i]['tanggal'], 
+									kota:globalKota[tempIndeks]['nama'], 
+									hadiah1:z[i]['hadiah1'], 
+									hadiah2:z[i]['hadiah2'], 
+									hadiah3:z[i]['hadiah3'], 
+									harga_tiket:z[i]['harga_tiket'], 
+									deskripsi:z[i]['deskripsi'], 
+									lat:z[i]['lat'], 
+									lng:z[i]['lng'],
+									user_foto:z[i]['user_foto'],
+									foto: z[i]["foto"]			
+								});
 						html +=					'<td colspan="2">'+dataKota[tempIndeks]['nama']+'</td>';
 					}).fail(function(x){
 						myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
 					}); 	
 				}else{
-					globalEvent.push({id:z[i]['id'], count_komentar:z[i]['count_komentar'], user_nama:z[i]['user_nama'], created_at:z[i]['created_at'], nama:z[i]['nama'], tanggal:z[i]['tanggal'], kota:globalKota[tempIndeks]['nama'], hadiah1:z[i]['hadiah1'], hadiah2:z[i]['hadiah2'], hadiah3:z[i]['hadiah3'], harga_tiket:z[i]['harga_tiket'], deskripsi:z[i]['deskripsi'], lat:z[i]['lat'], lng:z[i]['lng']});
+					globalEvent.push({
+									id:z[i]['id'], 
+									count_komentar:z[i]['count_komentar'], 
+									user_nama:z[i]['user_nama'], 
+									created_at:z[i]['created_at'],
+									nama:z[i]['nama'], 
+									tanggal:z[i]['tanggal'], 
+									kota:globalKota[tempIndeks]['nama'], 
+									hadiah1:z[i]['hadiah1'], 
+									hadiah2:z[i]['hadiah2'], 
+									hadiah3:z[i]['hadiah3'], 
+									harga_tiket:z[i]['harga_tiket'], 
+									deskripsi:z[i]['deskripsi'], 
+									lat:z[i]['lat'], 
+									lng:z[i]['lng'],
+									user_foto:z[i]['user_foto'],
+									foto: z[i]["foto"]			
+								});
 					html +=					'<td colspan="2">'+globalKota[tempIndeks]['nama']+'</td>';
 				}
 				saveData("globalEventFoto_"+i,z[i]['foto']);
@@ -560,14 +663,48 @@ function getAllEventPostVar(id_post) {
 							contentType: false,
 							processData: false
 						}).done(function(dataKota){
-							globalEvent.push({id:z[i]['id'], count_komentar:z[i]['count_komentar'], user_nama:z[i]['user_nama'], created_at:z[i]['created_at'], nama:z[i]['nama'], tanggal:z[i]['tanggal'], kota:dataKota[tempIndeks]['nama'], hadiah1:z[i]['hadiah1'], hadiah2:z[i]['hadiah2'], hadiah3:z[i]['hadiah3'], harga_tiket:z[i]['harga_tiket'], deskripsi:z[i]['deskripsi'], lat:z[i]['lat'], lng:z[i]['lng']});
 							globalKota = dataKota;
+							globalEvent.push({
+									id:z[i]['id'], 
+									count_komentar:z[i]['count_komentar'], 
+									user_nama:z[i]['user_nama'], 
+									created_at:z[i]['created_at'],
+									nama:z[i]['nama'], 
+									tanggal:z[i]['tanggal'], 
+									kota:globalKota[tempIndeks]['nama'], 
+									hadiah1:z[i]['hadiah1'], 
+									hadiah2:z[i]['hadiah2'], 
+									hadiah3:z[i]['hadiah3'], 
+									harga_tiket:z[i]['harga_tiket'], 
+									deskripsi:z[i]['deskripsi'], 
+									lat:z[i]['lat'], 
+									lng:z[i]['lng'],
+									user_foto:z[i]['user_foto'],
+									foto: z[i]["foto"]			
+								});
 							html +=					'<td colspan="2">'+dataKota[tempIndeks]['nama']+'</td>';
 						}).fail(function(x){
 							myApp.alert("Pengambilan data kota gagal", 'Perhatian!');
 						}); 	
 					}else{
-						globalEvent.push({id:z[i]['id'], count_komentar:z[i]['count_komentar'], user_nama:z[i]['user_nama'], created_at:z[i]['created_at'], nama:z[i]['nama'], tanggal:z[i]['tanggal'], kota:globalKota[tempIndeks]['nama'], hadiah1:z[i]['hadiah1'], hadiah2:z[i]['hadiah2'], hadiah3:z[i]['hadiah3'], harga_tiket:z[i]['harga_tiket'], deskripsi:z[i]['deskripsi'], lat:z[i]['lat'], lng:z[i]['lng']});
+						globalEvent.push({
+									id:z[i]['id'], 
+									count_komentar:z[i]['count_komentar'], 
+									user_nama:z[i]['user_nama'], 
+									created_at:z[i]['created_at'],
+									nama:z[i]['nama'], 
+									tanggal:z[i]['tanggal'], 
+									kota:globalKota[tempIndeks]['nama'], 
+									hadiah1:z[i]['hadiah1'], 
+									hadiah2:z[i]['hadiah2'], 
+									hadiah3:z[i]['hadiah3'], 
+									harga_tiket:z[i]['harga_tiket'], 
+									deskripsi:z[i]['deskripsi'], 
+									lat:z[i]['lat'], 
+									lng:z[i]['lng'],
+									user_foto:z[i]['user_foto'],
+									foto: z[i]["foto"]			
+								});
 						html +=					'<td colspan="2">'+globalKota[tempIndeks]['nama']+'</td>';
 					}
 					saveData("globalEventFoto_"+i,z[i]['foto']);

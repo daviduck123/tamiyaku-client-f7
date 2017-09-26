@@ -39,7 +39,7 @@ function searchTeman(paramData){
 		mainView.router.loadPage('searchTemanGrup.html');
 		myApp.closePanel();
 		var link=urlnya+'/api/user/searchUser?param='+param;
-		console.log(link);
+		//console.log(link);
 		$.ajax({ 
 			dataType: "jsonp",
 		    url: link,
@@ -48,7 +48,7 @@ function searchTeman(paramData){
 		    processData: false
 		}).done(function(z){
 				var link=urlnya+'/api/grup/searchGrup?param='+param;
-				console.log(link);
+				//console.log(link);
 				$.ajax({ 
 					dataType: "jsonp",
 					url: link,
@@ -67,8 +67,8 @@ function searchTeman(paramData){
 						//ambil user
 						var availableTagsUser=[];
 						var dataLengthUser=z['users'].length;
-						console.log(dataLengthUser);
-						console.log(z);
+						//console.log(dataLengthUser);
+						//console.log(z);
 						for(var i=0; i<dataLengthUser;i++)
 						{
 							availableTagsUser.push({
@@ -77,7 +77,7 @@ function searchTeman(paramData){
 								foto:  z['users'][i]['foto']
 							});
 						}
-						console.log(availableTagsUser.length);
+						//console.log(availableTagsUser.length);
 						
 						$("#isi_container_searchTemanGrup").remove();
 						$("#container_searchTemanGrup").append('<div id="isi_container_searchTemanGrup"></div>');
@@ -88,7 +88,7 @@ function searchTeman(paramData){
 						
 						for(var i=0;i<availableTagsUser.length;i++)
 						{
-							console.log(i);
+							//console.log(i);
 							html +=			'<li>';
 							html += 				'<a href="#" onclick="gotoProfilTeman('+availableTagsUser[i]['id']+');" id="grup_'+availableTagsUser[i]['id']+'" class="item-link">';
 							html += 					'<div class="item-content">';
@@ -175,8 +175,8 @@ function searchTeman(paramData){
 						//ambil user
 						var availableTagsUser=[];
 						var dataLengthUser=z['users'].length;
-						console.log(dataLengthUser);
-						console.log(z);
+						//console.log(dataLengthUser);
+						//console.log(z);
 						for(var i=0; i<dataLengthUser;i++)
 						{
 							availableTagsUser.push({
@@ -185,7 +185,7 @@ function searchTeman(paramData){
 								foto:  z['users'][i]['foto']
 							});
 						}
-						console.log(availableTagsUser.length);
+						//console.log(availableTagsUser.length);
 						
 						//ambil grup
 						var availableTagsGrup=[];
@@ -218,7 +218,7 @@ function searchTeman(paramData){
 						
 						for(var i=0;i<availableTagsUser.length;i++)
 						{
-							console.log(i);
+							//console.log(i);
 							html +=			'<li>';
 							html += 				'<a href="#" onclick="gotoProfilTeman('+availableTagsUser[i]['id']+');" id="grup_'+availableTagsUser[i]['id']+'" class="item-link">';
 							html += 					'<div class="item-content">';

@@ -135,7 +135,7 @@ function bacaKomentar(clicked_id) {
 						//}
 					}
 					html +=  "</div>";
-					//console.log(html);
+					////console.log(html);
 					$("#kolom_komentar_"+clicked_id).append(html);
 				}
 				else
@@ -640,7 +640,7 @@ function statusPost() {
 			for (var ii = 0 ; ii < formData.entries().length; ii++) {
 				coba+=formData.entries()[ii][0]+ ', '; 
 			}
-			console.log(coba);
+			//console.log(coba);
 		});
 		
 	}
@@ -767,7 +767,7 @@ function hapusData(clicked_id)
 			for (var ii = 0 ; ii < formData.entries().length; ii++) {
 				coba+=formData.entries()[ii][0]+ ', '; 
 			}
-			console.log(coba);
+			//console.log(coba);
 		});
 }
 
@@ -809,7 +809,7 @@ function statusEditPost(clicked_id) {
 			for (var ii = 0 ; ii < formData.entries().length; ii++) {
 				coba+=formData.entries()[ii][0]+ ', '; 
 			}
-			console.log(coba);
+			//console.log(coba);
 		});
 		
 	}
@@ -937,6 +937,6 @@ function hapusKomentarHomeTrue(clicked_id, id_komentar)
 			myApp.closeModal();
 		}).fail(function(x){
 			myApp.alert('Maaf tidak dapat menghapus komentar, silahkan coba lagi', 'Perhatian!');
-			console.log(x);
+			//console.log(x);
 		});
 }

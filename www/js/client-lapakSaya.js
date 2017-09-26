@@ -95,7 +95,7 @@ function buatLapakSayaPost() {
 							formData.append("id_kelas", kelas);
 							formData.append("file", blob);
 							
-							console.log(formData);
+							//console.log(formData);
 							myApp.showPreloader('Proses Data...');		
 							var link=urlnya+'/api/jualBeli/createJualBeli';
 							$.ajax({ 
@@ -218,7 +218,7 @@ function getAllLapakSayaPost() {
 				
 				$("#isi_container_lapakSaya").append(html);
 		}
-		//console.log(globalLapak);
+		////console.log(globalLapak);
 		myApp.closeModal();
 	}).fail(function(x){
 		myApp.alert("Pengambilan postingan Jual Beli barang gagal", 'Perhatian!');
@@ -403,7 +403,7 @@ function editLapakSayaPost(clickedID) {
 	var kota = $('#kota_editLapakSaya_'+clickedID).find(":selected").val();
 	var deskripsi = document.getElementById("deskripsi_editLapakSaya_"+clickedID).value;
 	var fileinput = document.getElementById("file_editLapakSaya").value;
-	console.log(namaLapakSaya);
+	//console.log(namaLapakSaya);
 	if(namaLapakSaya=="")
 	{
 		myApp.alert('Silahkan isi nama barang', 'Perhatian!');

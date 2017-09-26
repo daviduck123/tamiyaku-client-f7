@@ -111,9 +111,9 @@ function loginPost() {
 						
 						myApp.closeModal();
 						myApp.alert('Maaf terdapat kesalahan dalam pengisian data, silahkan coba lagi', 'Perhatian!');
-						console.log(x);
+						//console.log(x);
 						//for (var pair of formData.entries()) {
-						//	console.log(pair[0]+ ', ' + pair[1]); 
+						//	//console.log(pair[0]+ ', ' + pair[1]); 
 						//}
 					});
 				}
@@ -241,9 +241,9 @@ function loginBySavedData() {
 						
 						myApp.closeModal();
 						myApp.alert('Maaf terdapat kesalahan dalam pengisian data, silahkan coba lagi', 'Perhatian!');
-						console.log(x);
+						//console.log(x);
 						//for (var pair of formData.entries()) {
-						//	console.log(pair[0]+ ', ' + pair[1]); 
+						//	//console.log(pair[0]+ ', ' + pair[1]); 
 						//}
 					});
 				}
@@ -266,7 +266,7 @@ function cekLoginAktif() {
 	var expires="";
 	active_user_id=getData("active_user_id");
 	expires=getData("expires");
-	console.log(expires);
+	//console.log(expires);
 	if(active_user_id!="" && active_user_id!=null)
 	{
 		if(expires=="true")
@@ -357,7 +357,7 @@ function cekLoginAktifAwal() {
 	var expires="";
 	active_user_id=getData("active_user_id");
 	expires=getData("expires");
-	console.log(expires);
+	//console.log(expires);
 	if(active_user_id!="" && active_user_id!=null)
 	{
 		if(expires=="true")

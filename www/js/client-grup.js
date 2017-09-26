@@ -100,7 +100,6 @@ function gotoGroup(clickedId){
 	var id_grup = getData("id_grup");
 	
 	var link=urlnya+'/api/grup/checkJoinedGrup?id_user='+id_user+'&id_grup='+id_grup;
-	console.log(link);
 	$.ajax({ dataType: "jsonp",
 	    url: link,
 	    type: 'GET',
@@ -179,7 +178,6 @@ function gotoPetaGrup(latData, lngData){
 	}
 	
 	function showPosition(position) {
-		console.log("lat:"+position.coords.latitude+"\nlng:"+position.coords.longitude);
         var latKuSekarang = position.coords.latitude;
 		var lngKuSekarang = position.coords.longitude;
 		
@@ -225,15 +223,12 @@ function recenterGrupMap()
 {
 	var map;
 	function showPosition(position) {
-		//console.log("lat:"+position.coords.latitude+"\nlng:"+position.coords.longitude);
 		var id_kota = $("#kota_buatGrup").val();
 		if(globalKota.length > 0){
 			for(var xx = 0 ; xx < globalKota.length; xx++){
 				if(globalKota[xx].id === id_kota){
 					currentLat = position.coords.latitude;
 					currentLng = position.coords.longitude;
-					//currentLat = globalKota[xx].lat;
-					//currentLng = globalKota[xx].lng;
 					break;
 				}
 			}
@@ -354,13 +349,10 @@ function gotoGoogleMap(){
 	
 	var map;
 	function showPosition(position) {
-		//console.log("lat:"+position.coords.latitude+"\nlng:"+position.coords.longitude);
 		var id_kota = $("#kota_buatGrup").val();
 		if(globalKota.length > 0){
 			for(var xx = 0 ; xx < globalKota.length; xx++){
 				if(globalKota[xx].id === id_kota){
-					//currentLat = position.coords.latitude;
-					//currentLng = position.coords.longitude;
 					currentLat = globalKota[xx].lat;
 					currentLng = globalKota[xx].lng;
 					break;
@@ -558,11 +550,6 @@ function buatGrupPost() {
 							formData.append("file", blob);
 							
 							var link=urlnya+'/api/grup/createGrup';
-							//console.log(formData);
-							
-							//for (var z[ii] of formData.entries()) {
-							//	console.log(z[ii][0]+ ', ' + z[ii][1]); 
-							//}
 							$.ajax({
 								url: link,
 								data: formData,
@@ -754,7 +741,6 @@ function hapusGrupTrue(clickedId){
 		    processData: false
 		}).done(function(z){
 			myApp.closeModal();
-			console.log(z.status);
 			if(z.status==true)
 			{
 				$("#isi_leaveGrup").remove();
@@ -803,7 +789,6 @@ function leaveThisGrup(clickedId){
 	    processData: false
 	}).done(function(z){
 		myApp.closeModal();
-		console.log(z.status);
 		if(z.status==true)
 		{
 			$("#isi_leaveGrup").remove();
@@ -1380,7 +1365,6 @@ function statusGrupPost() {
 							coba+=formData.entries()[ii][0]+ ', ' + formData.entries()[ii][1]; 
 			}
 			myApp.closeModal();
-			console.log(coba);
 		});
 		
 	}
@@ -1406,7 +1390,6 @@ function bacaGrupKomentar(clicked_id) {
 				var vartable="table_grup_"+id_post;
 				
 				var table = document.getElementById(vartable).value;
-				//console.log(vartable);
 				
 				if($("#" + vardeksripsi).length == 0) {
 					$("textarea[id^=deskripsi_grup_]").each(function(e){
@@ -1457,12 +1440,7 @@ function bacaGrupKomentar(clicked_id) {
 						//}
 					}
 					html +=  "</div>";
-					//console.log(html);
 					$("#kolom_komentar_grup_"+clicked_id).append(html);
-				}
-				else
-				{
-					//nggak ada yang komentar
 				}
 			}).fail(function(x){
 				myApp.alert('Maaf tidak dapat mengomentari status, silahkan coba lagi', 'Perhatian!');
@@ -1493,8 +1471,6 @@ function komentariGrupPost(clicked_id) {
 		var vartable="table_grup_"+id_post;
 		
 		var table = document.getElementById(vartable).value;
-		
-		//console.log(vartable);
 		
 		if($("#" + vardeksripsi).length == 0) {
 			$("textarea[id^=deskripsi_grup_]").each(function(e){
@@ -1559,7 +1535,6 @@ function editPostinganGrup(clicked_id,id_grup)
 	    contentType: false,
 	    processData: false
 	}).done(function(z){
-		console.log(z);
 		myApp.closeModal();
 		var coba="";
 		var dataLength=0;
@@ -1571,7 +1546,6 @@ function editPostinganGrup(clicked_id,id_grup)
 		{
 			if(clicked_id==z[i]['id'])
 			{
-				console.log(z);
 				if(z[i]['foto']!="")
 				{
 					//myApp.popup('.popup-edit-home');
@@ -1663,7 +1637,6 @@ function postinganGrupEditPost(clicked_id,id_grup) {
 			for (var ii = 0 ; ii < formData.entries().length; ii++) {
 				coba+=formData.entries()[ii][0]+ ', '; 
 			}
-			console.log(coba);
 		});
 		
 	}
@@ -1677,7 +1650,6 @@ function editKomentarGrup(id_grup,clicked_id)
 	
 	$(document).ready(function(){
 			var link=urlnya+'/api/komentar?id_post='+id_grup;
-			console.log(link);
 			$.ajax({ dataType: "jsonp",
 				url: link,
 				type: 'GET',
@@ -1784,7 +1756,6 @@ function simpanEditPost(clicked_id, id_grup) {
 			for (var ii = 0 ; ii < formData.entries().length; ii++) {
 				coba+=formData.entries()[ii][0]+ ', '; 
 			}
-			console.log(coba);
 		});
 		
 	}
@@ -1830,7 +1801,6 @@ function hapusGrupData(clicked_id, id_grup)
 			for (var ii = 0 ; ii < formData.entries().length; ii++) {
 				coba+=formData.entries()[ii][0]+ ', '; 
 			}
-			console.log(coba);
 		});
 }
 
@@ -1868,6 +1838,5 @@ function hapusKomentarGrupTrue(clicked_id, id_komentar)
 			getAllGrupPostWithIdPost(id_grup,clicked_id);
 		}).fail(function(x){
 			myApp.alert('Maaf tidak dapat menghapus komentar, silahkan coba lagi', 'Perhatian!');
-			console.log(x);
 		});
 }

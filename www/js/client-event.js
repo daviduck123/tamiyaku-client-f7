@@ -13,7 +13,6 @@ function gotoLomba(){
 function ubahViewEventFilter()
 {
 	var id_kota = $('#show_filter_event').find(":selected").val();
-	//console.log(id_kategori);
 	getAllEventPost();
 }
 
@@ -193,7 +192,6 @@ function buatEventPost() {
 
 function getAllEventPost() {
 	$(document).ready(function(){
-		//console.log("masuk2");
 		myApp.showPreloader('Mengambil data...');
 		globalEvent=[];
 		var id_user=getData("active_user_id");
@@ -803,7 +801,6 @@ function recenterEventMap()
 {
 	var map;
 	function showPosition(position) {
-		//console.log("lat:"+position.coords.latitude+"\nlng:"+position.coords.longitude);
 		var id_kota = $("#kota_buatEvent").val();
 		if(globalKota.length > 0){
 			for(var xx = 0 ; xx < globalKota.length; xx++){
@@ -929,13 +926,10 @@ function gotoGmapEvent(){
 	
 	var map;
 	function showPosition(position) {
-		//console.log("lat:"+position.coords.latitude+"\nlng:"+position.coords.longitude);
 		var id_kota = $("#kota_buatEvent").val();
 		if(globalKota.length > 0){
 			for(var xx = 0 ; xx < globalKota.length; xx++){
 				if(globalKota[xx].id === id_kota){
-					//currentLat = position.coords.latitude;
-					//currentLng = position.coords.longitude;
 					currentLat = globalKota[xx].lat;
 					currentLng = globalKota[xx].lng;
 					break;
@@ -1064,9 +1058,6 @@ function bacaEventKomentar(clicked_id) {
 				var vardeksripsi="deskripsi_event_"+id_post;
 				var vartable="table_event_"+id_post;
 				
-				//var table = document.getElementById(vartable);.value;
-				
-				//console.log(vartable);
 				
 				if($("#" + vardeksripsi).length == 0) {
 					$("textarea[id^=deskripsi_event_]").each(function(e){
@@ -1117,14 +1108,7 @@ function bacaEventKomentar(clicked_id) {
 						//}
 					}
 					html +=  "</div>";
-					//console.log(html);
 					$("#kolom_komentar_event_"+clicked_id).append(html);
-				}
-				else
-				{
-					//nggak ada yang komentar
-					
-
 				}
 				myApp.closeModal();
 			}).fail(function(x){
@@ -1156,9 +1140,6 @@ function komentariEventPost(clicked_id) {
 		var vardeksripsi="deskripsi_event_"+id_post;
 		var vartable="table_event_"+id_post;
 		
-		//var table = document.getElementById(vartable).value;
-		
-		//console.log(vartable);
 		
 		if($("#" + vardeksripsi).length == 0) {
 			$("textarea[id^=deskripsi_event_]").each(function(e){
@@ -1477,7 +1458,6 @@ function hapusEventData(clicked_id)
 	}).fail(function(x){
 		myApp.alert('Maaf tidak dapat menghapus kiriman, silahkan coba lagi', 'Perhatian!');
 
-		console.log(x);
 	});
 }
 
@@ -1577,7 +1557,6 @@ function saveEventEditPost(clicked_id) {
 												if(ctx !== null){
 													formData.append("canvas",ctx.canvas.toDataURL());
 												}
-												//console.log(formData);
 												var link=urlnya+'/api/event/updateEvent/';
 												myApp.showPreloader('Update Data...');
 												$.ajax({
@@ -1759,6 +1738,5 @@ function saveEventEditPost(clicked_id) {
 				mainView.router.reloadPage('detailEvent.html');
 			}).fail(function(x){
 				myApp.alert('Maaf tidak dapat menghapus komentar, silahkan coba lagi', 'Perhatian!');
-				console.log(x);
 			});
 		}

@@ -2,7 +2,7 @@ function gotoProfilTeman(clickedId){
 	myApp.showPreloader('Mengambil data...');
 	eraseData("id_teman");
 	saveData( "id_teman",clickedId);
-	//console.log(getData("id_teman"));
+	////console.log(getData("id_teman"));
 	var id_teman = clickedId;
 	mainView.router.loadPage('profilTeman.html');
 	var id_user = getData("active_user_id");
@@ -27,7 +27,7 @@ function gotoProfilTeman(clickedId){
 			if(notif_id != null)
 			{
 				getAllTemanPost(id_teman);
-				console.log("post dan data");
+				//console.log("post dan data");
 			}
 			else
 			{
@@ -39,7 +39,7 @@ function gotoProfilTeman(clickedId){
 		{
 			if(id_teman != getData("active_user_id"))
 			{
-				//console.log("belumteman");
+				////console.log("belumteman");
 				getProfilTeman(id_teman,0);
 			}
 			else
@@ -224,7 +224,7 @@ function getAllTemanPost(clickedId, id_post) {
 				//munculkan semua post
 				for(var i=0;i<dataLength;i++)
 				{
-					//console.log(z[i]['id']+"=="+notif_id);
+					////console.log(z[i]['id']+"=="+notif_id);
 					if(z[i]['id']==notif_id)
 					{
 						if(z[i]['foto']!="")
@@ -383,7 +383,7 @@ function getAllTemanPost(clickedId, id_post) {
 function getProfilTeman(clickedId, statusTeman){
 	var id_teman = clickedId;
 	var link=urlnya+'/api/user/getUserByIdUser?id_user='+id_teman;
-	console.log(link);
+	//console.log(link);
 	$.ajax({ dataType: "jsonp",
 	    url: link,
 	    type: 'GET',
@@ -635,7 +635,7 @@ function bacaTemanKomentar(clicked_id) {
 						//}
 					}
 					html +=  "</div>";
-					//console.log(html);
+					////console.log(html);
 					$("#kolom_komentar_teman_"+clicked_id).append(html);
 				}
 				else
@@ -754,7 +754,7 @@ function statusTemanPost() {
 			for (var pair of formData.entries()) {
 				coba+=pair[0]+ ', '; 
 			}
-			console.log(coba);
+			//console.log(coba);
 		});
 		
 	}
@@ -902,7 +902,7 @@ function hapusDataProfile(clicked_id)
 			for (var ii = 0 ; ii < formData.entries().length; ii++) {
 				coba+=formData.entries()[ii][0]+ ', '; 
 			}
-			console.log(coba);
+			//console.log(coba);
 		});
 }
 
@@ -946,7 +946,7 @@ function statusEditPostProfile(clicked_id) {
 			for (var ii = 0 ; ii < formData.entries().length; ii++) {
 				coba+=formData.entries()[ii][0]+ ', '; 
 			}
-			console.log(coba);
+			//console.log(coba);
 		});
 		
 	}
@@ -1072,6 +1072,6 @@ function hapusKomentarProfileTrue(clicked_id, id_komentar)
 			myApp.closeModal();
 		}).fail(function(x){
 			myApp.alert('Maaf tidak dapat menghapus komentar, silahkan coba lagi', 'Perhatian!');
-			console.log(x);
+			//console.log(x);
 		});
 }

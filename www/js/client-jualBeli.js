@@ -125,7 +125,7 @@ function buatJualBarangPost() {
 }
 
 function getAllJualBeliPost() {
-	console.log("masuk");
+	//console.log("masuk");
 	myApp.showPreloader('Mengambil data...');
 	var id_user=getData("active_user_id");
 	var kelas_dipilih = $('#kelas_dipilih').find(":selected").val();
@@ -155,7 +155,7 @@ function getAllJualBeliPost() {
 		contentType: false,
 		processData: false
 	}).done(function(z){
-		console.log(z);
+		//console.log(z);
 		var link=urlnya+'/api/kategori/';
 		$.ajax({ dataType: "jsonp",
 			url: link,
@@ -670,7 +670,7 @@ function bacaJualBeliKomentar(clicked_id) {
 						//}
 					}
 					html +=  "</div>";
-					//console.log(html);
+					////console.log(html);
 					$("#kolom_komentar_jualBeli_"+clicked_id).append(html);
 				}
 				else
@@ -705,7 +705,7 @@ function komentariJualBeliPost(clicked_id) {
 		
 		var table = document.getElementById(vartable).value;
 		
-		//console.log(vartable);
+		////console.log(vartable);
 		
 		if($("#" + vardeksripsi).length == 0) {
 			$("textarea[id^=deskripsi_jualBeli_]").each(function(e){
@@ -1116,7 +1116,7 @@ function hapusJualBeliData(clicked_id)
 		}).fail(function(x){
 			myApp.alert('Maaf tidak dapat menghapus kiriman, silahkan coba lagi', 'Perhatian!');
 			
-			console.log(x);
+			//console.log(x);
 		});
 }
 
@@ -1154,7 +1154,7 @@ function hapusKomentarJualBeliTrue(clicked_id, id_komentar)
 			myApp.closeModal();
 		}).fail(function(x){
 			myApp.alert('Maaf tidak dapat menghapus komentar, silahkan coba lagi', 'Perhatian!');
-			console.log(x);
+			//console.log(x);
 		});
 }
 
@@ -1162,7 +1162,7 @@ function ubahView()
 {
 	var id_kategori = $('#show_kategori_jualBeli').find(":selected").val();
 	var id_urutan = $('#show_urutan_jualBeli').find(":selected").val();
-	//console.log(id_kategori);
+	////console.log(id_kategori);
 	getAllJualBeliPostByKategori(id_kategori,id_urutan);
 }
 

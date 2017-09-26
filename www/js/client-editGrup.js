@@ -11,7 +11,6 @@ function gotoGoogleMapEdit(){
 	
 	var map;
 	function showPosition(position) {
-		//console.log("lat:"+position.coords.latitude+"\nlng:"+position.coords.longitude);
 		map = new GMaps({
 				div: '#petaku',
 				lat: position.coords.latitude,
@@ -168,12 +167,6 @@ function editGrupPost()
 						formData.append("file", blob);
 						
 						var link=urlnya+'/api/grup/updateGrup';
-						//console.log(formData);
-						
-						//for (var z[ii] of formData.entries()) {
-						//	console.log(z[ii][0]+ ', ' + z[ii][1]); 
-						//}
-						//myApp.showPreloader('Update Data...');
 						$.ajax({
 							url: link,
 							data: formData,

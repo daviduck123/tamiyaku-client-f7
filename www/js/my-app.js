@@ -26,7 +26,7 @@ if(globalKota.length == 0){
 	}); 	
 }
 myApp.onPageInit('detailEvent', function (page) {
-	console.log("masuk");
+	//console.log("masuk");
 	$(document).ready(function() 
 	{ 
 		var id_post = getData("id_lihat_detail_event");
@@ -48,12 +48,12 @@ myApp.onPageInit('detailEvent', function (page) {
 		var foto = "";
 		var user_foto="";
 		var count_komentar = "";
-		//console.log(globalEvent.length);
+		////console.log(globalEvent.length);
 		for(var i=0; i<globalEvent.length;i++)
 		{
 			if(globalEvent[i]["id"]==id_post)
 			{
-				//console.log("globalEventUserFoto_"+i);
+				////console.log("globalEventUserFoto_"+i);
 				id= globalEvent[i]["id"];
 				nama = globalEvent[i]["nama"];
 				user_nama = globalEvent[i]["user_nama"];
@@ -405,7 +405,7 @@ myApp.onPageInit('daftar', function (page) {
 });
 
 myApp.onPageInit('lomba', function (page) {
-	//console.log("masuk");
+	////console.log("masuk");
 	$(document).ready(function(){
 		var id_kota=getData("active_user_kota");
 		var arrKota=[];
@@ -474,14 +474,14 @@ myApp.onPageInit('notif', function (page) {
 		if(type=="post")
 		{
 			var link=urlnya+'/api/post/getPostById?id='+id;
-			//console.log(link);
+			////console.log(link);
 			$.ajax({ dataType: "jsonp",
 				url: link,
 				type: 'GET',
 				contentType: false,
 				processData: false
 			}).done(function(z){
-				//console.log(z);
+				////console.log(z);
 				var coba="";
 				var dataLength=0;
 				for (var ii = 0 ; ii < z.length; ii++) 
@@ -522,7 +522,7 @@ myApp.onPageInit('notif', function (page) {
 						html += 			"<p><a href='#' onclick='bacaTemanKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
 						html += 	"</div>";
 
-						//console.log(html);
+						////console.log(html);
 						$("#isi_postingan_notif").append(html);
 					}
 					else
@@ -549,7 +549,7 @@ myApp.onPageInit('notif', function (page) {
 						html += 			"<p><a href='#' onclick='bacaTemanKomentar(this.id);' id='"+z[i]['id']+"' style='margin-top:-5px; float:right; margin-right:10px;'>"+z[i]["count_komentar"]+" Komentar</a></p>";
 						html += 	"</div>";
 
-						//console.log(html);
+						////console.log(html);
 						$("#isi_postingan_notif").append(html);
 					}
 				}
@@ -717,7 +717,7 @@ myApp.onPageInit('notif', function (page) {
 
 				//if(komentar==1)
 				//{
-				//	console.log("masuk buka komentar");
+				//	//console.log("masuk buka komentar");
 				//	bacaEventKomentar(id);
 				//}
 				myApp.closeModal();
@@ -873,7 +873,7 @@ myApp.onPageInit('notif', function (page) {
 
 					if(komentar==1)
 					{
-						console.log("masuk buka komentar");
+						//console.log("masuk buka komentar");
 						bacaJualBeliKomentar(id);
 					}
 					myApp.closeModal();
@@ -917,7 +917,7 @@ myApp.onPageInit('jualBeli', function (page) {
 		contentType: false,
 		processData: false
 	}).done(function(dataKategori){
-		//console.log("masuk");
+		////console.log("masuk");
 		var dataLengthKategori=0;
 		for (var aaa = 0 ; aaa < dataKategori.length ; aaa++) {
 			var tempA=aaa+1;

@@ -84,7 +84,6 @@ function editProfileSimpan()
 						formData.append("jenis_kelamin", gender);
 						if(password.length>0)
 						{
-							console.log(password);
 							formData.append("password", password);
 						}
 						formData.append("id_kota", id_kota);
@@ -93,11 +92,6 @@ function editProfileSimpan()
 						formData.append("file", blob);
 						
 						var link=urlnya+'/api/user/updateUser';
-						//console.log(formData);
-						
-						//for (var z[ii] of formData.entries()) {
-						//	console.log(z[ii][0]+ ', ' + z[ii][1]); 
-						//}
 						myApp.showPreloader('Update profile...');
 						$.ajax({
 							url: link,
@@ -138,7 +132,6 @@ function editProfileSimpan()
 							});
 							
 							var link=urlnya+'/api/user/getUserByIdUser?id_user='+id_user;
-							console.log(link);
 							$.ajax({ dataType: "jsonp",
 								url: link,
 								type: 'GET',

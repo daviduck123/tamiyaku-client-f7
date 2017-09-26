@@ -273,10 +273,6 @@ function registerPost() {
 			eraseData("kelas1");
 			eraseData("kelas2");
 			eraseData("kelas3");
-			/*
-			for (var ii = 0; ii < formData.entries().length; ii++) {
-				console.log(formData.entries()[ii][0]+ ', ' + formData.entries()[ii][1]); 
-			}*/
 		});
 	}
 }

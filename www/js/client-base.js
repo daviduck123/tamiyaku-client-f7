@@ -63,7 +63,6 @@ function gotoGooleMapDevice(latData,lngData)
 function onDeviceReady() {
 
     document.addEventListener("backbutton", onBackKeyDown, false);
-	console.log(navigator.camera);
 	pictureSource=navigator.camera.PictureSourceType;
 	destinationType=navigator.camera.DestinationType;
 
@@ -138,9 +137,7 @@ function setDeviceOnGPS(){
 	cordova.plugins.locationAccuracy.canRequest(function(canRequest){
 	    if(canRequest){
 	        cordova.plugins.locationAccuracy.request(function(){
-	            console.log("Request successful");
 	        }, function (error){
-	            console.error("Request failed");
 	            if(error){
 	                // Android only
 	                console.error("error code="+error.code+"; error message="+error.message);

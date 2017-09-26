@@ -255,14 +255,13 @@ function loginBySavedData() {
 }
 	
 function cekLoginAktif() {
-	myApp.showPreloader('Mengambil data...');
-	allGrupUser = null;
-
 	$(document).ready(function() 
 	{ 
         document.addEventListener("deviceready", onDeviceReady, false);
 	});
 
+	myApp.showPreloader('Mengambil data...');
+	allGrupUser = null;
 	var active_user_id="";
 	var expires="";
 	active_user_id=getData("active_user_id");
@@ -294,7 +293,6 @@ function cekLoginAktif() {
 				}
 				mainView.router.loadPage('home.html');
 				$(".profilePicture").attr('src','data:image/jpeg;base64,'+getImage('profilePic'));
-				myApp.closeModal();
 			});
 		}
 		else
@@ -339,11 +337,11 @@ function cekLoginAktif() {
 	}
 	else
 	{
-		myApp.closeModal();
 		mainView.router.loadPage('login.html');
 		eraseData("active_user_id");
 		eraseData("expires");
 	}
+	myApp.closeModal();
 }
 
 function cekLoginAktifAwal() {

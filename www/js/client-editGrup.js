@@ -116,7 +116,7 @@ function editGrupPost()
 	//myApp.showPreloader('Mengambil data...');
 	var id_user = getData("active_user_id");
 	
-	var id_grup = document.getElementById("id_editGrup").value;
+	var id_grup = getData("id_grup");
 	var nama = document.getElementById("nama_editGrup").value;
 	var id_kelas = $('#kelas_editGrup').find(":selected").val();
 	var id_kota = $('#kota_editGrup').find(":selected").val();

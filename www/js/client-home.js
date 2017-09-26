@@ -210,7 +210,7 @@ function getAllPost() {
 						}
 						html +=                     "</a>";
 						html += 				"</td>";
-						html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['nama']+"</td>";
+						html += 				"<td style='font-weight:bold;' colspan='2' >"+z[i]['nama']+"</td>";
 						if(z[i]['nama']==getData("active_user_nama"))
 						{
 							html += 				"<td class='text-right'><i onclick='gotoUpdateEvent(this.id)' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusEventData(this.id)' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";

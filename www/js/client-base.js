@@ -199,3 +199,14 @@ $(document).on("change","input[type='file']", function(){
         $(".file-selected").hide();
     }
 });
+$(document).on("keyup",".numeric-only", function(){             
+    var value = $(this).val();
+	if(!isNumber(value)){
+		value = value.replace(/[^\d.]/g, '');
+		$(this).val(value);
+	}
+});
+function isNumber(n) {
+	n = n.replace(/\./g,'');
+  	return !isNaN(parseFloat(n)) && isFinite(n);
+}

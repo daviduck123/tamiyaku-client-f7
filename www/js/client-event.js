@@ -372,7 +372,7 @@ function getAllEventPost() {
 						html += 			"<tr>";
 						html +=					'<td colspan="2" width="100px;" height="30px;"><div style="width:100px;font-weight:bold;">Tiket</div></td>';
 						html +=					'<td>: </td>';
-						html +=					'<td colspan="2">'+test+'</td>';
+						html +=					'<td colspan="2">Rp '+test+'</td>';
 						html += 			"</tr>";
 						html += 			"<tr>";
 						html += 				'<td colspan="5" class="q" >';
@@ -1209,24 +1209,24 @@ function editEventPost(clicked_id)
 			'<tr>'+
 			'<td><p>Hadiah</p></td>'+
 			'<td>'+
-			'1. Rp<input id="total_juara1EventEdit" onkeyup="ubahFormat('+"'"+'total_juara1EventEdit'+"'"+');" type="text" min="0" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  required value="'+z[i]['hadiah1']+'"></td>'+
+			'1. Rp<input id="total_juara1EventEdit" onkeyup="ubahFormat('+"'"+'total_juara1EventEdit'+"'"+');" type="text" min="0" class="numeric-only"  required value="'+z[i]['hadiah1']+'"></td>'+
 			'</td>'+
 			'</tr>'+
 			'<tr>'+
 			'<td height="48"></td>'+
 			'<td>'+
-			'2. Rp<input id="total_juara2EventEdit" onkeyup="ubahFormat('+"'"+'total_juara2EventEdit'+"'"+');" type="text" min="0" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  required value="'+z[i]['hadiah2']+'"></td>'+
+			'2. Rp<input id="total_juara2EventEdit" onkeyup="ubahFormat('+"'"+'total_juara2EventEdit'+"'"+');" type="text" min="0" class="numeric-only"  required value="'+z[i]['hadiah2']+'"></td>'+
 			'</td>'+
 			'</tr>'+
 			'<tr>'+
 			'<td height="48"></td>'+
 			'<td>'+
-			'3. Rp<input id="total_juara3EventEdit" onkeyup="ubahFormat('+"'"+'total_juara3EventEdit'+"'"+');" type="text" min="0" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  required value="'+z[i]['hadiah3']+'"></td>'+
+			'3. Rp<input id="total_juara3EventEdit" onkeyup="ubahFormat('+"'"+'total_juara3EventEdit'+"'"+');" type="text" min="0" class="numeric-only"  required value="'+z[i]['hadiah3']+'"></td>'+
 			'</td>'+
 			'</tr>'+
 			'<tr>'+
 			'<td><p>Harga Tiket</p></td>'+
-			'<td>&nbsp;&nbsp;&nbsp;&nbsp;Rp<input id="ticket_buatEventEdit" onkeyup="ubahFormat('+"'"+'ticket_buatEventEdit'+"'"+');" type="text" min="0" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required value="'+z[i]['harga_tiket']+'"></td>'+
+			'<td>&nbsp;&nbsp;&nbsp;&nbsp;Rp<input id="ticket_buatEventEdit" onkeyup="ubahFormat('+"'"+'ticket_buatEventEdit'+"'"+');" type="text" min="0" class="numeric-only" required value="'+z[i]['harga_tiket']+'"></td>'+
 			'</tr>'+
 			'<tr>'+
 			'<td><p>Kota</p></td>'+

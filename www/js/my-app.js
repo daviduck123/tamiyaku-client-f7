@@ -26,6 +26,7 @@ if(globalKota.length == 0){
 	}); 	
 }
 myApp.onPageInit('detailEvent', function (page) {
+	console.log("masuk");
 	$(document).ready(function() 
 	{ 
 		var id_post = getData("id_lihat_detail_event");

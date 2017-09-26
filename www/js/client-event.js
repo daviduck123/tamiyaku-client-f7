@@ -1572,7 +1572,7 @@ function saveEventEditPost(clicked_id) {
 												if(ctx !== null){
 													formData.append("canvas",ctx.canvas.toDataURL());
 												}
-												console.log(formData);
+												//console.log(formData);
 												var link=urlnya+'/api/event/updateEvent/';
 												myApp.showPreloader('Update Data...');
 												$.ajax({
@@ -1583,17 +1583,30 @@ function saveEventEditPost(clicked_id) {
 													processData: false
 												}).done(function(z){
 													viewRouterBack();
-													//tutupModalEvent();
-													getAllEventPost();
-													myApp.alert('Event berhasil diubah!', 'Berhasil!');
+													var activepage = mainView.activePage.name;
+													if(activepage=="detailEvent")
+													{
+														myApp.closeModal();
+														mainView.router.back();
+														mainView.router.reloadPage('detailEvent.html');
+														saveData("id_lihat_detail_event",id_event);
+													}
+													else
+													{
+														myApp.closeModal();
+														getAllEventPost();
+														myApp.alert('Event berhasil diubah!', 'Berhasil!');
+													}
 													ctx = null;
-													if(ctx != null){
+													if(ctx != null)
+													{
 														$(".track-selected").show();
-													}else{
+													}
+													else
+													{
 														$(".track-selected").hide();
 													}
 													$(".file-selected").hide();
-													myApp.closeModal();
 												}).fail(function(x){
 													myApp.alert(x.message+" "+x.error, 'Perhatian!');
 												});

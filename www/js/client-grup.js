@@ -912,7 +912,7 @@ function getAllGrupPost(clickedId) {
 					html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['nama']+"</td>";
 					if(z[i]['nama']==getData("active_user_nama"))
 					{
-						html += 				"<td class='text-right'><i onclick='editGrupPost(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+						html += 				"<td class='text-right'><i onclick='editPostinganGrup(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 					}
 					html += 			"</tr>";
 					html += 			"<tr>";
@@ -956,7 +956,7 @@ function getAllGrupPost(clickedId) {
 					html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['nama']+"</td>";
 					if(z[i]['nama']==getData("active_user_nama"))
 					{
-						html += 				"<td class='text-right'><i onclick='editGrupPost(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+						html += 				"<td class='text-right'><i onclick='editPostinganGrup(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 					}
 					html += 			"</tr>";
 					html += 			"<tr>";
@@ -1047,7 +1047,7 @@ function getAllGrupPost(clickedId) {
 					html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['nama']+"</td>";
 					if(z[i]['nama']==getData("active_user_nama"))
 					{
-						html += 				"<td class='text-right'><i onclick='editGrupPost(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+						html += 				"<td class='text-right'><i onclick='editPostinganGrup(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 					}
 					html += 			"</tr>";
 					html += 			"<tr>";
@@ -1091,7 +1091,7 @@ function getAllGrupPost(clickedId) {
 					html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['nama']+"</td>";
 					if(z[i]['nama']==getData("active_user_nama"))
 					{
-						html += 				"<td class='text-right'><i onclick='editGrupPost(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+						html += 				"<td class='text-right'><i onclick='editPostinganGrup(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 					}
 					html += 			"</tr>";
 					html += 			"<tr>";
@@ -1183,7 +1183,7 @@ function getAllGrupPostWithIdPost(clickedId, id_post) {
 					html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['nama']+"</td>";
 					if(z[i]['nama']==getData("active_user_nama"))
 					{
-						html += 				"<td class='text-right'><i onclick='editGrupPost(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+						html += 				"<td class='text-right'><i onclick='editPostinganGrup(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 					}
 					html += 			"</tr>";
 					html += 			"<tr>";
@@ -1227,7 +1227,7 @@ function getAllGrupPostWithIdPost(clickedId, id_post) {
 					html += 				"<td style='font-weight:bold;' colspan='2'>"+z[i]['nama']+"</td>";
 					if(z[i]['nama']==getData("active_user_nama"))
 					{
-						html += 				"<td class='text-right'><i onclick='editGrupPost(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
+						html += 				"<td class='text-right'><i onclick='editPostinganGrup(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-caret-square-o-down' aria-hidden='true'></i><i onclick='pilihanHapusGrupData(this.id,"+id_grup+")' id='"+z[i]['id']+"' class='fa fa-minus' aria-hidden='true'></i></td>";
 					}
 					html += 			"</tr>";
 					html += 			"<tr>";
@@ -1542,6 +1542,131 @@ function komentariGrupPost(clicked_id) {
 			}
 		}
 	});
+}
+
+function editPostinganGrup(clicked_id,id_grup)
+{
+	myApp.showPreloader('Mengambil data...');
+	var id_user = getData("active_user_id");
+	var formData=JSON.stringify({
+						id_user:id_user,
+					});
+	var link=urlnya+'/api/post/getAllPostByGrup?id_grup='+id_grup;
+
+	$.ajax({
+	    url: link,
+	    type: 'GET',
+	    contentType: false,
+	    processData: false
+	}).done(function(z){
+		console.log(z);
+		myApp.closeModal();
+		var coba="";
+		var dataLength=0;
+		for (var ii = 0 ; ii < z.length ; ii++) {
+			coba+=z[ii]['id']+"|"; 
+			dataLength++;
+		}
+		for(var i=0;i<dataLength;i++)
+		{
+			if(clicked_id==z[i]['id'])
+			{
+				console.log(z);
+				if(z[i]['foto']!="")
+				{
+					//myApp.popup('.popup-edit-home');
+					var popupHTML=	'<div class="popup">'+
+								'<div class="content-block">'+
+								'<p>Edit Kiriman</p>'+
+											'<div class="page-content">'+
+											'<center><textarea id="statusEdit" style="resize:none; margin-top:10px; width:90%; height:60px;" '+
+											'placeholder="Tulis Status Anda..">'+z[i]['deskripsi']+'</textarea>'+
+											"<img class='lazy' src='data:image/jpeg;base64,"+z[i]['foto']+"' style='width:100%; height:100%;'>"+
+											'</center>'+
+										'<div style="height:0px;overflow:hidden">'+
+										'<input type="file" id="file_editHome" accept="image/*"/>'+
+										'</div>'+
+										'<p><a href="#" class="button active" onclick="postinganGrupEditPost(this.id,'+id_grup+');" id='+clicked_id+' type="submit" style="width:70px; float:right; margin-right:5%;">Update</a></p>'+
+										'<p><a href="#" class="button"  onclick="chooseFile_editHome();" style=" float:right; margin-right:10px; width:85px;">Gambar..</a></p>'+
+										' <small class="file-selected">file selected</small>'+
+							   ' </div>'+
+							   '<p><a href="#" onclick="tutupModal()" class="close-popup">Kembali</a></p>'+
+						'</div>'+
+					'</div>';
+					myApp.popup(popupHTML);
+				}
+				else
+				{
+					//myApp.popup('.popup-edit-home');
+					var popupHTML=	'<div class="popup">'+
+								'<div class="content-block">'+
+								'<p>Edit Kiriman</p>'+
+											'<div class="page-content">'+
+											'<center><textarea id="statusEdit" style="resize:none; margin-top:10px; width:90%; height:60px;" '+
+											'placeholder="Tulis Status Anda..">'+z[i]['deskripsi']+'</textarea>'+
+											'</center>'+
+										'<div style="height:0px;overflow:hidden">'+
+										'<input type="file" id="file_editHome" accept="image/*"/>'+
+										'</div>'+
+										'<p><a href="#" class="button active" onclick="postinganGrupEditPost(this.id,'+id_grup+');" id='+clicked_id+' type="submit" style="width:70px; float:right; margin-right:5%;">Update</a></p>'+
+										'<p><a href="#" class="button"  onclick="chooseFile_editHome();" style=" float:right; margin-right:10px; width:85px;">Gambar..</a></p>'+
+										' <small class="file-selected">file selected</small>'+
+							   ' </div>'+
+							   '<p><a href="#" onclick="tutupModal()" class="close-popup">Kembali</a></p>'+
+						'</div>'+
+					'</div>';
+					myApp.popup(popupHTML);
+				}
+			}
+		}
+	}).fail(function(x){
+		myApp.alert("Pengambilan status user gagal", 'Perhatian!');
+	}); 
+}
+
+function postinganGrupEditPost(clicked_id,id_grup) {
+	myApp.showPreloader('Mengambil data...');
+	//ON PROGRESS
+	var id_user = getData("active_user_id");
+	var status = document.getElementById("statusEdit").value;
+	
+	var link=urlnya+'/api/post/updatePost/';
+	
+	if(status=="")
+	{
+		myApp.alert('Status tidak boleh kosong', 'Perhatian!');
+	}
+	else
+	{
+		var blob=$("#file_editHome")[0].files[0];
+		var formData = new FormData();
+		formData.append("id_user", id_user);
+		formData.append("id_grup", id_grup);
+		formData.append("deskripsi", status);
+		formData.append("id_post", clicked_id);
+		formData.append("file", blob);
+
+		$.ajax({
+		    url: link,
+		    data: formData,
+		    type: 'POST',
+		    contentType: false,
+		    processData: false
+		}).done(function(z){
+			myApp.closeModal();
+			$(".modal-overlay-visible").remove();
+			$(".file-selected").hide();
+			getAllGrupPost(id_grup);
+		}).fail(function(x){
+			myApp.alert('Maaf tidak dapat menambah status, silahkan coba lagi', 'Perhatian!');
+			var coba="";
+			for (var ii = 0 ; ii < formData.entries().length; ii++) {
+				coba+=formData.entries()[ii][0]+ ', '; 
+			}
+			console.log(coba);
+		});
+		
+	}
 }
 
 function editKomentarGrup(id_grup,clicked_id)
